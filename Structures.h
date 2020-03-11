@@ -5,21 +5,21 @@
 #ifndef C_PROJECT_STRUCTURES_H
 #define C_PROJECT_STRUCTURES_H
 
-/*Y'a un vrai boulot pour la gestion du nom des fonctions et des attribust, là j'ai fait un peu à l'arrache, je pense qu'il y aura des trucs à changer*/
+/*Y'a un vrai boulot pour la gestion du nom des fonctions et des attributs, là j'ai fait un peu à l'arrache, je pense qu'il y aura des trucs à changer*/
 
 struct Patient{
     char * nom;
     char * prenom;
-    int annee_naissance;    //Il y a certainement un format date en C, à voir si c'est plus facile à gérer
-    int mois_naissance;
-    int jour_naissance;
+    Date * date_naissance;    //Il y a certainement un format date en C, à voir si c'est plus facile à gérer   --> pourquoi ne pas faire une structure date ? OK
     char * adresse_mail;
     char * numero_telephone; //On pourrait peut-être faire un long int mais quel interêt ?
     Medecin * medecins_consultes;
 };
 
-Patient * CreerPatient(char * nom, char * prenom, int an, int mois, int jour, char * mail, char * num_tel);
-int InscriptionPatient(Patient patient, RendezVous rdv); //Si j'ai bien compris
+
+
+Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
+int InscriptionPatient(Patient * patient, RendezVous * rdv); //Si j'ai bien compris
 void SetNomPatient(char * nom);
 void SetPrenomPatient(char * prenom);
 void SetDateNaissancePatient(int an, int mois, int jour);
@@ -31,8 +31,8 @@ void InitMedecinConsultesPatient();
 /*Donc on gère aussi un potentiel free*/
 void FreeMedecinsConsultesPatient();
 
-int AddMedecinPatient(Patient p, Medecin medecin);
-int DeleteMedecinPatient(Patient p, Medecin medecin); //Si jamais on a besoin de retirer un medecin
+int AddMedecinPatient(Patient * p, Medecin * medecin);
+int DeleteMedecinPatient(Patient * p, Medecin * medecin); //Si jamais on a besoin de retirer un medecin
 
 
 
@@ -62,11 +62,13 @@ void InitPatientRecusMedecin();
 /*Donc on gère aussi un potentiel free*/
 void FreePatientRecusMedecin();
 
-int AddPatientMedecin(Medecin m, Patient patient);
-int DeletePatientMedecin(Medecin m, Patient patient); //Si jamais on a besoin de retirer un patient
+int AddPatientMedecin(Medecin * m, Patient * patient);
+int DeletePatientMedecin(Medecin * m, Patient * patient); //Si jamais on a besoin de retirer un patient
+
+
 
 struct DossierMedical{
-    Patient patient;
+    Patient * patient;
     Medecin * medecins; //Liste des mèdecins consultés pour ce dossier
     //static int nb_medecins;    // Peut être utile
     Ordonnance * ordonnances; //En vrai on devrait aussi faire une structure ordonnance, c'est plus clean
@@ -75,43 +77,65 @@ struct DossierMedical{
     //static int nb_antecedents;    // idem²
 };
 
-int CreerDossier(Patient patient);   //On y fera les 3 mallocs
+DossierMedical * CreerDossier(Patient * patient);   //On y fera les 3 mallocs
 void FreeDossier();                     //Il y aura donc 3 free je pense
 
-void AccesDossier(DossierMedical d);    //Print toutes les infos je suppose
-
-void SetPatientDossier(DossierMedical dm, Patient patient);
-int AddMedecinDossierMedical(DossierMedical dm, Medecin medecin);
-int AddOrdonnanceDossierMedical(DossierMedical dm, Ordonnance ordonnance);
-int AddAntecedentDossierMedical(DossierMedical dm, DossierMedical antecedent);
+void AccesDossier(DossierMedical * d);    //Print toutes les infos je suppose
+void SetPatientDossier(DossierMedical * dm, Patient * patient);
+int AddMedecinDossierMedical(DossierMedical * dm, Medecin * medecin);
+int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
+int AddAntecedentDossierMedical(DossierMedical * dm, DossierMedical * antecedent);
 
 //void TransfertDossier(DossierMedical dm, ???); //J'avoue que je vois pas trop
 
 
+
 struct RendezVous{
-    int annee;      //Idem pour le format date
-    int mois;
-    int jour;
-    int heure; // Comment on stocke ça ? 16h30 <=> 16.5 ? ou Alors un attribut heure et un attribut minute ?
-    //int minute;
+    Date date;
+    int heure;      // Comment on stocke ça ? 16h30 <=> 16.5 ? ou Alors un attribut heure et un attribut minute ?
+    int minute;
+    int duree;  //Tout les rendez-vous ne durent pas aussi longtemps
     char * lieu; //Numéro batiment / numero salle ?
-    Patient patient;
-    Medecin medecin;
+    Patient * patient;
+    Medecin * medecin;
     char * motif;
 };
 
-int CreerRendezVous(int an, int mois, int jour, int heure, char * lieu, Patient patient, Medecin medecin, char * motif);
-int AnnulerRendezVous(); //Je m'arrete là
+RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
+int AnnulerRendezVous(RendezVous * rdv);
+int DeplacerRendezVous(RendezVous * rdv, int n_an, int n_jour, int n_heure, int n_duree);
+
+
 
 struct Calendrier{      //Au niveau des dates / jour / mois etc ... je sais pas trop comment gérer ça
-    RendezVous * rendez_vous;
+    RendezVous * rendez_vous;   //Un tableau de rendez-vous pour l'instant
     static int taille = 0; //Nombre de rendez-vous actuels dans le calendrier
 };
 
+Calendrier * InitCalendrier(RendezVous * tab_rdv); //Crée un calendrier vide
+
+
+
 struct Ordonnance{
-    //Oui oui ...
+    Patient * patient;
+    Medecin * medecin;
+    Date date_edition;
+    Date date_expiration;
+    char * description;
 };
 
+Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description);
+int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, Date * date_edit, Date * date_expi, char * description);
+void AfficherOrdonnanc(Ordonnance * ordo);
 
+
+
+struct Date{
+    int annee;
+    int mois;
+    int jour;
+};
+
+Date * CreerDate(int annee, int mois, int jour);
 
 #endif //C_PROJECT_STRUCTURES_H
