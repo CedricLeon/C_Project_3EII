@@ -1,4 +1,9 @@
-//
-// Created by cleonard on 20/03/2020.
-//
+#include "date.h"
 
+Date * CreerDate(int annee, int mois, int jour){
+    Date * d;
+    d->annee = annee;
+    d->mois = mois;
+    d->jour = jour;
+    return d;
+}
