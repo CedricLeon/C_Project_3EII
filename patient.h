@@ -4,26 +4,27 @@
 #include "date.h"
 #include "rendezvous.h"
 
-typedef struct{
+typedef struct Patient Patient;
+struct Patient{
     char * nom;
     char * prenom;
-    Date * date_naissance;    //Il y a certainement un format date en C, à voir si c'est plus facile à gérer   --> pourquoi ne pas faire une structure date ? OK
+    Date * date_naissance;    //Il y a certainement un format date en C, ï¿½ voir si c'est plus facile ï¿½ gï¿½rer   --> pourquoi ne pas faire une structure date ? OK
     char * adresse_mail;
-    char * numero_telephone; //On pourrait peut-être faire un long int mais quel interêt ?
+    char * numero_telephone; //On pourrait peut-ï¿½tre faire un long int mais quel interï¿½t ?
     Medecin * medecins_consultes;
-}Patient;
+}
 
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
 int InscriptionPatient(Patient * patient, RendezVous * rdv); //Si j'ai bien compris
-void SetNomPatient(char * nom);
-void SetPrenomPatient(char * prenom);
-void SetDateNaissancePatient(int an, int mois, int jour);
-void SetAdresseMailPatient(char * mail);
-void SetNumeroTelephonePatient(char * tel);
+void SetNomPatient(Patient * p, char * nom);
+void SetPrenomPatient(Patient * p, char * prenom);
+void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
+void SetAdresseMailPatient(Patient * p, char * mail);
+void SetNumeroTelephonePatient(Patient * p, char * tel);
 
-/* Il y aura un malloc à gérer ici*/
+/* Il y aura un malloc ï¿½ gï¿½rer ici*/
 void InitMedecinConsultesPatient();
-/*Donc on gère aussi un potentiel free*/
+/*Donc on gï¿½re aussi un potentiel free*/
 void FreeMedecinsConsultesPatient();
 
 int AddMedecinPatient(Patient * p, Medecin * medecin);
