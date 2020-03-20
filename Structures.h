@@ -6,7 +6,7 @@
 #define C_PROJECT_STRUCTURES_H
 
 /*Y'a un vrai boulot pour la gestion du nom des fonctions et des attributs, là j'ai fait un peu à l'arrache, je pense qu'il y aura des trucs à changer*/
-
+/* Pas de Majuscules au début des attributs et des noms de fonctions, sinon homogénéiser entre nous*/
 struct Patient{
     char * nom;
     char * prenom;
@@ -86,7 +86,7 @@ int AddMedecinDossierMedical(DossierMedical * dm, Medecin * medecin);
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
 int AddAntecedentDossierMedical(DossierMedical * dm, DossierMedical * antecedent);
 
-//void TransfertDossier(DossierMedical dm, ???); //J'avoue que je vois pas trop
+void TransfertDossier(DossierMedical dm, ); //J'avoue que je vois pas trop
 
 
 
