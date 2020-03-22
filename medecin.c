@@ -1,6 +1,6 @@
 #include "medecin.h"
 
-Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, char * num_RPS){
+Medecin *CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, char * num_RPS){
     Medecin * m;
     m->nom = nom;
     m->prenom = prenom;
