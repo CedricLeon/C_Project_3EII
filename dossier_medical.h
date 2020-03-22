@@ -3,15 +3,16 @@
 
 #include "ordonnance.h"
 
-typedef struct{
+typedef struct DossierMedical DossierMedical;
+struct DossierMedical{
     Patient * patient;
-    Medecin * medecins; //Liste des mèdecins consultés pour ce dossier
-    //static int nb_medecins;    // Peut être utile
+    Medecin * medecins; //Liste des mï¿½decins consultï¿½s pour ce dossier
+    //static int nb_medecins;    // Peut ï¿½tre utile
     Ordonnance * ordonnances; //En vrai on devrait aussi faire une structure ordonnance, c'est plus clean
     //static int nb_ordonnaces;    // idem
-    DossierMedical * antecedents; //Liste des précédents passage à l'hopital
-    //static int nb_antecedents;    // idem²
-}DossierMedical;
+    DossierMedical * antecedents; //Liste des prï¿½cï¿½dents passage ï¿½ l'hopital
+    //static int nb_antecedents;    // idemï¿½
+};
 
 DossierMedical * CreerDossier(Patient * patient);   //On y fera les 3 mallocs
 void FreeDossier();                     //Il y aura donc 3 free je pense
