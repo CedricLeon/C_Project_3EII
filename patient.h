@@ -2,27 +2,28 @@
 #define PATIENT_H
 
 #include "date.h"
-#include "rendezvous.h"
+#include "rendezvous.h"     //Pour l'inscription du patient : à revoir plus tard
 
-#define NB_MAX_MEDECINS_CONSULTES 10
+#define NB_MAX_MEDECINS_CONSULTES 10    //Nombre arbitraire à modifié plus tard
 
-typedef struct Patient Patient;     /*Je pense pas que il faille definirles 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
+typedef struct Patient Patient;     /*Je pense pas que il faille definir les 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
 typedef struct Medecin Medecin;
 
 struct Patient{
     char * nom;
     char * prenom;
-    Date * date_naissance;    //Il y a certainement un format date en C, � voir si c'est plus facile � g�rer   --> pourquoi ne pas faire une structure date ? OK
+    Date * date_naissance;
     char * adresse_mail;
-    char * numero_telephone; //On pourrait peut-�tre faire un long int mais quel inter�t ?
+    char * numero_telephone;
     Medecin * medecins_consultes;
     int nb_medecins_consultes;
 };
 
+
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
 void DeletePatient(Patient * patient);
 
-//int InscriptionPatient(Patient * patient, RendezVous * rdv); //Si j'ai bien compris
+//int InscriptionPatient(Patient * patient, RendezVous * rdv);              //A implémenter quand toutes les structures seront completes et testées
 
 /* Setteurs */
 void SetNomPatient(Patient * p, char * nom);
@@ -31,12 +32,12 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
 void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
 
-
+/* Gestion de la liste des mèdecins consultés par le patient */
 int InitMedecinConsultesPatient(Patient * patient);
 void FreeMedecinsConsultesPatient(Patient * patient);
 
 int AddMedecinPatient(Patient * p, Medecin * medecin);
-int DeleteMedecinPatient(Patient * p, Medecin * medecin); //Si jamais on a besoin de retirer un medecin
+int DeleteMedecinPatient(Patient * p, Medecin * medecin);
 
 
 #endif
