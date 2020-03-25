@@ -3,6 +3,9 @@
 #include <stddef.h>
 #include <setjmp.h>
 #include <cmocka.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void){
     const struct CMUnitTest tests_fonctionsBasiques[] = {
@@ -14,3 +17,5 @@ int main(void){
     return 0;
 }
 
+
+#pragma clang diagnostic pop

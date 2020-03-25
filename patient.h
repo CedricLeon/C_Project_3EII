@@ -8,7 +8,9 @@
 
 typedef struct Patient Patient;     /*Je pense pas que il faille definir les 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
 typedef struct Medecin Medecin;
-
+/**
+ * Structure patient représentant un patient qui vient consulté dans l'application
+ */
 struct Patient{
     char * nom;
     char * prenom;

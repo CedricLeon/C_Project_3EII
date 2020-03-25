@@ -108,9 +108,11 @@ void FreeMedecinsConsultesPatient(Patient * patient){
  */
 int AddMedecinPatient(Patient * p, Medecin * medecin){
     if(p->nb_medecins_consultes == NB_MAX_MEDECINS_CONSULTES){
-        printf("Le patient %s a déjà consulté trop de medecins différents ici : %d;\n", p->nom,  NB_MAX_MEDECINS_CONSULTES);
+        printf("Le patient %s a déjà consulté trop de medecins différents ici : %d.\nLe medecin n'a donc pas été ajouté à sa liste.;\n", p->nom,  NB_MAX_MEDECINS_CONSULTES);
         return  -1;
     }
+    p->medecins_consultes + p->nb_medecins_consultes * sizeof(Medecin) = medecin;
+    //
     /*La faut faire mumuse avec la dynamique des pointeurs et je crois que j'ai jamais compris*/
     //p->medecins_consultes + p->nb_medecins_consultes = medecin; // ?????pas sur du tout
 
