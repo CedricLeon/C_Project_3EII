@@ -1,6 +1,10 @@
 #ifndef PATIENT_H
 #define PATIENT_H
 
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "date.h"
 #include "rendezvous.h"     //Pour l'inscription du patient : à revoir plus tard
 
@@ -38,8 +42,8 @@ void SetNumeroTelephonePatient(Patient * p, char * tel);
 int InitMedecinConsultesPatient(Patient * patient);
 void FreeMedecinsConsultesPatient(Patient * patient);
 
-int AddMedecinPatient(Patient * p, Medecin * medecin);
-int DeleteMedecinPatient(Patient * p, Medecin * medecin);
+int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
+int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 
 
 #endif

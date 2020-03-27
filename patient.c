@@ -1,6 +1,3 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include "patient.h"
 
 /**
@@ -22,12 +19,14 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
     p->adresse_mail = mail;
     p->numero_telephone = num_tel;
-
-    InitMedecinConsultesPatient(p);
+    if(InitMedecinConsultesPatient(p) == -1){
+        printf("Le malloc de InitMedecinsConsultesPatient() a échoué ...\n");
+    }
     p->nb_medecins_consultes = 0;
 
     return p;
 }
+
 /**
  * DeletePatient : Supprime proprement une instance de la structure patient
  * @param patient : le patient à supprimer
@@ -87,10 +86,9 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
  * @return 1 si l'initialisation s'est bien passée 0 sinon
  */
 int InitMedecinConsultesPatient(Patient * patient){
-    patient->medecins_consultes = (Medecin *) malloc(NB_MAX_MEDECINS_CONSULTES * sizeof(Medecin));
-    //Comme c'est un tableau de medecins consultés il faut bien lui donner une taille lors de son initialisation
+    patient->medecins_consultes = (Medecin *) malloc(NB_MAX_MEDECINS_CONSULTES * sizeof(Medecin *));
+    //Comme c'est un tableau de pointeurs medecins consultés il faut bien lui donner une taille lors de son initialisation
     //Par défaut jai mis 10 medecins mais on changera plus tard (peut etre allocation dynamique)
-
     return patient->medecins_consultes != NULL;
 }
 /**
@@ -100,21 +98,21 @@ int InitMedecinConsultesPatient(Patient * patient){
 void FreeMedecinsConsultesPatient(Patient * patient){
     free(patient->medecins_consultes);
 }
+
 /**
  * AddMedecinPatient : Ajoute un Medecin à la liste des medecins consultés par un patient
  * @param p : le patient consultant
  * @param medecin : le medecin consulté
  * @return 1 si l'ajout du mèdecin a bien été réalisé 0 sinon (le patient a déjà consulté trop de mèdecins ou autre)
  */
-int AddMedecinPatient(Patient * p, Medecin * medecin){
+int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     if(p->nb_medecins_consultes == NB_MAX_MEDECINS_CONSULTES){
-        printf("Le patient %s a déjà consulté trop de medecins différents ici : %d.\nLe medecin n'a donc pas été ajouté à sa liste.;\n", p->nom,  NB_MAX_MEDECINS_CONSULTES);
+        printf("Le patient %s a déjà consulté trop de medecins différents : %d.\nLe medecin n'a donc pas été ajouté à sa liste.;\n", p->nom,  NB_MAX_MEDECINS_CONSULTES);
         return  -1;
     }
-    p->medecins_consultes + p->nb_medecins_consultes * sizeof(Medecin) = medecin;
-    //
-    /*La faut faire mumuse avec la dynamique des pointeurs et je crois que j'ai jamais compris*/
-    //p->medecins_consultes + p->nb_medecins_consultes = medecin; // ?????pas sur du tout
+
+    (*(p->medecins_consultes + p->nb_medecins_consultes)) = * medecin;
+    p->nb_medecins_consultes++;
 
     printf("Le patient %s a consultés le medecin %s.\n", p->nom, medecin->nom);
     return 0;   //reussite
@@ -125,12 +123,14 @@ int AddMedecinPatient(Patient * p, Medecin * medecin){
  * @param medecin : le medecin qui n'a pas été consulté
  * @return 1 si l'enlevement du mèdecin a bien été réalisé 0 sinon (le patient n'avait pas consulté ce mèdecin par exemple)
  */
-int DeleteMedecinPatient(Patient * p, Medecin * medecin){
+int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
     if(p->nb_medecins_consultes == 0){
         printf("Le Patient %s n'a pas encore consulté de mèdecin ici.\n", p->nom);
         return -1;
     }
+    p->medecins_consultes + p->nb_medecins_consultes = NULL;
 
+    p->nb_medecins_consultes--;
     return 0;
 }
 
