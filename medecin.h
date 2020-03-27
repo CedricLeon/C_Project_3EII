@@ -1,6 +1,12 @@
 #ifndef MEDECIN_H
 #define MEDECIN_H
 
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#define NB_MAX_PATIENT_RECUS 500    //Nombre arbitraire à modifié plus tard (Elisabeth)
+
 typedef struct Medecin Medecin;             /*Je pense pas que il faille definir les 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
 typedef struct Patient Patient;
 
@@ -10,11 +16,12 @@ typedef struct Patient Patient;
 struct Medecin{
     char * nom;
     char * prenom;
-    char ** specialites;
-    char ** diplomes;
+    char ** specialites;            //medecin->specialites = (char **) malloc(NB_MAX_SPECIALITES * sizeof(char*));
+    char ** diplomes;               //medecin->diplomes = (char **) malloc(NB_MAX_DIPLOMES * sizeof(char*));        Pour une V1 ou V2 je pense
     char * adresse_mail;
     char * numero_telephone;
     Patient * patient_recus;
+    int nb_patients_recus;
     char * numero_RPS;
 };
 
@@ -31,10 +38,10 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS);
 
 
 /* Gestion de la liste des patients recus par le medecin*/
-void InitPatientRecusMedecin(Medecin * medecin);
+int InitPatientRecusMedecin(Medecin * medecin);
 void FreePatientRecusMedecin(Medecin * medecin);
 
-int AddPatientMedecin(Medecin * m, Patient * patient);
-int DeletePatientMedecin(Medecin * m, Patient * patient);
+int AddPatientRecuMedecin(Medecin * m, Patient * patient);
+int DeletePatientRecuMedecin(Medecin * m, Patient * patient);
 
 #endif
