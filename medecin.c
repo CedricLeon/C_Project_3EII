@@ -1,4 +1,5 @@
 #include "medecin.h"
+#include "patient.h"
 
 /**
  * CreerMedecin : Creer une nouvelle instance de la structure Medecin avec toutes les informations basiques mais pas ses spécialités ou ses diplômes
@@ -10,16 +11,15 @@
  * @return un pointeur sur le medecin créé
  */
 Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, char * num_RPS){
-    Medecin * m;
+
+    Medecin * m = (Medecin *) malloc(sizeof(Medecin));
     m->nom = nom;
     m->prenom = prenom;
     m->adresse_mail = mail;
     m->numero_telephone = num_tel;
     m->numero_RPS = num_RPS;
-    if(InitPatientRecusMedecin(m) == -1){
-        printf("Le malloc de InitPatientRecusMedecin() a échoué ...\n");
-    }
-    m->nb_patients_recus = 0;
+    ListPatient_init(m->patient_recus);
+
     return m;
 }
 /**
@@ -27,7 +27,7 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
  * @param medecin : le medecin à supprimer
  */
 void DeleteMedecin(Medecin * medecin){
-    FreePatientRecusMedecin(medecin);
+    free((void *)medecin);
     //Un free pour les spécialités et les diplômes ?
 }
 
@@ -71,21 +71,7 @@ void SetNumeroTelephoneMedecin(Medecin * medecin, char * tel){
 void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
     medecin->numero_RPS = num_RPS;
 }
-/**
- * InitPatientRecusMedecin : Initialisation de la liste des Patient Recus par un medecin
- * @param medecin : le medecin recevant
- */
-int InitPatientRecusMedecin(Medecin * medecin){
-    medecin->patient_recus = (Patient *) malloc(NB_MAX_PATIENT_RECUS * sizeof(Patient *));
-    return medecin->patient_recus != NULL;
-}
-/**
- * FreePatientRecusMedecin : Libère la mémoire de la liste des patient recus par un medecin
- * @param medecin : le medecin recevant
- */
-void FreePatientRecusMedecin(Medecin * medecin){
-    free(medecin->patient_recus);
-}
+
 /**
  * AddPatientRecuMedecin : Ajoute un patient à la liste des patient recus par un medecin
  * @param m : le medecin recevant
@@ -120,7 +106,7 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
     /*for(){
         Replace les patients suicvant le patient retiré dans l'ordre
     }*/
-    m->nb_patients_recus--;
+    //m->nb_patients_recus--;
     return 0;
 }
 
@@ -129,14 +115,40 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
 /**********************************************************************************************************************/
 
 /**
- * ListMedecin_init : Initialise correctement une liste de NodeMedecin en mettat first last et current à NULL
+ * Static newNodeMedecin : Permet de créer dynamiquement un nouveau node de Medecin pour la liste
+ * @param Medecin : le Medecin pointé par ce nouveau noeud
+ * @param previous : le noeud précédant le nouveau noeud dans la liste
+ * @param next : le prochain noeud de la liste
+ * @return un pointeur sur le nouveau noeud créé
+ */
+static NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMedecin * next){
+    NodeMedecin * newNode = (NodeMedecin *) malloc(sizeof(NodeMedecin));
+    newNode->medecin = medecin;
+    newNode->next = next;
+    newNode->previous = previous;
+    return newNode;
+}
+/**
+ * static freeNodeMedecin : Permet de delete proprement (avec un free) un nodeMedecin
+ * @param n : le node à delete
+ */
+static void freeNodeMedecin(NodeMedecin * n){
+    free((void*) n);
+}
+
+
+/**
+ * ListMedecin_init : Initialise correctement une liste de NodeMedecin en mettant reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL en dehors de la liste
  * @param l : la liste à initialiser
  */
 void ListMedecin_init(ListMedecin * l){
     if (l != NULL){
-        l->first = NULL;
         l->current = NULL;
-        l->last = NULL;
+        l->sentinel_begin.next = &(l->sentinel_end);
+        l->sentinel_begin.previous = NULL;
+        l->sentinel_end.previous = &(l->sentinel_begin);
+        l->sentinel_end.next = NULL;
     }
 }
 
@@ -147,7 +159,7 @@ void ListMedecin_init(ListMedecin * l){
  */
 int ListMedecin_isEmpty(ListMedecin * l){
     if (l != NULL){
-        return  NULL == l->first;
+        return  l->sentinel_begin.next == &(l->sentinel_end);
     }
     return -1; //La liste est NULL
 }
@@ -158,7 +170,7 @@ int ListMedecin_isEmpty(ListMedecin * l){
  */
 int ListMedecin_isFirst(ListMedecin * l){
     if (l != NULL){
-        return  l->current == l->first;
+        return  l->current == l->sentinel_begin.next;
     }
     return -1; //La liste est NULL
 }
@@ -169,7 +181,7 @@ int ListMedecin_isFirst(ListMedecin * l){
  */
 int ListMedecin_isLast(ListMedecin * l){
     if (l != NULL){
-        return  l->current == l->last;
+        return  l->current == l->sentinel_end.previous;
     }
     return -1; //La liste est NULL
 }
@@ -180,7 +192,7 @@ int ListMedecin_isLast(ListMedecin * l){
  */
 int ListMedecin_isOutOfList(ListMedecin * l){
     if (l != NULL){
-        return  NULL == l->current;
+        return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
     }
     return -1; //La liste est NULL
 }
@@ -191,7 +203,7 @@ int ListMedecin_isOutOfList(ListMedecin * l){
  */
 void ListMedecin_setOnFirst(ListMedecin * l){
     if(l != NULL && !ListMedecin_isOutOfList(l)){
-        l->current = l->first;
+        l->current = l->sentinel_begin.next;
     }
 }
 /**
@@ -200,7 +212,7 @@ void ListMedecin_setOnFirst(ListMedecin * l){
  */
 void ListMedecin_setOnLast(ListMedecin * l){
     if(l != NULL && !ListMedecin_isOutOfList(l)){
-        l->current = l->last;
+        l->current = l->sentinel_end.previous;
     }
 }
 /**
@@ -213,9 +225,18 @@ void ListMedecin_setOnNext(ListMedecin * l){
     }
 }
 /**
- * ListMedecin_getCurrent : Permet d'acceder au medecin pointé par current
+ * ListMedecin_setOnPrevious : Positionne le pointeur courant sur l'élément avant lui dans la liste
  * @param l : la liste
- * @return Retourne un pointeur sur le medecin de l'élément courant de la liste
+ */
+void ListMedecin_setOnPrevious(ListMedecin * l){
+    if(l != NULL && !ListMedecin_isOutOfList(l)){
+        l->current = l->current->previous;
+    }
+}
+/**
+ * ListMedecin_getCurrent : Permet d'acceder au Medecin pointé par current
+ * @param l : la liste
+ * @return Retourne un pointeur sur le Medecin de l'élément courant de la liste
  */
 Medecin * ListMedecin_getCurrent(ListMedecin * l){
     return l->current->medecin;

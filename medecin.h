@@ -5,10 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define NB_MAX_PATIENT_RECUS 500    //Nombre arbitraire à modifié plus tard (Elisabeth)
-
-typedef struct Medecin Medecin;             /*Je pense pas que il faille definir les 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
-typedef struct Patient Patient;
+#include "Structures.h"
 
 /**
  * Structure Medecin représentant un Medecin exercant dans l'hopital
@@ -20,9 +17,8 @@ struct Medecin{
     char ** diplomes;               //medecin->diplomes = (char **) malloc(NB_MAX_DIPLOMES * sizeof(char*));        Pour une V1 ou V2 je pense
     char * adresse_mail;
     char * numero_telephone;
-    Patient * patient_recus;
-    int nb_patients_recus;
     char * numero_RPS;
+    struct ListPatient * patient_recus;
 };
 
 /*On gerera les specialites, les diplomes et les patients dans d'autres fonctions ce sera plus simple je pense
@@ -57,11 +53,11 @@ typedef struct NodeMedecin{
     struct NodeMedecin * next;
 }NodeMedecin;
 
-typedef struct{
-    NodeMedecin * first;
+struct ListMedecin{
+    NodeMedecin sentinel_begin;
     NodeMedecin * current;
-    NodeMedecin * last;
-}ListMedecin;
+    NodeMedecin sentinel_end;
+};
 
 void ListMedecin_init(ListMedecin * l);
 
@@ -73,6 +69,7 @@ int ListMedecin_isOutOfList(ListMedecin * l);
 void ListMedecin_setOnFirst(ListMedecin * l);
 void ListMedecin_setOnLast(ListMedecin * l);
 void ListMedecin_setOnNext(ListMedecin * l);
+void ListMedecin_setOnPrevious(ListMedecin * l);
 Medecin * ListMedecin_getCurrent(ListMedecin * l);
 
 //void ListMedecin_printList(ListMedecin * l);          A voir si c'est nécessaire
