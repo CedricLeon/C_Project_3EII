@@ -112,14 +112,111 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
  * @return 1 si l'enlevement du patient à la liste a bien été réalisé 0 sinon (le medecin ne connaissait pas ce patient ou autre)
  */
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
-    if(m->nb_patients_recus == 0){
+    /*if(m->nb_patients_recus == 0){
         printf("Le medecin %s n'a pas encore recu de patient ici.\n", m->nom);
         return -1;
     }
-    m->patient_recus + m->nb_patients_recus = NULL;
+    m->patient_recus + m->nb_patients_recus = NULL;*/
     /*for(){
         Replace les patients suicvant le patient retiré dans l'ordre
     }*/
     m->nb_patients_recus--;
     return 0;
+}
+
+/**********************************************************************************************************************/
+                                                /*ListMedecin*/
+/**********************************************************************************************************************/
+
+/**
+ * ListMedecin_init : Initialise correctement une liste de NodeMedecin en mettat first last et current à NULL
+ * @param l : la liste à initialiser
+ */
+void ListMedecin_init(ListMedecin * l){
+    if (l != NULL){
+        l->first = NULL;
+        l->current = NULL;
+        l->last = NULL;
+    }
+}
+
+/**
+ * ListMedecin_isEmpty : Vérifie si la liste de Medecin est vide ou non
+ * @param l : la liste
+ * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ */
+int ListMedecin_isEmpty(ListMedecin * l){
+    if (l != NULL){
+        return  NULL == l->first;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMedecin_isFirst : Vérifie si current est positionné sur le premier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListMedecin_isFirst(ListMedecin * l){
+    if (l != NULL){
+        return  l->current == l->first;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMedecin_isLast : Vérifie si current est positionné sur le dernier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListMedecin_isLast(ListMedecin * l){
+    if (l != NULL){
+        return  l->current == l->last;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMedecin_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
+ * @param l : la liste
+ * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ */
+int ListMedecin_isOutOfList(ListMedecin * l){
+    if (l != NULL){
+        return  NULL == l->current;
+    }
+    return -1; //La liste est NULL
+}
+
+/**
+ * ListMedecin_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste
+ * @param l : la liste
+ */
+void ListMedecin_setOnFirst(ListMedecin * l){
+    if(l != NULL && !ListMedecin_isOutOfList(l)){
+        l->current = l->first;
+    }
+}
+/**
+ * ListMedecin_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
+ * @param l : la liste
+ */
+void ListMedecin_setOnLast(ListMedecin * l){
+    if(l != NULL && !ListMedecin_isOutOfList(l)){
+        l->current = l->last;
+    }
+}
+/**
+ * ListMedecin_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
+ * @param l : la liste
+ */
+void ListMedecin_setOnNext(ListMedecin * l){
+    if(l != NULL && !ListMedecin_isOutOfList(l)){
+        l->current = l->current->next;
+    }
+}
+/**
+ * ListMedecin_getCurrent : Permet d'acceder au medecin pointé par current
+ * @param l : la liste
+ * @return Retourne un pointeur sur le medecin de l'élément courant de la liste
+ */
+Medecin * ListMedecin_getCurrent(ListMedecin * l){
+    return l->current->medecin;
 }
