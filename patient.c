@@ -1,4 +1,5 @@
 #include "patient.h"
+#include "medecin.h"
 
 /**
  * CreerPatient : Creer une nouvelle instance de la structure Patient avec toutes les informations basiques
@@ -13,16 +14,13 @@
  */
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel){
 
-    Patient * p;
+    Patient * p = (Patient *) malloc(sizeof(Patient));
     p->nom = nom;
     p->prenom = prenom;
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
     p->adresse_mail = mail;
     p->numero_telephone = num_tel;
-    if(InitMedecinConsultesPatient(p) == -1){
-        printf("Le malloc de InitMedecinsConsultesPatient() a échoué ...\n");
-    }
-    p->nb_medecins_consultes = 0;
+    ListMedecin_init(p->medecins_consultes);
 
     return p;
 }
@@ -32,7 +30,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  * @param patient : le patient à supprimer
  */
 void DeletePatient(Patient * patient){
-    FreeMedecinsConsultesPatient(patient);
+    free((void *) patient);
 }
 
 /**
@@ -80,33 +78,17 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
 
 //int InscriptionPatient(Patient * patient, RendezVous * rdv);
 
-/**
- * InitMedecinConsultesPatient : Initialise à vide la liste des medecins consultés par un patient
- * @param patient : le patient
- * @return 1 si l'initialisation s'est bien passée 0 sinon
- */
-int InitMedecinConsultesPatient(Patient * patient){
-    patient->medecins_consultes = (Medecin *) malloc(NB_MAX_MEDECINS_CONSULTES * sizeof(Medecin *));
-    //Comme c'est un tableau de pointeurs medecins consultés il faut bien lui donner une taille lors de son initialisation
-    //Par défaut jai mis 10 medecins mais on changera plus tard (peut etre allocation dynamique)
-    return patient->medecins_consultes != NULL;
-}
-/**
- * FreeMedecinsConsultesPatient : Libère la mémoire de la liste des medecins consultés par un patient
- * @param patient : le patient
- */
-void FreeMedecinsConsultesPatient(Patient * patient){
-    free(patient->medecins_consultes);
-}
 
 /**
- * AddMedecinPatient : Ajoute un Medecin à la liste des medecins consultés par un patient
+ * AddMedecincConsultePatient : Ajoute un Medecin à la première position de la liste des medecins consultés par un patient
  * @param p : le patient consultant
  * @param medecin : le medecin consulté
  * @return 1 si l'ajout du mèdecin a bien été réalisé 0 sinon (le patient a déjà consulté trop de mèdecins ou autre)
  */
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
-    if(p->nb_medecins_consultes == NB_MAX_MEDECINS_CONSULTES){
+    ListMedecin_setOnFirst(p->medecins_consultes);
+
+    /*if(p->nb_medecins_consultes == NB_MAX_MEDECINS_CONSULTES){
         printf("Le patient %s a déjà consulté trop de medecins différents : %d.\nLe medecin n'a donc pas été ajouté à sa liste.;\n", p->nom,  NB_MAX_MEDECINS_CONSULTES);
         return  -1;
     }
@@ -114,7 +96,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     (*(p->medecins_consultes + p->nb_medecins_consultes)) = * medecin;
     p->nb_medecins_consultes++;
 
-    printf("Le patient %s a consultés le medecin %s.\n", p->nom, medecin->nom);
+    printf("Le patient %s a consultés le medecin %s.\n", p->nom, medecin->nom);*/
     return 0;   //reussite
 }
 /**
@@ -138,16 +120,41 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
                                                 /*ListPatient*/
 /**********************************************************************************************************************/
 
+/**
+ * Static newNodePatient : Permet de créer dynamiquement un nouveau node de patient pour la liste
+ * @param patient : le patient pointé par ce nouveau noeud
+ * @param previous : le noeud précédant le nouveau noeud dans la liste
+ * @param next : le prochain noeud de la liste
+ * @return un pointeur sur le nouveau noeud créé
+ */
+static NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePatient * next){
+    NodePatient * newNode = (NodePatient *) malloc(sizeof(NodePatient));
+    newNode->patient = patient;
+    newNode->next = next;
+    newNode->previous = previous;
+    return newNode;
+}
+/**
+ * static freeNodePatient : Permet de delete proprement (avec un free) un nodePatient
+ * @param n : le node à delete
+ */
+static void freeNodePatient(NodePatient * n){
+    free((void*) n);
+}
+
 
 /**
- * ListPatient_init : Initialise correctement une liste de NodePatient en mettant first last et current à NULL
+ * ListPatient_init : Initialise correctement une liste de NodePatient en mettant reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL en dehors de la liste
  * @param l : la liste à initialiser
  */
 void ListPatient_init(ListPatient * l){
     if (l != NULL){
-        l->first = NULL;
         l->current = NULL;
-        l->last = NULL;
+        l->sentinel_begin.next = &(l->sentinel_end);
+        l->sentinel_begin.previous = NULL;
+        l->sentinel_end.previous = &(l->sentinel_begin);
+        l->sentinel_end.next = NULL;
     }
 }
 
@@ -158,7 +165,7 @@ void ListPatient_init(ListPatient * l){
  */
 int ListPatient_isEmpty(ListPatient * l){
     if (l != NULL){
-        return  NULL == l->first;
+        return  l->sentinel_begin.next == &(l->sentinel_end);
     }
     return -1; //La liste est NULL
 }
@@ -169,7 +176,7 @@ int ListPatient_isEmpty(ListPatient * l){
  */
 int ListPatient_isFirst(ListPatient * l){
     if (l != NULL){
-        return  l->current == l->first;
+        return  l->current == l->sentinel_begin.next;
     }
     return -1; //La liste est NULL
 }
@@ -180,7 +187,7 @@ int ListPatient_isFirst(ListPatient * l){
  */
 int ListPatient_isLast(ListPatient * l){
     if (l != NULL){
-        return  l->current == l->last;
+        return  l->current == l->sentinel_end.previous;
     }
     return -1; //La liste est NULL
 }
@@ -191,7 +198,7 @@ int ListPatient_isLast(ListPatient * l){
  */
 int ListPatient_isOutOfList(ListPatient * l){
     if (l != NULL){
-        return  NULL == l->current;
+        return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
     }
     return -1; //La liste est NULL
 }
@@ -202,7 +209,7 @@ int ListPatient_isOutOfList(ListPatient * l){
  */
 void ListPatient_setOnFirst(ListPatient * l){
     if(l != NULL && !ListPatient_isOutOfList(l)){
-        l->current = l->first;
+        l->current = l->sentinel_begin.next;
     }
 }
 /**
@@ -211,7 +218,7 @@ void ListPatient_setOnFirst(ListPatient * l){
  */
 void ListPatient_setOnLast(ListPatient * l){
     if(l != NULL && !ListPatient_isOutOfList(l)){
-        l->current = l->last;
+        l->current = l->sentinel_end.previous;
     }
 }
 /**
@@ -221,6 +228,15 @@ void ListPatient_setOnLast(ListPatient * l){
 void ListPatient_setOnNext(ListPatient * l){
     if(l != NULL && !ListPatient_isOutOfList(l)){
         l->current = l->current->next;
+    }
+}
+/**
+ * ListPatient_setOnPrevious : Positionne le pointeur courant sur l'élément avant lui dans la liste
+ * @param l : la liste
+ */
+void ListPatient_setOnPrevious(ListPatient * l){
+    if(l != NULL && !ListPatient_isOutOfList(l)){
+        l->current = l->current->previous;
     }
 }
 /**

@@ -5,13 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "Structures.h"
 #include "date.h"
-#include "rendezvous.h"     //Pour l'inscription du patient : à revoir plus tard
 
-#define NB_MAX_MEDECINS_CONSULTES 10    //Nombre arbitraire à modifié plus tard
-
-typedef struct Patient Patient;     /*Je pense pas que il faille definir les 2 struct à la fois dans patient.h et medecin.h mais comme ca ca compile ...*/
-typedef struct Medecin Medecin;
 /**
  * Structure patient représentant un patient qui vient consulté dans l'application
  */
@@ -21,8 +17,7 @@ struct Patient{
     Date * date_naissance;
     char * adresse_mail;
     char * numero_telephone;
-    Medecin * medecins_consultes;
-    int nb_medecins_consultes;
+    struct ListMedecin * medecins_consultes;
 };
 
 
@@ -38,10 +33,6 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
 void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
 
-/* Gestion de la liste des mèdecins consultés par le patient */
-int InitMedecinConsultesPatient(Patient * patient);
-void FreeMedecinsConsultesPatient(Patient * patient);
-
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 
@@ -50,7 +41,7 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 /**********************************************************************************************************************/
 
 /**
- * Structure NodePatient permettant de créer une Doubly linked list pour la liste des Patients consultés par un patient
+ * Structure NodePatient permettant de créer une Doubly linked list avec des sentinels pour la liste des Medecins consultés par un patient
  */
 typedef struct NodePatient{
     Patient * patient;
@@ -58,11 +49,12 @@ typedef struct NodePatient{
     struct NodePatient * next;
 }NodePatient;
 
-typedef struct{
-    NodePatient * first;
+struct ListPatient{
+    NodePatient sentinel_begin;
     NodePatient * current;
-    NodePatient * last;
-}ListPatient;
+    NodePatient sentinel_end;
+};
+
 
 void ListPatient_init(ListPatient * l);
 
@@ -74,6 +66,7 @@ int ListPatient_isOutOfList(ListPatient * l);
 void ListPatient_setOnFirst(ListPatient * l);
 void ListPatient_setOnLast(ListPatient * l);
 void ListPatient_setOnNext(ListPatient * l);
+void ListPatient_setOnPrevious(ListPatient * l);
 Patient * ListPatient_getCurrent(ListPatient * l);
 
 //void ListPatient_printList(ListPatient * l);          A voir si c'est nécessaire
