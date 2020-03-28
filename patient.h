@@ -45,5 +45,37 @@ void FreeMedecinsConsultesPatient(Patient * patient);
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 
+/**********************************************************************************************************************/
+                                                /*ListPatient*/
+/**********************************************************************************************************************/
+
+/**
+ * Structure NodePatient permettant de créer une Doubly linked list pour la liste des Patients consultés par un patient
+ */
+typedef struct NodePatient{
+    Patient * patient;
+    struct NodePatient * previous;
+    struct NodePatient * next;
+}NodePatient;
+
+typedef struct{
+    NodePatient * first;
+    NodePatient * current;
+    NodePatient * last;
+}ListPatient;
+
+void ListPatient_init(ListPatient * l);
+
+int ListPatient_isEmpty(ListPatient * l);
+int ListPatient_isFirst(ListPatient * l);
+int ListPatient_isLast(ListPatient * l);
+int ListPatient_isOutOfList(ListPatient * l);
+
+void ListPatient_setOnFirst(ListPatient * l);
+void ListPatient_setOnLast(ListPatient * l);
+void ListPatient_setOnNext(ListPatient * l);
+Patient * ListPatient_getCurrent(ListPatient * l);
+
+//void ListPatient_printList(ListPatient * l);          A voir si c'est nécessaire
 
 #endif
