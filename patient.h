@@ -33,7 +33,7 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
 void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
 
-int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
+void AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 
 /**********************************************************************************************************************/
@@ -55,6 +55,8 @@ struct ListPatient{
     NodePatient sentinel_end;
 };
 
+NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePatient * next);
+void freeNodePatient(NodePatient * n);
 
 void ListPatient_init(ListPatient * l);
 

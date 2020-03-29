@@ -18,7 +18,7 @@ struct Medecin{
     char * adresse_mail;
     char * numero_telephone;
     char * numero_RPS;
-    struct ListPatient * patient_recus;
+    struct ListPatient * patients_recus;
 };
 
 /*On gerera les specialites, les diplomes et les patients dans d'autres fonctions ce sera plus simple je pense
@@ -37,7 +37,7 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS);
 int InitPatientRecusMedecin(Medecin * medecin);
 void FreePatientRecusMedecin(Medecin * medecin);
 
-int AddPatientRecuMedecin(Medecin * m, Patient * patient);
+void AddPatientRecuMedecin(Medecin * m, Patient * patient);
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient);
 
 /**********************************************************************************************************************/
@@ -58,6 +58,9 @@ struct ListMedecin{
     NodeMedecin * current;
     NodeMedecin sentinel_end;
 };
+
+NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMedecin * next);
+void freeNodeMedecin(NodeMedecin * n);
 
 void ListMedecin_init(ListMedecin * l);
 

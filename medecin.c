@@ -18,7 +18,7 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
     m->adresse_mail = mail;
     m->numero_telephone = num_tel;
     m->numero_RPS = num_RPS;
-    ListPatient_init(m->patient_recus);
+    ListPatient_init(m->patients_recus);
 
     return m;
 }
@@ -76,20 +76,20 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
  * AddPatientRecuMedecin : Ajoute un patient à la liste des patient recus par un medecin
  * @param m : le medecin recevant
  * @param patient : le patient recu
- * @return 1 si l'ajout du patient à la liste a bien été réalisé 0 sinon (le medecin a déjà recus trop de patients ou autre)
  */
-int AddPatientRecuMedecin(Medecin * m, Patient * patient){
-   /* if(m->nb_patients_recus == NB_MAX_PATIENT_RECUS){
-        printf("Le medecin %s a déjà recu trop de patients différents : %d.\nLe patient n'a donc pas été ajouté à sa liste.;\n", m->nom,  NB_MAX_PATIENT_RECUS);
-        return  -1;
+void AddPatientRecuMedecin(Medecin * m, Patient * patient){
+    //Ajout dans le cas où c'est le premier patient recu par le medecin (setup avec sentinel_end)
+    if(ListPatient_isEmpty(m->patients_recus)){
+        NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), &(m->patients_recus->sentinel_end));
+        m->patients_recus->sentinel_begin.next = newNode;
+        m->patients_recus->sentinel_end.previous = newNode;
     }
 
-    m->patient_recus + m->nb_patients_recus = patient;
-
-    m->nb_patients_recus++;
-
-    printf("Le medecin %s a recu le patient %s.\n", m->nom, patient->nom);
-    return 0;   //reussite*/
+    //Ajout du nouveau patient au début de la liste de patients recus
+    ListPatient_setOnFirst(m->patients_recus);
+    NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), m->patients_recus->current);
+    m->patients_recus->sentinel_begin.next = newNode;
+    m->patients_recus->current->previous = newNode;
 }
 /**
  * DeletePatientRecuMedecin : Enlève un Patient de la liste des patient recus par un medecin
@@ -98,15 +98,30 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
  * @return 1 si l'enlevement du patient à la liste a bien été réalisé 0 sinon (le medecin ne connaissait pas ce patient ou autre)
  */
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
-    /*if(m->nb_patients_recus == 0){
-        printf("Le medecin %s n'a pas encore recu de patient ici.\n", m->nom);
-        return -1;
+
+    //Cas où la liste est vide
+    if(ListPatient_isEmpty(m->patients_recus)){
+        printf("La liste des patients recus par le medecin %s est vide, on ne peut donc pas y retirer le patient %s.\n", m->nom, patient->nom);
+        return 0;
     }
-    m->patient_recus + m->nb_patients_recus = NULL;*/
-    /*for(){
-        Replace les patients suicvant le patient retiré dans l'ordre
-    }*/
-    //m->nb_patients_recus--;
+
+    //On cherche si le mèdecin a été consulté par le patient
+    for (ListPatient_setOnFirst(m->patients_recus); ListPatient_isOutOfList(
+            m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
+
+        //Si on le trouve on le retire et on quitte la fonction
+        if (ListPatient_getCurrent(m->patients_recus) == patient) {
+            m->patients_recus->current->previous->next = m->patients_recus->current->next;
+            m->patients_recus->current->next->previous = m->patients_recus->current->previous;
+            freeNodePatient(m->patients_recus->current);
+            ListPatient_setOnFirst(m->patients_recus);      //Pour ne pas laisser current en dehors de la liste
+            printf("Le patient %s a bien été retiré de la liste des patients recus par le medecin %s.\n", patient->nom, m->nom);
+            return 1;
+        }
+    }
+
+    /*Si on n'a pas trouvé le mèdecin on l'affiche et on return -1*/
+    printf("Le medecin %s n'a pas recu le patient %s, on ne peut donc pas le retirer de la liste.\n", m->nom, patient->nom);
     return 0;
 }
 
@@ -115,13 +130,13 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
 /**********************************************************************************************************************/
 
 /**
- * Static newNodeMedecin : Permet de créer dynamiquement un nouveau node de Medecin pour la liste
+ * newNodeMedecin : Permet de créer dynamiquement un nouveau node de Medecin pour la liste
  * @param Medecin : le Medecin pointé par ce nouveau noeud
  * @param previous : le noeud précédant le nouveau noeud dans la liste
  * @param next : le prochain noeud de la liste
  * @return un pointeur sur le nouveau noeud créé
  */
-static NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMedecin * next){
+NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMedecin * next){
     NodeMedecin * newNode = (NodeMedecin *) malloc(sizeof(NodeMedecin));
     newNode->medecin = medecin;
     newNode->next = next;
@@ -129,10 +144,10 @@ static NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, N
     return newNode;
 }
 /**
- * static freeNodeMedecin : Permet de delete proprement (avec un free) un nodeMedecin
+ * freeNodeMedecin : Permet de delete proprement (avec un free) un nodeMedecin
  * @param n : le node à delete
  */
-static void freeNodeMedecin(NodeMedecin * n){
+void freeNodeMedecin(NodeMedecin * n){
     free((void*) n);
 }
 
