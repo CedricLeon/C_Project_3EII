@@ -7,15 +7,5 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(void){
-    const struct CMUnitTest tests_fonctionsBasiques[] = {
-            /*list de toutes le sfonctions tests de cmocka à faire tourner*/
-            /*Cf P24 du poly Code testing*/
-    };
+//J'ai déplacer le main dans tests_unitaires.c car tout les tests Cmocka sont statiques
 
-    //return cmocka_run_group_tests(tests_fonctionsBasiques, NULL, NULL);
-    return 0;
-}
-
-
-#pragma clang diagnostic pop
