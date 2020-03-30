@@ -19,7 +19,8 @@ int create_window(int argc, char *argv[]){
    GtkGrid *p_grid = NULL;
    GtkWidget *p_window = NULL;
    GtkWidget *p_main_box = NULL;
-   GtkWidget *p_button[100];
+   GtkWidget *p_button[100];  /*le tableau ne marche pas, faire toujours un nouveau widget bouton*/
+   GtkWidget *button=NULL;
 
    /* Initialisation GTK+ */
    gtk_init (&argc, &argv);
@@ -60,12 +61,12 @@ int create_window(int argc, char *argv[]){
   /*Rendez-vous 1*/
     p_button[0] = gtk_button_new_with_label("Rendez-vous 1");
     gtk_grid_attach (p_grid, p_button[0], 500, 700, 100, 100);
-   g_signal_connect(G_OBJECT(p_button[0]), "clicked", G_CALLBACK(cb_create_entry), NULL);
+    g_signal_connect(G_OBJECT(p_button[0]), "clicked", G_CALLBACK(cb_create_entry), NULL);
    /*gtk_box_pack_start(GTK_BOX(p_main_box), p_button[0], FALSE, FALSE, 0);*/
 
-   p_button[1] = gtk_button_new_with_label("Rendez-vous 2");
-   gtk_grid_attach(p_grid, p_button[0], 500,1000, 100,100);
-   g_signal_connect(G_OBJECT(p_button[1]), "clicked", G_CALLBACK(cb_create_entry), NULL);
+   button = gtk_button_new_with_label("Rendez-vous 2");
+   gtk_grid_attach(p_grid, button, 500,1000, 100,100);
+   g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_create_entry), NULL);
    /*gtk_box_pack_start(GTK_BOX(p_main_box), p_button[0], FALSE, FALSE, 0);*/
 
 
