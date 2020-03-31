@@ -30,7 +30,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  * @param patient : le patient à supprimer
  */
 void DeletePatient(Patient * patient){
-    free((void *) patient->date_naissance);
+    FreeDate(patient->date_naissance);
     free((void *) patient);
 }
 

@@ -8,14 +8,14 @@
 typedef struct{
     Patient * patient;
     Medecin * medecin;
-    Date date_edition;
-    Date date_expiration;
+    Date * date_edition;
+    Date * date_expiration;
     char * description;
 }Ordonnance;
 
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description);
-int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, Date * date_edit, Date * date_expi, char * description);
-void AfficherOrdonnanc(Ordonnance * ordo);
+int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description);
+void AfficherOrdonnance(Ordonnance * ordo);
 
 
 #endif // ORDONNANCE_H
