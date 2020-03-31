@@ -8,5 +8,6 @@ typedef struct{
 }Date;
 
 Date * CreerDate(int annee, int mois, int jour);
+void FreeDate(Date * d);
 
 #endif
