@@ -2,10 +2,10 @@
 
 /**
  * CreerOrdonnance : Creer dynamiquement un objet Ordonnance
- * @param patient : le patient concerné par l'ordonnance
+ * @param patient : le patient concernï¿½ par l'ordonnance
  * @param medecin : le medecin qui prescrit l'ordonnance
  * @param description : description de la prescription
- * @return l'ordonnance créée
+ * @return l'ordonnance crï¿½ï¿½e
  */
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
     Ordonnance * o = (Ordonnance *)malloc(sizeof(Ordonnance));
@@ -20,14 +20,23 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
 
     return o;
 }
+/**
+ * DeleteOrdonnance : Free un objet ordonnance
+ * @param o : l'ordonnance Ã  supprimer
+ */
+void DeleteOrdonnance(Ordonnance * o){
+    free((void *) o->date_edition);
+    free((void *) o->date_expiration);
+    free((void *) o);
+}
 
 /**
  * ModifierOrdonnance : Modifier un objet Ordonnance
- * @param ordo : l'ordonnance qui nécessite d'être modifiée
- * @param p : le patient concerné par l'ordonnance
+ * @param ordo : l'ordonnance qui nï¿½cessite d'ï¿½tre modifiï¿½e
+ * @param p : le patient concernï¿½ par l'ordonnance
  * @param m : le medecin qui prescrit l'ordonnance
  * @param description : nouvelle description de la prescription
- * @return l'ordonnance créée
+ * @return l'ordonnance crï¿½ï¿½e
  */
 int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
     ordo->patient=p;
@@ -46,7 +55,7 @@ int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
 void AfficherOrdonnance(Ordonnance * ordo){
     printf("Ordonnance faite le %d/%d/%d \n\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
     printf("Patient : %s %s ", ordo->patient->nom, ordo->patient->prenom);
-    printf("suivi par le médecin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
+    printf("suivi par le mï¿½decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
     printf("Prescription : \n %s \n", ordo->description);
-    printf("A récupérer avant le %d/%d/%d", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+    printf("A rï¿½cupï¿½rer avant le %d/%d/%d", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
 }

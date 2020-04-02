@@ -53,7 +53,7 @@ static void testPatient_setNumeroTelephonePatient(void ** state){
     assert_string_equal(((Patient *) *state)->numero_telephone,"NewTel");
 }
 
-static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state{
+static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state){
 
 }
 static void testPatient_AddMedecinPatient_handlesNbMaMedecinAtteint(void ** state){
