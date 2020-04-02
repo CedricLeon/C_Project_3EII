@@ -20,6 +20,8 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
     p->adresse_mail = mail;
     p->numero_telephone = num_tel;
+
+    p->medecins_consultes = (ListMedecin *) malloc(sizeof(struct ListMedecin));
     ListMedecin_init(p->medecins_consultes);
 
     return p;
@@ -31,6 +33,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  */
 void DeletePatient(Patient * patient){
     FreeDate(patient->date_naissance);
+    ListMedecin_free(patient->medecins_consultes);
     free((void *) patient);
 }
 
@@ -199,6 +202,19 @@ void ListPatient_init(ListPatient * l){
         l->sentinel_end.previous = &(l->sentinel_begin);
         l->sentinel_end.next = NULL;
     }
+}
+
+/**
+ * ListPatient_free : Free toute la liste de patients
+ * @param l : la liste en question
+ */
+void ListPatient_free(ListPatient * l){
+    if (l != NULL && !ListPatient_isEmpty(l)){
+        for (ListPatient_setOnFirst(l); ListPatient_isOutOfList(l); ListPatient_setOnNext(l)){
+            freeNodePatient(l->current);
+        }
+    }
+    free((void *) l);
 }
 
 /**

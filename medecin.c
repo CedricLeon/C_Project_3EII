@@ -18,6 +18,8 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
     m->adresse_mail = mail;
     m->numero_telephone = num_tel;
     m->numero_RPS = num_RPS;
+
+    m->patients_recus = (ListPatient *) malloc(sizeof(struct ListPatient));
     ListPatient_init(m->patients_recus);
 
     return m;
@@ -27,7 +29,8 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
  * @param medecin : le medecin à supprimer
  */
 void DeleteMedecin(Medecin * medecin){
-    free((void *)medecin);
+    ListPatient_free(medecin->patients_recus);
+    free((void *) medecin);
     //Un free pour les spécialités et les diplômes ?
 }
 
@@ -187,9 +190,20 @@ void ListMedecin_init(ListMedecin * l){
         l->current = NULL;
         l->sentinel_begin.next = &(l->sentinel_end);
         l->sentinel_begin.previous = NULL;
+        l->sentinel_begin.medecin = NULL;
         l->sentinel_end.previous = &(l->sentinel_begin);
         l->sentinel_end.next = NULL;
+        l->sentinel_end.medecin = NULL;
     }
+}
+
+void ListMedecin_free(ListMedecin * l){
+    if (l!= NULL && !ListMedecin_isEmpty(l)){
+        for(ListMedecin_setOnFirst(l); ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+            freeNodeMedecin(l->current);
+        }
+    }
+    free((void *) l);
 }
 
 /**
@@ -242,7 +256,7 @@ int ListMedecin_isOutOfList(ListMedecin * l){
  * @param l : la liste
  */
 void ListMedecin_setOnFirst(ListMedecin * l){
-    if(l != NULL && !ListMedecin_isOutOfList(l)){
+    if(l != NULL){
         l->current = l->sentinel_begin.next;
     }
 }
@@ -251,7 +265,7 @@ void ListMedecin_setOnFirst(ListMedecin * l){
  * @param l : la liste
  */
 void ListMedecin_setOnLast(ListMedecin * l){
-    if(l != NULL && !ListMedecin_isOutOfList(l)){
+    if(l != NULL){
         l->current = l->sentinel_end.previous;
     }
 }
@@ -279,5 +293,8 @@ void ListMedecin_setOnPrevious(ListMedecin * l){
  * @return Retourne un pointeur sur le Medecin de l'élément courant de la liste
  */
 Medecin * ListMedecin_getCurrent(ListMedecin * l){
-    return l->current->medecin;
+    if(l != NULL && l->current != NULL){
+        return l->current->medecin;
+    }
+    return NULL;
 }
