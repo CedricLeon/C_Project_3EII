@@ -16,8 +16,10 @@ typedef struct{
     char * motif;
 }RendezVous;
 
-RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int minute, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
+RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int minutes, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
 int AnnulerRendezVous(RendezVous * rdv);
-RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, int n_heure, int n_minute, int n_duree);
+RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, int n_heure,int minute, int n_duree);
+char * getNomPatient(Patient *p);
+char * getInfoPatient(Patient *p);
 
 #endif
