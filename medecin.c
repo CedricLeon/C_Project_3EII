@@ -86,13 +86,27 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
  * AddPatientRecuMedecin : Ajoute un patient à la liste des patient recus par un medecin
  * @param m : le medecin recevant
  * @param patient : le patient recu
+ * @return 1 si le patient a bien été ajouté à la liste 0 sinon (patient déjà recu par exemple)
  */
-void AddPatientRecuMedecin(Medecin * m, Patient * patient){
+int AddPatientRecuMedecin(Medecin * m, Patient * patient){
+
+    /*On vient tester si le patient n'a pas déjà été recu si la liste n'est pas vide*/
+    if(!ListPatient_isEmpty(m->patients_recus)){
+        for(ListPatient_setOnFirst(m->patients_recus); ListPatient_isOutOfList(
+                m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
+            if(ListPatient_getCurrent(m->patients_recus) == patient){
+                printf("Le patient %s %s a déjà été recu par le medecin %s %s.\n",patient->nom, patient->prenom, m->nom, m->prenom);
+                return 0;
+            }
+        }
+    }
+
     //Ajout dans le cas où c'est le premier patient recu par le medecin (setup avec sentinel_end)
     if(ListPatient_isEmpty(m->patients_recus)){
         NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), &(m->patients_recus->sentinel_end));
         m->patients_recus->sentinel_begin.next = newNode;
         m->patients_recus->sentinel_end.previous = newNode;
+        return 1;
     }
 
     //Ajout du nouveau patient au début de la liste de patients recus
@@ -100,6 +114,7 @@ void AddPatientRecuMedecin(Medecin * m, Patient * patient){
     NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), m->patients_recus->current);
     m->patients_recus->sentinel_begin.next = newNode;
     m->patients_recus->current->previous = newNode;
+    return 1;
 }
 /**
  * DeletePatientRecuMedecin : Enlève un Patient de la liste des patient recus par un medecin

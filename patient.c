@@ -95,14 +95,27 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
  * AddMedecincConsultePatient : Ajoute un Medecin à la première position de la liste des medecins consultés par un patient
  * @param p : le patient consultant
  * @param medecin : le medecin consulté
+ * @return 1 si le mèdecin a bien été ajouté à la liste 0 sinon (mèdecin déjà consulté par exemple)
  */
-void AddMedecinConsultePatient(Patient * p, Medecin * medecin){
+int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
+
+    /*On vient tester si le mèdecin n'a pas déjà été consulté si la liste n'est pas vide*/
+    if(!ListMedecin_isEmpty(p->medecins_consultes)){
+        for(ListMedecin_setOnFirst(p->medecins_consultes); ListMedecin_isOutOfList(
+            p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
+            if(ListMedecin_getCurrent(p->medecins_consultes) == medecin){
+                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s.\n",medecin->nom, medecin->prenom, p->nom, p->prenom);
+                return 0;
+            }
+        }
+    }
 
     //Ajout dans le cas où c'est le premier mèdecin consulté (setup avec sentinel_end)
     if(ListMedecin_isEmpty(p->medecins_consultes)){
         NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), &(p->medecins_consultes->sentinel_end));
         p->medecins_consultes->sentinel_begin.next = newNode;
         p->medecins_consultes->sentinel_end.previous = newNode;
+        return 1;
     }
 
     //Ajout au début de la liste du medecin si le patient avait déjà consulté d'autres medecin
@@ -110,6 +123,7 @@ void AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), p->medecins_consultes->current);
     p->medecins_consultes->sentinel_begin.next = newNode;
     p->medecins_consultes->current->previous = newNode;
+    return 1;
 }
 /**
  * DeleteMedecinPatient : Enleve un Medecin de la liste des medecins consultés par un patient

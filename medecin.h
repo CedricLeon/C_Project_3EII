@@ -38,7 +38,7 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS);
 int InitPatientRecusMedecin(Medecin * medecin);
 void FreePatientRecusMedecin(Medecin * medecin);
 
-void AddPatientRecuMedecin(Medecin * m, Patient * patient);
+int AddPatientRecuMedecin(Medecin * m, Patient * patient);
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient);
 
 /**********************************************************************************************************************/

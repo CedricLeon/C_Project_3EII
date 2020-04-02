@@ -35,7 +35,7 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
 void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
 
-void AddMedecinConsultePatient(Patient * p, Medecin * medecin);
+int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 
 /**********************************************************************************************************************/
