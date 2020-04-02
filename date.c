@@ -5,7 +5,7 @@
  * @param annee : l'annee de cette date
  * @param mois : le mois
  * @param jour : le jour
- * @return la date cr��e
+ * @return la date créée
  */
 Date * CreerDate(int annee, int mois, int jour){
     Date * d = (Date *) malloc(sizeof(Date));
@@ -15,14 +15,14 @@ Date * CreerDate(int annee, int mois, int jour){
     return d;
 }
 /**
- * FreeDate : Lib�re la m�moire d'une instance Date
+ * FreeDate : Libère la mémoire d'une instance Date
  * @param d
  */
 void FreeDate(Date * d){
     free((void *) d);
 }
 /**
- * DateCourante : Cr�er une date correspondant � la date courante
+ * DateCourante : Créer une date correspondant à la date courante
  * @return la date courante
  */
 Date * DateCourante(){
@@ -40,6 +40,7 @@ Date * DateCourante(){
 
   return d;
 }
+
 
 /**
  * AjoutMoisDateCourante : Permet d'ajouter nb_mois mois � la date courante (utile notamment pour les ordonnances)
@@ -61,4 +62,38 @@ Date * AjoutMoisDateCourante(int nb_mois){
     Date * d = CreerDate(an,mois,day);
 
     return d;
+}
+
+
+/**
+ * getJourChar : Retourne le jour sous forme de char*
+ * @param d
+ * @return le jour
+ */
+char* getJourChar(Date *d){
+    char* jour = malloc(sizeof(char*));
+    sprintf(jour,"%d",d->jour);
+    return jour;
+}
+
+/**
+ * getMoisChar : Retourne le mois sous forme de char*
+ * @param d
+ * @return le mois
+ */
+char* getMoisChar(Date *d){
+    char* mois = malloc(sizeof(char*));
+    sprintf(mois,"%d",d->mois);
+    return mois;
+}
+
+/**
+ * getAnneeChar : Retourne l'annee sous forme de char*
+ * @param d
+ * @return l'annee
+ */
+char* getAnneeChar(Date *d){
+    char* annee = malloc(sizeof(char*));
+    sprintf(annee,"%d",d->annee);
+    return annee;
 }
