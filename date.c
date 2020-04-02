@@ -5,7 +5,7 @@
  * @param annee : l'annee de cette date
  * @param mois : le mois
  * @param jour : le jour
- * @return la date crÃ©Ã©e
+ * @return la date créée
  */
 Date * CreerDate(int annee, int mois, int jour){
     Date * d = (Date *) malloc(sizeof(Date));
@@ -15,14 +15,14 @@ Date * CreerDate(int annee, int mois, int jour){
     return d;
 }
 /**
- * FreeDate : LibÃ¨re la mÃ©moire d'une instance Date
+ * FreeDate : Libère la mémoire d'une instance Date
  * @param d
  */
 void FreeDate(Date * d){
     free((void *) d);
 }
 /**
- * DateCourante : CrÃ©er une date correspondant Ã  la date courante
+ * DateCourante : Créer une date correspondant à la date courante
  * @return la date courante
  */
 Date * DateCourante(){
@@ -42,7 +42,7 @@ Date * DateCourante(){
 }
 
 /**
- * je sais pas ce que Ã§a fait, AngÃ©line ?
+ * AjoutMoisDateCourante : Permet d'ajouter nb_mois mois à la date courante (utile notamment pour les ordonnances)
  * @param nb_mois
  * @return
  */

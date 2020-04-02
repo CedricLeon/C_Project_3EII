@@ -6,7 +6,7 @@
 #include "patient.h"
 
 typedef struct{
-    Date date;
+    Date * date;
     int heure;      // Comment on stocke ça ? 16h30 <=> 16.5 ? ou Alors un attribut heure et un attribut minute ?
     int minute;
     int duree;  //Tout les rendez-vous ne durent pas aussi longtemps
@@ -16,8 +16,8 @@ typedef struct{
     char * motif;
 }RendezVous;
 
-RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
+RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int minute, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
 int AnnulerRendezVous(RendezVous * rdv);
-int DeplacerRendezVous(RendezVous * rdv, int n_an, int n_jour, int n_heure, int n_duree);
+RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, int n_heure, int n_minute, int n_duree);
 
 #endif
