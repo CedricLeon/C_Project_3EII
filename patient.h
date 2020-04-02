@@ -24,6 +24,8 @@ struct Patient{
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
 void DeletePatient(Patient * patient);
 
+void AffichePatient(Patient * p);
+
 //int InscriptionPatient(Patient * patient, RendezVous * rdv);              //A implémenter quand toutes les structures seront completes et testées
 
 /* Setteurs */

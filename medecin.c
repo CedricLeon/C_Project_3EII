@@ -32,6 +32,16 @@ void DeleteMedecin(Medecin * medecin){
 }
 
 /**
+ * AfficheMedecin : Affiche les informations d'un medecin dans la console
+ * @param m : le medecin
+ */
+void AfficheMedecin(Medecin * m){
+    printf("Le medecin %s %s associé au numéro RPS suivant : %s est contactable au %s ou par mail à l'adresse suivante : %s.\n",
+           m->nom, m->prenom, m->numero_RPS, m->numero_telephone, m->adresse_mail);
+    printf("Flemme d'afficher les spécialités, les diplomes et la liste de patients recus pour l'instant.\n");
+}
+
+/**
  * SetNomMedecin : Setteur du nom d'un medecin
  * @param medecin : le medecin
  * @param nom : le nouveau nom

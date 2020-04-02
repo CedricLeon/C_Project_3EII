@@ -35,6 +35,17 @@ void DeletePatient(Patient * patient){
 }
 
 /**
+ * AffichePatient : Affiche les informations d'un patient dans la console
+ * @param p : le patient
+ */
+void AffichePatient(Patient * p){
+    printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s.\n",
+            p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
+            p->numero_telephone, p->adresse_mail);
+    printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
+}
+
+/**
  * SetNomPatient : Setteur du nom d'un patient
  * @param p : le patient
  * @param nom : le nouveau nom

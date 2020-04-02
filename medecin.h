@@ -25,6 +25,7 @@ struct Medecin{
  * car le medecin peut continuer de se former ou autre */
 Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, char * num_RPS);
 void DeleteMedecin(Medecin * medecin);
+void AfficheMedecin(Medecin * m);
 
 void SetNomMedecin(Medecin * medecin, char * nom);
 void SetPrenomMedecin(Medecin * medecin, char * prenom);
