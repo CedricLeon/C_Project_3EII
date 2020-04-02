@@ -2,8 +2,8 @@
 #define DATE_H
 
 #include <string.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 typedef struct{
@@ -13,8 +13,11 @@ typedef struct{
 }Date;
 
 Date * CreerDate(int annee, int mois, int jour);
-Date * DateCourante();
 void FreeDate(Date * d);
-Date * AjoutMoisDateCourante(int nb_mois);
+Date * DateCourante();
+Date * AjoutMoisDateCourante(int nb_mois); /*pour ajouter nbmois mois � la date courante (utile pour ordonnance par exemple*/
+char* getJourChar(Date *d);
+char* getMoisChar(Date *d);
+char* getAnneeChar(Date *d);
 
 #endif
