@@ -1,0 +1,6 @@
+before_script:
+	
+
+nom_de_job:
+	script:
+	- %premiere commande 
