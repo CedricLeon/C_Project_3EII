@@ -1,6 +1,12 @@
 #include "ordonnance.h"
-#include <time.h>
 
+/**
+ * CreerOrdonnance : Creer dynamiquement un objet Ordonnance
+ * @param patient : le patient concerné par l'ordonnance
+ * @param medecin : le medecin qui prescrit l'ordonnance
+ * @param description : description de la prescription
+ * @return l'ordonnance créée
+ */
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
     Ordonnance * o = (Ordonnance *)malloc(sizeof(Ordonnance));
     Date * d = DateCourante();
@@ -15,6 +21,14 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
     return o;
 }
 
+/**
+ * ModifierOrdonnance : Modifier un objet Ordonnance
+ * @param ordo : l'ordonnance qui nécessite d'être modifiée
+ * @param p : le patient concerné par l'ordonnance
+ * @param m : le medecin qui prescrit l'ordonnance
+ * @param description : nouvelle description de la prescription
+ * @return l'ordonnance créée
+ */
 int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
     ordo->patient=p;
     ordo->medecin=m;
@@ -25,6 +39,10 @@ int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
     return 1;
 }
 
+/**
+ * AfficherOrdonnance : Afficher un objet Ordonnance
+ * @param ordo : l'ordonnance que l'on veut afficher
+ */
 void AfficherOrdonnance(Ordonnance * ordo){
     printf("Ordonnance faite le %d/%d/%d \n\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
     printf("Patient : %s %s ", ordo->patient->nom, ordo->patient->prenom);
