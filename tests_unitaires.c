@@ -30,7 +30,6 @@ static void testPatient_creerPatient(void ** state){
 //static void testPatient_inscriptionPatient(void ** state);    Pour plus tard
 
 
-
 static void testPatient_setNomPatient(void ** state){
     SetNomPatient(((Patient *) *state),"NewNom");
     assert_string_equal(((Patient *) *state)->nom,"NewNom");
@@ -87,7 +86,7 @@ int main(void){
             //tests des fonctions de création d'instances
             cmocka_unit_test(testPatient_creerPatient),
 
-            //tests des setteurs de la structure Patient
+            //tests des setteurs de la structure Patient    : un peu inutile
             cmocka_unit_test(testPatient_setNomPatient),
             cmocka_unit_test(testPatient_setPrenomPatient),
             cmocka_unit_test(testPatient_setDateNaissancePatient),
@@ -100,6 +99,5 @@ int main(void){
             cmocka_unit_test(testPatient_DeleteMedecinPatient_handlesPasDeMedecin),
             cmocka_unit_test(testPatient_DeleteMedecinPatient_handlesMedecinNonPresent),
     };
-
     return cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
 }

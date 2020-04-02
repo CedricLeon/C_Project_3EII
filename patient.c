@@ -10,7 +10,7 @@
  * @param jour_naissance
  * @param mail : adresse mail du patient
  * @param num_tel :numéro de téléphone du patient
- * @return un pointeur sur le patient crée
+ * @return un pointeur sur le patient créé
  */
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel){
 

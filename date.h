@@ -1,6 +1,9 @@
 #ifndef DATE_H
 #define DATE_H
 
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 typedef struct{
