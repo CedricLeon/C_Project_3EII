@@ -213,7 +213,7 @@ void ListMedecin_free(ListMedecin * l){
  */
 int ListMedecin_isEmpty(ListMedecin * l){
     if (l != NULL){
-        return  l->sentinel_begin.next == &(l->sentinel_end);
+        return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
     }
     return -1; //La liste est NULL
 }

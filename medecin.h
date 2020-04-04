@@ -19,6 +19,7 @@ struct Medecin{
     char * numero_telephone;
     char * numero_RPS;
     struct ListPatient * patients_recus;
+
 };
 
 /*On gerera les specialites, les diplomes et les patients dans d'autres fonctions ce sera plus simple je pense

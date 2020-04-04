@@ -104,10 +104,10 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
 
     /*On vient tester si le mèdecin n'a pas déjà été consulté si la liste n'est pas vide*/
     if(!ListMedecin_isEmpty(p->medecins_consultes)){
-        for(ListMedecin_setOnFirst(p->medecins_consultes); ListMedecin_isOutOfList(
+        for(ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
             p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
             if(ListMedecin_getCurrent(p->medecins_consultes) == medecin){
-                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s.\n",medecin->nom, medecin->prenom, p->nom, p->prenom);
+                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n",medecin->nom, medecin->prenom, p->nom, p->prenom);
                 return 0;
             }
         }
@@ -118,6 +118,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
         NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), &(p->medecins_consultes->sentinel_end));
         p->medecins_consultes->sentinel_begin.next = newNode;
         p->medecins_consultes->sentinel_end.previous = newNode;
+        printf("Le mèdecin est le premier mèdecin consulté par le patient, il a bien été ajouté.\n");
         return 1;
     }
 
@@ -126,6 +127,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), p->medecins_consultes->current);
     p->medecins_consultes->sentinel_begin.next = newNode;
     p->medecins_consultes->current->previous = newNode;
+    printf("Le medecin a été ajouté au début de la liste du patient.\n");
     return 1;
 }
 /**
@@ -135,15 +137,15 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
  * @return 1 si l'enlevement du mèdecin a bien été réalisé 0 sinon (le patient n'avait pas consulté ce mèdecin par exemple)
  */
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
-
     //Cas où la liste est vide
     if(ListMedecin_isEmpty(p->medecins_consultes)){
         printf("La liste des mèdecins consultés par le patient %s est vide, on ne peut donc pas y retirer le mèdecin %s.\n", p->nom, medecin->nom);
         return 0;
     }
 
+
     //On cherche si le mèdecin a été consulté par le patient
-    for (ListMedecin_setOnFirst(p->medecins_consultes); ListMedecin_isOutOfList(
+    for (ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
             p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
 
         //Si on le trouve on le retire et on quitte la fonction
@@ -151,13 +153,12 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
             p->medecins_consultes->current->previous->next = p->medecins_consultes->current->next;
             p->medecins_consultes->current->next->previous = p->medecins_consultes->current->previous;
             freeNodeMedecin(p->medecins_consultes->current);
-            ListMedecin_setOnFirst(p->medecins_consultes);      //Pour ne pas laisser current en dehors de la liste
             printf("Le mèdecin %s a bien été retiré de la liste des mèdecins consulté par le patient %s.\n", medecin->nom, p->nom);
             return 1;
         }
     }
 
-    /*Si on n'a pas trouvé le mèdecin on l'affiche et on return -1*/
+    /*Si on n'a pas trouvé le mèdecin on l'affiche et on return 0*/
     printf("Le patient %s n'a pas consuté le mèdecin %s, on ne peut donc pas le retirer de la liste.\n", p->nom, medecin->nom);
     return 0;
 }
