@@ -117,13 +117,7 @@ char * getNomPatient(Patient *p){
  * @return un char* avec la date de naissance
  */
 char * getDateNaissancePatient(Patient * p){
-    char * result = "";
-    strcpy(result,getJourDate(p->date_naissance));
-    strcat(result, "/");
-    strcat(result,getMoisDate(p->date_naissance));
-    strcat(result, "/");
-    strcat(result,getAnneeDate(p->date_naissance));
-    return result;
+    return getInfosDate(p->date_naissance);
 }
 /**
  * getAdresseMailPatient : retourne l'adresse mail du patient sous forme de char* (pour l'affichage)

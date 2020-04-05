@@ -24,9 +24,9 @@ struct Patient{
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
 void DeletePatient(Patient * patient);
 
-void AffichePatient(Patient * p);
+void AffichePatient(Patient * p); //Utilisée pour le debugging
 
-//int InscriptionPatient(Patient * patient, RendezVous * rdv);              //A implémenter quand toutes les structures seront completes et testées
+//Au final la fonction InscriptionPatient(Patient * p, rendezVous *rdv) n'a pas lieu d'être puisqu'elle correspond à une création de rendez-vous
 
 /* Setteurs */
 void SetNomPatient(Patient * p, char * nom);

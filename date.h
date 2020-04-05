@@ -19,5 +19,6 @@ Date * AjoutMoisDateCourante(int nb_mois); /*pour ajouter nbmois mois � la dat
 char * getJourDate(Date * d);
 char * getMoisDate(Date * d);
 char * getAnneeDate(Date * d);
+char * getInfosDate(Date * d);
 
 #endif
