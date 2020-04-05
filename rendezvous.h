@@ -16,7 +16,7 @@ typedef struct{
 }RendezVous;
 
 RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif);
-void AnnulerRendezVous(RendezVous * rdv);
+int AnnulerRendezVous(RendezVous * rdv);
 RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree);
 
 #endif

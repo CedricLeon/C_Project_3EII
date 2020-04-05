@@ -5,16 +5,14 @@
  * @param an : l'annee
  * @param mois : le mois
  * @param jour : le jour
- * @param heure : l'heure (heure) du début du rdv
- * @param minute : l'heure (minute) du début du rdv
- * @param duree : la duree du rdv
+ * @param heure_debut : l'heure ((sous forme de double : 16.5 <=> 16H30) du début du rdv
+ * @param duree : la duree du rdv, avec on détermine heure_fin du rdv
  * @param lieu : le lieu du rdv
  * @param patient : le patient demandant le rdv
- * @param médecin : le medecin choisi
+ * @param médecin : le medecin choisi pour le rdv
  * @param motif : le motif du rdv
  * @return le rdv créé
  */
-
 RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
 
     RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
@@ -33,9 +31,31 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
  * @param rdv : le rdv qu'on veut annuler
  * @return 1 si le rdv a bien été annulé
  */
-void AnnulerRendezVous(RendezVous * rdv){
-    FreeDate(rdv->date);
-    free((void *) rdv);
+int AnnulerRendezVous(RendezVous * rdv){
+
+    //On test si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
+    Date * date_courante = DateCourante();
+    if ((date_courante->annee - rdv->date->annee)>0 || (date_courante->mois - rdv->date->mois)>0 || (date_courante->jour - rdv->date->jour)>0){
+
+        //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
+
+        /*Pour cela on parcourt tout les rdv du patient dans le calendrier et on cherche le medecin*/
+
+        if(DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) && DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
+            printf("Il n'a pas été possible de retirer le mèdecin %s de la liste de mèdecins consultés du patient %s.\n Donc le rdv n'a pas était annulé.\n",
+                   getNomMedecin(rdv->medecin), getNomPatient(rdv->patient));
+        }
+
+        //Une fois ceci fait on libère l'instance Date liée au rdv et on free le tout
+        FreeDate(rdv->date);
+        free((void *) rdv);
+        printf("Le rendez-vous daté du %d/%d/%d a bien été annulé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
+        return 1;
+    }
+    //On oublie pas de free les objets utilisés
+    FreeDate(date_courante);
+    printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
+    return 1;
 }
 
 /**
