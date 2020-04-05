@@ -16,8 +16,8 @@ Date * CreerDate(int annee, int mois, int jour);
 void FreeDate(Date * d);
 Date * DateCourante();
 Date * AjoutMoisDateCourante(int nb_mois); /*pour ajouter nbmois mois � la date courante (utile pour ordonnance par exemple*/
-char * getJourChar(Date * d);
-char * getMoisChar(Date * d);
-char * getAnneeChar(Date * d);
+char * getJourDate(Date * d);
+char * getMoisDate(Date * d);
+char * getAnneeDate(Date * d);
 
 #endif

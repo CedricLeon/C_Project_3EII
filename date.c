@@ -70,8 +70,8 @@ Date * AjoutMoisDateCourante(int nb_mois){
  * @param d
  * @return le jour
  */
-char* getJourChar(Date *d){
-    char* jour = malloc(sizeof(char*));
+char* getJourDate(Date *d){
+    char* jour = "";
     sprintf(jour,"%d",d->jour);
     return jour;
 }
@@ -81,8 +81,8 @@ char* getJourChar(Date *d){
  * @param d
  * @return le mois
  */
-char* getMoisChar(Date *d){
-    char* mois = malloc(sizeof(char*));
+char* getMoisDate(Date *d){
+    char* mois = "";
     sprintf(mois,"%d",d->mois);
     return mois;
 }
@@ -92,8 +92,8 @@ char* getMoisChar(Date *d){
  * @param d
  * @return l'annee
  */
-char* getAnneeChar(Date *d){
-    char* annee = malloc(sizeof(char*));
+char* getAnneeDate(Date *d){
+    char* annee = "";
     sprintf(annee,"%d",d->annee);
     return annee;
 }
