@@ -44,6 +44,10 @@ void AfficheMedecin(Medecin * m){
     printf("Flemme d'afficher les spécialités, les diplomes et la liste de patients recus pour l'instant.\n");
 }
 
+/********************************************************************************************************************/
+                                            /*Setteurs de Medecin*/
+/*******************************************************************************************************************/
+
 /**
  * SetNomMedecin : Setteur du nom d'un medecin
  * @param medecin : le medecin
@@ -85,6 +89,67 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
     medecin->numero_RPS = num_RPS;
 }
 
+/********************************************************************************************************************/
+                                            /*Getteurs de Medecin*/
+/*******************************************************************************************************************/
+
+/**
+ * getNomMedecin : retourne le nom et le prénom du Medecin sous forme de char* (pour l'affichage du RDV)
+ * @param medecin : le Medecin dont on veut le nom
+ * @return une chaine de caractères avec le nom et le prénom du Medecin
+ */
+char * getNomMedecin(Medecin * medecin){
+    char * nom = "";
+    strcpy(nom,medecin->nom);
+    strcat(nom, " ");
+    strcat(nom, medecin->prenom);
+    return nom;
+}
+/**
+ * getAdresseMailMedecin : retourne l'adresse mail du Medecin sous forme de char* (pour l'affichage)
+ * @param medecin : le Medecin dont on veut l'adresse mail
+ * @return un char* avec l'dresse mail
+ */
+char * getAdresseMailMedecin(Medecin * medecin){
+    return medecin->adresse_mail;
+}
+/**
+ * getNumeroTelephoneMedecin : retourne le numéro de téléphone du Medecin sous forme de char* (pour l'affichage)
+ * @param medecin : le Medecin dont on veut le numéro de téléphone
+ * @return un char * avec le numero de téléphone
+ */
+char * getNumeroTelephoneMedecin(Medecin * medecin){
+    return  medecin->numero_telephone;
+}
+/**
+ * getNumeroRPSMedecin : retourne le Numero RPS du Medecin sous forme de char* (pour l'affichage)
+ * @param medecin : le Medecin dont on veut le Numero RPS
+ * @return un char* avec le Numero RPS
+ */
+char * getNumeroRPSMedecin(Medecin * medecin){
+    return medecin->numero_RPS;
+}
+/**
+ * getInfoMedecin : retourne une chaine de caractères résumant les attributs du Medecin
+ * @param medecin : le Medecin dont on veut les informations
+ * @return une chaine de caractères avec les informations sur le Medecin
+ */
+char * getInfoMedecin(Medecin * medecin){
+    char * info = "";
+    strcpy(info,getNomMedecin(medecin));
+    strcat(info,"\nNuméro RPS : ");
+    strcat(info,getNumeroRPSMedecin(medecin));
+    strcat(info, "\n@ : ");
+    strcat(info, getAdresseMailMedecin(medecin));
+    strcat(info, "\nTel : ");
+    strcat(info, getNumeroTelephoneMedecin(medecin));
+    return info;
+}
+
+/********************************************************************************************************************/
+                                        /*Gestion des Patients recus*/
+/*******************************************************************************************************************/
+
 /**
  * AddPatientRecuMedecin : Ajoute un patient à la liste des patient recus par un medecin
  * @param m : le medecin recevant
@@ -92,10 +157,9 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
  * @return 1 si le patient a bien été ajouté à la liste 0 sinon (patient déjà recu par exemple)
  */
 int AddPatientRecuMedecin(Medecin * m, Patient * patient){
-    printf("Entrée dans AddPatientRecuMedecin()\n");
+
     /*On vient tester si le patient n'a pas déjà été recu si la liste n'est pas vide*/
     if(!ListPatient_isEmpty(m->patients_recus)){
-        printf("Dans AddPatientRecuMedecin() : entrée dans test si liste n'est pas vide\n");
         for(ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
                 m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
             if(ListPatient_getCurrent(m->patients_recus) == patient){
@@ -129,7 +193,6 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
  * @return 1 si l'enlevement du patient à la liste a bien été réalisé 0 sinon (le medecin ne connaissait pas ce patient ou autre)
  */
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
-    printf("Entrée dans DeletePatientRecuMedecin()\n");
     //Cas où la liste est vide
     if(ListPatient_isEmpty(m->patients_recus)){
         printf("La liste des patients recus par le medecin %s est vide, on ne peut donc pas y retirer le patient %s.\n", m->nom, patient->nom);
@@ -139,7 +202,6 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
     //On cherche si le patient a été recu par le medecin
     for (ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
             m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
-        printf("Dans DeletePatientRecuMedecin() : On entre dans la boucle for qui cherche le patient\n");
         //Si on le trouve on le retire et on quitte la fonction
         if (ListPatient_getCurrent(m->patients_recus) == patient) {
             m->patients_recus->current->previous->next = m->patients_recus->current->next;

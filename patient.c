@@ -48,6 +48,10 @@ void AffichePatient(Patient * p){
     printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
 }
 
+/********************************************************************************************************************/
+                                            /*Setteurs de Patient*/
+/*******************************************************************************************************************/
+
 /**
  * SetNomPatient : Setteur du nom d'un patient
  * @param p : le patient
@@ -91,8 +95,72 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
     p->numero_telephone = tel;
 }
 
-//int InscriptionPatient(Patient * patient, RendezVous * rdv);
+/********************************************************************************************************************/
+                                             /*Getteurs de Patient*/
+/*******************************************************************************************************************/
 
+/**
+ * getNomPatient : retourne le nom et le prénom du patient sous forme de char* (pour l'affichage du RDV)
+ * @param p : le patient dont on veut le nom
+ * @return une chaine de caractères avec le nom et le prénom du patient
+ */
+char * getNomPatient(Patient *p){
+    char * nom = "";
+    strcpy(nom,p->nom);
+    strcat(nom, " ");
+    strcat(nom, p->prenom);
+    return nom;
+}
+/**
+ * getDateNaissancePatient : retourne la date de naissance du patient sous forme de char* (pour l'affichage)
+ * @param p : le patient dont on veut la date de naissance
+ * @return un char* avec la date de naissance
+ */
+char * getDateNaissancePatient(Patient * p){
+    char * result = "";
+    strcpy(result,getJourDate(p->date_naissance));
+    strcat(result, "/");
+    strcat(result,getMoisDate(p->date_naissance));
+    strcat(result, "/");
+    strcat(result,getAnneeDate(p->date_naissance));
+    return result;
+}
+/**
+ * getAdresseMailPatient : retourne l'adresse mail du patient sous forme de char* (pour l'affichage)
+ * @param p : le patient dont on veut l'adresse mail
+ * @return un char* avec l'dresse mail
+ */
+char * getAdresseMailPatient(Patient * p){
+    return p->adresse_mail;
+}
+/**
+ * getNumeroTelephonePatient : retourne le numéro de téléphone du patient sous forme de char* (pour l'affichage)
+ * @param p : le patient dont on veut le numéro de téléphone
+ * @return un char * avec le numero de téléphone
+ */
+char * getNumeroTelephonePatient(Patient * p){
+    return  p->numero_telephone;
+}
+/**
+ * getInfoPatient : retourne une chaine de caractères résumant les attributs du patient
+ * @param p : le patient dont on veut les informations
+ * @return une chaine de caractères avec les informations sur le patient
+ */
+char * getInfoPatient(Patient *p){
+    char * info = "";
+    strcpy(info,getNomPatient(p));
+    strcat(info,"\nNé(e) le : ");
+    strcat(info,getDateNaissancePatient(p));
+    strcat(info, "\n@ : ");
+    strcat(info, getAdresseMailPatient(p));
+    strcat(info, "\nTel : ");
+    strcat(info, getNumeroTelephonePatient(p));
+    return info;
+}
+
+/********************************************************************************************************************/
+                                    /*Gestion des Medecins Consultes*/
+/*******************************************************************************************************************/
 
 /**
  * AddMedecincConsultePatient : Ajoute un Medecin à la première position de la liste des medecins consultés par un patient

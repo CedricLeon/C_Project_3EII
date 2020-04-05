@@ -88,7 +88,7 @@ static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state){
     printf("\n");
 }
 /**
- * On test si il ne se passe rien car le mèdein a déjà été ajouté
+ * On test si il ne se passe rien car le mèdecin a déjà été ajouté
  * @param state
  */
 static void testPatient_AddMedecinPatient_handlesMedecinDejaConsulte(void ** state){
@@ -103,6 +103,10 @@ static void testPatient_AddMedecinPatient_handlesMedecinDejaConsulte(void ** sta
     DeleteMedecin(m);
     printf("\n");
 }
+/**
+ * On test si le delete de medecin est bien enlevé de la liste
+ * @param state
+ */
 static void testPatient_DeleteMedecinPatient_handlesMedecinsEnleve(void ** state){
     printf("\n");
     Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
@@ -114,6 +118,10 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinsEnleve(void ** state
     DeleteMedecin(m);
     printf("\n");
 }
+/**
+ * On test si on essaye d'enlever un medecin d'une liste vide
+ * @param state
+ */
 static void testPatient_DeleteMedecinPatient_handlesPasDeMedecin(void ** state){
     printf("\n");
     Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
@@ -124,6 +132,10 @@ static void testPatient_DeleteMedecinPatient_handlesPasDeMedecin(void ** state){
     DeleteMedecin(m);
     printf("\n");
 }
+/**
+ * On test d'enlever un medecin non présent dans la liste
+ * @param state
+ */
 static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** state){
     printf("\n");
     Medecin * m1 = CreerMedecin("NomTestM1", "PrenomTestM1", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
@@ -157,6 +169,10 @@ static int teardown_Medecin(void ** state){
     return 0;
 }
 
+/**
+ * On test de créer un Mèdecin
+ * @param state
+ */
 static void testMedecin_creerMedecin(void ** state){                            //Pour le principe car ne peut pas fail
     assert_string_equal(((Medecin *) *state)->nom,"NomTestM");
     assert_string_equal(((Medecin *) *state)->prenom,"PrenomTestM");
@@ -164,14 +180,17 @@ static void testMedecin_creerMedecin(void ** state){                            
     assert_string_equal(((Medecin *) *state)->numero_telephone,"testNumeroTelephoneM");
     assert_string_equal(((Medecin *) *state)->numero_RPS, "NumRPSM");
 }
-
+/**
+ * On test 
+ * @param state
+ */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state){
     printf("\n");
     Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
 
     AddPatientRecuMedecin((Medecin *) *state, p);
     ListPatient_setOnFirst(((Medecin *) *state)->patients_recus);
-    printf("\n");
+    assert_ptr_equal(ListPatient_getCurrent(((Medecin *) *state)->patients_recus), p);
 
     DeletePatientRecuMedecin((Medecin *) *state, p);
     DeletePatient(p);
