@@ -140,6 +140,102 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** st
     printf("\n");
 }
 
+/**********************************************************************************************************************/
+                                        /*Tests des fonctions Medecin*/
+/**********************************************************************************************************************/
+
+
+//Fonctions de setup et teardown de la structure Medecin
+static int setup_Medecin(void ** state){
+    Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
+    *state = m;
+    return *state == NULL;
+}
+
+static int teardown_Medecin(void ** state){
+    DeleteMedecin((Medecin *) *state);
+    return 0;
+}
+
+static void testMedecin_creerMedecin(void ** state){                            //Pour le principe car ne peut pas fail
+    assert_string_equal(((Medecin *) *state)->nom,"NomTestM");
+    assert_string_equal(((Medecin *) *state)->prenom,"PrenomTestM");
+    assert_string_equal(((Medecin *) *state)->adresse_mail, "test@adresseMailM");
+    assert_string_equal(((Medecin *) *state)->numero_telephone,"testNumeroTelephoneM");
+    assert_string_equal(((Medecin *) *state)->numero_RPS, "NumRPSM");
+}
+
+static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state){
+    printf("\n");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+
+    AddPatientRecuMedecin((Medecin *) *state, p);
+    ListPatient_setOnFirst(((Medecin *) *state)->patients_recus);
+    printf("\n");
+
+    DeletePatientRecuMedecin((Medecin *) *state, p);
+    DeletePatient(p);
+    printf("\n");
+}
+/**
+ * On test si il ne se passe rien car le mèdecin a déjà été ajouté
+ * @param state
+ */
+static void testMedecin_AddPatientRecuMedecin_handlesPatientDejaRecu(void ** state){
+    printf("\n");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+
+    assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 1);                  //Should print "patient add au debut de la liste"
+    assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 0);                  //Should print "cant add, deja consulté"
+    assert_int_equal(ListPatient_isEmpty(((Medecin *) *state)->patients_recus), 0);     //test par principe mais pas très utile
+
+    DeletePatientRecuMedecin((Medecin *) *state, p);
+    DeletePatient(p);
+    printf("\n");
+}
+static void testMedecin_DeletePatientRecuMedecint_handlesPatientEnleve(void ** state){
+    //ce test est aussi là pour le principe puique dans les faits on est obligé
+    // d'enlever le patient de la liste déjà dans le 1er test car les tests sont appellés à la suite
+    printf("\n");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+
+    assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 1);
+    assert_int_equal(DeletePatientRecuMedecin((Medecin *) *state, p), 1);
+    assert_int_equal(ListPatient_isEmpty(((Medecin *) *state)->patients_recus), 1);
+
+    DeletePatient(p);
+    printf("\n");
+}
+static void testMedecin_DeletePatientRecuMedecin_handlesPasDePatient(void ** state){
+    printf("\n");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+
+    assert_int_equal(DeletePatientRecuMedecin((Medecin *) *state, p),0);
+    assert_int_equal(ListPatient_isEmpty(((Medecin *) *state)->patients_recus), 1);
+
+    DeletePatient(p);
+    printf("\n");
+}
+static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void ** state){
+    printf("\n");
+    Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 20201, 031, 291, "test@adresseMailP1", "testNumeroTelephoneP2");
+    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 20202, 032, 292, "test@adresseMailP2", "testNumeroTelephoneP2");
+
+    AddPatientRecuMedecin((Medecin *) *state, p1);
+    //On add pas p2 et on essaye de le delete
+
+    assert_int_equal(DeletePatientRecuMedecin((Medecin *) *state, p2),0);
+    assert_int_equal(ListPatient_isEmpty(((Medecin *) *state)->patients_recus), 0);
+
+    DeletePatient(p1);
+    DeletePatient(p2);
+    printf("\n");
+}
+
+/**********************************************************************************************************************/
+                                            /*Main : Appel des Test*/
+/**********************************************************************************************************************/
+
 int main(void){
     const struct CMUnitTest tests_fonctionsPatient[] = {
 
@@ -159,5 +255,21 @@ int main(void){
             cmocka_unit_test(testPatient_DeleteMedecinPatient_handlesPasDeMedecin),
             cmocka_unit_test(testPatient_DeleteMedecinPatient_handlesMedecinNonPresent),
     };
-    return cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
+
+    const struct CMUnitTest tests_fonctionsMedecin[] = {
+            cmocka_unit_test(testMedecin_creerMedecin),
+            cmocka_unit_test(testMedecin_AddPatientRecuMedecin_handlesPatientAdded),
+            cmocka_unit_test(testMedecin_AddPatientRecuMedecin_handlesPatientDejaRecu),
+            cmocka_unit_test(testMedecin_DeletePatientRecuMedecint_handlesPatientEnleve),
+            cmocka_unit_test(testMedecin_DeletePatientRecuMedecin_handlesPasDePatient),
+            cmocka_unit_test(testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent),
+    };
+
+    printf("\033[34;01m\n****************************** Running Patient Tests ******************************\n\n\033[00m");
+    int return_cmocka_P = cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
+    printf("\033[34;01m\n****************************** Running Medecin Tests ******************************\n\n\033[00m");
+    int return_cmocka_M = cmocka_run_group_tests(tests_fonctionsMedecin, setup_Medecin, teardown_Medecin);
+
+    //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
+    return  return_cmocka_P && return_cmocka_M;
 }

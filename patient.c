@@ -107,7 +107,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
         for(ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
             p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
             if(ListMedecin_getCurrent(p->medecins_consultes) == medecin){
-                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n",medecin->nom, medecin->prenom, p->nom, p->prenom);
+                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
                 return 0;
             }
         }
@@ -137,12 +137,12 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
  * @return 1 si l'enlevement du mèdecin a bien été réalisé 0 sinon (le patient n'avait pas consulté ce mèdecin par exemple)
  */
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
+
     //Cas où la liste est vide
     if(ListMedecin_isEmpty(p->medecins_consultes)){
         printf("La liste des mèdecins consultés par le patient %s est vide, on ne peut donc pas y retirer le mèdecin %s.\n", p->nom, medecin->nom);
         return 0;
     }
-
 
     //On cherche si le mèdecin a été consulté par le patient
     for (ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
@@ -200,8 +200,10 @@ void ListPatient_init(ListPatient * l){
         l->current = NULL;
         l->sentinel_begin.next = &(l->sentinel_end);
         l->sentinel_begin.previous = NULL;
+        l->sentinel_begin.patient = NULL;
         l->sentinel_end.previous = &(l->sentinel_begin);
         l->sentinel_end.next = NULL;
+        l->sentinel_end.patient = NULL;
     }
 }
 
@@ -225,7 +227,7 @@ void ListPatient_free(ListPatient * l){
  */
 int ListPatient_isEmpty(ListPatient * l){
     if (l != NULL){
-        return  l->sentinel_begin.next == &(l->sentinel_end);
+        return  (l->sentinel_begin.next == &(l->sentinel_end) && l->sentinel_end.previous == &(l->sentinel_begin));
     }
     return -1; //La liste est NULL
 }
@@ -268,7 +270,7 @@ int ListPatient_isOutOfList(ListPatient * l){
  * @param l : la liste
  */
 void ListPatient_setOnFirst(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
+    if(l != NULL){
         l->current = l->sentinel_begin.next;
     }
 }
@@ -305,6 +307,9 @@ void ListPatient_setOnPrevious(ListPatient * l){
  * @return Retourne un pointeur sur le Patient de l'élément courant de la liste
  */
 Patient * ListPatient_getCurrent(ListPatient * l){
-    return l->current->patient;
+    if(l != NULL && l->current != NULL){
+        return l->current->patient;
+    }
+    return NULL;
 }
 

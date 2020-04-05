@@ -92,13 +92,14 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
  * @return 1 si le patient a bien été ajouté à la liste 0 sinon (patient déjà recu par exemple)
  */
 int AddPatientRecuMedecin(Medecin * m, Patient * patient){
-
+    printf("Entrée dans AddPatientRecuMedecin()\n");
     /*On vient tester si le patient n'a pas déjà été recu si la liste n'est pas vide*/
     if(!ListPatient_isEmpty(m->patients_recus)){
-        for(ListPatient_setOnFirst(m->patients_recus); ListPatient_isOutOfList(
+        printf("Dans AddPatientRecuMedecin() : entrée dans test si liste n'est pas vide\n");
+        for(ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
                 m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
             if(ListPatient_getCurrent(m->patients_recus) == patient){
-                printf("Le patient %s %s a déjà été recu par le medecin %s %s.\n",patient->nom, patient->prenom, m->nom, m->prenom);
+                printf("Le patient %s %s a déjà été recu par le medecin %s %s, il n'est donc pas ajouté à la liste.\n", patient->nom, patient->prenom, m->nom, m->prenom);
                 return 0;
             }
         }
@@ -109,6 +110,7 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
         NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), &(m->patients_recus->sentinel_end));
         m->patients_recus->sentinel_begin.next = newNode;
         m->patients_recus->sentinel_end.previous = newNode;
+        printf("Le patient est le premier patient recu par le medecin, il a bien été ajouté.\n");
         return 1;
     }
 
@@ -117,6 +119,7 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
     NodePatient * newNode = newNodePatient(patient, &(m->patients_recus->sentinel_begin), m->patients_recus->current);
     m->patients_recus->sentinel_begin.next = newNode;
     m->patients_recus->current->previous = newNode;
+    printf("Le patient a été ajouté au début de la liste du medecin.\n");
     return 1;
 }
 /**
@@ -126,29 +129,28 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
  * @return 1 si l'enlevement du patient à la liste a bien été réalisé 0 sinon (le medecin ne connaissait pas ce patient ou autre)
  */
 int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
-
+    printf("Entrée dans DeletePatientRecuMedecin()\n");
     //Cas où la liste est vide
     if(ListPatient_isEmpty(m->patients_recus)){
         printf("La liste des patients recus par le medecin %s est vide, on ne peut donc pas y retirer le patient %s.\n", m->nom, patient->nom);
         return 0;
     }
 
-    //On cherche si le mèdecin a été consulté par le patient
-    for (ListPatient_setOnFirst(m->patients_recus); ListPatient_isOutOfList(
+    //On cherche si le patient a été recu par le medecin
+    for (ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
             m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
-
+        printf("Dans DeletePatientRecuMedecin() : On entre dans la boucle for qui cherche le patient\n");
         //Si on le trouve on le retire et on quitte la fonction
         if (ListPatient_getCurrent(m->patients_recus) == patient) {
             m->patients_recus->current->previous->next = m->patients_recus->current->next;
             m->patients_recus->current->next->previous = m->patients_recus->current->previous;
             freeNodePatient(m->patients_recus->current);
-            ListPatient_setOnFirst(m->patients_recus);      //Pour ne pas laisser current en dehors de la liste
             printf("Le patient %s a bien été retiré de la liste des patients recus par le medecin %s.\n", patient->nom, m->nom);
             return 1;
         }
     }
 
-    /*Si on n'a pas trouvé le mèdecin on l'affiche et on return -1*/
+    /*Si on n'a pas trouvé le patient on l'affiche et on return -1*/
     printf("Le medecin %s n'a pas recu le patient %s, on ne peut donc pas le retirer de la liste.\n", m->nom, patient->nom);
     return 0;
 }
