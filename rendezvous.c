@@ -1,6 +1,5 @@
 #include "rendezvous.h"
 
-
 /**
  * CreerRendezVous : Creer dynamiquement un objet RendezVous
  * @param an : l'annee
@@ -16,17 +15,16 @@
  * @return le rdv créé
  */
 
-RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int minute, int duree, char * lieu, Patient * p, Medecin * m, char * motif){
-    RendezVous * rdv = (RendezVous *)malloc(sizeof(RendezVous));
+RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
 
-    CreerDate(an,mois,jour);
-    rdv->heure=heure;
-    rdv->minute=minute;
-    rdv->lieu=lieu;
-    rdv->patient=p;
-    rdv->medecin=m;
-    rdv->motif=motif;
-
+    RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
+    rdv->heure_debut = heure_debut;
+    rdv->heure_fin = heure_debut + (double) (duree/60);
+    CreerDate(an, mois, jour);
+    rdv->lieu = lieu;
+    rdv->patient = patient;
+    rdv->medecin = medecin;
+    rdv->motif = motif;
     return rdv;
 }
 
@@ -35,17 +33,9 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, int heure, int minute, 
  * @param rdv : le rdv qu'on veut annuler
  * @return 1 si le rdv a bien été annulé
  */
-int AnnulerRendezVous(RendezVous * rdv){
-    free(rdv->date);
-    rdv->heure=0;
-    rdv->minute=0;
-    rdv->duree=0;
-    free(rdv->patient);
-    free(rdv->medecin);
-
+void AnnulerRendezVous(RendezVous * rdv){
+    FreeDate(rdv->date);
     free((void *) rdv);
-
-    return 1;
 }
 
 /**
@@ -59,49 +49,12 @@ int AnnulerRendezVous(RendezVous * rdv){
  * @param n_duree : nouvelle duree du rdv
  * @return le rdv deplacé
  */
-RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, int n_heure, int n_minute, int n_duree){
+RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree){
     rdv->date->annee=n_an;
     rdv->date->mois=n_mois;
     rdv->date->jour=n_jour;
-    rdv->heure=n_heure;
-    rdv->minute=n_minute;
-    rdv->duree=n_duree;
 
+    rdv->heure_debut = n_heure_debut;
+    rdv->heure_fin = n_heure_debut + (double) (n_duree/60);
     return rdv;
-}
-
-/**
- * getNomPatient : retourne le nom et le prénom du patient sous forme de char* (pour l'affichage du RDV)
- * @param p : le patient dont on veut le nom
- * @return une chaine de caractères avec le nom et le prénom du patient
- */
-char * getNomPatient(Patient *p){
-    char * nom =malloc(sizeof(char*));
-    strcpy(nom,p->nom);
-    strcat(nom, " ");
-    strcat(nom, p->prenom);
-    return nom;
-
-}
-
-/**
- * getInfoPatient : retourne une chaine de caractères résumant les attributs du patient
- * @param p: le patient dont on veut les informations
- * @return une chaine de caractères avec les informations sur le patient
- */
-char * getInfoPatient(Patient *p){
-    char * info = malloc(sizeof(char*));
-    strcpy(info,getNomPatient(p));
-    strcat(info,"\nNé(e) le : ");
-    strcat(info,getJourChar(p->date_naissance));
-    strcat(info, "/");
-    strcat(info,getMoisChar(p->date_naissance));
-    strcat(info, "/");
-    strcat(info,getAnneeChar(p->date_naissance));
-    strcat(info, "\n@ : ");
-    strcat(info, p->adresse_mail);
-    strcat(info, "\nTel : ");
-    strcat(info, p->numero_telephone);
-    return info;
-
 }
