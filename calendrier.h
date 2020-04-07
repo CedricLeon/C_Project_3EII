@@ -20,24 +20,6 @@
  * l'application de gérer l'emploi du temps de plusieurs mèdecin etc...
  */
 
-/**********************************************************************************************************************/
-                                        /*List de RendezVous pour un Jour*/
-/**********************************************************************************************************************/
-typedef struct NodeRendezVous{
-    RendezVous * rdv;
-    struct NodeRendezVous * next;
-    struct NodeRendezVous * previous;
-}NodeRendezVous;
-
-typedef struct{
-    Date * date;
-    NodeRendezVous sentinel_begin;
-    NodeRendezVous * current;
-    NodeRendezVous sentinel_end;
-}ListRendezVous;
-
-typedef ListRendezVous * Jour;
-
 NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous, NodeRendezVous * next);
 void freeNodeRendezVous(NodeRendezVous * n);
 
@@ -55,21 +37,65 @@ void ListRendezVous_setOnNext(ListRendezVous * l);
 void ListRendezVous_setOnPrevious(ListRendezVous * l);
 RendezVous * ListRendezVous_getCurrent(ListRendezVous * l);
 
+
+
+
+
 /**********************************************************************************************************************/
-                                        /*List de RendezVous pour une Année*/
+                                        /*List de RendezVous pour un Jour*/
 /**********************************************************************************************************************/
 typedef struct{
-    Jour jour;
+    RendezVous * rdv;
+    struct NodeRendezVous * next;
+    struct NodeRendezVous * previous;
+}NodeRendezVous;
+
+typedef struct{
+    Date * date;
+    NodeRendezVous sentinel_begin;
+    NodeRendezVous * current;
+    NodeRendezVous sentinel_end;
+}Jour;
+
+typedef struct{
+    Jour * jour;
     struct NodeJour * next;
     struct NodeJour * previous;
 }NodeJour;
+/**********************************************************************************************************************/
+                                        /*List de RendezVous pour un Mois*/
+/**********************************************************************************************************************/
 
 typedef struct{
-    int Annee;
+    int Mois;
     NodeJour sentinel_begin;
     NodeJour * current;
     NodeJour sentinel_end;
-}ListJour;
+}Mois;
 
-typedef ListJour * Annee;
+typedef struct{
+    Mois * mois;
+    struct NodeMois * next;
+    struct NodeMois * previous;
+}NodeMois;
+
+/**********************************************************************************************************************/
+                                        /*List de RendezVous pour une Année*/
+/**********************************************************************************************************************/
+
+
+typedef struct{
+    int Annee;
+    NodeMois sentinel_begin;
+    NodeMois * current;
+    NodeMois sentinel_end;
+}Annee;
+
+
+typedef struct{
+    Annee * annee;
+    struct NodeAnnee * next;
+    struct NodeAnnee * previous;
+}NodeAnnee;
+
 #endif
