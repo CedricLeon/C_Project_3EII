@@ -245,8 +245,8 @@ void freeNodeMedecin(NodeMedecin * n){
 
 
 /**
- * ListMedecin_init : Initialise correctement une liste de NodeMedecin en mettant reliant sentinel_begin et end entre eux
- * et en mettant current à NULL en dehors de la liste
+ * ListMedecin_init : Initialise correctement une liste de NodeMedecin en reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL (en dehors de la liste)
  * @param l : la liste à initialiser
  */
 void ListMedecin_init(ListMedecin * l){
@@ -260,7 +260,10 @@ void ListMedecin_init(ListMedecin * l){
         l->sentinel_end.medecin = NULL;
     }
 }
-
+/**
+ * ListMedecin_free : Libère la mémoire occupée par l'objet ListMedecin passée en paramètre
+ * @param l : la liste de mèdecin à free
+ */
 void ListMedecin_free(ListMedecin * l){
     if (l!= NULL && !ListMedecin_isEmpty(l)){
         for(ListMedecin_setOnFirst(l); ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
@@ -305,6 +308,7 @@ int ListMedecin_isLast(ListMedecin * l){
 }
 /**
  * ListMedecin_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
+ * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
  * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
  */
@@ -343,7 +347,7 @@ void ListMedecin_setOnNext(ListMedecin * l){
     }
 }
 /**
- * ListMedecin_setOnPrevious : Positionne le pointeur courant sur l'élément avant lui dans la liste
+ * ListMedecin_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste
  * @param l : la liste
  */
 void ListMedecin_setOnPrevious(ListMedecin * l){
