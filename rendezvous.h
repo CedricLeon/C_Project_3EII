@@ -5,6 +5,11 @@
 #include "medecin.h"
 #include "patient.h"
 
+/**
+ * Ou est-ce qu'on free nos objets Rendez-Vous ? Vrai question : ds le calendrier ou lorsqu'on ferme l'appli ?
+ * Demander au prof
+ */
+
 typedef struct{
     Date * date;
     double heure_debut;      //16h30 <=> 16.5
