@@ -5,7 +5,7 @@
 /**********************************************************************************************************************/
 
 /**
- * newNodeRendezVous : Fonction static permettant de créer un nouvel objet NodeRendezVous
+ * newNodeRendezVous : Fonction permettant de créer un nouvel objet NodeRendezVous
  * @param rdv : le rendezvous pointé par ce nouveau Node
  * @param previous : le NodeRendezVous précédant le nouveau node
  * @param next : le NodeRendezVous suivant le nouveau node
@@ -19,10 +19,11 @@ NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous,
     return newNode;
 }
 /**
- * freeNodeRendezVous : Fonction static libérant permettant de free un objet NodeRendezVous
+ * freeNodeRendezVous : Fonction libérant permettant de free un objet NodeRendezVous
  * @param n : le node en question
  */
 void freeNodeRendezVous(NodeRendezVous * n){
+    //Faut-il free les rdv ici ? Je pense pas mais sinon on le fait pas
     free((void *) n);
 }
 
@@ -30,9 +31,11 @@ void freeNodeRendezVous(NodeRendezVous * n){
  * ListRendezVous_init : Initialise correctement une liste de NodeRendezVous en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)
  * @param l : la liste à initialiser
+ * @param date : la date correspond au Mois (la liste de rdv)
  */
-void ListRendezVous_init(ListRendezVous * l){
+void ListRendezVous_init(ListRendezVous * l, Date * date){
     if (l != NULL){
+        l->date = date;
         l->current = NULL;
         l->sentinel_begin.next = &(l->sentinel_end);
         l->sentinel_begin.previous = NULL;
@@ -47,10 +50,11 @@ void ListRendezVous_init(ListRendezVous * l){
  * @param l : la liste de rendezVous à free
  */
 void ListRendezVous_free(ListRendezVous * l){
-    if (l!= NULL && !ListRendezVous_isEmpty(l)){
-        for(ListRendezVous_setOnFirst(l); ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
+    if (l!= NULL && !ListRendezVous_isEmpty(l)) {
+        for (ListRendezVous_setOnFirst(l); ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
             freeNodeRendezVous(l->current);
         }
+        FreeDate(l->date);
     }
     free((void *) l);
 }
@@ -148,5 +152,492 @@ RendezVous * ListRendezVous_getCurrent(ListRendezVous * l){
     }
     return NULL;
 }
+/**
+ * ListRendezVous_getDate : Permet d'accéder à la date de cette liste de rdv (un jour)
+ * @param l : la liste
+ * @return la date si la liste n'est pas NULL, NULL si la liste est NULL
+ */
+Date * ListRendezVous_getDate(ListRendezVous * l){
+    if(l != NULL){
+        return l->date;
+    }
+    printf("La liste de RendezVous (Donc un Jour) est NULL, on ne peut donc pas accéder à sa date.\n ");
+    return NULL;
+}
 
+/**********************************************************************************************************************/
+                                        /*List de Jour pour un Mois*/
+/**********************************************************************************************************************/
 
+/**
+ * newNodeJour : Fonction permettant de créer un nouvel objet NodeJour
+ * @param jour : le jour (donc une liste de RendezVous) pointé par ce nouveau NodeJour
+ * @param previous : le NodeJour précédant le nouveau node
+ * @param next : le NodeJour suivant le nouveau node
+ * @return un pointeur sur le noeud créé
+ */
+NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next){
+    NodeJour * newNode = (NodeJour *) malloc(sizeof(NodeJour));
+    newNode->jour = jour;
+    newNode->next = next;
+    newNode->previous = previous;
+    return newNode;
+}
+/**
+ * freeNodeJour : Fonction permettant de free un objet NodeJour
+ * @param n : le node en question
+ */
+void freeNodeJour(NodeJour * n){
+    ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    free((void *) n);
+}
+
+/**
+ * ListJour_init : Initialise correctement une liste de NodeJour en reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL (en dehors de la liste)
+ * @param l : la liste à initialiser
+ * @param mois : le numéro correspondant au mois (la listes de jours)
+ */
+void ListJour_init(ListJour * l, int mois){
+    if (l != NULL){
+        l->mois = mois;
+        l->current = NULL;
+        l->sentinel_begin.next = &(l->sentinel_end);
+        l->sentinel_begin.previous = NULL;
+        l->sentinel_begin.jour = NULL;
+        l->sentinel_end.previous = &(l->sentinel_begin);
+        l->sentinel_end.next = NULL;
+        l->sentinel_end.jour = NULL;
+    }
+}
+/**
+ * ListJour_free : Libère la mémoire occupée par l'objet ListJour passée en paramètre
+ * @param l : la liste de Jour à free
+ */
+void ListJour_free(ListJour * l){
+    if (l!= NULL && !ListJour_isEmpty(l)){
+        for(ListJour_setOnFirst(l); ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
+            freeNodeJour(l->current);
+        }
+    }
+    free((void *) l);
+}
+
+/**
+ * ListJour_isEmpty : Vérifie si la liste de Jour est vide ou non
+ * @param l : la liste
+ * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ */
+int ListJour_isEmpty(ListJour * l){
+    if (l != NULL){
+        return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListJour_isFirst : Vérifie si current est positionné sur le premier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListJour_isFirst(ListJour * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_begin.next;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListJour_isLast : Vérifie si current est positionné sur le dernier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListJour_isLast(ListJour * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_end.previous;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListJour_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
+ * (les sentinels ne sont pas considérées comme dans la liste)
+ * @param l : la liste
+ * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ */
+int ListJour_isOutOfList(ListJour * l){
+    if (l != NULL){
+        return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
+    }
+    return -1; //La liste est NULL
+}
+
+/**
+ * ListJour_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste
+ * @param l : la liste
+ */
+void ListJour_setOnFirst(ListJour * l){
+    if(l != NULL){
+        l->current = l->sentinel_begin.next;
+    }
+}
+/**
+ * ListJour_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
+ * @param l : la liste
+ */
+void ListJour_setOnLast(ListJour * l){
+    if(l != NULL){
+        l->current = l->sentinel_end.previous;
+    }
+}
+/**
+ * ListJour_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
+ * @param l : la liste
+ */
+void ListJour_setOnNext(ListJour * l){
+    if(l != NULL && !ListJour_isOutOfList(l)){
+        l->current = l->current->next;
+    }
+}
+/**
+ * ListJour_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste
+ * @param l : la liste
+ */
+void ListJour_setOnPrevious(ListJour * l){
+    if(l != NULL && !ListJour_isOutOfList(l)){
+        l->current = l->current->previous;
+    }
+}
+/**
+ * ListJour_getCurrent : Permet d'acceder au Jour pointé par current
+ * @param l : la liste
+ * @return Retourne un pointeur sur le Jour de l'élément courant de la liste
+ */
+Jour ListJour_getCurrent(ListJour * l){
+    if(l != NULL && l->current != NULL){
+        return l->current->jour;
+    }
+    return NULL;
+}
+/**
+ * ListJour_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Jour (donc au mois)
+ * @param l : la liste de jour
+ * @return le numéro du mois si la liste n'est pas vide 0 sinon
+ */
+int ListJour_getMois(ListJour * l){
+    if(l != NULL){
+        return l->mois;
+    }
+    printf("La liste de Jours (Donc un Mois) est NULL, on ne peut donc pas accéder au numéro de son mois.\n ");
+    return 0;
+}
+/**********************************************************************************************************************/
+                                    /*List de Mois pour une Annee*/
+/**********************************************************************************************************************/
+
+/**
+ * newNodeMois : Fonction permettant de créer un nouvel objet NodeMois
+ * @param mois : le mois (donc une liste de jour ou une liste de liste de rdv) pointé par ce nouveau NodeMois
+ * @param previous : le NodeMois précédant le nouveau node
+ * @param next : le NodeMois suivant le nouveau node
+ * @return un pointeur sur le noeud créé
+ */
+NodeMois * newNodeMois(Mois mois , NodeMois * previous, NodeMois * next){
+    NodeMois * newNode = (NodeMois *) malloc(sizeof(NodeMois));
+    newNode->mois = mois;
+    newNode->next = next;
+    newNode->previous = previous;
+    return newNode;
+}
+/**
+ * freeNodeMois : Fonction permettant de free un objet NodeMois
+ * @param n : le node en question
+ */
+void freeNodeMois(NodeMois * n){
+    ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    free((void *) n);
+}
+
+/**
+ * ListMois_init : Initialise correctement une liste de NodeMois en reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL (en dehors de la liste)
+ * @param l : la liste à initialiser
+ * @param annee : le numéro correspondant au mois (la listes de Moiss)
+ */
+void ListMois_init(ListMois * l, int annee){
+    if (l != NULL){
+        l->annee = annee;
+        l->current = NULL;
+        l->sentinel_begin.next = &(l->sentinel_end);
+        l->sentinel_begin.previous = NULL;
+        l->sentinel_begin.mois = NULL;
+        l->sentinel_end.previous = &(l->sentinel_begin);
+        l->sentinel_end.next = NULL;
+        l->sentinel_end.mois = NULL;
+    }
+}
+/**
+ * ListMois_free : Libère la mémoire occupée par l'objet ListMois passée en paramètre
+ * @param l : la liste de Mois à free
+ */
+void ListMois_free(ListMois * l){
+    if (l!= NULL && !ListMois_isEmpty(l)){
+        for(ListMois_setOnFirst(l); ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
+            freeNodeMois(l->current);
+        }
+    }
+    free((void *) l);
+}
+
+/**
+ * ListMois_isEmpty : Vérifie si la liste de Mois est vide ou non
+ * @param l : la liste
+ * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ */
+int ListMois_isEmpty(ListMois * l){
+    if (l != NULL){
+        return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMois_isFirst : Vérifie si current est positionné sur le premier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListMois_isFirst(ListMois * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_begin.next;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMois_isLast : Vérifie si current est positionné sur le dernier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListMois_isLast(ListMois * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_end.previous;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListMois_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
+ * (les sentinels ne sont pas considérées comme dans la liste)
+ * @param l : la liste
+ * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ */
+int ListMois_isOutOfList(ListMois * l){
+    if (l != NULL){
+        return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
+    }
+    return -1; //La liste est NULL
+}
+
+/**
+ * ListMois_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste
+ * @param l : la liste
+ */
+void ListMois_setOnFirst(ListMois * l){
+    if(l != NULL){
+        l->current = l->sentinel_begin.next;
+    }
+}
+/**
+ * ListMois_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
+ * @param l : la liste
+ */
+void ListMois_setOnLast(ListMois * l){
+    if(l != NULL){
+        l->current = l->sentinel_end.previous;
+    }
+}
+/**
+ * ListMois_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
+ * @param l : la liste
+ */
+void ListMois_setOnNext(ListMois * l){
+    if(l != NULL && !ListMois_isOutOfList(l)){
+        l->current = l->current->next;
+    }
+}
+/**
+ * ListMois_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste
+ * @param l : la liste
+ */
+void ListMois_setOnPrevious(ListMois * l){
+    if(l != NULL && !ListMois_isOutOfList(l)){
+        l->current = l->current->previous;
+    }
+}
+/**
+ * ListMois_getCurrent : Permet d'acceder au Mois pointé par current
+ * @param l : la liste
+ * @return Retourne un pointeur sur le Mois de l'élément courant de la liste
+ */
+Mois ListMois_getCurrent(ListMois * l){
+    if(l != NULL && l->current != NULL){
+        return l->current->mois;
+    }
+    return NULL;
+}
+/**
+ * ListMois_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Mois (donc au mois)
+ * @param l : la liste de Mois
+ * @return le numéro de l'annéée si la liste n'est pas vide 0 sinon
+ */
+int ListMois_getAnnee(ListMois * l){
+    if(l != NULL){
+        return l->annee;
+    }
+    printf("La liste de Mois (Donc une année) est NULL, on ne peut donc pas accéder au numéro de son année.\n ");
+    return 0;
+}
+
+/**********************************************************************************************************************/
+                                    /*List d'Année pour un Calendrier*/
+/**********************************************************************************************************************/
+
+/**
+ * newNodeAnnee : Fonction permettant de créer un nouvel objet NodeAnnee
+ * @param annee : l'annee' (donc une liste de mois ou une liste de listes de listes de rdv) pointé par ce nouveau NodeAnnee
+ * @param previous : le NodeAnnee précédant le nouveau node
+ * @param next : le NodeAnnee suivant le nouveau node
+ * @return un pointeur sur le noeud créé
+ */
+NodeAnnee * newNodeAnnee(Annee annee , NodeAnnee * previous, NodeAnnee * next){
+    NodeAnnee * newNode = (NodeAnnee *) malloc(sizeof(NodeAnnee));
+    newNode->annee = annee;
+    newNode->next = next;
+    newNode->previous = previous;
+    return newNode;
+}
+/**
+ * freeNodeAnnee : Fonction permettant de free un objet NodeAnnee
+ * @param n : le node en question
+ */
+void freeNodeAnnee(NodeAnnee * n){
+    ListMois_free(n->annee);   //On free l'annee (donc la liste de listes de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    free((void *) n);
+}
+
+/**
+ * ListAnnee_init : Initialise correctement une liste de NodeAnnee en reliant sentinel_begin et end entre eux
+ * et en mettant current à NULL (en dehors de la liste)
+ * @param l : la liste à initialiser
+ */
+void ListAnnee_init(ListAnnee * l){
+    if (l != NULL){
+        l->current = NULL;
+        l->sentinel_begin.next = &(l->sentinel_end);
+        l->sentinel_begin.previous = NULL;
+        l->sentinel_begin.annee = NULL;
+        l->sentinel_end.previous = &(l->sentinel_begin);
+        l->sentinel_end.next = NULL;
+        l->sentinel_end.annee = NULL;
+    }
+}
+/**
+ * ListAnnee_free : Libère la mémoire occupée par l'objet ListAnnee passée en paramètre
+ * @param l : la liste de Annee à free
+ */
+void ListAnnee_free(ListAnnee * l){
+    if (l!= NULL && !ListAnnee_isEmpty(l)){
+        for(ListAnnee_setOnFirst(l); ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
+            freeNodeAnnee(l->current);
+        }
+    }
+    free((void *) l);
+}
+
+/**
+ * ListAnnee_isEmpty : Vérifie si la liste de Annee est vide ou non
+ * @param l : la liste
+ * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ */
+int ListAnnee_isEmpty(ListAnnee * l){
+    if (l != NULL){
+        return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListAnnee_isFirst : Vérifie si current est positionné sur le premier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListAnnee_isFirst(ListAnnee * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_begin.next;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListAnnee_isLast : Vérifie si current est positionné sur le dernier élément de la liste
+ * @param l : la liste
+ * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ */
+int ListAnnee_isLast(ListAnnee * l){
+    if (l != NULL){
+        return  l->current == l->sentinel_end.previous;
+    }
+    return -1; //La liste est NULL
+}
+/**
+ * ListAnnee_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
+ * (les sentinels ne sont pas considérées comme dans la liste)
+ * @param l : la liste
+ * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ */
+int ListAnnee_isOutOfList(ListAnnee * l){
+    if (l != NULL){
+        return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
+    }
+    return -1; //La liste est NULL
+}
+
+/**
+ * ListAnnee_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste
+ * @param l : la liste
+ */
+void ListAnnee_setOnFirst(ListAnnee * l){
+    if(l != NULL){
+        l->current = l->sentinel_begin.next;
+    }
+}
+/**
+ * ListAnnee_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
+ * @param l : la liste
+ */
+void ListAnnee_setOnLast(ListAnnee * l){
+    if(l != NULL){
+        l->current = l->sentinel_end.previous;
+    }
+}
+/**
+ * ListAnnee_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
+ * @param l : la liste
+ */
+void ListAnnee_setOnNext(ListAnnee * l){
+    if(l != NULL && !ListAnnee_isOutOfList(l)){
+        l->current = l->current->next;
+    }
+}
+/**
+ * ListAnnee_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste
+ * @param l : la liste
+ */
+void ListAnnee_setOnPrevious(ListAnnee * l){
+    if(l != NULL && !ListAnnee_isOutOfList(l)){
+        l->current = l->current->previous;
+    }
+}
+/**
+ * ListAnnee_getCurrent : Permet d'acceder au Annee pointé par current
+ * @param l : la liste
+ * @return Retourne un pointeur sur le Annee de l'élément courant de la liste
+ */
+Annee ListAnnee_getCurrent(ListAnnee * l){
+    if(l != NULL && l->current != NULL){
+        return l->current->annee;
+    }
+    return NULL;
+}
