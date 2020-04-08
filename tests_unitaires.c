@@ -256,6 +256,14 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void *
 /**********************************************************************************************************************/
 
 int main(void){
+
+    //tests à la main pour les listes de rdv, jours, mois et année :
+    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient");
+    Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
+
+    RendezVous * rdv1 = CreerRendezVous(2020,04,8,16,60,"TieKar",p1,m1,"Motif : Test1");
+
+
     const struct CMUnitTest tests_fonctionsPatient[] = {
 
             //tests des fonctions de création d'instances

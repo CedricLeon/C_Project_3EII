@@ -1,4 +1,141 @@
 #include "calendrier.h"
+/**********************************************************************************************************************/
+                                        /*Fonction d'ajout de RDV dans ListRDV*/
+/**********************************************************************************************************************/
+
+int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
+    if(c == NULL || rdv == NULL){
+        printf("Calendrier ou Rdv NULL.\n");
+        return 0;
+    }
+
+    Date * dateDuRdv = rdv->date;
+
+    /*Dans un premier temps on regarde quelle tete à notre calendrier*/
+    //est-ce qu'il est complétement Vide ? Si oui c'est la partie facile : On crée l'année le mosi le jour qui correspondent au rdv et on l'ajoute
+    /*if(ListAnnee_isEmpty(c)){
+        //
+    }
+    else if(!ListAnnee_isEmpty(c)){
+        for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
+            if(dateDuRdv->annee == ListAnnee_getCurrentAnnee(c)){
+                NodeAnnee * AnneeRdv_Calendrier = ListAnnee_getCurrentAnnee(c);
+                for(ListMois_setOnFirst(c); !ListMois_isOutOfList(c); ListMois_setOnNext(c)){
+                     if(rdv->date->mois == ListMois_getCurrentMois(ListAnnee_getCurrentAnnee(c)){
+
+                     }
+                }
+            }
+        }
+    }*/
+    //On vérifie que le rdv est valable (Cad si il n'empiete pas sur un autre rdv du meme patient,
+    //du meme medecin ou de la meme salle
+    /*A faire plus tard, pour l'instant je l'ajoute dans tout les cas*/
+
+    //On regarde si la liste de rdv est vide, si c'est le cas on insere le nouveau noeud en premier
+
+    //On crée un NodeRendezVous
+    //Si la liste n'est pas vide on l'insère chronologiquement
+
+    FreeDate(dateDuRdv);
+    return 0;
+}
+/**
+ * AddRendezVous_Jour : Ajoute à une liste de rdv classée chronologiquement un rdv
+ * @param j : la liste de rdv
+ * @param rdv : le rdv à ajouter
+ * @return 1 si le rdv a bien été ajouté, 0 si le jour ou le rdv étaient NULL
+ */
+int AddRendezVous_Jour(Jour j, RendezVous * rdv){
+    if(j == NULL || rdv == NULL){
+        printf("Jour ou Rdv NULL.\n");
+        return 0;
+    }
+    //on check si le jour est vide de rdv
+    if(ListRendezVous_isEmpty(j)) {
+        //Il l'est, on ajoute le rdv au début
+        NodeRendezVous * newNode = newNodeRendezVous(rdv, &(j->sentinel_begin), &(j->sentinel_end));
+        j->sentinel_begin.next = newNode;
+        j->sentinel_end.previous = newNode;
+        return 1;
+    }
+
+    //Si il n'est pas vide on cherche le rdv avant lequel on va l'insérer
+    if(ChercherRendezVousSuivant(j,rdv)){
+        //On l'insère avant current
+        NodeRendezVous * newNode = newNodeRendezVous(rdv, j->current->previous, j->current);
+        j->current->previous->next = newNode;
+        j->current->previous = newNode;
+        return 1;
+    }
+    //Dans le cas ou ChercherRendezVousSuivant n'a pas return 1 c'est que notre rdv doit etre insérer en fin de
+    //listRendezVous puisque ni j ni rdv ne sont nuls (testés plus haut)
+    //On l'insère donc à la fin de liste
+    ListRendezVous_setOnNext(j);
+    NodeRendezVous * newNode = newNodeRendezVous(rdv, j->sentinel_end.previous, &(j->sentinel_end));
+    j->sentinel_end.previous->next = newNode;
+    j->sentinel_end.previous = newNode;
+    return 1;
+}
+
+/**
+ * ChercherRendezVousPrecedant : Place Current sur le rdv dont l'heure de debut est juste apres l'heure de fin du rdv
+ * passé en paramètre
+ * @param j : la liste de RendezVous dans laquelle on cherche
+ * @param rdv : le rendezVous dont on cherche le suivant
+ * @return 1 si Current est bien placé sur le rdv suivant,
+ *         0 si current est placé sur sentinel_end et qu'il faut donc ajouter notre rdv à la fin de la ListRendezVous,
+ *         -1 si erreur (ne devrait jamais arriver puisque testé avant)
+ */
+int ChercherRendezVousSuivant(Jour j, RendezVous * rdv){
+    if(j == NULL || rdv == NULL){
+        printf("Jour ou Rdv NULL.\n");
+        return -1;
+    }
+    //On parcours chronologiquement les rdv du jour
+    for(ListRendezVous_setOnFirst(j); !ListRendezVous_isLast(j); ListRendezVous_setOnNext(j)){
+        if(ListRendezVous_getCurrent(j)->heure_debut >= rdv->heure_fin){            //On met >= pcq pas de
+                                                                                    //pause pour les medecins #corona
+            return 1;   //Current est bien placé sur le rdv "suivant" celui passé en paramètre
+        }
+    }
+    //Si on arrive là ça veut dire que notre rdv est le dernier de la journée, en effet dans la boucle for précédente,
+    // current est arrivé jusqu'à sentinel_end. On le remet donc dans la liste (au début par exemple)
+    // et on return donc 0 pour l'indiquer.
+    ListRendezVous_setOnFirst(j);
+    return 0;
+}
+int AddJour_Mois(Mois m, Jour j){
+    if(j == NULL || m == NULL){
+        printf("Jour ou Rdv NULL.\n");
+        return -1;
+    }
+    int jour = j->date->jour;
+    if(ListJour_isEmpty(m)){
+        NodeJour * newNode = newNodeJour(j, &(m->sentinel_begin), &(m->sentinel_end));
+        m->sentinel_begin.next = newNode;
+        m->sentinel_end.previous = newNode;
+        return 1;
+    }
+    for(ListJour_setOnFirst(m); !ListJour_isLast(m); ListJour_setOnNext(m)){
+        if(jour > ListJour_getCurrent(m)->date->jour){
+            ListJour_setOnNext(m);
+            NodeJour * newNode = newNodeJour(j, m->current->previous, m->current);
+            m->current->previous->next = newNode;
+            m->current->previous = newNode;
+            return 1;
+        }
+    }
+    ListJour_setOnNext(m);
+    NodeJour * newNode = newNodeJour(j, m->sentinel_end.previous, &(m->sentinel_end));
+    m->sentinel_end.previous->next = newNode;
+    m->sentinel_end.previous = newNode;
+    return 1;
+}
+int AddMois_Annee(Annee a, Mois m);
+int AddAnnee_Calendrier(Calendrier c, Annee a);
+
+
 
 /**********************************************************************************************************************/
                                         /*List de RendezVous pour un Jour*/

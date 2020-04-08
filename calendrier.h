@@ -68,6 +68,7 @@ void ListRendezVous_setOnPrevious(ListRendezVous * l);
 RendezVous * ListRendezVous_getCurrent(ListRendezVous * l);
 Date * ListRendezVous_getDate(ListRendezVous * l);
 
+
 typedef ListRendezVous * Jour;      //On redéfinis une liste de rdv comme étant un jour, c'est juste pour la lisibilité
                                     //(Cf Cours sur les liste chainées)
 
@@ -196,4 +197,16 @@ void ListAnnee_setOnPrevious(ListAnnee * l);
 int ListAnnee_getCurrentAnnee(ListAnnee * l);
 
 typedef ListAnnee * Calendrier;
+
+/**********************************************************************************************************************/
+                                /*Fonction d'ajout aux calendriers*/
+/**********************************************************************************************************************/
+int ChercherRendezVousSuivant(Jour j, RendezVous * rdv);
+int AddRendezVous_Jour(Jour j, RendezVous * rdv);
+int AddJour_Mois(Mois m, Jour j);
+int AddMois_Annee(Annee a, Mois m);
+int AddAnnee_Calendrier(Calendrier c, Annee a);
+
+int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+
 #endif
