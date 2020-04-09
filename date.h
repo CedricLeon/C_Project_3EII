@@ -20,5 +20,6 @@ char * getJourDate(Date * d);
 char * getMoisDate(Date * d);
 char * getAnneeDate(Date * d);
 char * getInfosDate(Date * d);
+int DateEgales(Date * d1, Date * d2);
 
 #endif

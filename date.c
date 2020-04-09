@@ -107,3 +107,18 @@ char * getInfosDate(Date * d){
     strcat(result, "/");
     return result;
 }
+/**
+ * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leurs année, leurs mois et leurs jours sont les mêmes
+ * @param d1 : la première date à comparer
+ * @param d2 : la 2eme date
+ * @return 1 si les dates sont les mêmes
+ *          0 si elles ne le sont pas
+ *          -1 si l'une des dates est NULL
+ */
+int DateEgales(Date * d1, Date * d2){
+    if(d1 == NULL || d2 == NULL){
+        printf("L'une des dates est NULL.\n");
+        return -1;
+    }
+    return (d1->annee == d2->annee) && (d1->mois == d2->mois) && (d1->jour == d2->jour);
+}
