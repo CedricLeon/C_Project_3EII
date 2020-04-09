@@ -150,7 +150,7 @@ void ListMois_setOnFirst(ListMois * l);
 void ListMois_setOnLast(ListMois * l);
 void ListMois_setOnNext(ListMois * l);
 void ListMois_setOnPrevious(ListMois * l);
-int ListMois_getCurrentAnnee(ListMois * l);
+Mois ListMois_getCurrent(ListMois * l);
 int ListMois_getAnnee(ListMois * l);
 
 
@@ -194,7 +194,7 @@ void ListAnnee_setOnFirst(ListAnnee * l);
 void ListAnnee_setOnLast(ListAnnee * l);
 void ListAnnee_setOnNext(ListAnnee * l);
 void ListAnnee_setOnPrevious(ListAnnee * l);
-int ListAnnee_getCurrentAnnee(ListAnnee * l);
+Annee ListAnnee_getCurrent(ListAnnee * l);
 
 typedef ListAnnee * Calendrier;
 
@@ -207,6 +207,12 @@ int AddJour_Mois(Mois m, Jour j);
 int AddMois_Annee(Annee a, Mois m);
 int AddAnnee_Calendrier(Calendrier c, Annee a);
 
+RendezVous * Rdv_existe(ListRendezVous * l, RendezVous * rdv);
+ListRendezVous * Jour_existe(ListJour * l, Date * d);
+ListJour *  Mois_existe(ListMois * l, int mois);
+ListMois * Annee_existe(ListAnnee * l, int annee);
+
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+int freeCalendrier(Calendrier c);
 
 #endif

@@ -1,45 +1,133 @@
 #include "calendrier.h"
 /**********************************************************************************************************************/
-                                        /*Fonction d'ajout de RDV dans ListRDV*/
+                                        /*Fonction d'ajout de RDV dans le calendrier*/
 /**********************************************************************************************************************/
-
+/**
+ * AddRendezVous_Calendrier : Giga fonction permettant d'ajouter un rendez-vous à notre calendrier.
+ *                            Pour cela il faut que le calendrier soit créé et initialisé avant l'appel et que le rdv
+ *                            ait été testé comme valable au paravant (y'a-t-il de la place pour ce créneau horaire,
+ *                            rentre-t-il dans les horaires du mèdecin etc...)
+ *
+ * @param c : Le calendrier auquel on veut ajouter notre rendez-vous
+ * @param rdv : le rendez-vous à ajouter
+ * @return 1 si le rdv a correctement été ajouté
+ *         0 si il n'a pas pu l'être (Cf printf pour plus de détails)
+ *         -1 si le calendrier ou le rdv étaient NULL
+*/
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
     if(c == NULL || rdv == NULL){
         printf("Calendrier ou Rdv NULL.\n");
-        return 0;
+        return -1;
     }
+    /**
+     * Dans un premier temps on test si notre rdv est valable, ce serait d'ailleurs peut-être mieux de le faire
+     * dans une autre fonction, comme ça on pourrait l'appeller séparément de celle là.
+     * Et ensuite si le rdv peut être ajouté, bah on l'ajoute au calendrier.
+     *
+     * Et pour cela, la méthode va être toujours la même :
+     * On regarde si dans notre calendrier l'année correspondant à l'année ou le rdv va être ajouté existe déjà,
+     * si ce n'est pas le cas on la crée, l'initialise (et du coup on crée aussi le mois et le jour correspondants
+     * à ceux du rdv) et on ajoute le rdv.
+     * Si l'année existaient déjà alors on cherche dans cette année le mois du rdv. Et là meme charabia, si on ne le
+     * trouve pas on le crée avec le jour du rdv et pn ajoute tout ce beau monde à l'année et donc au calendrier. Et s'il
+     * existait déjà on cherche le jour etc ...
+     * Au final cela ressemble à ça :
+     *
+     * if(anneeDuRdv existe pas dans le calendrier){
+     *      Creer l'année, le mosi et le jour du rdv
+     *      Ajoute tout ça au calendrier
+     * }
+     * else if(moisDuRdv existe pas){
+     *      Creer Mois jour, ajouter au calendrier
+     * }else if(jourDuRdv existe pas){
+     *      Creer Jour du rdv l'ajouter avec le rdv au calendrier
+     * }else{
+     *      //On considère pour l'instant que si on est arrivé dans cette fonction c'est que le rdv à déjà était considéré
+     *      //comme valide, cad qu'on peut le placé dans le jour sans qu'il empiete sur un autre rdv
+     *      Ajoute le rdv au jour
+     * }
+     */
 
     Date * dateDuRdv = rdv->date;
 
-    /*Dans un premier temps on regarde quelle tete à notre calendrier*/
-    //est-ce qu'il est complétement Vide ? Si oui c'est la partie facile : On crée l'année le mosi le jour qui correspondent au rdv et on l'ajoute
-    /*if(ListAnnee_isEmpty(c)){
-        //
-    }
-    else if(!ListAnnee_isEmpty(c)){
-        for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
-            if(dateDuRdv->annee == ListAnnee_getCurrentAnnee(c)){
-                NodeAnnee * AnneeRdv_Calendrier = ListAnnee_getCurrentAnnee(c);
-                for(ListMois_setOnFirst(c); !ListMois_isOutOfList(c); ListMois_setOnNext(c)){
-                     if(rdv->date->mois == ListMois_getCurrentMois(ListAnnee_getCurrentAnnee(c)){
-
-                     }
-                }
-            }
-        }
+    /*if(RDV pas valable){
+        return 0;
     }*/
-    //On vérifie que le rdv est valable (Cad si il n'empiete pas sur un autre rdv du meme patient,
-    //du meme medecin ou de la meme salle
-    /*A faire plus tard, pour l'instant je l'ajoute dans tout les cas*/
 
-    //On regarde si la liste de rdv est vide, si c'est le cas on insere le nouveau noeud en premier
+    // Est-ce que notre calendrier est complétement vide ou est-ce que l'année du Rdv n'existe pas encore?
+    // Si oui : On crée le jour, le mois et l'année qui correspondent au rdv et on ajoute le tout
+    Annee anneeDuRdv = Annee_existe(c, dateDuRdv->annee);
+    if(ListAnnee_isEmpty(c) || anneeDuRdv == NULL){
+        //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
+        ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
+        ListRendezVous_init(lRdv, dateDuRdv);
+        AddRendezVous_Jour(lRdv, rdv);
 
-    //On crée un NodeRendezVous
-    //Si la liste n'est pas vide on l'insère chronologiquement
+        //Ensuite On crée notre liste de jours, on l'initialise et on ajoute notre jour dedans
+        ListJour * lJ = (ListJour *) malloc(sizeof(ListJour));
+        ListJour_init(lJ,dateDuRdv->mois);
+        AddJour_Mois(lJ, lRdv);
 
-    FreeDate(dateDuRdv);
-    return 0;
+        //Puis crée notre liste de mois, on l'initialise et on ajoute notre mois dedans
+        ListMois * lM = (ListMois *) malloc(sizeof(ListMois));
+        ListMois_init(lM,dateDuRdv->annee);
+        AddMois_Annee(lM, lJ);
+
+        //Et finalement on prend notre calendrier, il est déjà initialisé donc on ajoute juste notre année dedans
+        AddAnnee_Calendrier(c, lM);
+        printf("Le calendrier était vide, on a donc créé dans cet ordre, une ListRendezVous, une ListJour, "
+               "une ListMois et on les a ajouté à notre ListAnnée : notre calendrier.\n");
+        return 1;
+    }
+    //Notre calendrier n'était pas vide et l'année du rdv existait déjà donc on regarde si le mois du rdv est déjà
+    //présent dans le calendrier
+
+    Mois moisDuRdv = Mois_existe(anneeDuRdv, dateDuRdv->mois);
+    if(moisDuRdv == NULL){
+        //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
+        ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
+        ListRendezVous_init(lRdv, dateDuRdv);
+        AddRendezVous_Jour(lRdv, rdv);
+
+        //Ensuite On crée notre liste de jours, on l'initialise et on ajoute notre jour dedans
+        ListJour * lJ = (ListJour *) malloc(sizeof(ListJour));
+        ListJour_init(lJ,dateDuRdv->mois);
+        AddJour_Mois(lJ, lRdv);
+
+        //On ajoute notre nouveau mois à l'année du rdv, ce qui l'ajoute donc à notre calendrier
+        AddMois_Annee(anneeDuRdv, lJ);
+        printf("Le calendrier contenait déjà l'année du Rdv : %d, on a donc créé le mois du rdv et son jour et "
+               "on a ajouté le rdv à son jour puis son jour au mois puis son mois à l'année qui appartient déjà au "
+               "calendrier.\n",anneeDuRdv->annee);
+        return 1;
+    }
+    //Vous commencez à avoir la logique : le calendrier n'était pas vide. Il contenait déjà l'année du rdv.
+    // Cette dernière contenait déjà le mois du rdv, on teste donc si ce mois contient déjà le jour du rdv :
+    Jour jourDuRdv = Jour_existe(moisDuRdv, dateDuRdv);
+    if(jourDuRdv == NULL){
+        //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
+        ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
+        ListRendezVous_init(lRdv, dateDuRdv);
+        AddRendezVous_Jour(lRdv, rdv);
+
+        AddJour_Mois(moisDuRdv, lRdv);
+        printf("Le calendrier contenait déjà l'année du Rdv : %d, qui contenait elle même le mois du rdv : %d. "
+               "On a donc créé le jour  du rdv et on a ajouté le rdv à son jour puis son jour au mois qui appartient "
+               "déjà au calendrier.\n", anneeDuRdv->annee, moisDuRdv->mois);
+        return 1;
+    }else{
+        AddRendezVous_Jour(jourDuRdv, rdv);
+        printf("Le calendrier contenait déjà l'année, le mois et le jour du rdv : %s. Et comme normalement,"
+               "on a déjà vérifié avant si le rdv était valable on a juste ajouté le rdv au jour.\n"
+               ,getInfosDate(jourDuRdv->date));
+        return 1;
+    }
 }
+
+/**********************************************************************************************************************/
+                        /*Sous fonctions d'ajouts et de recherches dans le calendrier*/
+/**********************************************************************************************************************/
+
 /**
  * AddRendezVous_Jour : Ajoute à une liste de rdv classée chronologiquement un rdv
  * @param j : la liste de rdv
@@ -79,7 +167,7 @@ int AddRendezVous_Jour(Jour j, RendezVous * rdv){
 }
 
 /**
- * ChercherRendezVousPrecedant : Place Current sur le rdv dont l'heure de debut est juste apres l'heure de fin du rdv
+ * ChercherRendezVousSuivant : Place Current sur le rdv dont l'heure de debut est juste apres l'heure de fin du rdv
  * passé en paramètre
  * @param j : la liste de RendezVous dans laquelle on cherche
  * @param rdv : le rendezVous dont on cherche le suivant
@@ -105,20 +193,29 @@ int ChercherRendezVousSuivant(Jour j, RendezVous * rdv){
     ListRendezVous_setOnFirst(j);
     return 0;
 }
+/**
+ * AddJour_Mois : Ajoute un Jour à une liste de Jour triés chrnologiquement (via leur attribut Date)
+ * @param m : la liste de jour, le mois
+ * @param j : le jour a ajouter
+ * @return 1 Si le jour a bien été ajouté
+ *         0 Si il ne l'a pas été
+ *         -1 si le mois ou le jour étaient NULL
+ */
 int AddJour_Mois(Mois m, Jour j){
     if(j == NULL || m == NULL){
-        printf("Jour ou Rdv NULL.\n");
+        printf("Jour ou Mois NULL.\n");
         return -1;
     }
-    int jour = j->date->jour;
+    //Si Liste vide on insère au début
     if(ListJour_isEmpty(m)){
         NodeJour * newNode = newNodeJour(j, &(m->sentinel_begin), &(m->sentinel_end));
         m->sentinel_begin.next = newNode;
         m->sentinel_end.previous = newNode;
         return 1;
     }
+    //Si pas vide on cherche et on insère
     for(ListJour_setOnFirst(m); !ListJour_isLast(m); ListJour_setOnNext(m)){
-        if(jour > ListJour_getCurrent(m)->date->jour){
+        if(j->date->jour > ListJour_getCurrent(m)->date->jour){
             ListJour_setOnNext(m);
             NodeJour * newNode = newNodeJour(j, m->current->previous, m->current);
             m->current->previous->next = newNode;
@@ -126,16 +223,183 @@ int AddJour_Mois(Mois m, Jour j){
             return 1;
         }
     }
+    //Si on a rien trouvé alors c'est le dernier, on insère à la fin
     ListJour_setOnNext(m);
     NodeJour * newNode = newNodeJour(j, m->sentinel_end.previous, &(m->sentinel_end));
     m->sentinel_end.previous->next = newNode;
     m->sentinel_end.previous = newNode;
     return 1;
 }
-int AddMois_Annee(Annee a, Mois m);
-int AddAnnee_Calendrier(Calendrier c, Annee a);
-
-
+/**
+ * AddMois_Annee : Ajoute un Mois à une liste de Mois triés chrnologiquement (via leur attribut int mois)
+ * @param a : la liste de mois, l'année
+ * @param m : le mois a ajouter
+ * @return 1 Si le mois a bien été ajouté
+ *         0 Si il ne l'a pas été
+ *         -1 si le mois ou l'année étaient NULL
+ */
+int AddMois_Annee(Annee a, Mois m){
+    if(a == NULL || m == NULL){
+        printf("Mois ou Année NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListMois_isEmpty(a)){
+        NodeMois * newNode = newNodeMois(m, &(a->sentinel_begin), &(a->sentinel_end));
+        a->sentinel_begin.next = newNode;
+        a->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on cherche et on insère
+    for(ListMois_setOnFirst(a); !ListMois_isLast(a); ListMois_setOnNext(a)){
+        if(m->mois > ListMois_getCurrent(a)->mois){
+            ListMois_setOnNext(a);
+            NodeMois * newNode = newNodeMois(m, a->current->previous, a->current);
+            a->current->previous->next = newNode;
+            a->current->previous = newNode;
+            return 1;
+        }
+    }
+    //Si on a rien trouvé alors c'est le dernier, on insère à la fin
+    ListMois_setOnNext(a);
+    NodeMois * newNode = newNodeMois(m, a->sentinel_end.previous, &(a->sentinel_end));
+    a->sentinel_end.previous->next = newNode;
+    a->sentinel_end.previous = newNode;
+    return 1;
+}
+/**
+ * AddAnnee_Calendrier : Ajoute une annee à une liste d'annee triées chrnologiquement (via leur attribut int annee)
+ * @param c : la liste d'annee, le calendrier
+ * @param a : l'annee à ajouter
+ * @return 1 Si l'annee a bien été ajouté
+ *         0 Si il ne l'a pas été
+ *         -1 si le calendrier ou l'année étaient NULL
+ */
+int AddAnnee_Calendrier(Calendrier c, Annee a){
+    if(a == NULL || c == NULL){
+        printf("Calendrier ou Année NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListAnnee_isEmpty(c)){
+        NodeAnnee * newNode = newNodeAnnee(a, &(c->sentinel_begin), &(c->sentinel_end));
+        c->sentinel_begin.next = newNode;
+        c->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on cherche et on insère
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isLast(c); ListAnnee_setOnNext(c)){
+        if(a->annee > ListAnnee_getCurrent(c)->annee){
+            ListAnnee_setOnNext(c);
+            NodeAnnee * newNode = newNodeAnnee(a, c->current->previous, c->current);
+            c->current->previous->next = newNode;
+            c->current->previous = newNode;
+            return 1;
+        }
+    }
+    //Si on a rien trouvé alors c'est le dernier, on insère à la fin
+    ListAnnee_setOnNext(c);
+    NodeAnnee * newNode = newNodeAnnee(a, c->sentinel_end.previous, &(c->sentinel_end));
+    c->sentinel_end.previous->next = newNode;
+    c->sentinel_end.previous = newNode;
+    return 1;
+}
+/**
+ * Rdv_existe : Cherche un rdv dans une liste de rdv
+ * @param l : la liste dans laquelle on cherche
+ * @param rdv : le rdv cherché
+ * @return un pointeur sur le rdv si il est trouvé
+ *         NULL si il n'est pas trouvé ou si la liste ou le rdv étaient NULL
+ */
+RendezVous * Rdv_existe(ListRendezVous * l, RendezVous * rdv){
+    if (l == NULL || rdv == NULL){
+        printf("La list de rdv ou le rdv est NULL.\n");
+        return NULL;
+    }else if(ListRendezVous_isEmpty(l)){
+        printf("La liste de rdv est vide, on ne peut donc pas trouvé le rdv cherché.\n");
+        return NULL;
+    }
+    for (ListRendezVous_setOnFirst(l); !ListRendezVous_isLast(l); ListRendezVous_setOnNext(l)){
+        if(ListRendezVous_getCurrent(l) == rdv){
+            printf("Rdv trouvé.\n");
+            return ListRendezVous_getCurrent(l);
+        }
+    }
+    printf("Rdv non-trouvé.\n");
+    return NULL;
+}
+/**
+ * Jour_existe : Cherche un jour dans une liste de jours
+ * @param l : la liste dans laquelle on cherche
+ * @param j : le jour cherché
+ * @return un pointeur sur le jour si il est trouvé
+ *         NULL si il n'est pas trouvé ou si la liste ou le jour étaient NULL
+ */
+ListRendezVous * Jour_existe(ListJour * l, Date * d){
+    if (l == NULL || d == NULL){
+        printf("La list de jour ou le jour est NULL.\n");
+        return NULL;
+    }else if(ListJour_isEmpty(l)){
+        printf("La liste de jours est vide, on ne peut donc pas trouvé le jour cherché.\n");
+        return NULL;
+    }
+    for (ListJour_setOnFirst(l); !ListJour_isLast(l); ListJour_setOnNext(l)){
+        if(DateEgales(ListRendezVous_getDate(ListJour_getCurrent(l)), d)){   // On compare la date des jours puisqu'ils
+            printf("Jour trouvé.\n");                                 // sont uniques
+            return ListJour_getCurrent(l);
+        }
+    }
+    printf("Jour non-trouvé.\n");
+    return NULL;
+}
+/**
+ * Mois_existe : Cherche un mois dans une liste de mois
+ * @param l : la liste dans laquelle on cherche
+ * @param m : le mois cherché
+ * @return un pointeur sur le mois si il est trouvé
+ *         NULL si il n'est pas trouvé ou si la liste était NULL
+ */
+ListJour *  Mois_existe(ListMois * l, int mois){
+    if (l == NULL){
+        printf("La list de moisest NULL.\n");
+        return NULL;
+    }else if(ListMois_isEmpty(l)){
+        printf("La liste de mois est vide, on ne peut donc pas trouvé le mois cherché.\n");
+        return NULL;
+    }
+    for (ListMois_setOnFirst(l); !ListMois_isLast(l); ListMois_setOnNext(l)){
+        if(ListMois_getCurrent(l)->mois == mois){                                     //On peut aussi comparer le numéro des Mois
+            printf("Mois trouvé.\n");                                 //peut être plus safe (Cf Debugging)
+            return ListMois_getCurrent(l);
+        }
+    }
+    printf("Mois non-trouvé.\n");
+    return NULL;
+}
+/**
+ * Annee_existe : Cherche une Annee dans une liste d'Annee
+ * @param l : la liste dans laquelle on cherche
+ * @param a : l'Annee cherchée
+ * @return un pointeur sur l'Annee si elle est trouvée
+ *         NULL si elle n'est pas trouvée ou si la liste était NULL
+ */
+ListMois * Annee_existe(ListAnnee * l, int annee){
+    if (l == NULL){
+        printf("La list d'Annee  est NULL.\n");
+        return NULL;
+    }else if(ListAnnee_isEmpty(l)){
+        printf("La liste d'années est vide, on ne peut donc pas trouvé l'année cherchée.\n");
+        return NULL;
+    }
+    for (ListAnnee_setOnFirst(l); !ListAnnee_isLast(l); ListAnnee_setOnNext(l)){
+        if(ListAnnee_getCurrent(l)->annee == annee){                                     //On peut aussi comparer le numéro des Annees
+            printf("Annee trouvé.\n");                                 //peut être plus safe (Cf Debugging)
+            return ListAnnee_getCurrent(l);
+        }
+    }
+    printf("Annee non-trouvé.\n");
+    return NULL;
+}
 
 /**********************************************************************************************************************/
                                         /*List de RendezVous pour un Jour*/
