@@ -220,6 +220,8 @@ int AddJour_Mois(Mois m, Jour j){
             m->current->previous->next = newNode;
             m->current->previous = newNode;
             return 1;          
+        }else if(j->date->jour == ListJour_getCurrent(m)->date->jour){
+            printf("Dans AddJour_Mois : Cas bizarre : égalité de 2 jours.\n");
         }
     }
     //Si on a rien trouvé alors c'est le dernier, on insère à la fin
@@ -256,6 +258,8 @@ int AddMois_Annee(Annee a, Mois m){
             a->current->previous->next = newNode;
             a->current->previous = newNode;
             return 1;
+        }else if(m->mois == ListMois_getCurrent(a)->mois){
+            printf("Dans AddMois_Annee : Cas bizarre : égalité de 2 mois.\n");
         }
     }
     //Si on a rien trouvé alors c'est le dernier, on insère à la fin
@@ -292,6 +296,9 @@ int AddAnnee_Calendrier(Calendrier c, Annee a){
             c->current->previous->next = newNode;
             c->current->previous = newNode;
             return 1;
+        }
+        else if(a->annee == ListAnnee_getCurrent(c)->annee){
+            printf("Dans AddAnnee_Calendrier : Cas bizarre : égalité de 2 années.\n");
         }
     }
     //Si on a rien trouvé alors c'est le dernier, on insère à la fin
