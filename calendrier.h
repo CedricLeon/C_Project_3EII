@@ -213,6 +213,6 @@ ListJour *  Mois_existe(ListMois * l, int mois);
 ListMois * Annee_existe(ListAnnee * l, int annee);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
-int freeCalendrier(Calendrier c);
+void freeCalendrier(Calendrier c);
 
 #endif

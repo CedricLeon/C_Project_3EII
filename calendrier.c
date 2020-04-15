@@ -49,7 +49,6 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
      */
 
     Date * dateDuRdv = rdv->date;
-
     /*if(RDV pas valable){
         return 0;             
     }*/
@@ -122,6 +121,44 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
                ,getInfosDate(jourDuRdv->date));
         return 1;
     }
+}
+
+/**
+ * freeCalendrier : Cette fonction va entièrement free le contenu d'un calendrier, notamment ses rdv. Dans les faits elle
+ *                  sera appellée quand l'utilisateur fermera l'application, après avoir sauvegardé le calendrier en
+ *                  question dans un fichier ICS.
+ * @param c : le calendrier à free
+ */
+void freeCalendrier(Calendrier c){
+
+    /*On parcours toutes les années présentes dans le calendrier et on "entre dedans"*/
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
+        Annee a = ListAnnee_getCurrent(c);
+        /*On parcours tous les mois présents dans le calendrier et on "entre dedans"*/
+        for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a)){
+            Mois m = ListMois_getCurrent(a);
+            /*On parcours tous les jours présents dans le calendrier et on "entre dedans"*/
+            for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m)){
+                Jour j = ListJour_getCurrent(m);
+                /*ensuite, une fois qu'on est dans un jour préci, on free tous les rdv qui le compose*/
+                for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)){
+                    FreeRendezVous(ListRendezVous_getCurrent(j));
+                }
+                //Puis on vient free, d'abord l'objet qu'on à utiliser pour faciliter la rédaction de la fonction
+                ListRendezVous_free(j);
+                //et le jour qui est mtn vide
+                ListRendezVous_free(ListJour_getCurrent(m));
+            }
+            //On fait la même chose pour le mois
+            ListJour_free(m);
+            ListJour_free(ListMois_getCurrent(a));
+        }
+        //Puis pour l'année
+        ListMois_free(a);
+        ListMois_free(ListAnnee_getCurrent(c));
+    }
+    //et enfin on free le calendrier
+    ListAnnee_free(c);
 }
 
 /**********************************************************************************************************************/
