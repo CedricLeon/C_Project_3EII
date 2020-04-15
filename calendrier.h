@@ -207,12 +207,13 @@ int AddJour_Mois(Mois m, Jour j);
 int AddMois_Annee(Annee a, Mois m);
 int AddAnnee_Calendrier(Calendrier c, Annee a);
 
-RendezVous * Rdv_existe(ListRendezVous * l, RendezVous * rdv);
+RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv);
 ListRendezVous * Jour_existe(ListJour * l, Date * d);
 ListJour *  Mois_existe(ListMois * l, int mois);
 ListMois * Annee_existe(ListAnnee * l, int annee);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 void freeCalendrier(Calendrier c);
+int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 
 #endif

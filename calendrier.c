@@ -34,7 +34,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
      * Au final cela ressemble à ça :
      *
      * if(anneeDuRdv existe pas dans le calendrier){
-     *      Creer l'année, le mosi et le jour du rdv
+     *      Creer l'année, le mois et le jour du rdv
      *      Ajoute tout ça au calendrier
      * }
      * else if(moisDuRdv existe pas){
@@ -61,19 +61,27 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
         ListRendezVous_init(lRdv, dateDuRdv);
         AddRendezVous_Jour(lRdv, rdv);
+        ListRendezVous_setOnFirst(lRdv);
+        printf("Tentative d'accès au rdv dans la liste de rdv : %s.\n", lRdv->current->rdv->motif);
 
         //Ensuite On crée notre liste de jours, on l'initialise et on ajoute notre jour dedans
         ListJour * lJ = (ListJour *) malloc(sizeof(ListJour));
         ListJour_init(lJ,dateDuRdv->mois);
         AddJour_Mois(lJ, lRdv);
+        ListJour_setOnFirst(lJ);
+        printf("Tentative d'accès au rdv dans la liste de jour : %s.\n", lJ->current->jour->current->rdv->motif);
 
         //Puis crée notre liste de mois, on l'initialise et on ajoute notre mois dedans
         ListMois * lM = (ListMois *) malloc(sizeof(ListMois));
         ListMois_init(lM,dateDuRdv->annee);
         AddMois_Annee(lM, lJ);
+        ListMois_setOnFirst(lM);
+        printf("Tentative d'accès au rdv dans la liste de mois : %s.\n", lM->current->mois->current->jour->current->rdv->motif);
 
         //Et finalement on prend notre calendrier, il est déjà initialisé donc on ajoute juste notre année dedans
         AddAnnee_Calendrier(c, lM);
+        ListAnnee_setOnFirst(c);
+        printf("Tentative d'accès au rdv dans la liste d'année : %s.\n", c->current->annee->current->mois->current->jour->current->rdv->motif);
         printf("Le calendrier était vide, on a donc créé dans cet ordre, une ListRendezVous, une ListJour, "
                "une ListMois et on les a ajouté à notre ListAnnée : notre calendrier.\n");
         return 1;
@@ -159,6 +167,63 @@ void freeCalendrier(Calendrier c){
     }
     //et enfin on free le calendrier
     ListAnnee_free(c);
+}
+
+/**
+ * chercherRendezVous_Calendrier : Fonction qui positionne tous les pointeurs courent des listes d'années, de mois, de
+ *                                 jours et de rdv sur la liste contenant notre rendez-vous s'il appartient au calendrier.
+ *                                 Si ce n'est pas le cas
+ * @param c : le calendrier dans lequel on cherche
+ * @param rdv : le rdv cherché
+ * @return 1 si le rdv a été trouvé, 0 si le rdv n'appartient pas au calendrier, -1 si l'un des objets est NULL
+ */
+int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
+    if(c == NULL || rdv == NULL){
+        printf("Dans la fonction chercherRendezVous_Calendrier(), le calendrier ou le rdv sont NULL.\n");
+        return  -1;
+    }
+    Date * dateDuRdv = rdv->date;
+    printf("Entrée dans la fonction chercherRendezVous_Calendrier() : \n");
+
+    Annee anneeRdv = Annee_existe(c, dateDuRdv->annee);
+    if (anneeRdv != NULL){
+        Mois moisRdv = Mois_existe(anneeRdv, dateDuRdv->mois);
+        if(moisRdv != NULL){
+            Jour jourRdv = Jour_existe(moisRdv, dateDuRdv);
+            if(jourRdv != NULL){
+                printf("bite.\n");
+                RendezVous * rdvCalendrier = RendezVous_existe(jourRdv, rdv);
+                //Je return cela pour être vraiment sûr que c'est la même adresse et donc le même objet
+                int result = rdvCalendrier == rdv;
+                printf("Le rdv à la date %d/%d/%d et commencant à l'heure %2.1f appartient au calendrier et est désormais"
+                       " pointé par les différents currents des listes auxquelles il appartient.\n", dateDuRdv->jour, dateDuRdv->mois, dateDuRdv->annee, rdv->heure_debut);
+                FreeRendezVous(rdvCalendrier);
+                ListRendezVous_free(jourRdv);
+                ListJour_free(moisRdv);
+                ListMois_free(anneeRdv);
+                FreeDate(dateDuRdv);
+                return result;
+            }else{
+                printf("Le jour %d n'appartient pas au calendrier.\n", dateDuRdv->jour);
+                ListRendezVous_free(jourRdv);
+                ListJour_free(moisRdv);
+                ListMois_free(anneeRdv);
+                FreeDate(dateDuRdv);
+                return 0;
+            }
+        }else{
+            printf("Le mois %d n'appartient pas au calendrier.\n", dateDuRdv->mois);
+            ListJour_free(moisRdv);
+            ListMois_free(anneeRdv);
+            FreeDate(dateDuRdv);
+            return 0;
+        }
+    }else{
+        printf("L'année %d n'appartient pas au calendrier.\n", dateDuRdv->annee);
+        ListMois_free(anneeRdv);
+        FreeDate(dateDuRdv);
+        return 0;
+    }
 }
 
 /**********************************************************************************************************************/
@@ -352,15 +417,15 @@ int AddAnnee_Calendrier(Calendrier c, Annee a){
  * @return un pointeur sur le rdv si il est trouvé
  *         NULL si il n'est pas trouvé ou si la liste ou le rdv étaient NULL
  */
-RendezVous * Rdv_existe(ListRendezVous * l, RendezVous * rdv){
+RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
     if (l == NULL || rdv == NULL){
         printf("La list de rdv ou le rdv est NULL.\n");
         return NULL;
     }else if(ListRendezVous_isEmpty(l)){
-        printf("La liste de rdv est vide, on ne peut donc pas trouvé le rdv cherché.\n");
+        printf("La liste de rdv est vide, on ne peut donc pas trouver le rdv cherché.\n");
         return NULL;
     }
-    for (ListRendezVous_setOnFirst(l); !ListRendezVous_isLast(l); ListRendezVous_setOnNext(l)){
+    for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)){
         if(ListRendezVous_getCurrent(l) == rdv){
             printf("Rdv trouvé.\n");
             return ListRendezVous_getCurrent(l);
@@ -381,10 +446,10 @@ ListRendezVous * Jour_existe(ListJour * l, Date * d){
         printf("La list de jour ou le jour est NULL.\n");
         return NULL;
     }else if(ListJour_isEmpty(l)){
-        printf("La liste de jours est vide, on ne peut donc pas trouvé le jour cherché.\n");
+        printf("La liste de jours est vide, on ne peut donc pas trouver le jour cherché.\n");
         return NULL;
     }
-    for (ListJour_setOnFirst(l); !ListJour_isLast(l); ListJour_setOnNext(l)){
+    for (ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)){
         if(DateEgales(ListRendezVous_getDate(ListJour_getCurrent(l)), d)){   // On compare la date des jours puisqu'ils
             printf("Jour trouvé.\n");                                 // sont uniques
             return ListJour_getCurrent(l);
@@ -405,10 +470,10 @@ ListJour *  Mois_existe(ListMois * l, int mois){
         printf("La list de mois est NULL.\n");
         return NULL;
     }else if(ListMois_isEmpty(l)){
-        printf("La liste de mois est vide, on ne peut donc pas trouvé le mois cherché.\n");
+        printf("La liste de mois est vide, on ne peut donc pas trouver le mois cherché.\n");
         return NULL;
     }
-    for (ListMois_setOnFirst(l); !ListMois_isLast(l); ListMois_setOnNext(l)){
+    for (ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)){
         if(ListMois_getCurrent(l)->mois == mois){                                     //On peut aussi comparer le numéro des Mois
             printf("Mois trouvé.\n");                                 //peut être plus safe (Cf Debugging)
             return ListMois_getCurrent(l);
@@ -426,15 +491,15 @@ ListJour *  Mois_existe(ListMois * l, int mois){
  */
 ListMois * Annee_existe(ListAnnee * l, int annee){
     if (l == NULL){
-        printf("La list d'Annee  est NULL.\n");
+        printf("La list d'Annee est NULL.\n");
         return NULL;
     }else if(ListAnnee_isEmpty(l)){
-        printf("La liste d'années est vide, on ne peut donc pas trouvé l'année cherchée.\n");
+        printf("La liste d'années est vide, on ne peut donc pas trouver l'année cherchée.\n");
         return NULL;
     }
-    for (ListAnnee_setOnFirst(l); !ListAnnee_isLast(l); ListAnnee_setOnNext(l)){
-        if(ListAnnee_getCurrent(l)->annee == annee){                                     //On peut aussi comparer le numéro des Annees
-            printf("Annee trouvé.\n");                                 //peut être plus safe (Cf Debugging)
+    for (ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)){
+        if(ListAnnee_getCurrent(l)->annee == annee){
+            printf("Annee trouvé.\n");
             return ListAnnee_getCurrent(l);
         }
     }

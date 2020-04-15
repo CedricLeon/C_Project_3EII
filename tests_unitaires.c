@@ -8,6 +8,7 @@
 #include "ordonnance.h"
 #include "dossier_medical.h"
 #include "rendezvous.h"
+#include "calendrier.h"
 
 /*Librairies nécessaire à CMocka*/
 #include <stdarg.h>
@@ -252,6 +253,61 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void *
 }
 
 /**********************************************************************************************************************/
+                                            /*Tests Calendrier*/
+/**********************************************************************************************************************/
+
+/**
+ * Première rédaction de la fonction test : 15/04/20
+ * Ici je vais testé la grosse fonction AddRendezVous_Calendrier() en testant tout les cas que j'ai dissocié en écrivant
+ * la fonction.
+ * Cette fonction de test changera certainement plus tard (après l'implémentation de rdv_valable() par exemple) car pour
+ * l'instant AddRendezVous_Calendrier() ne return que 1, donc pas de cas d'erreur, on viendra vérifier manuellement
+ * qu'on trouve bien le rdv au bon endroit
+ * On verra en dessous si onn peut tester freeCalendrier() aussi
+ */
+
+//On fera le test de Rdv_valable après
+static int setup_Calendrier(void ** state){
+    Calendrier c = (Calendrier) malloc(sizeof(Calendrier));
+    ListAnnee_init(c);
+    *state = c;
+    return *state == NULL;
+}
+static int teardown_Calendrier(void ** state){
+    freeCalendrier((Calendrier) *state);
+    return 0;
+}
+static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void ** state){
+    //On va créer un rdv où le patient et le mèdecin sont des objets NULL par soucis de simplicité, on fera attention
+    //à ne pas y accéder
+    RendezVous * rdv = CreerRendezVous(2020, 04, 15, 12.5, 30, "lieu1", NULL, NULL, "motif1");
+    //On ajoute le rdv au calendrier
+    assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
+
+    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
+    assert_int_equal(2020, ((Calendrier) *state)->current->annee->annee);
+    assert_int_equal(04, ((Calendrier) *state)->current->annee->current->mois->mois);
+    assert_int_equal(15, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
+    //On test aussi le motif pcq pk pas
+    assert_string_equal("motif1", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
+
+    //On ne free pas le rdv ajouté car ce sera fait dans le teardown de toutes ces fonctions tests
+}
+
+static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistante(void ** state){
+
+}
+static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant(void ** state){
+
+}
+static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant(void ** state){
+
+}
+
+
+
+/**********************************************************************************************************************/
                                             /*Main : Appel des Test*/
 /**********************************************************************************************************************/
 
@@ -292,10 +348,19 @@ int main(void){
             cmocka_unit_test(testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent),
     };
 
+    const struct CMUnitTest tests_fonctionsCalendrier[] = {
+            cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute),
+            cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistante),
+            cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant),
+            cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant),
+    };
+
     printf("\033[34;01m\n****************************** Running Patient Tests ******************************\n\n\033[00m");
     int return_cmocka_P = cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
     printf("\033[34;01m\n****************************** Running Medecin Tests ******************************\n\n\033[00m");
     int return_cmocka_M = cmocka_run_group_tests(tests_fonctionsMedecin, setup_Medecin, teardown_Medecin);
+    printf("\033[34;01m\n***************************** Running Calendrier Tests *****************************\n\n\033[00m");
+    int return_cmocka_C = cmocka_run_group_tests(tests_fonctionsCalendrier, setup_Calendrier, teardown_Calendrier);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
     return  return_cmocka_P && return_cmocka_M;
