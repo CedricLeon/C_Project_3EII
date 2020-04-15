@@ -27,6 +27,16 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
 }
 
 /**
+ * FreeRendezVous : Free un objet rdv (seulement sa date et le rdv en lui-même), on ne touche pas au patient et au
+ *                  medecin car il existent toujours dans d'autres rdv
+ * @param rdv : le rdv à free
+ */
+void FreeRendezVous(RendezVous * rdv){
+    FreeDate(rdv->date);
+    free((void *) rdv);
+}
+
+/**
  * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide
  * @param rdv : le rdv qu'on veut annuler
  * @return 1 si le rdv a bien été annulé
