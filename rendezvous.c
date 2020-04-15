@@ -18,7 +18,7 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
     RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
     rdv->heure_debut = heure_debut;
     rdv->heure_fin = heure_debut + (double) (duree/60);
-    CreerDate(an, mois, jour);
+    rdv->date = CreerDate(an, mois, jour);
     rdv->lieu = lieu;
     rdv->patient = patient;
     rdv->medecin = medecin;
