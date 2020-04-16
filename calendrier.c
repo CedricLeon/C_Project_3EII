@@ -47,33 +47,37 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
      *      Ajoute le rdv au jour
      * }
      */
-
-    Date * dateDuRdv = rdv->date;
     /*if(RDV pas valable){
         return 0;             
     }*/
 
     // Est-ce que notre calendrier est complétement vide ou est-ce que l'année du Rdv n'existe pas encore?
     // Si oui : On crée le jour, le mois et l'année qui correspondent au rdv et on ajoute le tout
-    Annee anneeDuRdv = Annee_existe(c, dateDuRdv->annee);
+    Annee anneeDuRdv = Annee_existe(c, rdv->date->annee);
     if(ListAnnee_isEmpty(c) || anneeDuRdv == NULL){  
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
-        ListRendezVous_init(lRdv, dateDuRdv);
+
+        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
+        // le 1er rdv. C'est aussi plus simple pour les fonctions free
+        Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
+        ListRendezVous_init(lRdv, dateDuJour);
+
         AddRendezVous_Jour(lRdv, rdv);
         ListRendezVous_setOnFirst(lRdv);
         printf("Tentative d'accès au rdv dans la liste de rdv : %s.\n", lRdv->current->rdv->motif);
 
         //Ensuite On crée notre liste de jours, on l'initialise et on ajoute notre jour dedans
         ListJour * lJ = (ListJour *) malloc(sizeof(ListJour));
-        ListJour_init(lJ,dateDuRdv->mois);
+        ListJour_init(lJ, rdv->date->mois);
         AddJour_Mois(lJ, lRdv);
         ListJour_setOnFirst(lJ);
         printf("Tentative d'accès au rdv dans la liste de jour : %s.\n", lJ->current->jour->current->rdv->motif);
 
         //Puis crée notre liste de mois, on l'initialise et on ajoute notre mois dedans
         ListMois * lM = (ListMois *) malloc(sizeof(ListMois));
-        ListMois_init(lM,dateDuRdv->annee);
+        ListMois_init(lM, rdv->date->annee);
         AddMois_Annee(lM, lJ);
         ListMois_setOnFirst(lM);
         printf("Tentative d'accès au rdv dans la liste de mois : %s.\n", lM->current->mois->current->jour->current->rdv->motif);
@@ -89,16 +93,22 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
     //Notre calendrier n'était pas vide et l'année du rdv existait déjà donc on regarde si le mois du rdv est déjà
     //présent dans le calendrier
 
-    Mois moisDuRdv = Mois_existe(anneeDuRdv, dateDuRdv->mois);
+    Mois moisDuRdv = Mois_existe(anneeDuRdv, rdv->date->mois);
     if(moisDuRdv == NULL){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
-        ListRendezVous_init(lRdv, dateDuRdv);
+
+        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
+        // le 1er rdv. C'est aussi plus simple pour les fonctions free
+        Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
+        ListRendezVous_init(lRdv, dateDuJour);
+
         AddRendezVous_Jour(lRdv, rdv);
 
         //Ensuite On crée notre liste de jours, on l'initialise et on ajoute notre jour dedans
         ListJour * lJ = (ListJour *) malloc(sizeof(ListJour));
-        ListJour_init(lJ,dateDuRdv->mois);
+        ListJour_init(lJ, rdv->date->mois);
         AddJour_Mois(lJ, lRdv);
 
         //On ajoute notre nouveau mois à l'année du rdv, ce qui l'ajoute donc à notre calendrier
@@ -110,17 +120,23 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
     }
     //Vous commencez à avoir la logique : le calendrier n'était pas vide. Il contenait déjà l'année du rdv.
     // Cette dernière contenait déjà le mois du rdv, on teste donc si ce mois contient déjà le jour du rdv :
-    Jour jourDuRdv = Jour_existe(moisDuRdv, dateDuRdv);
+    Jour jourDuRdv = Jour_existe(moisDuRdv, rdv->date);
     if(jourDuRdv == NULL){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
-        ListRendezVous_init(lRdv, dateDuRdv);
+
+        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
+        // le 1er rdv. C'est aussi plus simple pour les fonctions free
+        Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
+        ListRendezVous_init(lRdv, dateDuJour);
+
         AddRendezVous_Jour(lRdv, rdv);
 
         AddJour_Mois(moisDuRdv, lRdv);
         printf("Le calendrier contenait déjà l'année du Rdv : %d, qui contenait elle même le mois du rdv : %d. "
-               "On a donc créé le jour  du rdv et on a ajouté le rdv à son jour puis son jour au mois qui appartient "
-               "déjà au calendrier.\n", anneeDuRdv->annee, moisDuRdv->mois);
+               "On a donc créé le jour %d du rdv et on a ajouté le rdv à son jour puis son jour au mois qui appartient "
+               "déjà au calendrier.\n", anneeDuRdv->annee, moisDuRdv->mois, rdv->date->jour);
         return 1;
     }else{
         AddRendezVous_Jour(jourDuRdv, rdv);
@@ -139,6 +155,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
  */
 void freeCalendrier(Calendrier c){
 
+    printf("\n Entrée dans FreeCalendrier() :\n");
     /*On parcours toutes les années présentes dans le calendrier et on "entre dedans"*/
     for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
         Annee a = ListAnnee_getCurrent(c);
@@ -148,25 +165,22 @@ void freeCalendrier(Calendrier c){
             /*On parcours tous les jours présents dans le calendrier et on "entre dedans"*/
             for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m)){
                 Jour j = ListJour_getCurrent(m);
-                /*ensuite, une fois qu'on est dans un jour préci, on free tous les rdv qui le compose*/
-                for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)){
+                //Pour free un jour et les rendezvous qui le compose on va simplement appeller ListRendezVous_free() qui
+                //appelle
+                /*for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)){
                     FreeRendezVous(ListRendezVous_getCurrent(j));
-                }
-                //Puis on vient free, d'abord l'objet qu'on à utiliser pour faciliter la rédaction de la fonction
+                }*/
                 ListRendezVous_free(j);
-                //et le jour qui est mtn vide
-                ListRendezVous_free(ListJour_getCurrent(m));
             }
             //On fait la même chose pour le mois
             ListJour_free(m);
-            ListJour_free(ListMois_getCurrent(a));
         }
         //Puis pour l'année
         ListMois_free(a);
-        ListMois_free(ListAnnee_getCurrent(c));
     }
     //et enfin on free le calendrier
     ListAnnee_free(c);
+    printf("\n Fin de FreeCalendrier().\n");
 }
 
 /**
@@ -182,8 +196,9 @@ int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         printf("Dans la fonction chercherRendezVous_Calendrier(), le calendrier ou le rdv sont NULL.\n");
         return  -1;
     }
+
     Date * dateDuRdv = rdv->date;
-    printf("Entrée dans la fonction chercherRendezVous_Calendrier() : \n");
+    printf("\nEntrée dans la fonction chercherRendezVous_Calendrier(), on cherche le rdv : %d/%d/%d : \n", dateDuRdv->jour, rdv->date->mois, dateDuRdv->annee);
 
     Annee anneeRdv = Annee_existe(c, dateDuRdv->annee);
     if (anneeRdv != NULL){
@@ -191,37 +206,22 @@ int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         if(moisRdv != NULL){
             Jour jourRdv = Jour_existe(moisRdv, dateDuRdv);
             if(jourRdv != NULL){
-                printf("bite.\n");
                 RendezVous * rdvCalendrier = RendezVous_existe(jourRdv, rdv);
+                printf("Le rdv return par la fonction rdv_existe est : %d/%d/%d.\n", rdvCalendrier->date->jour, rdvCalendrier->date->mois, rdvCalendrier->date->annee);
                 //Je return cela pour être vraiment sûr que c'est la même adresse et donc le même objet
-                int result = rdvCalendrier == rdv;
                 printf("Le rdv à la date %d/%d/%d et commencant à l'heure %2.1f appartient au calendrier et est désormais"
-                       " pointé par les différents currents des listes auxquelles il appartient.\n", dateDuRdv->jour, dateDuRdv->mois, dateDuRdv->annee, rdv->heure_debut);
-                FreeRendezVous(rdvCalendrier);
-                ListRendezVous_free(jourRdv);
-                ListJour_free(moisRdv);
-                ListMois_free(anneeRdv);
-                FreeDate(dateDuRdv);
-                return result;
+                       " pointé par les différents currents des listes auxquelles il appartient.\n", dateDuRdv->jour, rdv->date->mois, dateDuRdv->annee, rdv->heure_debut);
+                return 1;
             }else{
                 printf("Le jour %d n'appartient pas au calendrier.\n", dateDuRdv->jour);
-                ListRendezVous_free(jourRdv);
-                ListJour_free(moisRdv);
-                ListMois_free(anneeRdv);
-                FreeDate(dateDuRdv);
                 return 0;
             }
         }else{
             printf("Le mois %d n'appartient pas au calendrier.\n", dateDuRdv->mois);
-            ListJour_free(moisRdv);
-            ListMois_free(anneeRdv);
-            FreeDate(dateDuRdv);
             return 0;
         }
     }else{
         printf("L'année %d n'appartient pas au calendrier.\n", dateDuRdv->annee);
-        ListMois_free(anneeRdv);
-        FreeDate(dateDuRdv);
         return 0;
     }
 }
@@ -427,7 +427,7 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
     }
     for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)){
         if(ListRendezVous_getCurrent(l) == rdv){
-            printf("Rdv trouvé.\n");
+            printf("Rdv au motif : %s trouvé.\n", rdv->motif);
             return ListRendezVous_getCurrent(l);
         }
     }
@@ -451,7 +451,7 @@ ListRendezVous * Jour_existe(ListJour * l, Date * d){
     }
     for (ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)){
         if(DateEgales(ListRendezVous_getDate(ListJour_getCurrent(l)), d)){   // On compare la date des jours puisqu'ils
-            printf("Jour trouvé.\n");                                 // sont uniques
+            printf("Jour %d/%d/%d trouvé.\n", d->jour, d->mois, d->annee);                                 // sont uniques
             return ListJour_getCurrent(l);
         }
     }
@@ -475,7 +475,7 @@ ListJour *  Mois_existe(ListMois * l, int mois){
     }
     for (ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)){
         if(ListMois_getCurrent(l)->mois == mois){                                     //On peut aussi comparer le numéro des Mois
-            printf("Mois trouvé.\n");                                 //peut être plus safe (Cf Debugging)
+            printf("Mois %d trouvé.\n", mois);                                 //peut être plus safe (Cf Debugging)
             return ListMois_getCurrent(l);
         }
     }
@@ -499,7 +499,7 @@ ListMois * Annee_existe(ListAnnee * l, int annee){
     }
     for (ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)){
         if(ListAnnee_getCurrent(l)->annee == annee){
-            printf("Annee trouvé.\n");
+            printf("Annee %d trouvé.\n", annee);
             return ListAnnee_getCurrent(l);
         }
     }
@@ -530,7 +530,9 @@ NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous,
  * @param n : le node en question
  */
 void freeNodeRendezVous(NodeRendezVous * n){
-    //Faut-il free les rdv ici ? Je pense pas mais sinon on le fait pas
+    //C'est ici qu'on vient free les rdv.
+    //Pour l'instant cette fonction n'est appellée que par ListRendezVous_free() qui est uniquement appellée par free_calendrier()
+    FreeRendezVous(n->rdv);
     free((void *) n);
 }
 
@@ -557,13 +559,15 @@ void ListRendezVous_init(ListRendezVous * l, Date * date){
  * @param l : la liste de rendezVous à free
  */
 void ListRendezVous_free(ListRendezVous * l){
-    if (l!= NULL && !ListRendezVous_isEmpty(l)) {
-        for (ListRendezVous_setOnFirst(l); ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
+    if (l!= NULL){
+        printf("Entrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
+        for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
             freeNodeRendezVous(l->current);
         }
+        printf("Le jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
         FreeDate(l->date);
+        free((void *) l);
     }
-    free((void *) l);
 }
 
 /**
@@ -722,11 +726,14 @@ void ListJour_init(ListJour * l, int mois){
  * @param l : la liste de Jour à free
  */
 void ListJour_free(ListJour * l){
+    printf("Entrée dans la fonction ListJour_Free().\n");
     if (l!= NULL && !ListJour_isEmpty(l)){
-        for(ListJour_setOnFirst(l); ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
+        for(ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
             freeNodeJour(l->current);
+            printf("NodeJour free.\n");
         }
     }
+    printf("La list de jour %d a été free.\n", l->mois);
     free((void *) l);
 }
 
@@ -885,11 +892,14 @@ void ListMois_init(ListMois * l, int annee){
  * @param l : la liste de Mois à free
  */
 void ListMois_free(ListMois * l){
+    printf("Entrée dans ListMois_free.\n");
     if (l!= NULL && !ListMois_isEmpty(l)){
-        for(ListMois_setOnFirst(l); ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
+        for(ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
             freeNodeMois(l->current);
+            printf("NodeMois free.\n");
         }
     }
+    printf("La liste de mois %d a bien été free.\n", l->annee);
     free((void *) l);
 }
 
@@ -1047,12 +1057,15 @@ void ListAnnee_init(ListAnnee * l){
  * @param l : la liste de Annee à free
  */
 void ListAnnee_free(ListAnnee * l){
+    printf("Entrée dans ListAnnee_free.\n");
     if (l!= NULL && !ListAnnee_isEmpty(l)){
-        for(ListAnnee_setOnFirst(l); ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
+        for(ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
             freeNodeAnnee(l->current);
+            printf("NodeAnnee free.\n");
         }
     }
     free((void *) l);
+    printf("La liste d'années a bien été free.\n");
 }
 
 /**

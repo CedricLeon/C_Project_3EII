@@ -32,12 +32,13 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
  * @param rdv : le rdv à free
  */
 void FreeRendezVous(RendezVous * rdv){
+    printf("FreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
     FreeDate(rdv->date);
-    free((void *) rdv);
+    free((void *) rdv);         //Apparement le rdv est déjà free mais je sais pas où ???
 }
 
 /**
- * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide
+ * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide          FONCTION PAS FINIE
  * @param rdv : le rdv qu'on veut annuler
  * @return 1 si le rdv a bien été annulé
  */

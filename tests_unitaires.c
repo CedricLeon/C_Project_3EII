@@ -280,15 +280,15 @@ static int teardown_Calendrier(void ** state){
 static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void ** state){
     //On va créer un rdv où le patient et le mèdecin sont des objets NULL par soucis de simplicité, on fera attention
     //à ne pas y accéder
-    RendezVous * rdv = CreerRendezVous(2020, 04, 15, 12.5, 30, "lieu1", NULL, NULL, "motif1");
+    RendezVous * rdv = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", NULL, NULL, "motif1");
     //On ajoute le rdv au calendrier
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
 
     //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
     assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
-    assert_int_equal(2020, ((Calendrier) *state)->current->annee->annee);
-    assert_int_equal(04, ((Calendrier) *state)->current->annee->current->mois->mois);
-    assert_int_equal(15, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
+    assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
+    assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->mois);
+    assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
     //On test aussi le motif pcq pk pas
     assert_string_equal("motif1", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 
@@ -296,10 +296,30 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void
 }
 
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistante(void ** state){
+    //On crée un rdv pour le 02/02/2001, année qui compte déjà un rdv le 01/01/2001
+    RendezVous * rdv = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", NULL, NULL, "motif2");
 
+    assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
+    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
+    assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
+    assert_int_equal(02, ((Calendrier) *state)->current->annee->current->mois->mois);
+    assert_int_equal(02, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
+    //On test aussi le motif pcq pk pas
+    assert_string_equal("motif2", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 }
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant(void ** state){
+    //On crée un rdv pour le 03/01/2001, mois qui compte déjà un rdv le 01/01/2001
+    RendezVous * rdv = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", NULL, NULL, "motif3");
 
+    assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
+    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
+    assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
+    assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->mois);
+    assert_int_equal(03, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
+    //On test aussi le motif pcq pk pas
+    assert_string_equal("motif3", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 }
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant(void ** state){
 
