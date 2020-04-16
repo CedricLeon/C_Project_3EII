@@ -25,7 +25,7 @@ void FreeDate(Date * d){
  * DateCourante : Créer une date correspondant à la date courante
  * @return la date courante
  */
-Date * DateCourante(){
+Date * CreerDateCourante(){
     int day, mois, an;
     time_t now;
 

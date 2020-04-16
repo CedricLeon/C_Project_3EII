@@ -9,7 +9,7 @@
  */
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
     Ordonnance * o = (Ordonnance *)malloc(sizeof(Ordonnance));
-    Date * d = DateCourante();
+    Date * d = CreerDateCourante();
     Date * expi = AjoutMoisDateCourante(3);
 
     o->patient=p;
@@ -39,11 +39,11 @@ void DeleteOrdonnance(Ordonnance * o){
  * @return l'ordonnance cr��e
  */
 int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
-    ordo->patient=p;
-    ordo->medecin=m;
+    ordo->patient = p;
+    ordo->medecin = m;
     strcpy(ordo->description, description);
-    ordo->date_edition=DateCourante();
-    ordo->date_expiration=AjoutMoisDateCourante(3);
+    ordo->date_edition = CreerDateCourante();
+    ordo->date_expiration = AjoutMoisDateCourante(3);
 
     return 1;
 }

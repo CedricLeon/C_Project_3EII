@@ -44,7 +44,7 @@ void FreeRendezVous(RendezVous * rdv){
 int AnnulerRendezVous(RendezVous * rdv){
 
     //On test si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
-    Date * date_courante = DateCourante();
+    Date * date_courante = CreerDateCourante();
     if ((date_courante->annee - rdv->date->annee)>0 || (date_courante->mois - rdv->date->mois)>0 || (date_courante->jour - rdv->date->jour)>0){
 
         //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
