@@ -51,7 +51,7 @@ typedef struct{
                             /*Fonctions Basiques pour notre liste de Rdv*/
 
 NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous, NodeRendezVous * next);
-void freeNodeRendezVous(NodeRendezVous * n);
+void freeNodeRendezVous(ListRendezVous * l,NodeRendezVous * n);
 
 void ListRendezVous_init(ListRendezVous * l, Date * date);
 void ListRendezVous_free(ListRendezVous * l);
@@ -94,7 +94,7 @@ typedef struct{
                             /*Fonctions Basiques pour notre liste de Jour*/
 
 NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next);
-void freeNodeJour(NodeJour * n);
+void freeNodeJour(ListJour * l, NodeJour * n);
 
 void ListJour_init(ListJour * l, int mois);
 void ListJour_free(ListJour * l);
@@ -136,7 +136,7 @@ typedef struct{
                             /*Fonctions Basiques pour notre liste de Mois*/
 
 NodeMois * newNodeMois(Mois mois , NodeMois * previous, NodeMois * next);
-void freeNodeMois(NodeMois * n);
+void freeNodeMois(ListMois * l, NodeMois * n);
 
 void ListMois_init(ListMois * l, int annee);
 void ListMois_free(ListMois * l);
@@ -180,7 +180,7 @@ typedef struct{
                                 /*Fonctions Basiques pour notre liste d'Annee*/
 
 NodeAnnee * newNodeAnnee(Annee annee , NodeAnnee * previous, NodeAnnee * next);
-void freeNodeAnnee(NodeAnnee * n);
+void freeNodeAnnee(ListAnnee * l, NodeAnnee * n);
 
 void ListAnnee_init(ListAnnee * l);
 void ListAnnee_free(ListAnnee * l);

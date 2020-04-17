@@ -156,20 +156,17 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
 void freeCalendrier(Calendrier c){
 
     printf("\n Entrée dans FreeCalendrier() :\n");
-    /*On parcours toutes les années présentes dans le calendrier et on "entre dedans"*/
+    ListAnnee_free(c);
+    /*//On parcours toutes les années présentes dans le calendrier et on "entre dedans"
     for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
         Annee a = ListAnnee_getCurrent(c);
-        /*On parcours tous les mois présents dans le calendrier et on "entre dedans"*/
+        //On parcours tous les mois présents dans l'année' et on "entre dedans"
         for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a)){
             Mois m = ListMois_getCurrent(a);
-            /*On parcours tous les jours présents dans le calendrier et on "entre dedans"*/
+            //On parcours tous les jours présents dans le mois et on "entre dedans"
             for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m)){
                 Jour j = ListJour_getCurrent(m);
-                //Pour free un jour et les rendezvous qui le compose on va simplement appeller ListRendezVous_free() qui
-                //appelle
-                /*for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)){
-                    FreeRendezVous(ListRendezVous_getCurrent(j));
-                }*/
+                //Pour free un jour et les rendezvous qui le compose on va simplement appeller ListRendezVous_free()
                 ListRendezVous_free(j);
             }
             //On fait la même chose pour le mois
@@ -180,6 +177,7 @@ void freeCalendrier(Calendrier c){
     }
     //et enfin on free le calendrier
     ListAnnee_free(c);
+     */
     printf("\n Fin de FreeCalendrier().\n");
 }
 
@@ -529,9 +527,16 @@ NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous,
  * freeNodeRendezVous : Fonction libérant permettant de free un objet NodeRendezVous
  * @param n : le node en question
  */
-void freeNodeRendezVous(NodeRendezVous * n){
+void freeNodeRendezVous(ListRendezVous * l, NodeRendezVous * n){
     //C'est ici qu'on vient free les rdv.
     //Pour l'instant cette fonction n'est appellée que par ListRendezVous_free() qui est uniquement appellée par free_calendrier()
+
+    //On place current sur l'objet avant le noeud qu'on veut supprimer
+    ListRendezVous_setOnPrevious(l);
+    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    //et enfin on supprime le noeud
     FreeRendezVous(n->rdv);
     free((void *) n);
 }
@@ -562,7 +567,7 @@ void ListRendezVous_free(ListRendezVous * l){
     if (l!= NULL){
         printf("Entrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
         for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
-            freeNodeRendezVous(l->current);
+            freeNodeRendezVous(l, l->current);
         }
         printf("Le jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
         FreeDate(l->date);
@@ -698,7 +703,13 @@ NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next){
  * freeNodeJour : Fonction permettant de free un objet NodeJour
  * @param n : le node en question
  */
-void freeNodeJour(NodeJour * n){
+void freeNodeJour(ListJour * l, NodeJour * n){
+    //On place current sur l'objet avant le noeud qu'on veut supprimer
+    ListJour_setOnPrevious(l);
+    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    //et enfin on supprime le noeud
     ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
 }
@@ -729,7 +740,7 @@ void ListJour_free(ListJour * l){
     printf("Entrée dans la fonction ListJour_Free().\n");
     if (l!= NULL && !ListJour_isEmpty(l)){
         for(ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
-            freeNodeJour(l->current);
+            freeNodeJour(l, l->current);
             printf("NodeJour free.\n");
         }
     }
@@ -864,7 +875,13 @@ NodeMois * newNodeMois(Mois mois , NodeMois * previous, NodeMois * next){
  * freeNodeMois : Fonction permettant de free un objet NodeMois
  * @param n : le node en question
  */
-void freeNodeMois(NodeMois * n){
+void freeNodeMois(ListMois * l, NodeMois * n){
+    //On place current sur l'objet avant le noeud qu'on veut supprimer
+    ListMois_setOnPrevious(l);
+    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    //et enfin on supprime le noeud
     ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
 }
@@ -895,7 +912,7 @@ void ListMois_free(ListMois * l){
     printf("Entrée dans ListMois_free.\n");
     if (l!= NULL && !ListMois_isEmpty(l)){
         for(ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
-            freeNodeMois(l->current);
+            freeNodeMois(l, l->current);
             printf("NodeMois free.\n");
         }
     }
@@ -1031,7 +1048,13 @@ NodeAnnee * newNodeAnnee(Annee annee , NodeAnnee * previous, NodeAnnee * next){
  * freeNodeAnnee : Fonction permettant de free un objet NodeAnnee
  * @param n : le node en question
  */
-void freeNodeAnnee(NodeAnnee * n){
+void freeNodeAnnee(ListAnnee * l, NodeAnnee * n){
+    //On place current sur l'objet avant le noeud qu'on veut supprimer
+    ListAnnee_setOnPrevious(l);
+    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    //et enfin on supprime le noeud
     ListMois_free(n->annee);   //On free l'annee (donc la liste de listes de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
 }
@@ -1060,7 +1083,7 @@ void ListAnnee_free(ListAnnee * l){
     printf("Entrée dans ListAnnee_free.\n");
     if (l!= NULL && !ListAnnee_isEmpty(l)){
         for(ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
-            freeNodeAnnee(l->current);
+            freeNodeAnnee(l, l->current);
             printf("NodeAnnee free.\n");
         }
     }
