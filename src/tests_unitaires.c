@@ -182,7 +182,7 @@ static void testMedecin_creerMedecin(void ** state){                            
     assert_string_equal(((Medecin *) *state)->numero_RPS, "NumRPSM");
 }
 /**
- * On test 
+ * On test
  * @param state
  */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state){
