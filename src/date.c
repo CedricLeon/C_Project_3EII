@@ -78,7 +78,7 @@ char * getJourDate(Date * d){
  * @return le mois
  */
 char * getMoisDate(Date * d){
-    char * mois = "";
+    char * mois = malloc(2);
     sprintf(mois,"%d",d->mois);
     return mois;
 }
@@ -88,7 +88,7 @@ char * getMoisDate(Date * d){
  * @return l'annee
  */
 char * getAnneeDate(Date * d){
-    char * annee = "";
+    char * annee = malloc(4);
     sprintf(annee,"%d",d->annee);
     return annee;
 }
@@ -98,13 +98,13 @@ char * getAnneeDate(Date * d){
  * @return un char * sous la forme jour/mois/annee : XX/XX/XXXX
  */
 char * getInfosDate(Date * d){
-    char * result = "";
+    char * result = malloc(10);
     strcpy(result, getJourDate(d));
     strcat(result, "/");
     strcat(result, getMoisDate(d));
     strcat(result, "/");
     strcat(result, getAnneeDate(d));
-    strcat(result, "/");
+    strcat(result, "");
     return result;
 }
 /**
