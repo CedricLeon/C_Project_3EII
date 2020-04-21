@@ -8,7 +8,7 @@
  * @return l'ordonnance cr��e
  */
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
-    Ordonnance * o = (Ordonnance *)malloc(sizeof(Ordonnance));
+    Ordonnance * o = (Ordonnance *)malloc(sizeof(Ordonnance *));
     Date * d = CreerDateCourante();
     Date * expi = AjoutMoisDateCourante(3);
 
@@ -25,6 +25,8 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
  * @param o : l'ordonnance à supprimer
  */
 void DeleteOrdonnance(Ordonnance * o){
+    free((void *) o->patient);
+    free((void *) o->medecin);
     free((void *) o->date_edition);
     free((void *) o->date_expiration);
     free((void *) o);
