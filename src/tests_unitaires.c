@@ -361,10 +361,11 @@ static void testDate_creerDate(void ** state){
  */
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
-    *state=d;
+    *state=d;   // !! faut pas faire ça car là tu écraase ton lien vers la date que tu crées dans le setup donc tu peux plus la free
+                // faut aussi penser à free la date courante
     assert_int_equal(((Date *) *state)->annee,2020); //! à changer !
     assert_int_equal(((Date *) *state)->mois,04);   //! à changer !
-    assert_int_equal(((Date *) *state)->jour,21);   //! à changer !
+    assert_int_equal(((Date *) *state)->jour,22);   //! à changer !
 }
 
 /**
@@ -378,7 +379,7 @@ static void testDate_AjoutMoisDateCourante(void ** state){
     *state=d;
     assert_int_equal(((Date *) *state)->annee,2020); //! à changer !
     assert_int_equal(((Date *) *state)->mois,07);   //! à changer !
-    assert_int_equal(((Date *) *state)->jour,20);   //! à changer !
+    assert_int_equal(((Date *) *state)->jour,22);   //! à changer !
 }
 
 /**
@@ -433,7 +434,7 @@ static void testDate_DateEgales(void ** state){
     FreeDate(d2);
 
     //Test avec une date NULL
-    d2=NULL;
+    d2 = NULL;
     assert_int_equal(-1,DateEgales((Date *) *state, d2));
 
 }
@@ -455,6 +456,7 @@ static int setup_Ordonnance(void ** state){
 }
 
 static int teardown_Ordonnance(void ** state){
+    //Penser à free le medecin et le patient ici et non dans Deleteordonnace !
     DeleteOrdonnance((Ordonnance *) *state);
     return 0;
 }
