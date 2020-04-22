@@ -214,6 +214,9 @@ ListMois * Annee_existe(ListAnnee * l, int annee);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 void freeCalendrier(Calendrier c);
+
+
 int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+void printCalendrier(Calendrier c);
 
 #endif

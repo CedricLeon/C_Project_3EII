@@ -274,6 +274,7 @@ static int setup_Calendrier(void ** state){
     return *state == NULL;
 }
 static int teardown_Calendrier(void ** state){
+    printCalendrier((Calendrier) *state);
     freeCalendrier((Calendrier) *state);
     return 0;
 }
