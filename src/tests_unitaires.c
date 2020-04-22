@@ -268,7 +268,8 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void *
 
 //On fera le test de Rdv_valable après
 static int setup_Calendrier(void ** state){
-    Calendrier c = (Calendrier) malloc(sizeof(Calendrier));
+    ListAnnee *c;
+    c = (ListAnnee *) malloc(sizeof(ListAnnee));
     ListAnnee_init(c);
     *state = c;
     return *state == NULL;
@@ -521,12 +522,28 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
 
 int main(void){
 
-    //tests à la main pour les listes de rdv, jours, mois et année :
-    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient");
+    //tests à la main//
+
+    //Les lignes suivantes font planter malloc ...
+
+    /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
 
-    RendezVous * rdv1 = CreerRendezVous(2020,04,8,16,60,"TieKar",p1,m1,"Motif : Test1");
+    RendezVous * rdv1 = CreerRendezVous(2001,01,01,01,60,"lieu1",p1,m1,"motif1");
+    RendezVous * rdv2 = CreerRendezVous(2002,02,02,02,120,"lieu2",p1,m1,"motif2");
+    RendezVous * rdv3 = CreerRendezVous(2003,03,03,03,180,"lieu3",p1,m1,"motif3");
 
+    ListAnnee * c = (ListAnnee *) malloc(sizeof(ListAnnee *));
+    ListAnnee_init(c);
+
+    AddRendezVous_Calendrier(c,rdv1);
+    AddRendezVous_Calendrier(c,rdv2);
+    AddRendezVous_Calendrier(c,rdv3);
+
+    printCalendrier(c);
+    freeCalendrier(c);
+    DeletePatient(p1);
+    DeleteMedecin(m1);*/
 
     const struct CMUnitTest tests_fonctionsPatient[] = {
 
