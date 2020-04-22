@@ -366,7 +366,7 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant
  */
 
 static int setup_Date(void ** state){
-    Date * d = CreerDate(2920, 02, 21);     //date test lambda
+    Date * d = CreerDate(2920, 02, 01);     //date test lambda
     *state = d;
     return *state == NULL;
 }
@@ -383,7 +383,7 @@ static int teardown_Date(void ** state){
 static void testDate_creerDate(void ** state){
     assert_int_equal(((Date *) *state)->annee,2920);
     assert_int_equal(((Date *) *state)->mois,02);
-    assert_int_equal(((Date *) *state)->jour, 21);
+    assert_int_equal(((Date *) *state)->jour, 01);
 }
 
 /**
@@ -394,11 +394,9 @@ static void testDate_creerDate(void ** state){
  */
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
-    *state=d;   // !! faut pas faire ça car là tu écraase ton lien vers la date que tu crées dans le setup donc tu peux plus la free
-                // faut aussi penser à free la date courante
-    assert_int_equal(((Date *) *state)->annee,2020); //! à changer !
-    assert_int_equal(((Date *) *state)->mois,04);   //! à changer !
-    assert_int_equal(((Date *) *state)->jour,22);   //! à changer !
+    assert_int_equal(d->annee,2020); //! à changer !
+    assert_int_equal(d->mois,04);   //! à changer !
+    assert_int_equal(d->jour,22);   //! à changer !
 }
 
 /**
@@ -408,11 +406,11 @@ static void testDate_creerDateCourante(void ** state){
  * @param state
  */
 static void testDate_AjoutMoisDateCourante(void ** state){
-    Date * d = AjoutMoisDateCourante(3); //test ajout de 3 mois
-    *state=d;
-    assert_int_equal(((Date *) *state)->annee,2020); //! à changer !
-    assert_int_equal(((Date *) *state)->mois,07);   //! à changer !
-    assert_int_equal(((Date *) *state)->jour,22);   //! à changer !
+    Date * dat = AjoutMoisDateCourante(3); //test ajout de 3 mois = 90 jours
+    assert_int_equal(dat->annee,2020); //! à changer !
+    assert_int_equal(dat->mois,07);   //! à changer !
+    assert_int_equal(dat->jour,21);   //! à changer !
+    FreeDate(dat);
 }
 
 /**
@@ -421,7 +419,7 @@ static void testDate_AjoutMoisDateCourante(void ** state){
  * @param state
  */
 static void testDate_getJourDate(void ** state){
-    assert_string_equal("21",getJourDate((Date *) *state));
+    assert_string_equal("01",getJourDate((Date *) *state));
 }
 
 /**
@@ -430,7 +428,7 @@ static void testDate_getJourDate(void ** state){
  * @param state
  */
 static void testDate_getMoisDate(void ** state){
-    assert_string_equal("2",getMoisDate((Date *) *state));
+    assert_string_equal("02",getMoisDate((Date *) *state));
 }
 
 /**
@@ -448,28 +446,32 @@ static void testDate_getAnneeDate(void ** state){
  * @param state
  */
 static void testDate_getInfosDate(void ** state){
-    assert_string_equal("21/2/2920",getInfosDate((Date *) *state));
+    assert_string_equal("01/02/2920",getInfosDate((Date *) *state));
 }
 
 /**
  * On teste DateEgales
  * @param state
  */
-static void testDate_DateEgales(void ** state){
+static void testDate_DateEgaleshandlesDatesDiff(void ** state){
     //Test 2 dates différentes
     Date * d2 = CreerDate(2801,04,24);
     assert_int_equal(0,DateEgales((Date *) *state, d2));
     FreeDate(d2);
+}
 
+static void testDate_DateEgaleshandlesDatesEgales(void ** state){
     //Test 2 dates égales
-    d2 = (Date *) *state;
+    Date * d2 = (Date *) *state;
     assert_int_equal(1,DateEgales((Date *) *state, d2));
     FreeDate(d2);
+}
 
+static void testDate_DateEgaleshandlesDateNULL(void ** state){
     //Test avec une date NULL
-    d2 = NULL;
+    Date * d2 = NULL;
     assert_int_equal(-1,DateEgales((Date *) *state, d2));
-
+    FreeDate(d2);
 }
 
 /**********************************************************************************************************************/
@@ -483,13 +485,15 @@ static int setup_Ordonnance(void ** state){
     Patient * pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
     Medecin * med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
-    Ordonnance * ord = CreerOrdonnance(pat,med,"TestDescription");
+    Ordonnance * ord = CreerOrdonnance(NULL,NULL,"TestDescription");
     *state = ord;
     return *state == NULL;
 }
 
 static int teardown_Ordonnance(void ** state){
     //Penser à free le medecin et le patient ici et non dans Deleteordonnace !
+    DeletePatient(((Ordonnance *) * state)->patient);
+    DeleteMedecin(((Ordonnance *) * state)->medecin);
     DeleteOrdonnance((Ordonnance *) *state);
     return 0;
 }
@@ -502,8 +506,8 @@ static void testOrdonnance_creerOrdonnance(void ** state){
     assert_string_equal(((Ordonnance *) *state)->patient->prenom,"PrenomTestP");
     assert_string_equal(((Ordonnance *) *state)->medecin->nom,"NomTestM");
     assert_string_equal(((Ordonnance *) *state)->description,"TestDescription");
-    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_edition),"21/4/2020"); //! à changer !
-    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_expiration), "20/7/2020"); //! à changer !
+    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_edition),"22/04/2020"); //! à changer !
+    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_expiration), "21/07/2020"); //! à changer !
 }
 
 /**
@@ -588,7 +592,9 @@ int main(void){
             cmocka_unit_test(testDate_getMoisDate),
             cmocka_unit_test(testDate_getAnneeDate),
             cmocka_unit_test(testDate_getInfosDate),
-            cmocka_unit_test(testDate_DateEgales),
+            cmocka_unit_test(testDate_DateEgaleshandlesDatesDiff),
+            cmocka_unit_test(testDate_DateEgaleshandlesDatesEgales),
+            cmocka_unit_test(testDate_DateEgaleshandlesDateNULL),
     };
 
     const struct CMUnitTest tests_fonctionsOrdonnance[] = {
@@ -608,5 +614,6 @@ int main(void){
     int return_cmocka_O = cmocka_run_group_tests(tests_fonctionsOrdonnance, setup_Ordonnance, teardown_Ordonnance);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M;
+    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O;
+
 }
