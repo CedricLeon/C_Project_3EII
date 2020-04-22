@@ -69,8 +69,14 @@ Date * AjoutMoisDateCourante(int nb_mois){
  */
 char * getJourDate(Date * d){
     char * jour = malloc(2);            //Obligé de malloc pour sprintf (Cf StackOverFlow briefcase) mais là on free jamais ...
-    sprintf(jour,"%d", d->jour);
-    return jour;
+    char * jour0=malloc(2);
+    sprintf(jour,"%d",d->jour);
+    if (strlen(jour)==1){
+        sprintf(jour0, "0%s", jour);
+        return jour0;
+    }else{
+        return jour;
+    }
 }
 /**
  * getMoisDate : Retourne le mois sous forme de char*
@@ -78,9 +84,15 @@ char * getJourDate(Date * d){
  * @return le mois
  */
 char * getMoisDate(Date * d){
-    char * mois = malloc(2);
+    char * mois=malloc(2);
+    char * mois0=malloc(2);
     sprintf(mois,"%d",d->mois);
-    return mois;
+    if (strlen(mois)==1){
+        sprintf(mois0, "0%s", mois);
+        return mois0;
+    }else{
+        return mois;
+    }
 }
 /**
  * getAnneeDate : Retourne l'annee sous forme de char*
