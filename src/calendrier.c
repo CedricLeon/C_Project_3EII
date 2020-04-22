@@ -730,7 +730,8 @@ Date * ListRendezVous_getDate(ListRendezVous * l){
  * @return un pointeur sur le noeud créé
  */
 NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next){
-    NodeJour * newNode = (NodeJour *) malloc(sizeof(NodeJour));
+    NodeJour* newNode;
+    newNode = (NodeJour*) malloc(sizeof(NodeJour));
     newNode->jour = jour;
     newNode->next = next;
     newNode->previous = previous;
@@ -1066,6 +1067,17 @@ int ListMois_getAnnee(ListMois * l){
 /**********************************************************************************************************************/
                                     /*List d'Année pour un Calendrier*/
 /**********************************************************************************************************************/
+
+/**
+ * creerCalendrier : Fonction qui Cree et intialise un objet calendrier
+ * @return le calendrier initialisé.
+ */
+Calendrier creerCalendrier(){
+    ListAnnee* c;
+    c = (ListAnnee*) malloc(sizeof(ListAnnee));
+    ListAnnee_init(c);
+    return c;
+}
 
 /**
  * newNodeAnnee : Fonction permettant de créer un nouvel objet NodeAnnee
