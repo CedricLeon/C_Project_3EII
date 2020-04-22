@@ -25,6 +25,7 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
  * @param o : l'ordonnance à supprimer
  */
 void DeleteOrdonnance(Ordonnance * o){
+    //Il faut pas free le patient et le medecin !
     free((void *) o->patient);
     free((void *) o->medecin);
     free((void *) o->date_edition);
