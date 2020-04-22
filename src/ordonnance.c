@@ -26,8 +26,6 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
  */
 void DeleteOrdonnance(Ordonnance * o){
     //Il faut pas free le patient et le medecin !
-    free((void *) o->patient);
-    free((void *) o->medecin);
     free((void *) o->date_edition);
     free((void *) o->date_expiration);
     free((void *) o);
@@ -39,7 +37,8 @@ void DeleteOrdonnance(Ordonnance * o){
  * @param p : le patient concern� par l'ordonnance
  * @param m : le medecin qui prescrit l'ordonnance
  * @param description : nouvelle description de la prescription
- * @return l'ordonnance cr��e
+ * @return 1 si l'ordonnance a été modifiée
+            0 sinon
  */
 int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
     ordo->patient = p;
@@ -47,8 +46,11 @@ int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
     strcpy(ordo->description, description);
     ordo->date_edition = CreerDateCourante();
     ordo->date_expiration = AjoutMoisDateCourante(3);
-
-    return 1;
+    if((ordo->patient==p)&&(ordo->medecin==m)&&(strcmp(ordo->description, description)==0)){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 /**
