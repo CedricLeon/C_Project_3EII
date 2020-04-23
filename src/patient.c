@@ -76,7 +76,9 @@ void SetPrenomPatient(Patient * p, char * prenom){
  * @param jour
  */
 void SetDateNaissancePatient(Patient * p, int an, int mois, int jour){
-    p->date_naissance = CreerDate(an, mois, jour);
+    p->date_naissance->annee = an;
+    p->date_naissance->mois = mois;
+    p->date_naissance->jour = jour;
 }
 /**
  * SetAdresseMailPatient : Setteur de l'adresse mail d'un patient
