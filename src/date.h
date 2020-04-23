@@ -16,10 +16,10 @@ Date * CreerDate(int annee, int mois, int jour);
 void FreeDate(Date * d);
 Date * CreerDateCourante();
 Date * AjoutMoisDate(Date * d, int nb_mois); /*pour ajouter nbmois mois à une date (utile pour ordonnance par exemple*/
-char * getJourDate(Date * d);
-char * getMoisDate(Date * d);
-char * getAnneeDate(Date * d);
-char * getInfosDate(Date * d);
+void getJourDate(char * infos, Date * d);
+void getMoisDate(char * infos, Date * d);
+void getAnneeDate(char * infos, Date * d);
+void getInfosDate(char * infos, Date * d);
 int DateEgales(Date * d1, Date * d2);
 
 #endif

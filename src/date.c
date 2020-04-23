@@ -63,69 +63,60 @@ Date * AjoutMoisDate(Date * d, int nb_mois){
 }
 
 /**
- * getJourDate : Retourne le jour sous forme de char*
- * @param d
- * @return le jour
+ *  getJourDate : Passe le jour de la date en paramètre sous forme de string dans infos
+ * @param infos : le jour de la date sous forme de string
+ * @param d : la date dont on veut le jour
  */
-char * getJourDate(Date * d){
-    char * jour = malloc(2);            //Obligé de malloc pour sprintf (Cf StackOverFlow briefcase) mais là on free jamais ...
-    char * jour0=malloc(2);
-    sprintf(jour,"%d",d->jour);
-    if (strlen(jour)==1){
-        sprintf(jour0, "0%s", jour);
-        return jour0;
-    }else{
-        return jour;
+void getJourDate(char * infos, Date * d){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    sprintf(infos,"%d",d->jour);
+}
+/**
+ *  getMoisDate : Passe le mois de la date en paramètre sous forme de string dans infos
+ * @param infos : le mois de la date sous forme de string
+ * @param d : la date dont on veut le mois
+ */
+void getMoisDate(char * infos, Date * d){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    sprintf(infos,"%d", d->mois);
+}
+/**
+ *  getAnneeDate : Passe l'annee de la date en paramètre sous forme de string dans infos
+ * @param infos : l'annee' de la date sous forme de string
+ * @param d : la date dont on veut l'annee
+ */
+void getAnneeDate(char * infos, Date * d){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    sprintf(infos,"%d",d->annee);
+    if(strlen(infos) != 4){
+        printf("Vous êtes bizarre à mettre des années à 3 chiffre.\n");
     }
 }
 /**
- * getMoisDate : Retourne le mois sous forme de char*
- * @param d
- * @return le mois
+ *  getInfosDate : Passe la date en paramètre sous forme de string XX/XX/XXXX dans infos
+ * @param infos : le jour/le mois/l'annee de la date sous forme de string
+ * @param d : la date dont on veut les infos
  */
-char * getMoisDate(Date * d){
-    char * mois=malloc(2);
-    char * mois0=malloc(2);
-    sprintf(mois,"%d",d->mois);
-    if (strlen(mois)==1){
-        sprintf(mois0, "0%s", mois);
-        return mois0;
-    }else{
-        return mois;
-    }
-}
-/**
- * getAnneeDate : Retourne l'annee sous forme de char*
- * @param d
- * @return l'annee
- */
-char * getAnneeDate(Date * d){
-    char * annee = malloc(4);
-    sprintf(annee,"%d",d->annee);
-    return annee;
-}
-/**
- * getInfosDate : Permet d'obtenir une chaine de caractere avec toutes les infos de la date
- * @param d : la date en question
- * @return un char * sous la forme jour/mois/annee : XX/XX/XXXX
- */
-char * getInfosDate(Date * d){
-    char * result = malloc(10);
-    strcpy(result, getJourDate(d));
-    strcat(result, "/");
-    strcat(result, getMoisDate(d));
-    strcat(result, "/");
-    strcat(result, getAnneeDate(d));
-    strcat(result, "");
-    return result;
+void getInfosDate(char * infos, Date * d){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    char * tmp = (char*) malloc(10);    //j'ai pris large
+    getJourDate(tmp, d);
+    strcpy(infos, tmp);
+    strcat(infos, "/");
+    getMoisDate(tmp, d);
+    strcat(infos, tmp);
+    strcat(infos, "/");
+    getAnneeDate(tmp, d);
+    strcat(infos, tmp);
+    free((void*) tmp);
 }
 /**
  * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leurs année, leurs mois et leurs jours sont les mêmes
  * @param d1 : la première date à comparer
  * @param d2 : la 2eme date
  * @return 1 si les dates sont les mêmes
- *          0 si elles ne le sont pas
- *          -1 si l'une des dates est NULL
+ *         0 si elles ne le sont pas
+ *        -1 si l'une des dates est NULL
  */
 int DateEgales(Date * d1, Date * d2){
     if(d1 == NULL || d2 == NULL){

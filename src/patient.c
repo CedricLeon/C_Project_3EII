@@ -112,12 +112,13 @@ char * getNomPatient(Patient *p){
     return nom;
 }
 /**
- * getDateNaissancePatient : retourne la date de naissance du patient sous forme de char* (pour l'affichage)
+ * getDateNaissancePatient : met la date de naissance du patient sous forme de char* (pour l'affichage) dans infos
+ * @param infos : le char* dans lequel on stocke la date
  * @param p : le patient dont on veut la date de naissance
- * @return un char* avec la date de naissance
  */
-char * getDateNaissancePatient(Patient * p){
-    return getInfosDate(p->date_naissance);
+void getDateNaissancePatient(char* infos, Patient* p){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    getInfosDate(infos, p->date_naissance);
 }
 /**
  * getAdresseMailPatient : retourne l'adresse mail du patient sous forme de char* (pour l'affichage)
@@ -136,20 +137,24 @@ char * getNumeroTelephonePatient(Patient * p){
     return  p->numero_telephone;
 }
 /**
- * getInfoPatient : retourne une chaine de caractères résumant les attributs du patient
+ * getInfoPatient : Place les infos du patient dans infos
+ * @param infos : La char* dans lequel on met les infos
  * @param p : le patient dont on veut les informations
- * @return une chaine de caractères avec les informations sur le patient
  */
-char * getInfoPatient(Patient *p){
-    char * info = "";
-    strcpy(info,getNomPatient(p));
-    strcat(info,"\nNé(e) le : ");
-    strcat(info,getDateNaissancePatient(p));
-    strcat(info, "\n@ : ");
-    strcat(info, getAdresseMailPatient(p));
-    strcat(info, "\nTel : ");
-    strcat(info, getNumeroTelephonePatient(p));
-    return info;
+void getInfoPatient(char* infos, Patient* p){
+    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
+    char * tmp = (char*) malloc(10);
+    strcpy(infos,getNomPatient(p));
+    strcat(infos,"\nNé(e) le : ");
+
+    getDateNaissancePatient(tmp, p);
+    strcat(infos, tmp);
+    free((void*) tmp);
+
+    strcat(infos, "\n@ : ");
+    strcat(infos, getAdresseMailPatient(p));
+    strcat(infos, "\nTel : ");
+    strcat(infos, getNumeroTelephonePatient(p));
 }
 
 /********************************************************************************************************************/

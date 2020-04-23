@@ -36,10 +36,10 @@ void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
 
 char * getNomPatient(Patient * p);
-char * getDateNaissancePatient(Patient * p);
+void getDateNaissancePatient(char* infos, Patient* p);
 char * getAdresseMailPatient(Patient * p);
 char * getNumeroTelephonePatient(Patient * p);
-char * getInfoPatient(Patient * p);
+void getInfoPatient(char* infos, Patient* p);
 
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);

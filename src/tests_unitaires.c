@@ -419,38 +419,50 @@ static void testDate_AjoutMoisDateCourante(void ** state){
  * @param state
  */
 static void testDate_getJourDate(void ** state){
-    assert_string_equal("01",getJourDate((Date *) *state));
+    char* tmp = (char*) malloc(10); //large
+    getJourDate(tmp, (Date *) *state);
+    assert_string_equal("1",tmp);
+    free((void*) tmp);
 }
 
 /**
- * On teste getMoisDate
+ * On test getMoisDate
  * paramètre du assert en fonction de setup_Date
  * @param state
  */
 static void testDate_getMoisDate(void ** state){
-    assert_string_equal("02",getMoisDate((Date *) *state));
+    char* tmp = (char*) malloc(10); //large
+    getMoisDate(tmp, (Date *) *state);
+    assert_string_equal("2",tmp);
+    free((void*) tmp);
 }
 
 /**
- * On teste getAnneeDate
+ * On test getAnneeDate
  * paramètre du assert en fonction de setup_Date
  * @param state
  */
 static void testDate_getAnneeDate(void ** state){
-    assert_string_equal("2920",getAnneeDate((Date *) *state));
+    char* tmp = (char*) malloc(10); //large
+    getAnneeDate(tmp, (Date *) *state);
+    assert_string_equal("2920",tmp);
+    free((void*) tmp);
 }
 
 /**
- * On teste getInfosDate
+ * On test getInfosDate
  * paramètre du assert en fonction de setup_Date
  * @param state
  */
 static void testDate_getInfosDate(void ** state){
-    assert_string_equal("01/02/2920",getInfosDate((Date *) *state));
+    char* tmp = (char*) malloc(20); //large
+    getInfosDate(tmp, (Date *) *state);
+    assert_string_equal("1/2/2920",tmp);
+    free((void*) tmp);
 }
 
 /**
- * On teste DateEgales
+ * On test DateEgales
  * @param state
  */
 static void testDate_DateEgaleshandlesDatesDiff(void ** state){
@@ -506,8 +518,14 @@ static void testOrdonnance_creerOrdonnance(void ** state){
     assert_string_equal(((Ordonnance *) *state)->patient->prenom,"PrenomTestP");
     assert_string_equal(((Ordonnance *) *state)->medecin->nom,"NomTestM");
     assert_string_equal(((Ordonnance *) *state)->description,"TestDescription");
-    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_edition),"22/04/2020"); //! à changer !
-    assert_string_equal(getInfosDate(((Ordonnance *) *state)->date_expiration), "21/07/2020"); //! à changer !
+
+    char* tmp = (char*) malloc(20); //large
+    getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
+    assert_string_equal(tmp,"23/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
+                                             //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
+    getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
+    assert_string_equal(tmp, "23/7/2020"); //! à changer : idem
+    free((void*) tmp);
 }
 
 /**

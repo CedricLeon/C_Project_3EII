@@ -140,9 +140,12 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         return 1;
     }else{
         AddRendezVous_Jour(jourDuRdv, rdv);
+        char * infos = (char*) malloc(10);
+        getInfosDate(infos, jourDuRdv->date);
         printf("Le calendrier contenait déjà l'année, le mois et le jour du rdv : %s. Et comme normalement,"
                "on a déjà vérifié avant si le rdv était valable on a juste ajouté le rdv au jour.\n"
-               ,getInfosDate(jourDuRdv->date));
+               ,infos);
+        free((void*) infos);
         return 1;
     }
 }
