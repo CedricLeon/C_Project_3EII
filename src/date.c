@@ -41,25 +41,25 @@ Date * CreerDateCourante(){
 }
 
 /**
- * AjoutMoisDateCourante : Permet d'ajouter nb_mois mois � la date courante (utile notamment pour les ordonnances)
+ * AjoutMoisDate : Permet d'ajouter nb_mois à une date la date (utile notamment pour les ordonnances)
+ * @param d : la date à laquelle on ajoute le nb de mois
  * @param nb_mois
- * @return la date courante + nb_mois
+ * @return la date + nb_mois
  */
-Date * AjoutMoisDateCourante(int nb_mois){
-    int day, mois, an;
-    time_t now;
-    time(&now);
-    struct tm now_tm = *localtime( &now);
-    time_t futurNMois = now + 30*86400*nb_mois;
-    struct tm *nbMoisPlusTard_tm = localtime(&futurNMois);
-
-    day = nbMoisPlusTard_tm->tm_mday;
-    mois = nbMoisPlusTard_tm->tm_mon + 1;
-    an = nbMoisPlusTard_tm->tm_year + 1900;
-
-    Date * d = CreerDate(an,mois,day);
-
-    return d;
+Date * AjoutMoisDate(Date * d, int nb_mois){
+    /*int day, mois, an;
+   time_t now;
+   time(&now);
+   struct tm now_tm = *localtime( &now);
+   time_t futurNMois = now + 30*86400*nb_mois;
+   struct tm *nbMoisPlusTard_tm = localtime(&futurNMois);
+   day = nbMoisPlusTard_tm->tm_mday;
+   mois = nbMoisPlusTard_tm->tm_mon + 1;
+   an = nbMoisPlusTard_tm->tm_year + 1900;
+   Date * d = CreerDate(an,mois,day);
+   return d;*/
+    Date * d2 = CreerDate(d->annee, d->mois + nb_mois, d->jour);
+    return d2;
 }
 
 /**

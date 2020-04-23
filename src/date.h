@@ -15,7 +15,7 @@ typedef struct{
 Date * CreerDate(int annee, int mois, int jour);
 void FreeDate(Date * d);
 Date * CreerDateCourante();
-Date * AjoutMoisDateCourante(int nb_mois); /*pour ajouter nbmois mois � la date courante (utile pour ordonnance par exemple*/
+Date * AjoutMoisDate(Date * d, int nb_mois); /*pour ajouter nbmois mois à une date (utile pour ordonnance par exemple*/
 char * getJourDate(Date * d);
 char * getMoisDate(Date * d);
 char * getAnneeDate(Date * d);
