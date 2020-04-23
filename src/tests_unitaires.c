@@ -46,9 +46,6 @@ static void testPatient_creerPatient(void ** state){
     assert_string_equal(((Patient *) *state)->adresse_mail, "test@adresseMailP");
     assert_string_equal(((Patient *) *state)->numero_telephone,"testNumeroTelephoneP");
 }
-//no need testfonction pour deletePatient
-
-//static void testPatient_inscriptionPatient(void ** state);    Pour plus tard
 
 static void testPatient_setNomPatient(void ** state){
     SetNomPatient(((Patient *) *state),"NewNom");
@@ -387,7 +384,7 @@ static void testDate_creerDate(void ** state){
 }
 
 /**
- * On teste de créer la Date Courante
+ * On test de créer la Date Courante
  * Je n'ai pas encore trouvé comment faire pour mettre en paramètre la date courante (sans réécrire la fonction CreerDateCourante sinon c'est un peu débile)
  * Donc il faut faire attention à changer la date en paramètre des assert_int_equal sinon le test ne passera pas
  * @param state
@@ -396,25 +393,26 @@ static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020); //! à changer !
     assert_int_equal(d->mois,04);   //! à changer !
-    assert_int_equal(d->jour,22);   //! à changer !
+    assert_int_equal(d->jour,23);   //! à changer !
+    FreeDate(d);
 }
 
 /**
- * On teste l'ajout de nb mois à la Date Courante
+ * On test l'ajout de nb mois à la Date Courante
  * sachant qu'ici on a pris 1 mois = 30 jours pour chaque mois
  * même problème qu'au dessus il faut changer le test à la main
  * @param state
  */
 static void testDate_AjoutMoisDateCourante(void ** state){
-    Date * dat = AjoutMoisDateCourante(3); //test ajout de 3 mois = 90 jours
-    assert_int_equal(dat->annee,2020); //! à changer !
-    assert_int_equal(dat->mois,07);   //! à changer !
-    assert_int_equal(dat->jour,21);   //! à changer !
-    FreeDate(dat);
+    Date * d = AjoutMoisDate((Date*) *state, 3); //test ajout de 3 mois = 90 jours
+    assert_int_equal(d->annee,2920); //! à changer !
+    assert_int_equal(d->mois,05);   //! à changer !
+    assert_int_equal(d->jour,01);   //! à changer !
+    FreeDate(d);
 }
 
 /**
- * On teste getJourDate
+ * On test getJourDate
  * paramètre du assert en fonction de setup_Date
  * @param state
  */
@@ -476,14 +474,12 @@ static void testDate_DateEgaleshandlesDatesEgales(void ** state){
     //Test 2 dates égales
     Date * d2 = (Date *) *state;
     assert_int_equal(1,DateEgales((Date *) *state, d2));
-    FreeDate(d2);
 }
 
 static void testDate_DateEgaleshandlesDateNULL(void ** state){
     //Test avec une date NULL
     Date * d2 = NULL;
     assert_int_equal(-1,DateEgales((Date *) *state, d2));
-    FreeDate(d2);
 }
 
 /**********************************************************************************************************************/
@@ -497,7 +493,7 @@ static int setup_Ordonnance(void ** state){
     Patient * pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
     Medecin * med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
-    Ordonnance * ord = CreerOrdonnance(NULL,NULL,"TestDescription");
+    Ordonnance * ord = CreerOrdonnance(pat, med,"TestDescription");
     *state = ord;
     return *state == NULL;
 }
@@ -545,8 +541,6 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
 int main(void){
 
     //tests à la main//
-
-    //Les lignes suivantes font planter malloc ...
 
     /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
