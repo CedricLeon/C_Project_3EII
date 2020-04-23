@@ -500,8 +500,8 @@ static int setup_Ordonnance(void ** state){
 
 static int teardown_Ordonnance(void ** state){
     //Penser à free le medecin et le patient ici et non dans Deleteordonnace !
-    DeletePatient(((Ordonnance *) * state)->patient);
-    DeleteMedecin(((Ordonnance *) * state)->medecin);
+    DeletePatient(((Ordonnance *) *state)->patient);
+    DeleteMedecin(((Ordonnance *) *state)->medecin);
     DeleteOrdonnance((Ordonnance *) *state);
     return 0;
 }
@@ -549,7 +549,7 @@ int main(void){
     RendezVous * rdv2 = CreerRendezVous(2002,02,02,02,120,"lieu2",p1,m1,"motif2");
     RendezVous * rdv3 = CreerRendezVous(2003,03,03,03,180,"lieu3",p1,m1,"motif3");
 
-    ListAnnee * c = (ListAnnee *) malloc(sizeof(ListAnnee *));
+    ListAnnee * c = (ListAnnee *) malloc(sizeof(ListAnnee));
     ListAnnee_init(c);
 
     AddRendezVous_Calendrier(c,rdv1);
@@ -570,6 +570,7 @@ int main(void){
             cmocka_unit_test(testPatient_setNomPatient),
             cmocka_unit_test(testPatient_setPrenomPatient),
             cmocka_unit_test(testPatient_setDateNaissancePatient),
+            cmocka_unit_test(testPatient_setAdresseMailPatient),
             cmocka_unit_test(testPatient_setNumeroTelephonePatient),
 
             //Tests des fonctions d'ajout et de delete de medecins à la liste de mèdecins consultés par le patient

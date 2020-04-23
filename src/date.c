@@ -28,16 +28,15 @@ void FreeDate(Date * d){
 Date * CreerDateCourante(){
     int day, mois, an;
     time_t now;
+    time(&now);
 
-  time(&now);
+    struct tm *local = localtime(&now);
+    day = local->tm_mday;
+    mois = local->tm_mon + 1;
+    an = local->tm_year + 1900;
 
-  struct tm *local = localtime(&now);
-  day = local->tm_mday;
-  mois = local->tm_mon + 1;
-  an = local->tm_year + 1900;
-
-  Date * d = CreerDate(an,mois,day);
-  return d;
+    Date * d = CreerDate(an,mois,day);
+    return d;
 }
 
 /**

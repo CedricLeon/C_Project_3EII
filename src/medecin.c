@@ -266,7 +266,7 @@ void ListMedecin_init(ListMedecin * l){
  */
 void ListMedecin_free(ListMedecin * l){
     if (l!= NULL && !ListMedecin_isEmpty(l)){
-        for(ListMedecin_setOnFirst(l); ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+        for(ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
             freeNodeMedecin(l->current);
         }
     }

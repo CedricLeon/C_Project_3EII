@@ -26,8 +26,8 @@ Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
  */
 void DeleteOrdonnance(Ordonnance * o){
     //Il ne faut pas free le patient et le medecin !
-    free((void *) o->date_edition);
-    free((void *) o->date_expiration);
+    FreeDate(o->date_edition);
+    FreeDate(o->date_expiration);
     free((void *) o);
 }
 

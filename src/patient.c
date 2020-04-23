@@ -282,7 +282,7 @@ void ListPatient_init(ListPatient * l){
  */
 void ListPatient_free(ListPatient * l){
     if (l != NULL && !ListPatient_isEmpty(l)){
-        for (ListPatient_setOnFirst(l); ListPatient_isOutOfList(l); ListPatient_setOnNext(l)){
+        for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)){
             freeNodePatient(l->current);
         }
     }

@@ -250,9 +250,10 @@ void printCalendrier(Calendrier c)
                 printf("\t\t-- %d/%d/%d :", j->date->jour, j->date->mois, j->date->annee);
                 for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
                 {
-                    printf("  %2.1f-%2.1fh  /", ListRendezVous_getCurrent(j)->heure_debut, ListRendezVous_getCurrent(j)->heure_fin);
                     if(ListRendezVous_isLast(j)){
                         printf("  %2.1f-%2.1fh", ListRendezVous_getCurrent(j)->heure_debut, ListRendezVous_getCurrent(j)->heure_fin);
+                    }else {
+                        printf("  %2.1f-%2.1fh  /", ListRendezVous_getCurrent(j)->heure_debut, ListRendezVous_getCurrent(j)->heure_fin);
                     }
                 }
                 printf("\n");
