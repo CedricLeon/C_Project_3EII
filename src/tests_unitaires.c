@@ -391,9 +391,10 @@ static void testDate_creerDate(void ** state){
  */
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
-    assert_int_equal(d->annee,2020); //! à changer !
+    assert_int_equal(d->annee,2020);//! à changer !
     assert_int_equal(d->mois,04);   //! à changer !
-    assert_int_equal(d->jour,23);   //! à changer !
+    assert_int_equal(d->jour,24);   //! à changer : si le test fail c'est car la date comparée ne
+                                           //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
     FreeDate(d);
 }
 
@@ -517,10 +518,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(20); //large
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"23/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"24/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "23/7/2020"); //! à changer : idem
+    assert_string_equal(tmp, "24/7/2020"); //! à changer : idem
     free((void*) tmp);
 }
 

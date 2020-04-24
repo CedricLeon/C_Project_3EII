@@ -221,7 +221,7 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
         if (ListMedecin_getCurrent(p->medecins_consultes) == medecin) {
             p->medecins_consultes->current->previous->next = p->medecins_consultes->current->next;
             p->medecins_consultes->current->next->previous = p->medecins_consultes->current->previous;
-            freeNodeMedecin(p->medecins_consultes->current);
+            freeNodeMedecin(p->medecins_consultes, p->medecins_consultes->current);
             printf("Le mèdecin %s a bien été retiré de la liste des mèdecins consulté par le patient %s.\n", medecin->nom, p->nom);
             return 1;
         }
@@ -254,7 +254,13 @@ NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePati
  * reeNodePatient : Permet de delete proprement (avec un free) un nodePatient
  * @param n : le node à delete
  */
-void freeNodePatient(NodePatient * n){
+void freeNodePatient(ListPatient *l, NodePatient * n){
+    //On place current sur l'objet avant le noeud qu'on veut supprimer
+    ListPatient_setOnPrevious(l);
+    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    //et enfin on supprime le noeud
     free((void*) n);
 }
 
@@ -283,7 +289,7 @@ void ListPatient_init(ListPatient * l){
 void ListPatient_free(ListPatient * l){
     if (l != NULL && !ListPatient_isEmpty(l)){
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)){
-            freeNodePatient(l->current);
+            freeNodePatient(l, l->current);
         }
     }
     free((void *) l);

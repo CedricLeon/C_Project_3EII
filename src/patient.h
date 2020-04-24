@@ -64,7 +64,7 @@ struct ListPatient{
 };
 
 NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePatient * next);
-void freeNodePatient(NodePatient * n);
+void freeNodePatient(ListPatient *l, NodePatient * n);
 
 void ListPatient_init(ListPatient * l);
 void ListPatient_free(ListPatient * l);
