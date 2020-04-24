@@ -13,6 +13,27 @@ cd cmake-build-debug
 ctest -C Release
 ````
 
+## Valgrind
+
+If you want to run Valgrind on GPCalendar, make sure you have it installed :
+
+````bash
+sudo apt-get install valgrind
+````
+
+And then run it in build :
+
+````bash
+cd build
+#Make sure the project is already build else :
+cmake ..
+cmake --build .
+#And then
+valgrind ./Tests_exec
+````
+
+You can also run it with your IDE like Valgrind-MemoryCheck in CLion.
+
 ## Build
 
 GPCalendar is (normally) a cross platform application and is build with CMake.
