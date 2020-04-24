@@ -491,16 +491,16 @@ static void testDate_DateEgaleshandlesDateNULL(void ** state){
  */
 
 static int setup_Ordonnance(void ** state){
-    Patient * pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
-    Medecin * med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
+    Patient* pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Medecin* med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
-    Ordonnance * ord = CreerOrdonnance(pat, med,"TestDescription");
+    Ordonnance* ord = CreerOrdonnance(pat, med,"TestDescription");
     *state = ord;
     return *state == NULL;
 }
 
 static int teardown_Ordonnance(void ** state){
-    //Penser à free le medecin et le patient ici et non dans Deleteordonnace !
+    //Penser à free le medecin et le patient ici et non dans DeleteOrdonnace !
     DeletePatient(((Ordonnance *) *state)->patient);
     DeleteMedecin(((Ordonnance *) *state)->medecin);
     DeleteOrdonnance((Ordonnance *) *state);
@@ -516,7 +516,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
     assert_string_equal(((Ordonnance *) *state)->medecin->nom,"NomTestM");
     assert_string_equal(((Ordonnance *) *state)->description,"TestDescription");
 
-    char* tmp = (char*) malloc(20); //large
+    //Si il y a un MemoryLeak sur tmp c'est pcq le test CMocka n'est pas passé et CMocka a donc quitter la fonction avant de free tmp
+    //Cela N'arrivera pas dans Normal_Exec
+
+    char* tmp = (char*) malloc(10); //large
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
     assert_string_equal(tmp,"24/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
@@ -526,7 +529,7 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 }
 
 /**
- * On teste de modifier une Ordonnance
+ * On test de modifier une Ordonnance
  * @param state
  */
 static void testOrdonnance_modifierOrdonnance(void ** state){
