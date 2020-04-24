@@ -4,7 +4,7 @@ project(C_Project C)
 include(cmake/FetchCMocka.cmake)
 
 #Normal executable
-set(SOURCE_FILES ./src/patient.c ./src/patient.h ./src/date.c ./src/date.h ./src/medecin.c ./src/medecin.h ./src/Structures.h ./src/dossier_medical.h ./src/ordonnance.c ./src/ordonnance.h ./src/rendezvous.c ./src/rendezvous.h ./src/calendrier.c)
+set(SOURCE_FILES ./src/patient.c ./src/patient.h ./src/date.c ./src/date.h ./src/medecin.c ./src/medecin.h ./src/Structures.h ./src/dossier_medical.h ./src/ordonnance.c ./src/ordonnance.h ./src/rendezvous.c ./src/rendezvous.h ./src/calendrier.c src/main.c)
 
 add_executable(NormalExec_CProject ${SOURCE_FILES})
 target_compile_features(NormalExec_CProject PRIVATE c_std_99)
