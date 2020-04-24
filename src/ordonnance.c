@@ -7,16 +7,16 @@
  * @param description : description de la prescription
  * @return l'ordonnance cr��e
  */
-Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description){
+Ordonnance* CreerOrdonnance(Patient* p, Medecin* m, char* description){
     Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
     Date* d = CreerDateCourante();
     Date* expi = AjoutMoisDate(d, 3);
 
-    o->patient=p;
-    o->medecin=m;
+    o->patient = p;
+    o->medecin = m;
     o->description = description;
-    o->date_edition=d;
-    o->date_expiration=expi;
+    o->date_edition = d;
+    o->date_expiration = expi;
 
     return o;
 }
@@ -40,13 +40,17 @@ void DeleteOrdonnance(Ordonnance * o){
  * @return 1 si l'ordonnance a été modifiée
            0 sinon
  */
-int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
+int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
     ordo->patient = p;
     ordo->medecin = m;
     ordo->description = description;
+
+    FreeDate(ordo->date_edition);
+    FreeDate(ordo->date_expiration);
+
     ordo->date_edition = CreerDateCourante();
     ordo->date_expiration = AjoutMoisDate(ordo->date_edition, 3);
-    if((ordo->patient==p)&&(ordo->medecin==m)&&(strcmp(ordo->description, description)==0)){
+    if( (ordo->patient == p) && (ordo->medecin == m) && (strcmp(ordo->description, description) == 0)){
         return 1;
     }else{
         return 0;
@@ -57,7 +61,7 @@ int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
  * AfficherOrdonnance : Afficher un objet Ordonnance
  * @param ordo : l'ordonnance que l'on veut afficher
  */
-void AfficherOrdonnance(Ordonnance * ordo){
+void printOrdonnance(Ordonnance * ordo){
     printf("Ordonnance faite le %d/%d/%d \n\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
     printf("Patient : %s %s ", ordo->patient->nom, ordo->patient->prenom);
     printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);

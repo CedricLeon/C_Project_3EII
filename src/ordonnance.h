@@ -15,8 +15,8 @@ typedef struct{
 
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description);
 void DeleteOrdonnance(Ordonnance * o);
-int ModifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description);
-void AfficherOrdonnance(Ordonnance * ordo);
+int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description);
+void printOrdonnance(Ordonnance * ordo);
 
 
 #endif // ORDONNANCE_H

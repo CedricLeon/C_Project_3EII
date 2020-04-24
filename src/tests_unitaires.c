@@ -532,7 +532,9 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 static void testOrdonnance_modifierOrdonnance(void ** state){
     Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2010, 06, 19, "test@adresseMailP2", "testNumeroTelephoneP2");
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
-    assert_int_equal((ModifierOrdonnance((Ordonnance *)*state, p2, m2, "description2")),1);
+    DeletePatient(((Ordonnance *)*state)->patient);
+    DeleteMedecin(((Ordonnance *)*state)->medecin);
+    assert_int_equal((modifierOrdonnance((Ordonnance *)*state, p2, m2, "description2")),1);
 }
 
 /**********************************************************************************************************************/
