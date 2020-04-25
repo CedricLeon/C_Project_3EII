@@ -12,7 +12,7 @@
  * @param num_tel :numéro de téléphone du patient
  * @return un pointeur sur le patient créé
  */
-Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel){
+Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char* numero_secu_social){
 
     Patient * p = (Patient *) malloc(sizeof(Patient));
     p->nom = nom;
@@ -20,6 +20,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
     p->adresse_mail = mail;
     p->numero_telephone = num_tel;
+    p->numero_secu_social = numero_secu_social;
 
     p->medecins_consultes = (ListMedecin *) malloc(sizeof(struct ListMedecin));
     ListMedecin_init(p->medecins_consultes);
@@ -42,9 +43,9 @@ void DeletePatient(Patient * patient){
  * @param p : le patient
  */
 void AffichePatient(Patient * p){
-    printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s.\n",
+    printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
             p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
-            p->numero_telephone, p->adresse_mail);
+            p->numero_telephone, p->adresse_mail, p->numero_secu_social);
     printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
 }
 
@@ -96,7 +97,14 @@ void SetAdresseMailPatient(Patient * p, char * mail){
 void SetNumeroTelephonePatient(Patient * p, char * tel){
     p->numero_telephone = tel;
 }
-
+/**
+ * SetNumeroSecuSocialePatient : Setteur du numero de sécurité sociale d'un patient
+ * @param p : la patient
+ * @param tel : le nouveau numero de sécurité sociale
+ */
+void SetNumeroSecuSocialePatient(Patient * p, char * secu){
+    p->numero_secu_social = secu;
+}
 /********************************************************************************************************************/
                                              /*Getteurs de Patient*/
 /*******************************************************************************************************************/
@@ -139,6 +147,16 @@ char * getNumeroTelephonePatient(Patient * p){
     return  p->numero_telephone;
 }
 /**
+ * ggetNumeroSecuSocialePatient : retourne le numéro de sécurité sociale du patient sous forme de char* (pour l'affichage)
+ * @param p : le patient dont on veut le numéro de sécurité sociale
+ * @return un char * avec le numero de sécurité sociale
+ */
+char * getNumeroSecuSocialePatient(Patient * p){
+    return  p->numero_secu_social;
+}
+
+
+/**
  * getInfoPatient : Place les infos du patient dans infos
  * @param infos : La char* dans lequel on met les infos
  * @param p : le patient dont on veut les informations
@@ -157,6 +175,8 @@ void getInfoPatient(char* infos, Patient* p){
     strcat(infos, getAdresseMailPatient(p));
     strcat(infos, "\nTel : ");
     strcat(infos, getNumeroTelephonePatient(p));
+    strcat(infos, "\nN° sécu : ");
+    strcat(infos, getNumeroSecuSocialePatient(p));
 }
 
 /********************************************************************************************************************/

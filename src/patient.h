@@ -17,28 +17,30 @@ struct Patient{
     Date * date_naissance;
     char * adresse_mail;
     char * numero_telephone;
+    char * numero_secu_social;
     struct ListMedecin * medecins_consultes;
 };
 
 
-Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel);
+Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char * numero_secu_social);
 void DeletePatient(Patient * patient);
 
 void AffichePatient(Patient * p); //Utilisée pour le debugging
 
-//Au final la fonction InscriptionPatient(Patient * p, rendezVous *rdv) n'a pas lieu d'être puisqu'elle correspond à une création de rendez-vous
-
-/* Setteurs */
+/* Setteurs */ /*en vrai ça sert à rien*/
 void SetNomPatient(Patient * p, char * nom);
 void SetPrenomPatient(Patient * p, char * prenom);
 void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
 void SetAdresseMailPatient(Patient * p, char * mail);
 void SetNumeroTelephonePatient(Patient * p, char * tel);
+void setNumeroSecuSocialePatient(Patient * p, char * secu);
 
+/* Getteurs */ /*idem*/
 char * getNomPatient(Patient * p);
 void getDateNaissancePatient(char* infos, Patient* p);
 char * getAdresseMailPatient(Patient * p);
 char * getNumeroTelephonePatient(Patient * p);
+char * getNumeroSecuSocialePatient(Patient * p);)
 void getInfoPatient(char* infos, Patient* p);
 
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
