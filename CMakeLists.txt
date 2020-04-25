@@ -4,6 +4,7 @@ project(C_Project C)
 #Appel le cmake qui download CMocka avec les bonnes rules
 #On aurait aussi pu utiliser add_subdirectory(Nom_de_sousDossier) qui appelle un autre CMakeLists.txt dans ce Nom_de_sousDossier
 include(cmake/FetchCMocka.cmake)
+include(cmake/FetchCJson.cmake)
 
 # Creating STATIC Library for source files (allow to compile only once those files)
 set(SOURCE_FILES
@@ -28,7 +29,7 @@ add_executable(NormalExec_CProject
     src/main.c)
 target_compile_features(NormalExec_CProject PRIVATE c_std_99)
 target_link_libraries(NormalExec_CProject PRIVATE GPCalendarUtils)
-
+target_link_libraries(NormalExec_CProject PRIVATE cjson)
 
 #Testing executable
 add_executable(Tests_exec
@@ -37,6 +38,7 @@ add_executable(Tests_exec
 target_compile_features(Tests_exec PUBLIC c_std_99)
 target_link_libraries(Tests_exec PRIVATE GPCalendarUtils)
 target_link_libraries(Tests_exec PRIVATE cmocka-static)
+target_link_libraries(NormalExec_CProject PRIVATE cjson)
 
 #Permet de setup Ctest
 #Dans la console : cd cmake-build-debug && ctest -C Release
