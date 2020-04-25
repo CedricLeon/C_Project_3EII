@@ -40,7 +40,7 @@ char * getNomPatient(Patient * p);
 void getDateNaissancePatient(char* infos, Patient* p);
 char * getAdresseMailPatient(Patient * p);
 char * getNumeroTelephonePatient(Patient * p);
-char * getNumeroSecuSocialePatient(Patient * p);)
+char * getNumeroSecuSocialePatient(Patient * p);
 void getInfoPatient(char* infos, Patient* p);
 
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);

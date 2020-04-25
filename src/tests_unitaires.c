@@ -1,5 +1,3 @@
-/*tests_unitaires.h n'a pas d'utilité puisque les seules fonctions présentes ici sont static*/
-
 /*Header Files du Projet*/
 #include "medecin.h"
 #include "patient.h"
@@ -27,7 +25,7 @@
 
 //Fonctions de setup et teardown de la structure Patient
 static int setup_Patient(void ** state){
-    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecu");
     *state = p;
     return *state == NULL;
 }
@@ -184,7 +182,7 @@ static void testMedecin_creerMedecin(void ** state){                            
  */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state){
     printf("\n");
-    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
 
     AddPatientRecuMedecin((Medecin *) *state, p);
     ListPatient_setOnFirst(((Medecin *) *state)->patients_recus);
@@ -200,7 +198,7 @@ static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state)
  */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientDejaRecu(void ** state){
     printf("\n");
-    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
 
     assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 1);                  //Should print "patient add au debut de la liste"
     assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 0);                  //Should print "cant add, deja consulté"
@@ -214,7 +212,7 @@ static void testMedecin_DeletePatientRecuMedecint_handlesPatientEnleve(void ** s
     //ce test est aussi là pour le principe puique dans les faits on est obligé
     // d'enlever le patient de la liste déjà dans le 1er test car les tests sont appellés à la suite
     printf("\n");
-    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
 
     assert_int_equal(AddPatientRecuMedecin((Medecin *) *state, p), 1);
     assert_int_equal(DeletePatientRecuMedecin((Medecin *) *state, p), 1);
@@ -225,7 +223,7 @@ static void testMedecin_DeletePatientRecuMedecint_handlesPatientEnleve(void ** s
 }
 static void testMedecin_DeletePatientRecuMedecin_handlesPasDePatient(void ** state){
     printf("\n");
-    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
 
     assert_int_equal(DeletePatientRecuMedecin((Medecin *) *state, p),0);
     assert_int_equal(ListPatient_isEmpty(((Medecin *) *state)->patients_recus), 1);
@@ -235,8 +233,8 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPasDePatient(void ** sta
 }
 static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void ** state){
     printf("\n");
-    Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 20201, 031, 291, "test@adresseMailP1", "testNumeroTelephoneP2");
-    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 20202, 032, 292, "test@adresseMailP2", "testNumeroTelephoneP2");
+    Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 20201, 031, 291, "test@adresseMailP1", "testNumeroTelephoneP1", "testNumSecuP1");
+    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 20202, 032, 292, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
 
     AddPatientRecuMedecin((Medecin *) *state, p1);
     //On add pas p2 et on essaye de le delete
@@ -491,7 +489,7 @@ static void testDate_DateEgaleshandlesDateNULL(void ** state){
  */
 
 static int setup_Ordonnance(void ** state){
-    Patient* pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP");
+    Patient* pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
     Medecin* med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
     Ordonnance* ord = CreerOrdonnance(pat, med,"TestDescription");
@@ -533,7 +531,7 @@ static void testOrdonnance_creerOrdonnance(void ** state){
  * @param state
  */
 static void testOrdonnance_modifierOrdonnance(void ** state){
-    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2010, 06, 19, "test@adresseMailP2", "testNumeroTelephoneP2");
+    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2010, 06, 19, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
     DeletePatient(((Ordonnance *)*state)->patient);
     DeleteMedecin(((Ordonnance *)*state)->medecin);
