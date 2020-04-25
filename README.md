@@ -6,7 +6,7 @@ GPCalendar is an application allowing physician in a structure like an hospital 
 
 For the moment (21/04/2020) unit-tested are implemented for the patient, physician, calendar, date and order functions.
 
-If you want to run them you can execute the ````Tests_exec```` executable or do the following commands :
+If you want to run them you can execute the ````GPCalendar_Tests```` executable or do the following commands :
 
 ````bash
 cd cmake-build-debug
@@ -29,7 +29,7 @@ cd build
 cmake ..
 cmake --build .
 #And then
-valgrind ./Tests_exec
+valgrind ./GPCalendar_Tests
 ````
 
 You can also run it with your IDE like **Valgrind-MemoryCheck** in CLion.

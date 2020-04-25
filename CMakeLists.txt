@@ -26,20 +26,20 @@ add_library(GPCalendarUtils STATIC ${SOURCE_FILES})
 target_link_libraries(GPCalendarUtils PUBLIC cjson)
 
 #Normal executable
-add_executable(NormalExec_CProject
+add_executable(GPCalendar
     src/main.c)
-target_compile_features(NormalExec_CProject PRIVATE c_std_99)
-target_link_libraries(NormalExec_CProject PRIVATE GPCalendarUtils)
+target_compile_features(GPCalendar PRIVATE c_std_99)
+target_link_libraries(GPCalendar PRIVATE GPCalendarUtils)
 
 #Testing executable
-add_executable(Tests_exec
+add_executable(GPCalendar_Tests
     src/tests_unitaires.c
         )
-target_compile_features(Tests_exec PUBLIC c_std_99)
-target_link_libraries(Tests_exec PRIVATE GPCalendarUtils)
-target_link_libraries(Tests_exec PRIVATE cmocka-static)
+target_compile_features(GPCalendar_Tests PUBLIC c_std_99)
+target_link_libraries(GPCalendar_Tests PRIVATE GPCalendarUtils)
+target_link_libraries(GPCalendar_Tests PRIVATE cmocka-static)
 
 #Permet de setup Ctest
 #Dans la console : cd cmake-build-debug && ctest -C Release
 enable_testing()
-add_test(NAME Tests_exec COMMAND Tests_exec)
+add_test(NAME GPCalendar_Tests COMMAND GPCalendar_Tests)
