@@ -34,18 +34,24 @@ valgrind ./Tests_exec
 
 You can also run it with your IDE like **Valgrind-MemoryCheck** in CLion.
 
+## cJSON
+
+cJSON is a GitHub Project which allow to easily use JSON format in C code. It is used to "save" the application. **CODE in development**
+
+
+
 ## Build
 
 GPCalendar is (normally) a cross platform application and is build with CMake.
 
-To build the application, make sure you have CMake and clone the git repertory. Then create the source build folder and access it. 
+To build the application, make sure you have CMake and clone the git repertory. Then create the source build folder and access it.
 
 ````bash
 git clone https://gitlab.insa-rennes.fr/cleonard/C_Project.git
 cd C_Project && mkdir build && cd build
 ````
 
-You can now run the Cmake commands to build the project 
+You can now run the Cmake commands to build the project
 
 ````bash
 cmake ..
@@ -101,7 +107,7 @@ Finally you need to run it:
 ./executable_name
 ````
 
-#### How to build with your IDE 
+#### How to build with your IDE
 I will show you now how to use and configure the Code :: Blocks software which is a portable, open source IDE and very practical for GTK+.
 
 First, launch Code :: Blocks and open or create a new Project by going to: *File -> New Project -> Empty project*

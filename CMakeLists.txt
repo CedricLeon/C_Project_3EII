@@ -20,25 +20,24 @@ set(SOURCE_FILES
     src/ordonnance.h
     src/rendezvous.c
     src/rendezvous.h
-    src/calendrier.c)
+    src/calendrier.c src/JsonSave.c src/JsonSave.h)
 
 add_library(GPCalendarUtils STATIC ${SOURCE_FILES})
+target_link_libraries(GPCalendarUtils PUBLIC cjson)
 
 #Normal executable
 add_executable(NormalExec_CProject
     src/main.c)
 target_compile_features(NormalExec_CProject PRIVATE c_std_99)
 target_link_libraries(NormalExec_CProject PRIVATE GPCalendarUtils)
-target_link_libraries(NormalExec_CProject PRIVATE cjson)
 
 #Testing executable
 add_executable(Tests_exec
     src/tests_unitaires.c
-    src/tests_unitaires.h)
+        )
 target_compile_features(Tests_exec PUBLIC c_std_99)
 target_link_libraries(Tests_exec PRIVATE GPCalendarUtils)
 target_link_libraries(Tests_exec PRIVATE cmocka-static)
-target_link_libraries(NormalExec_CProject PRIVATE cjson)
 
 #Permet de setup Ctest
 #Dans la console : cd cmake-build-debug && ctest -C Release

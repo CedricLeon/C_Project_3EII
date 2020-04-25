@@ -2,8 +2,9 @@ include(FetchContent)
 
 FetchContent_Declare(
   cjson
-  GIT_REPOSITORY https://github.com/DaveGamble/cJSON.git
-  GIT_TAG        master
+  #fork du vrai projet pour target_include_directories()
+  GIT_REPOSITORY https://github.com/CedricLeon/cJSON.git
+  GIT_TAG        support-include-build
   GIT_SHALLOW    1
 )
 
