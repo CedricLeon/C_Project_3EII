@@ -68,5 +68,48 @@ sudo make install
 # Restart terminal
 ````
 
+## GTK3+
 
+#### Installation
 
+GTK+ has been mostly conceived for linux. Therefore, if you do not have it I invite you to check out the openclassroom course on how to creat a GTK+ interface on MacOs or Windows.
+But If you have linux, let's begin:
+
+First you should download the different librairies. To do so open your linux shell and type:
+````bash
+sudo apt-get update
+````
+This allows you to update your different packages. Then you'll need to install the devpackages and make sure you do have the runtime so type:
+````bash
+sudo apt-get install libgtk3.0-dev
+sudo apt-get install libgtk3.0-0
+````
+
+#### How to build with your console
+Open your linux shell for instance and go to your folder:
+````bash
+cd /home/the_path_to_your_folder/
+````
+Then you'll have to build your code doing:
+````bash
+gcc $(pkg-config --libs --cflags gtk+-3.0) main.c -o executable_name
+````
+The main.c corresponds to the name of our file (source code of the program) and executable_name is the name you want to give to your program.
+Finally you need to run it:
+````bash
+./executable_name
+````
+
+#### How to build with your IDE 
+I will show you now  how to use and configure the Code :: Blocks software which is a portable, open source IDE and very practical for GTK +.
+
+First, launch Code :: Blocks and open or create a new Project by going to: File -> New Project -> Empty project
+Then you'll need to configure your compiler. Go to Project -> Build Options select the debug mode and select the compiler settings and in "" add in other options" type:
+````bash
+`pkg-config --cflags gtk+-3.0`
+````
+You'll have to do the same with the linker settings:
+````bash
+`pkg-config --libs gtk+-3.0`
+````
+Repeat these two lines for the Release and Projectname mode (usually at the top left of the window).
