@@ -5,6 +5,7 @@ project(C_Project C)
 #On aurait aussi pu utiliser add_subdirectory(Nom_de_sousDossier) qui appelle un autre CMakeLists.txt dans ce Nom_de_sousDossier
 include(cmake/FetchCMocka.cmake)
 
+# Creating STATIC Library for source files (allow to compile only once those files)
 set(SOURCE_FILES
     src/patient.c
     src/patient.h
@@ -20,20 +21,22 @@ set(SOURCE_FILES
     src/rendezvous.h
     src/calendrier.c)
 
+add_library(GPCalendarUtils STATIC ${SOURCE_FILES})
+
 #Normal executable
 add_executable(NormalExec_CProject
-    ${SOURCE_FILES}
     src/main.c)
 target_compile_features(NormalExec_CProject PRIVATE c_std_99)
-target_link_libraries(NormalExec_CProject PRIVATE cmocka-static)
+target_link_libraries(NormalExec_CProject PRIVATE GPCalendarUtils)
+
 
 #Testing executable
 add_executable(Tests_exec
-    ${SOURCE_FILES}
     src/tests_unitaires.c
     src/tests_unitaires.h)
-target_link_libraries(Tests_exec cmocka-static)
 target_compile_features(Tests_exec PUBLIC c_std_99)
+target_link_libraries(Tests_exec PRIVATE GPCalendarUtils)
+target_link_libraries(Tests_exec PRIVATE cmocka-static)
 
 #Permet de setup Ctest
 #Dans la console : cd cmake-build-debug && ctest -C Release
