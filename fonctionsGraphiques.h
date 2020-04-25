@@ -9,9 +9,10 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include "callbacks.h"
-
-void boutonRDV(GtkWidget *wid, GtkGrid grid);
 int create_window(int argc, char *argv[]);
+void boutonRDV(GtkWidget *wid, GtkGrid grid);
+void parcoursJour(Jour j);
+void creerBoutonRDV(GtkWidget * bouton, RendezVous * rdv);
 
 #endif
 
