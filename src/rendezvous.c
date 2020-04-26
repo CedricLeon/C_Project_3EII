@@ -54,8 +54,11 @@ int AnnulerRendezVous(RendezVous * rdv){
         /*Pour cela on parcourt tout les rdv du patient dans le calendrier et on cherche le medecin*/
 
         if(DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) && DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
+            char * tmp = (char*) malloc(100);
+            getNomPatient(tmp, rdv->patient);
             printf("Il n'a pas été possible de retirer le mèdecin %s de la liste de mèdecins consultés du patient %s.\n Donc le rdv n'a pas était annulé.\n",
-                   getNomMedecin(rdv->medecin), getNomPatient(rdv->patient));
+                   getNomMedecin(rdv->medecin), tmp);
+            free((void*) tmp);
         }
 
         //Une fois ceci fait on libère l'instance Date liée au rdv et on free le tout
