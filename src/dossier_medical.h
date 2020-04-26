@@ -10,19 +10,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct DossierMedical DossierMedical;
+
 struct DossierMedical{
-    Patient * patient;
-    ListMedecin * medecins; //Liste des m�decins consult�s pour ce dossier
-    int nb_medecins;
-    ListOrdonnance * ordonnances;
-    int nb_ordonnances;
-    char * antecedents; //CR des pr�c�dents passage � l'hopital
-    int nb_antecedents;    // idem�
+    ListMedecin* medecins_consultes; //Liste des m�decins consult�s pour ce dossier
+    ListOrdonnance* ordonnances;
+    char ** antecedents; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
 };
 
-DossierMedical * CreerDossier(Patient * patient);   //On y fera les 3 mallocs
-void FreeDossier(DossierMedical * d);                     //Il y aura donc 3 free je pense
+DossierMedical * CreerDossierMedical(Patient * patient);
+void FreeDossierMedical(DossierMedical * d);
 
 void AccesDossier(DossierMedical * d);    //Print toutes les infos je suppose
 void SetPatientDossier(DossierMedical * dm, Patient * patient);

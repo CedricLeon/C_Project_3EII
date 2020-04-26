@@ -76,8 +76,8 @@ static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state){
     Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
     AddMedecinConsultePatient((Patient *) *state, m);
-    ListMedecin_setOnFirst(((Patient *) *state)->medecins_consultes);
-    assert_ptr_equal(ListMedecin_getCurrent(((Patient *) *state)->medecins_consultes), m);
+    ListMedecin_setOnFirst(((Patient *) *state)->dossierMedical->medecins_consultes);
+    assert_ptr_equal(ListMedecin_getCurrent(((Patient *) *state)->dossierMedical->medecins_consultes), m);
 
     DeleteMedecinConsultePatient((Patient *) *state, m);
     DeleteMedecin(m);
@@ -93,7 +93,7 @@ static void testPatient_AddMedecinPatient_handlesMedecinDejaConsulte(void ** sta
 
     assert_int_equal(AddMedecinConsultePatient((Patient *) *state, m), 1);                  //Should print "medecin add au debut de la liste"
     assert_int_equal(AddMedecinConsultePatient((Patient *) *state, m), 0);                  //Should print "cant add, deja consulté"
-    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->medecins_consultes), 0);     //test par principe mais pas très utile
+    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);     //test par principe mais pas très utile
 
     DeleteMedecinConsultePatient((Patient *) *state, m);
     DeleteMedecin(m);
@@ -109,7 +109,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinsEnleve(void ** state
 
     AddMedecinConsultePatient((Patient *) *state, m);
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m), 1);
-    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->medecins_consultes), 1);
+    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 1);
 
     DeleteMedecin(m);
     printf("\n");
@@ -123,7 +123,7 @@ static void testPatient_DeleteMedecinPatient_handlesPasDeMedecin(void ** state){
     Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m),0);
-    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->medecins_consultes), 1);
+    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 1);
 
     DeleteMedecin(m);
     printf("\n");
@@ -141,7 +141,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** st
     //On add pas m2 et on essaye de le delete
 
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m2),0);
-    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->medecins_consultes), 0);
+    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);
 
     DeleteMedecin(m1);
     DeleteMedecin(m2);

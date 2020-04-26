@@ -14,7 +14,7 @@
  */
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char* numero_secu_social){
 
-    Patient * p = (Patient *) malloc(sizeof(Patient));
+    Patient* p = (Patient *) malloc(sizeof(Patient));
     p->nom = nom;
     p->prenom = prenom;
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
@@ -22,9 +22,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->numero_telephone = num_tel;
     p->numero_secu_social = numero_secu_social;
 
-    p->medecins_consultes = (ListMedecin *) malloc(sizeof(struct ListMedecin));
-    ListMedecin_init(p->medecins_consultes);
-
+    p->dossierMedical = CreerDossierMedical(p);
     return p;
 }
 
@@ -34,7 +32,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  */
 void DeletePatient(Patient * patient){
     FreeDate(patient->date_naissance);
-    ListMedecin_free(patient->medecins_consultes);
+    FreeDossierMedical(patient->dossierMedical);
     free((void *) patient);
 }
 
@@ -191,10 +189,10 @@ void getInfoPatient(char* infos, Patient* p){
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
 
     /*On vient tester si le mèdecin n'a pas déjà été consulté si la liste n'est pas vide*/
-    if(!ListMedecin_isEmpty(p->medecins_consultes)){
-        for(ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
-            p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
-            if(ListMedecin_getCurrent(p->medecins_consultes) == medecin){
+    if(!ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
+        for(ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(
+            p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
+            if(ListMedecin_getCurrent(p->dossierMedical->medecins_consultes) == medecin){
                 printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
                 return 0;
             }
@@ -202,19 +200,19 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     }
 
     //Ajout dans le cas où c'est le premier mèdecin consulté (setup avec sentinel_end)
-    if(ListMedecin_isEmpty(p->medecins_consultes)){
-        NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), &(p->medecins_consultes->sentinel_end));
-        p->medecins_consultes->sentinel_begin.next = newNode;
-        p->medecins_consultes->sentinel_end.previous = newNode;
+    if(ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
+        NodeMedecin * newNode = newNodeMedecin(medecin, &(p->dossierMedical->medecins_consultes->sentinel_begin), &(p->dossierMedical->medecins_consultes->sentinel_end));
+        p->dossierMedical->medecins_consultes->sentinel_begin.next = newNode;
+        p->dossierMedical->medecins_consultes->sentinel_end.previous = newNode;
         printf("Le mèdecin est le premier mèdecin consulté par le patient, il a bien été ajouté.\n");
         return 1;
     }
 
     //Ajout au début de la liste du medecin si le patient avait déjà consulté d'autres medecin
-    ListMedecin_setOnFirst(p->medecins_consultes);
-    NodeMedecin * newNode = newNodeMedecin(medecin, &(p->medecins_consultes->sentinel_begin), p->medecins_consultes->current);
-    p->medecins_consultes->sentinel_begin.next = newNode;
-    p->medecins_consultes->current->previous = newNode;
+    ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes);
+    NodeMedecin * newNode = newNodeMedecin(medecin, &(p->dossierMedical->medecins_consultes->sentinel_begin), p->dossierMedical->medecins_consultes->current);
+    p->dossierMedical->medecins_consultes->sentinel_begin.next = newNode;
+    p->dossierMedical->medecins_consultes->current->previous = newNode;
     printf("Le medecin a été ajouté au début de la liste du patient.\n");
     return 1;
 }
@@ -227,20 +225,20 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
 
     //Cas où la liste est vide
-    if(ListMedecin_isEmpty(p->medecins_consultes)){
+    if(ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
         printf("La liste des mèdecins consultés par le patient %s est vide, on ne peut donc pas y retirer le mèdecin %s.\n", p->nom, medecin->nom);
         return 0;
     }
 
     //On cherche si le mèdecin a été consulté par le patient
-    for (ListMedecin_setOnFirst(p->medecins_consultes); !ListMedecin_isOutOfList(
-            p->medecins_consultes); ListMedecin_setOnNext(p->medecins_consultes)) {
+    for (ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(
+            p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
 
         //Si on le trouve on le retire et on quitte la fonction
-        if (ListMedecin_getCurrent(p->medecins_consultes) == medecin) {
-            p->medecins_consultes->current->previous->next = p->medecins_consultes->current->next;
-            p->medecins_consultes->current->next->previous = p->medecins_consultes->current->previous;
-            freeNodeMedecin(p->medecins_consultes, p->medecins_consultes->current);
+        if (ListMedecin_getCurrent(p->dossierMedical->medecins_consultes) == medecin) {
+            p->dossierMedical->medecins_consultes->current->previous->next = p->dossierMedical->medecins_consultes->current->next;
+            p->dossierMedical->medecins_consultes->current->next->previous = p->dossierMedical->medecins_consultes->current->previous;
+            freeNodeMedecin(p->dossierMedical->medecins_consultes, p->dossierMedical->medecins_consultes->current);
             printf("Le mèdecin %s a bien été retiré de la liste des mèdecins consulté par le patient %s.\n", medecin->nom, p->nom);
             return 1;
         }

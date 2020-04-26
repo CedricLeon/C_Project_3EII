@@ -3,38 +3,33 @@
 /**
  * CreerDossier : Creer dynamiquement un objet DossierMedical
  * @param patient : le patient concerne par le dossier=
- * @return le dossier crÈÈ
+ * @return le dossier crÔøΩÔøΩ
  */
-DossierMedical * CreerDossier(Patient * patient){
-    DossierMedical * dm = (DossierMedical *)malloc(sizeof(DossierMedical));
+DossierMedical * CreerDossierMedical(Patient * patient){
+    DossierMedical * dm = (DossierMedical*)malloc(sizeof(DossierMedical));
 
-    dm->patient=patient;
-    dm->medecins=patient->medecins_consultes;
+    dm->medecins_consultes = (ListMedecin*) malloc(sizeof(ListMedecin));
+    ListMedecin_init(dm->medecins_consultes);
 
-    ListMedecin_setOnFirst(dm->medecins);
-    while(ListMedecin_isLast(dm->medecins)!=1){
-        dm->nb_medecins+=1;
-        ListMedecin_setOnNext(dm->medecins);
-    }
-
-    dm->ordonnances=(ListOrdonnance *)malloc(sizeof(ListOrdonnance));
+    dm->ordonnances = (ListOrdonnance*) malloc(sizeof(Ordonnance));
     ListOrdonnance_init(dm->ordonnances);
-    dm->nb_ordonnances=0;
 
-    dm->antecedents="";
-    dm->nb_antecedents=0;
+    //On initialise pas les ant√©c√©dents
 
     return dm;
 }
 
 /**
  * FreeDossier : Free un objet DossierMedical
- * @param dm : le dossier ‡ supprimer
+ * @param dm : le dossier ÔøΩ supprimer
  */
-void FreeDossier(DossierMedical * dm){
-    DeletePatient(dm->patient); //pas s˚re mais pour moi quand tu supprimes le dossier mÈdical d'un patient c'est que ce patient est parti/mort/jsp mais ne doit plus apparaÓtre
+void FreeDossierMedical(DossierMedical * dm){
+    ListMedecin_free(dm->medecins_consultes);
     ListOrdonnance_free(dm->ordonnances); //pareil
+    //Pour les ant√©c√©dents voir comment on les g√®res (Cf si malloc)
     free((void *) dm);
 }
 
-void AccesDossier(DossierMedical * d);
+void AccesDossier(DossierMedical * d){
+
+}
