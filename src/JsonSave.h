@@ -1,16 +1,29 @@
 #ifndef C_PROJECT_JSONSAVE_H
 #define C_PROJECT_JSONSAVE_H
 
-#include <cJSON.h>
-/*
-struct Project
-{
-    // ListMedecin
-    // ListPatient
-    // RendezVous
-    // Calendrier
-}
+//Header Files du Projet
+#include "medecin.h"
+#include "patient.h"
+#include "date.h"
+#include "calendrier.h"
+#include "ordonnance.h"
+#include "dossier_medical.h"
+#include "rendezvous.h"
+#include "calendrier.h"
 
+//Librairie nécessaire à cJSON
+#include <cJSON.h>
+
+typedef struct
+{
+    //Liste de Medecins inscrits dans l'hopital
+    ListMedecin * workingMedecins;
+    //Liste des patients ayant déjà consulté dans cet hopital
+    ListPatient * consultingPatient;
+    //Calendrier global de l'hopitail (pour la V0)
+    Calendrier calendrier;
+}Project;
+/*
 char* jsonSave(Project*)
 {
     Project p;
