@@ -4,7 +4,7 @@
 #include "callbacks.h"
 #include "patient.h"
 
-#define LARGEUR_COLONNE 274
+#define LARGEUR_COLONNE 266
 #define HAUTEUR_PREMIERE_LIGNE 50
 
 
@@ -33,7 +33,7 @@ int create_window(int argc, char *argv[])
 
     gtk_window_set_title(GTK_WINDOW(p_window), "Calendrier");
     gtk_window_set_position (GTK_WINDOW (p_window), GTK_WIN_POS_NONE);
-    gtk_window_resize_to_geometry(p_window, 1600, 900);
+    gtk_window_resize_to_geometry(GTK_WINDOW(p_window), 1600, 900);
     gtk_widget_realize (p_window);
     g_signal_connect(G_OBJECT(p_window), "delete-event", G_CALLBACK(gtk_main_quit), NULL);
 
@@ -47,6 +47,7 @@ int create_window(int argc, char *argv[])
     GtkWidget * boxVendredi = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     GtkWidget * boxSamedi = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
     GtkWidget * boxDimanche = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
+    GtkWidget * boxSupp = gtk_box_new(GTK_ORIENTATION_VERTICAL, 1);
 
     gtk_container_add (GTK_CONTAINER (p_window), box0);
     gtk_container_add (GTK_CONTAINER (box0), boxLundi);
@@ -56,6 +57,8 @@ int create_window(int argc, char *argv[])
     gtk_container_add (GTK_CONTAINER (box0), boxVendredi);
     gtk_container_add (GTK_CONTAINER (box0), boxSamedi);
     gtk_container_add (GTK_CONTAINER (box0), boxDimanche);
+    gtk_container_add (GTK_CONTAINER (box0), boxSupp);
+
 
 
     /*Ajout des jours de la semaine */
@@ -86,6 +89,16 @@ int create_window(int argc, char *argv[])
 
 
 
+    /* Bouton d'ajout de RDV */
+
+    GtkWidget * plusRDV = gtk_button_new_with_label("+");
+    gtk_box_pack_start(GTK_BOX(boxSupp), plusRDV, FALSE, FALSE, 0);
+    gtk_widget_set_size_request(plusRDV, HAUTEUR_PREMIERE_LIGNE, HAUTEUR_PREMIERE_LIGNE);
+
+    g_signal_connect(G_OBJECT(plusRDV), "clicked", G_CALLBACK(cb_clicSurPlus), NULL);
+
+
+
     /*Test d'ajout de Rendez-vous*/
 
     GtkWidget * button1 = gtk_button_new_with_label("rdv1");
@@ -99,6 +112,90 @@ int create_window(int argc, char *argv[])
 
     gtk_widget_show_all(p_window);
     return EXIT_SUCCESS;
+}
+void fenetreRecherchePatient(GtkWidget * widget, gpointer data)
+{
+
+    /*Pour test du transfert de données via g_signal_connect*/
+
+    Medecin * m1 = CreerMedecin("Numéro1", "Docteur", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
+    Medecin * m2 = CreerMedecin("Numéro2", "Docteur", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
+    ListMedecin * l = malloc(sizeof(ListMedecin));
+    ListMedecin_init(l);
+    newNodeMedecin(m1, &l->sentinel_begin, &l->sentinel_end);
+    ListMedecin_setOnFirst(l);
+    newNodeMedecin(m2, l->current, &l->sentinel_end);
+
+
+
+
+    /* Widgets */
+    GtkWidget * window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    GtkWidget * box0 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    GtkWidget * box1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * labelMedecin = gtk_label_new("Médecin : ");
+    GtkWidget * choixMedecin = gtk_combo_box_text_new();
+    GtkWidget * numeroPatient = gtk_label_new("Entrer le numéro de sécurité sociale du patient : ");
+    GtkEntryBuffer * buffer = gtk_entry_buffer_new (NULL, 13);
+    GtkWidget * saisiePatient = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(buffer));
+    GtkWidget * boutonRecherche = gtk_button_new_with_label("Rechercher");
+    const gchar * MedecinSelectionne = NULL;
+
+
+    gtk_entry_set_max_length(GTK_ENTRY(saisiePatient), 13);
+    gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
+    gtk_window_set_title(GTK_WINDOW(window), "Recherche du patient");
+    gtk_window_set_default_size(GTK_WINDOW(window), 700, 500);
+
+    char * tmp = malloc(50);
+    getNomMedecin(tmp, m1);
+    gtk_combo_box_text_prepend(GTK_COMBO_BOX_TEXT(choixMedecin), m1->numero_RPS, tmp);   //A implémenter d'après données projet
+    getNomMedecin(tmp, m2);
+    gtk_combo_box_text_prepend(GTK_COMBO_BOX_TEXT(choixMedecin), m2->numero_RPS, tmp);
+    free(tmp);
+
+    gtk_container_add (GTK_CONTAINER (window), box0);
+    gtk_container_add (GTK_CONTAINER (box0), box1);
+    gtk_container_add (GTK_CONTAINER (box1), labelMedecin);
+    gtk_container_add (GTK_CONTAINER (box1), choixMedecin);
+    gtk_container_add (GTK_CONTAINER (box0), box2);
+    gtk_container_add (GTK_CONTAINER (box2), numeroPatient);
+    gtk_container_add (GTK_CONTAINER (box2), saisiePatient);
+    gtk_container_add (GTK_CONTAINER (box0), box3);
+    gtk_container_add (GTK_CONTAINER (box3), boutonRecherche);
+
+    MedecinSelectionne = gtk_combo_box_get_active_id(GTK_COMBO_BOX(choixMedecin));
+
+    const char ** association = malloc(26);
+    association[0] = (char*)buffer;
+    association[1] = MedecinSelectionne;
+
+    g_signal_connect(G_OBJECT(boutonRecherche), "clicked", G_CALLBACK(cb_recherchePatient), association);
+
+    gtk_widget_show_all(window);
+    free(association);
+
+}
+
+
+void fenetreCreerRDV(){
+
+// A FAIRE
+
+
+
+
+
+}
+
+void fenetreCreerPatient(){
+    //A FAIRE
+
+
+
+
 }
 
 
@@ -115,7 +212,8 @@ void parcoursJour(Jour j)
         /*création bouton */
         GtkWidget * bouton = NULL;
         creerBoutonRDV(bouton, ListRendezVous_getCurrent(j));
-        //attache du bouton à la colonne du jour
+        /*attache du bouton à la colonne du jour */
+
         //en fonction des nomenclatures colonne/jour et de la date du jour
 
 
