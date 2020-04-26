@@ -19,6 +19,8 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
     m->numero_telephone = num_tel;
     m->numero_RPS = num_RPS;
 
+    //On initialise pas les diplomes et les specialites
+
     m->patients_recus = (ListPatient *) malloc(sizeof(struct ListPatient));
     ListPatient_init(m->patients_recus);
 

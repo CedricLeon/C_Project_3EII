@@ -1,22 +1,25 @@
 #ifndef ORDONNANCE_H
 #define ORDONNANCE_H
 
-#include "date.h"
-#include "medecin.h"
 #include "patient.h"
+#include "date.h"
 
-typedef struct{
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+struct Ordonnance{
     Patient * patient;
     Medecin * medecin;
     Date * date_edition;
     Date * date_expiration;
     char * description;
-}Ordonnance;
+};
 
 Ordonnance * CreerOrdonnance(Patient * p, Medecin * m, char * description);
 void DeleteOrdonnance(Ordonnance * o);
 int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description);
-void printOrdonnance(Ordonnance * ordo);
+//void printOrdonnance(Ordonnance * ordo);
 
 /**********************************************************************************************************************/
                                                 /*ListOrdonnance*/
@@ -25,17 +28,18 @@ void printOrdonnance(Ordonnance * ordo);
 /**
  * Structure NodeOrdonnance
  */
-typedef struct NodeOrdonnance{
+typedef struct NodeOrdonnance NodeOrdonnance;
+struct NodeOrdonnance{
     Ordonnance * ordo;
-    struct NodeOrdonnance * previous;
-    struct NodeOrdonnance * next;
-}NodeOrdonnance;
+    NodeOrdonnance * previous;
+    NodeOrdonnance * next;
+};
 
-typedef struct ListOrdonnance{
+struct ListOrdonnance{
     NodeOrdonnance sentinel_begin;
     NodeOrdonnance * current;
     NodeOrdonnance sentinel_end;
-}ListOrdonnance;
+};
 
 NodeOrdonnance * newNodeOrdonnance(Ordonnance * o, NodeOrdonnance * previous, NodeOrdonnance * next);
 void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n);

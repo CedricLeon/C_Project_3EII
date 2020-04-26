@@ -1,12 +1,13 @@
 #ifndef PATIENT_H
 #define PATIENT_H
 
+#include "Structures.h"
+#include "date.h"
+#include "dossier_medical.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "Structures.h"
-#include "date.h"
 
 /**
  * Structure patient représentant un patient qui vient consulté dans l'application
@@ -18,7 +19,7 @@ struct Patient{
     char * adresse_mail;
     char * numero_telephone;
     char * numero_secu_social;
-    struct ListMedecin * medecins_consultes;
+    DossierMedical * dossierMedical;
 };
 
 

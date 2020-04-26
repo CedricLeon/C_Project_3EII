@@ -1,7 +1,14 @@
 #ifndef DOSSIER_MEDICAL_H
 #define DOSSIER_MEDICAL_H
 
+
+//#include "Structures.h"
 #include "ordonnance.h"
+#include "medecin.h"
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct DossierMedical DossierMedical;
 struct DossierMedical{

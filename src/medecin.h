@@ -1,11 +1,11 @@
 #ifndef MEDECIN_H
 #define MEDECIN_H
 
+#include "Structures.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "Structures.h"
 
 /**
  * Structure Medecin représentant un Medecin exercant dans l'hopital
@@ -19,7 +19,6 @@ struct Medecin{
     char * numero_telephone;
     char * numero_RPS;
     struct ListPatient * patients_recus;
-
 };
 
 /*On gerera les specialites, les diplomes et les patients dans d'autres fonctions ce sera plus simple je pense
