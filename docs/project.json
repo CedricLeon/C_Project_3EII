@@ -1,0 +1,128 @@
+{
+    //Liste des mèdecins présents dans l'hopital
+    //la liste de patient que contient ces objets sont juste le num de sécurité sociale des patients qui est unique
+    //On peut ainsi retrouver les liens entre medecin et patient (Cf aussi les pointeur en cJSON : cJSON_AddItemReferenceToArray)
+    "medecins" :
+    [
+        {
+            "nom": "nomMedecin1",
+            "prenom": "prenomMedecin1",
+
+            "specialites":
+            [
+                "speMedecin1"
+            ],
+
+            "diplomes":
+            [
+                "bac",
+                "diplomeMedecin1"
+            ],
+
+            "mail": "mailMedecin1",
+            "tel": "telMedecin1",
+
+            "patients":
+            [
+                //secu social :ID du patient
+                "numSecuPatient1",
+                "numSecuPatient2",
+                "numSecuPatient3"
+            ],
+
+            "rps": "numRPsMedecin1"//ID Medecin
+        },
+        {
+            "nom": "nomMedecin2",
+            "prenom": "prenomMedecin2",
+            "specialites":
+            [
+                "speMedecin2"
+            ],
+            "diplomes":
+            [
+                "bac",
+                "diplomeMedecin2",
+            ],
+            "mail": "mailMedecin2",
+            "tel": "telMedecin2",
+            "patients":
+            [
+                "numSecuPatient4",
+                "numSecuPatient1",
+                "numSecuPatient5"
+            ],
+            "rps": "numRPsMedecin2"
+        },
+
+    ],
+    //Liste des patients présents dans l'hopital
+    //De la même facon que pour les medecins, la liste de medecins qu'il contiennent contient uniquement les numeroRPS des medecins qui sont uniques et servent donc d'ID
+    "patients" :
+    [
+        {
+            "nom": "nomPatient1",
+            "prenom": "prenomPatient1",
+            "date": "dateNaissancePatient1",
+            "mail": "mailPatient1",
+            "tel": "telPatient1",
+            "secu": "numSecuPatient1",
+
+            "medecins":
+            [
+                //numero RPS : ID du medecin
+                "numRPsMedecin1",
+                "numRPsMedecin2",
+                "numRPsMedecin3"
+            ],
+
+        },
+        {
+            "nom": "nomPatient2",
+            "prenom": "prenomPatient2",
+            "date": "dateNaissancePatient2",
+            "mail": "mailPatient2",
+            "tel": "telPatient2",
+            "secu": "numSecuPatient2",
+
+            "medecins":
+            [
+                "numRPsMedecin3",
+                "numRPsMedecin5",
+                "numRPsMedecin4"
+            ],
+        },
+    ],
+    //Pour la V0 : un unique calendrier étant une liste de rdv (les rdv n'ont pas d'ID unique, je n'en vois pas l'utilité pour l'instant)
+    "calendrier":
+    [
+        {
+            //Penser à créer un constructeur de RDV qui prend en paramètre heure_fin et pas une duréee : plus simple pour load l'appli
+            "date": "01/01/0001",
+            "heure_debut": "01",
+            "heure_fin": "02",
+            "lieu": "lieuRDV1",
+            "patient": "numSecuPatient1",
+            "medecin": "numRPsMedecin1",
+            "motif": "motifRDV1"
+        }
+        {
+            "date": "02/02/0002",
+            "heure_debut": "02",
+            "heure_fin": "03",
+            "lieu": "lieuRDV2",
+            "patient": "numSecuPatient2",
+            "medecin": "numRPsMedecin2",
+            "motif": "motifRDV2"
+        }
+        {
+            "date": "03/03/0003",
+            "heure_debut": "03",
+            "heure_fin": "04",
+            "lieu": "lieuRDV3",
+            "patient": "numSecuPatient3",
+            "medecin": "numRPsMedecin3",
+            "motif": "motifRDV3"
+        }
+    ]
+}
