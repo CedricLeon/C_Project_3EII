@@ -11,5 +11,6 @@
 #include "fonctionsGraphiques.h"
 
 void cb_create_entry(GtkWidget *p_widget, gpointer user_data);
+void cb_create_entry1(GtkWidget *p_widget, gpointer user_data);
 
 #endif
