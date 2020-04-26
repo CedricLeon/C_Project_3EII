@@ -788,6 +788,7 @@ void ListJour_free(ListJour * l){
     }
     printf("La list de jour %d a été free.\n", l->mois);
     free((void *) l);
+    //SEGFAULTING HERE FROM TEST_UNITAIRES.C
 }
 
 /**
