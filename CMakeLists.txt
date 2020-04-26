@@ -16,14 +16,19 @@ set(SOURCE_FILES
     src/medecin.h
     src/Structures.h
     src/dossier_medical.h
+    src/dossier_medical.c
     src/ordonnance.c
     src/ordonnance.h
     src/rendezvous.c
     src/rendezvous.h
-    src/calendrier.c src/JsonSave.c src/JsonSave.h)
+    src/calendrier.c
+    src/JsonSave.c
+    src/JsonSave.h)
 
+#Linking every librairies used into GPCalendarUtils
 add_library(GPCalendarUtils STATIC ${SOURCE_FILES})
 target_link_libraries(GPCalendarUtils PUBLIC cjson)
+#target_link_libraries(GPCalendarUtils PUBLIC NOM_DE_LA_LIBRAIRIE_STATIC_DE_GTK)
 
 #Normal executable
 add_executable(GPCalendar
@@ -33,8 +38,7 @@ target_link_libraries(GPCalendar PRIVATE GPCalendarUtils)
 
 #Testing executable
 add_executable(GPCalendar_Tests
-    src/tests_unitaires.c
-        )
+    src/tests_unitaires.c)
 target_compile_features(GPCalendar_Tests PUBLIC c_std_99)
 target_link_libraries(GPCalendar_Tests PRIVATE GPCalendarUtils)
 target_link_libraries(GPCalendar_Tests PRIVATE cmocka-static)
