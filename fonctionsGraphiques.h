@@ -14,5 +14,8 @@ void boutonRDV(GtkWidget *wid, GtkGrid grid);
 void parcoursJour(Jour j);
 void creerBoutonRDV(GtkWidget * bouton, RendezVous * rdv);
 
+void fenetreRecherchePatient(GtkWidget * widget, gpointer data);
+void fenetreCreerRDV();
+void fenetreCreerPatient();
 #endif
 
