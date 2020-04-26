@@ -36,7 +36,7 @@ void SetNumeroTelephonePatient(Patient * p, char * tel);
 void setNumeroSecuSocialePatient(Patient * p, char * secu);
 
 /* Getteurs */ /*idem*/
-char * getNomPatient(Patient * p);
+void getNomPatient(char * nom, Patient *p);
 void getDateNaissancePatient(char* infos, Patient* p);
 char * getAdresseMailPatient(Patient * p);
 char * getNumeroTelephonePatient(Patient * p);

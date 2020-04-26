@@ -114,12 +114,10 @@ void SetNumeroSecuSocialePatient(Patient * p, char * secu){
  * @param p : le patient dont on veut le nom
  * @return une chaine de caractères avec le nom et le prénom du patient
  */
-char * getNomPatient(Patient *p){
-    char * nom = "";
+void getNomPatient(char * nom, Patient *p){
     strcpy(nom,p->nom);
     strcat(nom, " ");
     strcat(nom, p->prenom);
-    return nom;
 }
 /**
  * getDateNaissancePatient : met la date de naissance du patient sous forme de char* (pour l'affichage) dans infos
@@ -163,8 +161,9 @@ char * getNumeroSecuSocialePatient(Patient * p){
  */
 void getInfoPatient(char* infos, Patient* p){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(10);
-    strcpy(infos,getNomPatient(p));
+    char * tmp = (char*) malloc(50);
+    getNomPatient(tmp, p);
+    strcpy(infos,tmp);
     strcat(infos,"\nNé(e) le : ");
 
     getDateNaissancePatient(tmp, p);
