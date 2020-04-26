@@ -98,6 +98,7 @@ void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
+    DeleteOrdonnance(n->ordo);
     free((void*) n);
 }
 
