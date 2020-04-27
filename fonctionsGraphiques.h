@@ -15,7 +15,7 @@ void parcoursJour(Jour j);
 void creerBoutonRDV(GtkWidget * bouton, RendezVous * rdv);
 
 void fenetreRecherchePatient(GtkWidget * widget, gpointer data);
-void fenetreCreerRDV();
-void fenetreCreerPatient();
+void fenetreCreerRDV(GtkWidget * widget, gpointer data);
+void fenetreCreerPatient(GtkWidget * widget, gpointer data);
 #endif
 
