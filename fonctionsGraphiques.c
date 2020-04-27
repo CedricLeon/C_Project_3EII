@@ -120,6 +120,7 @@ void fenetreRecherchePatient(GtkWidget * widget, gpointer data)
 
     Medecin * m1 = CreerMedecin("Numéro1", "Docteur", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
     Medecin * m2 = CreerMedecin("Numéro2", "Docteur", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
+    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient", "numSecu");
     ListMedecin * l = malloc(sizeof(ListMedecin));
     ListMedecin_init(l);
     newNodeMedecin(m1, &l->sentinel_begin, &l->sentinel_end);
@@ -172,7 +173,7 @@ void fenetreRecherchePatient(GtkWidget * widget, gpointer data)
     association[0] = (char*)buffer;
     association[1] = MedecinSelectionne;
 
-    g_signal_connect(G_OBJECT(boutonRecherche), "clicked", G_CALLBACK(cb_recherchePatient), association);
+    g_signal_connect(G_OBJECT(boutonRecherche), "clicked", G_CALLBACK(cb_recherchePatient), p1);
 
     gtk_widget_show_all(window);
     free(association);
@@ -180,12 +181,121 @@ void fenetreRecherchePatient(GtkWidget * widget, gpointer data)
 }
 
 
-void fenetreCreerRDV(){
+void fenetreCreerRDV(GtkWidget * widget, gpointer data){
 
-// A FAIRE
+    int i =0;
+
+    /* Widgets */
+    GtkWidget * window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    GtkWidget * box0 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 20);
+    GtkWidget * box1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box4 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box5 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box6 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box7 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box8 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,50);
+    GtkWidget * box9 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,40);
+    GtkWidget * box10 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * box11 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+    GtkWidget * labelHaut = gtk_label_new("Patient trouvé dans la base de données\n");
+    GtkWidget * labelNom = gtk_label_new("\tNom : ");
+    GtkWidget * labelPrenom = gtk_label_new("\tPrénom : ");
+    GtkWidget * labelDdN = gtk_label_new("\tDate de Naissance : ");
+    GtkWidget * labelNumSS = gtk_label_new("\tNuméro de Sécurité Sociale : ");
+    GtkWidget * ligne = gtk_label_new("____________________________________\n");
+    GtkWidget * labelRDV = gtk_label_new("\tRendez-vous : ");
+    GtkWidget * labelDate = gtk_label_new("\t Choix de la date : ");
+    GtkWidget * choixJour = gtk_combo_box_text_new();
+    GtkWidget * choixMois = gtk_combo_box_text_new();
+    GtkWidget * choixAnnee = gtk_combo_box_text_new();
+    GtkWidget * choixHeure = gtk_combo_box_text_new();
+    GtkWidget * choixDuree = gtk_combo_box_text_new();
+    GtkWidget * labelHeure = gtk_label_new("\t Choix de l'heure : ");
+    GtkWidget * labelDuree = gtk_label_new("\t Choix de la durée : ");
+
+//    char* nom = malloc(50);
+//    getNomPatient(nom, data);
+//    GtkWidget * labelNomPatient = gtk_label_new(nom);
+//    free(nom);
 
 
 
+
+    /* Paramètres graphiques des widgets */
+    gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
+    gtk_window_set_title(GTK_WINDOW(window), "Création d'un rendez-vous");
+    gtk_window_set_default_size(GTK_WINDOW(window), 700, 500);
+    gtk_widget_set_hexpand(labelHaut, TRUE);
+    gtk_widget_set_halign(labelHaut, GTK_ALIGN_CENTER);
+    gtk_label_set_justify(GTK_LABEL(labelHaut), GTK_JUSTIFY_CENTER);
+    gtk_widget_set_hexpand(ligne, TRUE);
+    gtk_widget_set_halign(ligne, GTK_ALIGN_CENTER);
+    gtk_label_set_justify(GTK_LABEL(ligne), GTK_JUSTIFY_CENTER);
+
+
+
+
+    /* Listes déroulantes  A FINIR */
+        /* Liste jours */
+//    char j[0] = "";
+//    for(i=1; i<32; i++){
+//        j[0]=(char)i;
+//        gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixJour),j,j);
+//    }
+
+        /* Liste Mois */
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "1","Janvier");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "2","Février");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "3","Mars");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "4","Avril");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "5","Mai");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "6","Juin");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "7","Juillet");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "8","Août");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "9","Septembre");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "10","Octobre");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "11","Novembre");
+    gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(choixMois), "12","Décembre");
+
+        /* Liste Années */
+        /* Liste Heures */
+        /* Liste Durées */
+
+
+
+    /* Ajout à la fenêtre */
+    gtk_container_add (GTK_CONTAINER (window), box0);
+    gtk_container_add (GTK_CONTAINER (box0), box1);
+    gtk_container_add (GTK_CONTAINER (box0), box2);
+    gtk_container_add (GTK_CONTAINER (box0), box3);
+    gtk_container_add (GTK_CONTAINER (box0), box4);
+    gtk_container_add (GTK_CONTAINER (box0), box5);
+    gtk_container_add (GTK_CONTAINER (box0), box6);
+    gtk_container_add (GTK_CONTAINER (box0), box7);
+    gtk_container_add (GTK_CONTAINER (box0), box8);
+    gtk_container_add (GTK_CONTAINER (box0), box9);
+    gtk_container_add (GTK_CONTAINER (box0), box10);
+    gtk_container_add (GTK_CONTAINER (box0), box11);
+    gtk_container_add (GTK_CONTAINER (box1), labelHaut);
+    gtk_container_add (GTK_CONTAINER (box2), labelNom);
+    gtk_container_add (GTK_CONTAINER (box3), labelPrenom);
+    gtk_container_add (GTK_CONTAINER (box4), labelDdN);
+    gtk_container_add (GTK_CONTAINER (box5), labelNumSS);
+    gtk_container_add (GTK_CONTAINER (box6), ligne);
+    gtk_container_add (GTK_CONTAINER (box7), labelRDV);
+    gtk_container_add (GTK_CONTAINER (box8), labelDate);
+    gtk_container_add (GTK_CONTAINER (box8), choixJour);
+    gtk_container_add (GTK_CONTAINER (box8), choixMois);
+    gtk_container_add (GTK_CONTAINER (box8), choixAnnee);
+    gtk_container_add (GTK_CONTAINER (box9), labelHeure);
+    gtk_container_add (GTK_CONTAINER (box9), choixHeure);
+    gtk_container_add (GTK_CONTAINER (box9), labelDuree);
+    gtk_container_add (GTK_CONTAINER (box9), choixDuree);
+
+
+    gtk_widget_show_all(window);
 
 
 }
