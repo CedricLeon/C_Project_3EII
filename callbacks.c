@@ -66,4 +66,13 @@ void cb_recherchePatient(GtkWidget * widget, gpointer data){
 
 }
 
+void cb_creationPatient(GtkWidget * widget, gpointer data){
+    //CreerPatient();
+    fenetreCreerRDV(widget,data);
 
+}
+
+
+void cb_creationRDV(GtkWidget * widget, gpointer data){
+    //CreerRendezVous();
+}
