@@ -11,7 +11,7 @@ DossierMedical * CreerDossierMedical(Patient * patient){
     dm->medecins_consultes = (ListMedecin*) malloc(sizeof(ListMedecin));
     ListMedecin_init(dm->medecins_consultes);
 
-    dm->ordonnances = (ListOrdonnance*) malloc(sizeof(Ordonnance));
+    dm->ordonnances = (ListOrdonnance*) malloc(sizeof(ListOrdonnance));
     ListOrdonnance_init(dm->ordonnances);
 
     //On initialise pas les antécédents
