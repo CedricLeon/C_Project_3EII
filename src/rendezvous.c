@@ -32,9 +32,8 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
  * @param rdv : le rdv à free
  */
 void FreeRendezVous(RendezVous * rdv){
-    printf("FreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+    printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
     FreeDate(rdv->date);
-    printf("\nHeure début rdv : %2.1f \n",rdv->heure_debut);
     free((void *) rdv);         //Apparement le rdv est déjà free mais je sais pas où ???
 }
 

@@ -58,7 +58,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
 
-        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        //Ici on recréer une date au lieu de définir la date du jour comme la date du premier rdv quil contient
         // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
         // le 1er rdv. C'est aussi plus simple pour les fonctions free
         Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
@@ -158,7 +158,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
  */
 void freeCalendrier(Calendrier c){
 
-    printf("\n Entrée dans FreeCalendrier() :\n");
+    printf("\n Entrée dans FreeCalendrier() :\n\n");
     ListAnnee_free(c);
 
     //la partie qui suit est commentée car elle parcourait tout le calendrier et appellait les fonctions freeAnnee/Mois/etc..
@@ -572,14 +572,18 @@ void freeNodeRendezVous(ListRendezVous * l, NodeRendezVous * n){
     //C'est ici qu'on vient free les rdv.
     //Pour l'instant cette fonction n'est appellée que par ListRendezVous_free() qui est uniquement appellée par free_calendrier()
 
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListRendezVous_setOnPrevious(l);
     //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
+    printf("\t\t\t\tfreeNodeRendezVous : appel de FreeRendezVous.\n");
     FreeRendezVous(n->rdv);
     free((void *) n);
+    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
+    ListRendezVous_setOnFirst(l);
+    ListRendezVous_setOnPrevious(l);
+    printf("\t\t\t\tfreeNodeRendezVous : fin de la fonction.\n");
 }
 
 /**
@@ -605,12 +609,18 @@ void ListRendezVous_init(ListRendezVous * l, Date * date){
  * @param l : la liste de rendezVous à free
  */
 void ListRendezVous_free(ListRendezVous * l){
-    if (l!= NULL){
-        printf("Entrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
+    if (l == NULL){
+        printf("ListRendezVous_free : le jour est NULL !!!\n");
+    }else if ( ListRendezVous_isEmpty(l)){
+        printf("ListRendezVous_free : la liste est vide, ce n'est pas normal !!!\n");
+    }else{
+        printf("\t\t\tEntrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
         for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
+            printf("\t\t\t\tListRendezVous_free : début boucle for \n");
             freeNodeRendezVous(l, l->current);
+            if(l->current == &(l->sentinel_begin)) printf("\t\t\t\tOn est sur sentinel begin : normal\n");
         }
-        printf("Le jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
+        printf("\t\t\tLe jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
         FreeDate(l->date);
         free((void *) l);
     }
@@ -685,7 +695,7 @@ void ListRendezVous_setOnLast(ListRendezVous * l){
  * @param l : la liste
  */
 void ListRendezVous_setOnNext(ListRendezVous * l){
-    if(l != NULL && !ListRendezVous_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -694,7 +704,7 @@ void ListRendezVous_setOnNext(ListRendezVous * l){
  * @param l : la liste
  */
 void ListRendezVous_setOnPrevious(ListRendezVous * l){
-    if(l != NULL && !ListRendezVous_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }
@@ -746,14 +756,24 @@ NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next){
  * @param n : le node en question
  */
 void freeNodeJour(ListJour * l, NodeJour * n){
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListJour_setOnPrevious(l);
+
     //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
+
+    char * tmp = (char*) malloc(10);
+    getInfosDate(tmp, l->current->jour->date);
+    printf("\t\t\tfreeNodeJour : Appel de ListRendezVous_free pourle jour : %s\n", tmp);
+    free((void*) tmp);
+
     ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
+
+    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
+    ListJour_setOnFirst(l);
+    ListJour_setOnPrevious(l);
 }
 
 /**
@@ -779,16 +799,21 @@ void ListJour_init(ListJour * l, int mois){
  * @param l : la liste de Jour à free
  */
 void ListJour_free(ListJour * l){
-    printf("Entrée dans la fonction ListJour_Free().\n");
-    if (l!= NULL && !ListJour_isEmpty(l)){
+    if (l == NULL){
+        printf("ListJour_free : le jour est NULL !!!\n");
+    }else if ( ListJour_isEmpty(l)){
+        printf("ListJour_free : la liste est vide, ce n'est pas normal !!!\n");
+    }else{
+        printf("\t\tEntrée dans la fonction ListJour_Free().\n");
         for(ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
+            printf("\t\t\tListJour_free : début boucle for\n");
             freeNodeJour(l, l->current);
-            printf("NodeJour free.\n");
+            if(l->current == &(l->sentinel_begin)) printf("\t\t\tOn est sur sentinel_begin : normal\n");
         }
+        printf("\t\tLe mois %d a été free.\n", l->mois);
+        free((void *) l);
+        //SEGFAULTING HERE FROM TEST_UNITAIRES.C
     }
-    printf("La list de jour %d a été free.\n", l->mois);
-    free((void *) l);
-    //SEGFAULTING HERE FROM TEST_UNITAIRES.C
 }
 
 /**
@@ -860,7 +885,7 @@ void ListJour_setOnLast(ListJour * l){
  * @param l : la liste
  */
 void ListJour_setOnNext(ListJour * l){
-    if(l != NULL && !ListJour_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -869,7 +894,7 @@ void ListJour_setOnNext(ListJour * l){
  * @param l : la liste
  */
 void ListJour_setOnPrevious(ListJour * l){
-    if(l != NULL && !ListJour_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }
@@ -919,14 +944,19 @@ NodeMois * newNodeMois(Mois mois , NodeMois * previous, NodeMois * next){
  * @param n : le node en question
  */
 void freeNodeMois(ListMois * l, NodeMois * n){
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListMois_setOnPrevious(l);
+
     //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
+    printf("\t\tfreeNodeMois : Appel de ListJour_free pour le mois : %d\n", l->current->mois->mois);
     ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
+
+    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
+    ListMois_setOnFirst(l);
+    ListMois_setOnPrevious(l);
 }
 
 /**
@@ -952,14 +982,19 @@ void ListMois_init(ListMois * l, int annee){
  * @param l : la liste de Mois à free
  */
 void ListMois_free(ListMois * l){
-    printf("Entrée dans ListMois_free.\n");
-    if (l!= NULL && !ListMois_isEmpty(l)){
+    if (l == NULL){
+        printf("ListMois_free : le jour est NULL !!!\n");
+    }else if ( ListMois_isEmpty(l)){
+        printf("ListMois_free : la liste est vide, ce n'est pas normal !!!\n");
+    }else{
+        printf("\tEntrée dans ListMois_free.\n");
         for(ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
+            printf("\t\tListMois_free : debut boucle for\n");
             freeNodeMois(l, l->current);
-            printf("NodeMois free.\n");
+            printf("\t\tNodeMois free (fin boucle for).\n");
         }
     }
-    printf("La liste de mois %d a bien été free.\n", l->annee);
+    printf("\tLa liste de mois %d a bien été free.\n", l->annee);
     free((void *) l);
 }
 
@@ -1032,7 +1067,7 @@ void ListMois_setOnLast(ListMois * l){
  * @param l : la liste
  */
 void ListMois_setOnNext(ListMois * l){
-    if(l != NULL && !ListMois_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -1041,7 +1076,7 @@ void ListMois_setOnNext(ListMois * l){
  * @param l : la liste
  */
 void ListMois_setOnPrevious(ListMois * l){
-    if(l != NULL && !ListMois_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }
@@ -1103,14 +1138,18 @@ NodeAnnee * newNodeAnnee(Annee annee , NodeAnnee * previous, NodeAnnee * next){
  * @param n : le node en question
  */
 void freeNodeAnnee(ListAnnee * l, NodeAnnee * n){
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListAnnee_setOnPrevious(l);
     //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
+    printf("\tfreeNodeAnnee : Appel de ListMois_free() pour l'année : %d\n", l->current->annee->annee);
     ListMois_free(n->annee);   //On free l'annee (donc la liste de listes de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
     free((void *) n);
+
+    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
+    ListAnnee_setOnFirst(l);
+    ListAnnee_setOnPrevious(l);
 }
 
 /**
@@ -1134,11 +1173,16 @@ void ListAnnee_init(ListAnnee * l){
  * @param l : la liste de Annee à free
  */
 void ListAnnee_free(ListAnnee * l){
-    printf("Entrée dans ListAnnee_free.\n");
-    if (l!= NULL && !ListAnnee_isEmpty(l)){
+    if (l == NULL){
+        printf("ListAnnee_free : le jour est NULL !!!\n");
+    }else if ( ListAnnee_isEmpty(l)){
+        printf("ListAnnee_free : la liste est vide, ce n'est pas normal !!!\n");
+    }else{
+        printf("Entrée dans ListAnnee_free.\n");
         for(ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
+            printf("\tListAnnee_free : debut boucle for\n");
             freeNodeAnnee(l, l->current);
-            printf("NodeAnnee free.\n");
+            printf("\tNodeAnnee free (fin boucle for.\n");
         }
     }
     printCalendrier(l); // On vérifie que le calendrier est vide
@@ -1215,7 +1259,7 @@ void ListAnnee_setOnLast(ListAnnee * l){
  * @param l : la liste
  */
 void ListAnnee_setOnNext(ListAnnee * l){
-    if(l != NULL && !ListAnnee_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -1224,7 +1268,7 @@ void ListAnnee_setOnNext(ListAnnee * l){
  * @param l : la liste
  */
 void ListAnnee_setOnPrevious(ListAnnee * l){
-    if(l != NULL && !ListAnnee_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }
