@@ -1,6 +1,16 @@
 #include "JsonSave.h"
 
-char* jsonSave(Project* p)
+/**
+ * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
+ */
+
+
+/**
+ * jsonSave : Fonction permettant de sauvegarder un objet projet dans un fichier .json à l'aide de la librairie cjson
+ * @param p : l'instance de projet à save
+ * @return un string qu'il faudra écrire dans un fichier texte
+ */
+char* jsonSave(Project* project)
 {
     //Création des variables qu'on va utiliser
     char* string = NULL;
@@ -10,31 +20,79 @@ char* jsonSave(Project* p)
 
     //On crée un objet cJSOn qu'on deletera après avoir print son contenu dans un string
     cJSON* projectJson = cJSON_CreateObject();
-    if (cJSON_AddStringToObject(projectJson, "nom", p->nom) == NULL)  return NULL;
+    //On y ajoute le nom du projet
+    if (cJSON_AddStringToObject(projectJson, "nom", project->nom) == NULL)  goto end;
 
     //On ajoute à notre objet cJSON un tableau appellé Working Medecins
     listMedecinJson = cJSON_AddArrayToObject(projectJson, "Working Medecins");
-    if(listMedecinJson == NULL)                                             return NULL;
+    if(listMedecinJson == NULL)                                             goto end;
     //On vient écrire dans cet objet tout les medecins
-    ListMedecin_jsonSave(listMedecinJson, p->workingMedecins);
+    if(ListMedecin_jsonSave(listMedecinJson, project->workingMedecins) != 1) goto end;
 
-    //On ajoute à notre objet cJSON un tableau appellé Working Medecins
+    //On ajoute à notre objet cJSON un tableau appellé Consulting Patients
     listPatientJson = cJSON_AddArrayToObject(projectJson, "Consulting Patients");
-    if(listPatientJson == NULL)                                             return NULL;
+    if(listPatientJson == NULL)                                             goto end;
     //On vient écrire dans cet objet tout les patients
-    ListPatient_jsonSave(listPatientJson, p->consultingPatient);
+    ListPatient_jsonSave(listPatientJson, project->consultingPatient);
 
+    //On ajoute à notre objet cJSON un tableau de drv appellé Hospital Calendar
     calendrierJson = cJSON_AddArrayToObject(projectJson, "Hospital Calendar");
-    if(calendrierJson == NULL)                                             return NULL;
-    Calendrier_jsonSave(calendrierJson, p->calendrier);
+    if(calendrierJson == NULL)                                             goto end;
+    Calendrier_jsonSave(calendrierJson, project->calendrier);
 
+    //Une fois tout ajouté on écrit notre objet cjson dans un char* et on le return
     string = cJSON_Print(projectJson);
-    if (string == NULL)                                        fprintf(stderr, "Failed to print the project.\n");
+    if (string == NULL) {
+        fprintf(stderr, "Failed to print the project.\n");
+    }
+
+    end: //Plus lisible d'utiliser les goto car sinon il faut mettre cJSON_Delete(projectJson) dans toutes les boucles if
+
     cJSON_Delete(projectJson); //cette fonction appelle cJSON_Delete(listMedecinJson); et cJSON_Delete(listPatientJson);
                                // puisque ces objets composent projectJson
     return string;
 }
 
+/**
+ * ListMedecin_jsonSave : fonction qui écrit dans un objet cJson une liste de mèdecins
+ * Chaque mèdecin possédant une liste de patients recus, on écrira uniquement l'ID de ces patients (aka leur numéro de sécurité social) dans cette liste
+ * @param listMedecinJson : l'objet cJson dans lequel on écrit la liste de mèdecin, c'est un tableau
+ * @param l : la liste de mèdecins à écrire
+ * @return 1 si tout s'est bien passé
+ *         0 si une des étapes a échoué
+ */
+int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
+
+    for(ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)){
+
+        cJSON* medecin = cJSON_CreateObject();
+        cJSON_AddItemToArray(listMedecinJson, medecin); //On le fait juste après la création de l'objet pour ne pas avoir
+                                                        //de LEAK MEMORY si l'y=un des ajouts qui suit fail et du coup
+                                                        //quitte la fonction avant d'avoir ajouter l'objet au tableau
+
+        if (cJSON_AddStringToObject(medecin, "nom", ListMedecin_getCurrent(l)->nom) == NULL)  return 0;
+        if (cJSON_AddStringToObject(medecin, "prenom", ListMedecin_getCurrent(l)->prenom) == NULL) return 0;
+        if (cJSON_AddStringToObject(medecin, "mail", ListMedecin_getCurrent(l)->adresse_mail) == NULL) return 0;
+        if (cJSON_AddStringToObject(medecin, "tel", ListMedecin_getCurrent(l)->numero_telephone) == NULL) return 0;
+        if (cJSON_AddStringToObject(medecin, "rps", ListMedecin_getCurrent(l)->numero_RPS) == NULL) return 0;
+
+        /**
+         * On gère la liste des patients recus : on crée un tableau, on parcourt la liste des patients recus et à chaque
+         * patient on crée un string avec son numéro de sécurité sociale puis on ajoute ce string au tableau que l'on
+         * vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son mèdecin
+         */
+        cJSON* patientsRecus = cJSON_CreateArray();
+        cJSON_AddItemToArray(medecin, patientsRecus);   //idem
+
+        for(ListPatient_setOnFirst(l->current->medecin->patients_recus); !ListPatient_isOutOfList(l->current->medecin->patients_recus); ListPatient_setOnNext(l->current->medecin->patients_recus)){
+            cJSON* IDpatient = cJSON_CreateString(ListPatient_getCurrent(l->current->medecin->patients_recus)->numero_secu_social);
+            if(IDpatient == NULL) return 0;
+            cJSON_AddItemToArray(patientsRecus, IDpatient);
+        }
+        //Là normalement on a tout ajouté à notre mèdecin on peut passer au suivant
+    }
+    return 1;
+}
 
 /**
  * ListPatient_jsonSave : fonction qui écrit dans un objet cJson une liste de patient
@@ -115,9 +173,14 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
     }
     return 1;
 }
+int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
+    return 1;
+}
 
 
-//NOTE: Returns a heap allocated string, you are required to free it after use.
+/**
+ * Exemple de cJSON sur leur git
+ */
 char *create_monitor_with_helpers(void)
 {
     const unsigned int resolution_numbers[3][2] = {

@@ -27,9 +27,9 @@ typedef struct
 }Project;
 
 
-void ListMedecin_jsonSave(cJSON* object, ListMedecin* l);
+int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l);
 int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l);
-void Calendrier_jsonSave(cJSON* object, Calendrier c);
+int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c);
 
 char* jsonSave(Project* p);
 int jsonLoad(Project*, const char*);
