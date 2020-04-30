@@ -14,7 +14,10 @@
 struct DossierMedical{
     ListMedecin* medecins_consultes; //Liste des m�decins consult�s pour ce dossier
     ListOrdonnance* ordonnances;
-    char ** antecedents; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
+    /**
+     * Pas d'antécédents pour l'instant (pas implémenté dans dossier médical.c et dans Json.c
+     */
+    //char ** antecedents; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
 };
 
 DossierMedical * CreerDossierMedical(Patient * patient);

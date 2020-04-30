@@ -570,7 +570,7 @@ int main(void){
             //tests des fonctions de création d'instances
             cmocka_unit_test(testPatient_creerPatient),
 
-            //tests des setteurs de la structure Patient    : un peu inutile
+            //tests des setteurs de la structure Patient    : inutile
             cmocka_unit_test(testPatient_setNomPatient),
             cmocka_unit_test(testPatient_setPrenomPatient),
             cmocka_unit_test(testPatient_setDateNaissancePatient),
