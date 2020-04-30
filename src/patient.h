@@ -27,6 +27,8 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
 void DeletePatient(Patient * patient);
 
 void AffichePatient(Patient * p); //Utilisée pour le debugging
+void AccesDossierMedical(Patient * p);
+void PrintListOrdonnances(Patient* p);
 
 /* Setteurs */ /*en vrai ça sert à rien*/
 void SetNomPatient(Patient * p, char * nom);

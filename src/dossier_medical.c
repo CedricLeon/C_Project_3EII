@@ -30,21 +30,3 @@ void FreeDossierMedical(DossierMedical * dm){
     free((void *) dm);
 }
 
-/**
-* AccesDossier : Accede au dossier du patient et l'affiche
-* @param p : le patient dont on veut acceder au dossier
-*/
-void AccesDossier(Patient * p){
-    char * nom;
-    DossierMedical * d = p->dossierMedical;
-    printf("Medecins consultés : ");
-    for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
-        getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
-        printf("%s ; ", nom);
-    }
-    printf("\n\n Ordonnances : ");
-    for(ListOrdonnance_setOnFirst(d->ordonnances); !ListOrdonnance_isOutOfList(d->ordonnances); ListOrdonnance_setOnNext(d->ordonnances)) {
-        printOrdonnance(ListOrdonnance_getCurrent(d->ordonnances));
-        printf("\n\n");
-    }
-}

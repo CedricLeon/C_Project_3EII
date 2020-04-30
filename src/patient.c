@@ -47,6 +47,38 @@ void AffichePatient(Patient * p){
     printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
 }
 
+/**
+* AccesDossier : Accede au dossier du patient et l'affiche
+* @param p : le patient dont on veut acceder au dossier
+*/
+void AccesDossier(Patient * p){
+    char* nom = (char*) malloc(100);
+    DossierMedical * d = p->dossierMedical;
+    printf("Medecins consultés : ");
+    for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
+        getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
+        printf("%s ; ", nom);
+    }
+    free((void*) nom);
+    PrintListOrdonnances(p);
+}
+
+void PrintListOrdonnances(Patient* p){
+
+    ListOrdonnance * lo = p->dossierMedical->ordonnances;
+
+    printf("Liste d'ordonnance du patient %s %s :\n\n", p->nom, p->prenom);
+
+    for(ListOrdonnance_setOnFirst(lo); !ListOrdonnance_isOutOfList(lo); ListOrdonnance_setOnNext(lo)){
+        Ordonnance* ordo = ListOrdonnance_getCurrent(lo);
+        printf("Ordonnance faite le %d/%d/%d \n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
+        printf("Patient : %s %s\n", p->nom, p->prenom);
+        printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
+        printf("Prescription : \n %s \n", ordo->description);
+        printf("A r�cup�rer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+    }
+}
+
 /********************************************************************************************************************/
                                             /*Setteurs de Patient*/
 /*******************************************************************************************************************/
