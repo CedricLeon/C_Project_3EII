@@ -64,12 +64,11 @@ If you don't have CMake you can run the following commands (Credits **OlivierLdf
 
 ````bash
 sudo apt-get install libssl-dev
-wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc2/cmake-
-3.17.0-rc2.tar.gz
+wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc2/cmake-3.17.0-rc2.tar.gz
 tar zxvf cmake-3.17.0-rc2.tar.gz
-cd cmake-3.17.0-rc2.tar.gz
+cd cmake-3.17.0-rc2
 ./configure
-make -j
+make -j2
 sudo make install
 # Restart terminal
 ````

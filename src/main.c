@@ -8,12 +8,6 @@
 #include "rendezvous.h"
 #include "calendrier.h"
 
-//Librairies nécessaire à CMocka
-#include <stdarg.h>
-#include <stddef.h>
-#include <setjmp.h>
-#include <cmocka.h>
-
 //Librairies standards de C
 #include <string.h>
 #include <stdio.h>
