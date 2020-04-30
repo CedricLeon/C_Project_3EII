@@ -1,26 +1,28 @@
 {
+    "nom" : "NomDuProjet",
     //Liste des mèdecins présents dans l'hopital
     //la liste de patient que contient ces objets sont juste le num de sécurité sociale des patients qui est unique
     //On peut ainsi retrouver les liens entre medecin et patient (Cf aussi les pointeur en cJSON : cJSON_AddItemReferenceToArray)
-    "medecins" :
+    "Working Medecins" :
     [
         {
             "nom": "nomMedecin1",
             "prenom": "prenomMedecin1",
 
-            "specialites":
-            [
-                "speMedecin1"
-            ],
+            //"specialites":
+            //[
+            //    "speMedecin1"
+            //],
 
-            "diplomes":
-            [
-                "bac",
-                "diplomeMedecin1"
-            ],
+            //"diplomes":
+            //[
+            //    "bac",
+            //    "diplomeMedecin1"
+            //],
 
             "mail": "mailMedecin1",
             "tel": "telMedecin1",
+            "rps": "numRPsMedecin1",//ID Medecin
 
             "patients":
             [
@@ -28,73 +30,111 @@
                 "numSecuPatient1",
                 "numSecuPatient2",
                 "numSecuPatient3"
-            ],
-
-            "rps": "numRPsMedecin1"//ID Medecin
+            ]
         },
         {
             "nom": "nomMedecin2",
             "prenom": "prenomMedecin2",
-            "specialites":
-            [
-                "speMedecin2"
-            ],
-            "diplomes":
-            [
-                "bac",
-                "diplomeMedecin2",
-            ],
+
+            //"specialites":
+            //[
+            //   "speMedecin2"
+            //],
+            //"diplomes":
+            //[
+            //    "bac",
+            //    "diplomeMedecin2",
+            //],
             "mail": "mailMedecin2",
             "tel": "telMedecin2",
+            "rps": "numRPsMedecin2",
+
             "patients":
             [
                 "numSecuPatient4",
                 "numSecuPatient1",
                 "numSecuPatient5"
-            ],
-            "rps": "numRPsMedecin2"
+            ]
         },
 
     ],
     //Liste des patients présents dans l'hopital
     //De la même facon que pour les medecins, la liste de medecins qu'il contiennent contient uniquement les numeroRPS des medecins qui sont uniques et servent donc d'ID
-    "patients" :
+    "Consulting Patients" :
     [
         {
             "nom": "nomPatient1",
             "prenom": "prenomPatient1",
-            "date": "dateNaissancePatient1",
+            "dateNaissance": "dateNaissancePatient1",
             "mail": "mailPatient1",
             "tel": "telPatient1",
-            "secu": "numSecuPatient1",
+            "numeroSecuriteSociale": "numSecuPatient1",
 
-            "medecins":
+            //On entre dans le dossier médical du patient
+            "medecinsConsultes":
             [
                 //numero RPS : ID du medecin
                 "numRPsMedecin1",
                 "numRPsMedecin2",
                 "numRPsMedecin3"
             ],
+            "ordonnances":
+            [
+                {
+                    "IDpatient" : "numSecuPatient1",
+                    "IDmedecin" : "numRPsMedecin1",
+                    "date_edition" : "DateEdition1",
+                    "date_expiration" : "DateExpiration1",
+                    "description" : "description1"
+                }
+                {
+                    "IDpatient" : "numSecuPatient1",
+                    "IDmedecin" : "numRPsMedecin2",
+                    "date_edition" : "DateEdition2",
+                    "date_expiration" : "DateExpiration2",
+                    "description" : "description2"
+                }
+            ],
+            //Il n'y a pas d'antécédents pour l'instant
 
         },
         {
             "nom": "nomPatient2",
             "prenom": "prenomPatient2",
-            "date": "dateNaissancePatient2",
+            "dateNaissance": "dateNaissancePatient2",
             "mail": "mailPatient2",
             "tel": "telPatient2",
-            "secu": "numSecuPatient2",
+            "numeroSecuriteSociale": "numSecuPatient2",
 
-            "medecins":
+            //On entre dans le dossier médical du patient
+            "medecinsConsultes":
             [
                 "numRPsMedecin3",
                 "numRPsMedecin5",
                 "numRPsMedecin4"
             ],
+            "ordonnances" :
+            [
+                {
+                    "patient" : "numSecuPatient1",
+                    "medecin" : "numRPsMedecin1",
+                    "date_edition" : "DateEdition1",
+                    "date_expiration" : "DateExpiration1",
+                    "description" : "description1"
+                }
+                {
+                    "patient" : "numSecuPatient1",
+                    "medecin" : "numRPsMedecin2",
+                    "date_edition" : "DateEdition2",
+                    "date_expiration" : "DateExpiration2",
+                    "description" : "description2"
+                }
+            ],
+            //Il n'y a pas d'antécédents pour l'instant
         },
     ],
     //Pour la V0 : un unique calendrier étant une liste de rdv (les rdv n'ont pas d'ID unique, je n'en vois pas l'utilité pour l'instant)
-    "calendrier":
+    "Hospital Calendar":
     [
         {
             //Penser à créer un constructeur de RDV qui prend en paramètre heure_fin et pas une duréee : plus simple pour load l'appli
