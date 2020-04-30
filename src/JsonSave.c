@@ -153,7 +153,6 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
             cJSON* ordonnance = cJSON_CreateObject();
             cJSON_AddItemToArray(listOrdonnances, ordonnance);
 
-            if (cJSON_AddStringToObject(ordonnance, "IDpatient", ListOrdonnance_getCurrent(ordonnancesPatients)->patient->numero_secu_social) == NULL)  return 0;
             if (cJSON_AddStringToObject(ordonnance, "IDmedecin", ListOrdonnance_getCurrent(ordonnancesPatients)->medecin->numero_RPS) == NULL)  return 0;
 
             char* tmp2 = (char*) malloc(10);

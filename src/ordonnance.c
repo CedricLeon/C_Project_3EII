@@ -7,12 +7,11 @@
  * @param description : description de la prescription
  * @return l'ordonnance cr��e
  */
-Ordonnance* CreerOrdonnance(Patient* p, Medecin* m, char* description){
+Ordonnance* CreerOrdonnance(Medecin* m, char* description){
     Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
     Date* d = CreerDateCourante();
     Date* expi = AjoutMoisDate(d, 3);
 
-    o->patient = p;
     o->medecin = m;
     o->description = description;
     o->date_edition = d;
@@ -40,8 +39,7 @@ void DeleteOrdonnance(Ordonnance * o){
  * @return 1 si l'ordonnance a été modifiée
            0 sinon
  */
-int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * description){
-    ordo->patient = p;
+int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
     ordo->medecin = m;
     ordo->description = description;
 
@@ -50,7 +48,7 @@ int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
 
     ordo->date_edition = CreerDateCourante();
     ordo->date_expiration = AjoutMoisDate(ordo->date_edition, 3);
-    if( (ordo->patient == p) && (ordo->medecin == m) && (strcmp(ordo->description, description) == 0)){
+    if( (ordo->medecin == m) && (strcmp(ordo->description, description) == 0)){
         return 1;
     }else{
         return 0;
@@ -63,7 +61,6 @@ int modifierOrdonnance(Ordonnance * ordo, Patient * p, Medecin * m, char * descr
  */
 void printOrdonnance(Ordonnance * ordo){
     printf("Ordonnance faite le %d/%d/%d \n\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
-    printf("Patient : %s %s ", ordo->patient->nom, ordo->patient->prenom);
     printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
     printf("Prescription : \n %s \n", ordo->description);
     printf("A r�cup�rer avant le %d/%d/%d", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);

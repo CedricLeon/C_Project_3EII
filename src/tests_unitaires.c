@@ -489,17 +489,15 @@ static void testDate_DateEgaleshandlesDateNULL(void ** state){
  */
 
 static int setup_Ordonnance(void ** state){
-    Patient* pat = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
     Medecin* med = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
 
-    Ordonnance* ord = CreerOrdonnance(pat, med,"TestDescription");
+    Ordonnance* ord = CreerOrdonnance(med,"TestDescription");
     *state = ord;
     return *state == NULL;
 }
 
 static int teardown_Ordonnance(void ** state){
     //Penser à free le medecin et le patient ici et non dans DeleteOrdonnace !
-    DeletePatient(((Ordonnance *) *state)->patient);
     DeleteMedecin(((Ordonnance *) *state)->medecin);
     DeleteOrdonnance((Ordonnance *) *state);
     return 0;
@@ -510,7 +508,6 @@ static int teardown_Ordonnance(void ** state){
  * @param state
  */
 static void testOrdonnance_creerOrdonnance(void ** state){
-    assert_string_equal(((Ordonnance *) *state)->patient->prenom,"PrenomTestP");
     assert_string_equal(((Ordonnance *) *state)->medecin->nom,"NomTestM");
     assert_string_equal(((Ordonnance *) *state)->description,"TestDescription");
 
@@ -531,11 +528,9 @@ static void testOrdonnance_creerOrdonnance(void ** state){
  * @param state
  */
 static void testOrdonnance_modifierOrdonnance(void ** state){
-    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2010, 06, 19, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
-    DeletePatient(((Ordonnance *)*state)->patient);
     DeleteMedecin(((Ordonnance *)*state)->medecin);
-    assert_int_equal((modifierOrdonnance((Ordonnance *)*state, p2, m2, "description2")),1);
+    assert_int_equal((modifierOrdonnance((Ordonnance *)*state, m2, "description2")),1);
 }
 
 /**********************************************************************************************************************/
