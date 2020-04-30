@@ -97,15 +97,13 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
 
 /**
  * getNomMedecin : retourne le nom et le prénom du Medecin sous forme de char* (pour l'affichage du RDV)
+ * @param nom : la chaine où on veut stocker le nom
  * @param medecin : le Medecin dont on veut le nom
- * @return une chaine de caractères avec le nom et le prénom du Medecin
  */
-char * getNomMedecin(Medecin * medecin){
-    char * nom = "";
-    strcpy(nom,medecin->nom);
+void getNomMedecin(char * nom, Medecin *m){
+    strcpy(nom,m->prenom);
     strcat(nom, " ");
-    strcat(nom, medecin->prenom);
-    return nom;
+    strcat(nom, m->nom);
 }
 /**
  * getAdresseMailMedecin : retourne l'adresse mail du Medecin sous forme de char* (pour l'affichage)
@@ -133,19 +131,17 @@ char * getNumeroRPSMedecin(Medecin * medecin){
 }
 /**
  * getInfoMedecin : retourne une chaine de caractères résumant les attributs du Medecin
+ * @param infos : la chaine où l'on stocke les infos sur le médecin
  * @param medecin : le Medecin dont on veut les informations
- * @return une chaine de caractères avec les informations sur le Medecin
  */
-char * getInfoMedecin(Medecin * medecin){
-    char * info = "";
-    strcpy(info,getNomMedecin(medecin));
-    strcat(info,"\nNuméro RPS : ");
-    strcat(info,getNumeroRPSMedecin(medecin));
-    strcat(info, "\n@ : ");
-    strcat(info, getAdresseMailMedecin(medecin));
-    strcat(info, "\nTel : ");
-    strcat(info, getNumeroTelephoneMedecin(medecin));
-    return info;
+void getInfoMedecin(char * infos, Medecin * medecin){
+    getNomMedecin(infos, medecin);
+    strcat(infos,"\nNuméro RPS : ");
+    strcat(infos,getNumeroRPSMedecin(medecin));
+    strcat(infos, "\n@ : ");
+    strcat(infos, getAdresseMailMedecin(medecin));
+    strcat(infos, "\nTel : ");
+    strcat(infos, getNumeroTelephoneMedecin(medecin));
 }
 
 /********************************************************************************************************************/
