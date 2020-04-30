@@ -33,11 +33,11 @@ void SetAdresseMailMedecin(Medecin * medecin, char * mail);
 void SetNumeroTelephoneMedecin(Medecin * medecin, char * tel);
 void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS);
 
-char * getNomMedecin(Medecin * medecin);
+void getNomMedecin(char* nom, Medecin * m);
 char * getAdresseMailMedecin(Medecin * medecin);
 char * getNumeroTelephoneMedecin(Medecin * medecin);
 char * getNumeroRPSMedecin(Medecin * medecin);
-char * getInfoMedecin(Medecin * medecin);
+void getInfoMedecin(char * infos, Medecin * medecin);
 
 /* Gestion de la liste des patients recus par le medecin*/
 int InitPatientRecusMedecin(Medecin * medecin);
