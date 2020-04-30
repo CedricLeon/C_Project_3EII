@@ -4,10 +4,17 @@
 #include "callbacks.h"
 #include "patient.h"
 
+
 #define LARGEUR_COLONNE 266
 #define HAUTEUR_PREMIERE_LIGNE 50
 
-
+/*fonction bouton rdv en cours*/
+/*void boutonRDV(GtkWidget *button, GtkGrid* grid, gchar* nomRendezVous, gint left, gint top,gint width,gint height)
+{
+   button = gtk_button_new_with_label(nomRendezVous);
+   gtk_grid_attach(grid, button,left,top,width,height);
+   g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_create_entry), NULL);
+}*/
 
 
 void boutonRDV(GtkWidget *wid, GtkGrid grid)
