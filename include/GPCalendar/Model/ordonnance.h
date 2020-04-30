@@ -1,8 +1,8 @@
 #ifndef ORDONNANCE_H
 #define ORDONNANCE_H
 
-#include "date.h"
-#include "medecin.h"
+#include "GPCalendar/Model/date.h"
+#include "GPCalendar/Model/medecin.h"
 
 #include <string.h>
 #include <stdlib.h>

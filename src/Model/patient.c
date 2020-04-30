@@ -1,5 +1,5 @@
-#include "patient.h"
-#include "medecin.h"
+#include "GPCalendar/Model/patient.h"
+#include "GPCalendar/Model/medecin.h"
 
 /**
  * CreerPatient : Creer une nouvelle instance de la structure Patient avec toutes les informations basiques

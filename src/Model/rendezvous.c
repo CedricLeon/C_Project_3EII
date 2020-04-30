@@ -1,4 +1,4 @@
-#include "rendezvous.h"
+#include "GPCalendar/Model/rendezvous.h"
 
 /**
  * CreerRendezVous : Creer dynamiquement un objet RendezVous

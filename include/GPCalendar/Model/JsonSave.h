@@ -2,14 +2,14 @@
 #define C_PROJECT_JSONSAVE_H
 
 //Header Files du Projet
-#include "medecin.h"
-#include "patient.h"
-#include "date.h"
-#include "calendrier.h"
-#include "ordonnance.h"
-#include "dossier_medical.h"
-#include "rendezvous.h"
-#include "calendrier.h"
+#include "GPCalendar/Model/medecin.h"
+#include "GPCalendar/Model/patient.h"
+#include "GPCalendar/Model/date.h"
+#include "GPCalendar/Model/calendrier.h"
+#include "GPCalendar/Model/ordonnance.h"
+#include "GPCalendar/Model/dossier_medical.h"
+#include "GPCalendar/Model/rendezvous.h"
+#include "GPCalendar/Model/calendrier.h"
 
 //Librairie nécessaire à cJSON
 #include <cJSON.h>

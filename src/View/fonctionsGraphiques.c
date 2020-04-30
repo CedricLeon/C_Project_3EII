@@ -1,9 +1,8 @@
-#include <stdlib.h>
+#include "GPCalendar/View/fonctionsGraphiques.h"
+#include "GPCalendar/View/callbacks.h"
+#include "GPCalendar/Model/patient.h"
 #include <gtk/gtk.h>
-#include "fonctionsGraphiques.h"
-#include "callbacks.h"
-#include "patient.h"
-
+#include <stdlib.h>
 
 #define LARGEUR_COLONNE 266
 #define HAUTEUR_PREMIERE_LIGNE 50

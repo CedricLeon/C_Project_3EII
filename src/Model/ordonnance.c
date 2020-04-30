@@ -1,4 +1,4 @@
-#include "ordonnance.h"
+#include "GPCalendar/Model/ordonnance.h"
 
 /**
  * CreerOrdonnance : Creer dynamiquement un objet Ordonnance

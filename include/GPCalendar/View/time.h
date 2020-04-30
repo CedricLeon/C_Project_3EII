@@ -6,12 +6,12 @@
 #ifndef TIME_H_INC
 #define TIME_H_INC
 
-#include <stdlib.h>
+#include "GPCalendar/View/fonctionsGraphiques.h"
+#include "GPCalendar/View/callbacks.h"
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "fonctionsGraphiques.h"
-#include "callbacks.h"
 
 void create_calendar();
 

@@ -1,7 +1,7 @@
 #ifndef MEDECIN_H
 #define MEDECIN_H
 
-#include "Structures.h"
+#include "GPCalendar/Model/Structures.h"
 
 #include <string.h>
 #include <stdlib.h>

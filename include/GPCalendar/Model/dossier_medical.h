@@ -1,7 +1,7 @@
 #ifndef DOSSIER_MEDICAL_H
 #define DOSSIER_MEDICAL_H
 
-#include "ordonnance.h"
+#include "GPCalendar/Model/ordonnance.h"
 
 #include <string.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
-#include "medecin.h"
-#include "patient.h"
+#include "GPCalendar/Model/medecin.h"
+#include "GPCalendar/Model/patient.h"
 
 /**
  * CreerMedecin : Creer une nouvelle instance de la structure Medecin avec toutes les informations basiques mais pas ses spécialités ou ses diplômes

@@ -6,11 +6,11 @@
 #ifndef CALLBACKS_H_INC
 #define CALLBACKS_H_INC
 
-#include <stdlib.h>
+#include "GPCalendar/View/fonctionsGraphiques.h"
+#include "GPCalendar/Model/patient.h"
+#include "GPCalendar/Model/calendrier.h"
 #include <gtk/gtk.h>
-#include "fonctionsGraphiques.h"
-#include "patient.h"
-#include "calendrier.h"
+#include <stdlib.h>
 
 
 void cb_create_entry(GtkWidget *p_widget, gpointer user_data);

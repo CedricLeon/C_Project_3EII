@@ -1,9 +1,9 @@
 #ifndef PATIENT_H
 #define PATIENT_H
 
-#include "Structures.h"
-#include "date.h"
-#include "dossier_medical.h"
+#include "GPCalendar/Model/Structures.h"
+#include "GPCalendar/Model/date.h"
+#include "GPCalendar/Model/dossier_medical.h"
 
 #include <string.h>
 #include <stdlib.h>

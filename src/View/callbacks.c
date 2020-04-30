@@ -1,8 +1,7 @@
-#include <stdlib.h>
+#include "GPCalendar/View/fonctionsGraphiques.h"
+#include "GPCalendar/View/callbacks.h"
 #include <gtk/gtk.h>
-#include "fonctionsGraphiques.h"
-#include "callbacks.h"
-
+#include <stdlib.h>
 
 void cb_create_entry(GtkWidget *p_widget, gpointer user_data){
     gtk_button_released(p_widget);

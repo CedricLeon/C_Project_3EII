@@ -1,9 +1,9 @@
 #ifndef RENDEZVOUS_H
 #define RENDEZVOUS_H
 
-#include "date.h"
-#include "medecin.h"
-#include "patient.h"
+#include "GPCalendar/Model/date.h"
+#include "GPCalendar/Model/medecin.h"
+#include "GPCalendar/Model/patient.h"
 
 /**
  * Ou est-ce qu'on free nos objets Rendez-Vous ? Vrai question : ds le calendrier ou lorsqu'on ferme l'appli ?

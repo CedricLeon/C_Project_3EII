@@ -1,7 +1,7 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
 
-#include "rendezvous.h"
+#include "GPCalendar/Model/rendezvous.h"
 
 /**
  * Pour le fonctionnement du calendrier je pense que pour que ça reste simple au maximum mais sans qu'il soit

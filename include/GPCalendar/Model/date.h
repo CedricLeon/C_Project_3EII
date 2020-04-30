@@ -1,5 +1,5 @@
-#ifndef DATE_H
-#define DATE_H
+#ifndef __DATE_H__908123761827312_
+#define __DATE_H__908123761827312_
 
 #include <string.h>
 #include <stdio.h>

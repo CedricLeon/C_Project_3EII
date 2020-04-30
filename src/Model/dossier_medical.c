@@ -1,4 +1,4 @@
-#include "dossier_medical.h"
+#include "GPCalendar/Model/dossier_medical.h"
 
 /**
  * CreerDossier : Creer dynamiquement un objet DossierMedical

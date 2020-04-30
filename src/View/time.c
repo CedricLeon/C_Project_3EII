@@ -1,11 +1,10 @@
-#include <stdlib.h>
+#include "GPCalendar/View/fonctionsGraphiques.h"
+#include "GPCalendar/View/callbacks.h"
+#include "GPCalendar/View/time.h"
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "fonctionsGraphiques.h"
-#include "callbacks.h"
-#include "time.h"
-#include "fonctionsGraphiques.h"
 
 #define DEF_PAD 50
 #define DEF_PAD_SMALL 5
