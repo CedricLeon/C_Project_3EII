@@ -19,9 +19,11 @@ typedef struct DossierMedical{
 
 DossierMedical * CreerDossierMedical(Patient * patient);
 void FreeDossierMedical(DossierMedical * d);
+void AccesDossier(Patient * p);    //Print toutes les infos je suppose
 
 //void SetPatientDossier(DossierMedical * dm, Patient * patient); -> plus besoin comme le dossier fait partie d'un patient ?
 // int AddMedecinDossierMedical(DossierMedical * dm, Medecin * medecin); ->plus besoin du coup fonction déjà présente dans patient.c
+
 
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
 int AddAntecedentDossierMedical(DossierMedical * dm, char * antecedent);

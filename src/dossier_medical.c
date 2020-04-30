@@ -30,3 +30,4 @@ void FreeDossierMedical(DossierMedical * dm){
     free((void *) dm);
 }
 
+
