@@ -12,6 +12,7 @@
 #include "patient.h"
 #include "calendrier.h"
 
+
 void cb_create_entry(GtkWidget *p_widget, gpointer user_data);
 void cb_create_entry1(GtkWidget *p_widget, gpointer user_data);
 void cb_clicSurPlus(GtkWidget * widget, gpointer data);
