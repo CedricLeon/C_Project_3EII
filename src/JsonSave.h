@@ -28,7 +28,7 @@ typedef struct
 
 
 void ListMedecin_jsonSave(cJSON* object, ListMedecin* l);
-void ListPatient_jsonSave(cJSON* object, ListPatient* l);
+int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l);
 void Calendrier_jsonSave(cJSON* object, Calendrier c);
 
 char* jsonSave(Project* p);
