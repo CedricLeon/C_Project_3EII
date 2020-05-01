@@ -4,6 +4,31 @@
  * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
  */
 
+int GPCalendar_saveProject(char* nomFichier, Project* project){
+
+    FILE* savingFile = NULL;
+    savingFile = fopen(nomFichier, "w");
+
+    if (savingFile != NULL)
+    {
+        char* toPrint = jsonSave(project);
+        if(toPrint == NULL){
+            printf("\n MDR go debugger.\n");
+            return 0;
+        }
+        fprintf(savingFile, "%s", toPrint);
+
+        free((void*) toPrint);      //Ici on free le char* car il est malloc dans les fonctions de cJSON
+
+        fclose(savingFile);
+        return 1;
+    }
+    else
+    {
+        printf("\nGPCalendar_saveProject : Impossible d'ouvrir le fichier %s\n", nomFichier);
+        return 0;
+    }
+}
 
 /**
  * jsonSave : Fonction permettant de sauvegarder un objet projet dans un fichier .json à l'aide de la librairie cjson

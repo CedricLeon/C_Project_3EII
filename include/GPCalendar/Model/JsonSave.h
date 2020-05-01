@@ -14,6 +14,10 @@
 //Librairie nécessaire à cJSON
 #include <cJSON.h>
 
+//Librairie Standart
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef struct
 {
     //Nom du projet, pas vraiment d'utilité pour l'instant mais c'est pour comment marche cJSON
@@ -27,11 +31,14 @@ typedef struct
 }Project;
 
 
+int GPCalendar_saveProject(char* nomFichier, Project* project);
+
+char* jsonSave(Project* p);
 int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l);
 int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l);
 int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c);
 
-char* jsonSave(Project* p);
+
 int jsonLoad(Project*, const char*);
 
 
