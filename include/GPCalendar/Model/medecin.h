@@ -71,6 +71,8 @@ void freeNodeMedecin(ListMedecin *l, NodeMedecin * n);
 void ListMedecin_init(ListMedecin * l);
 void ListMedecin_free(ListMedecin * l);
 
+int ListMedecin_add(ListMedecin * l, Medecin * m);
+
 int ListMedecin_isEmpty(ListMedecin * l);
 int ListMedecin_isFirst(ListMedecin * l);
 int ListMedecin_isLast(ListMedecin * l);

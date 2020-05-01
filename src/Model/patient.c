@@ -342,6 +342,30 @@ void ListPatient_free(ListPatient * l){
         }
     }
     free((void *) l);
+/**
+ * ListPatient_add : Ajoute un patient à une liste de patient (pas triée)
+ * @param l : la liste à laquelle on ajoute
+ * @param p : le patient à ajouter
+ * @return -1 si la liste ou le patient étaient NULL
+ *          1 si tout s'est bien passé
+ */
+int ListPatient_add(ListPatient * l, Patient * p){
+    if(l == NULL || p == NULL){
+        printf("ListMedecin ou Patient NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListPatient_isEmpty(l)){
+        NodePatient * newNode = newNodePatient(p, &(l->sentinel_begin), &(l->sentinel_end));
+        l->sentinel_begin.next = newNode;
+        l->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on insère le patient à la fin
+    NodePatient * newNode = newNodePatient(p, l->sentinel_end.previous, &(l->sentinel_end));
+    l->sentinel_end.previous->next = newNode;
+    l->sentinel_end.previous = newNode;
+    return 1;
 }
 
 /**

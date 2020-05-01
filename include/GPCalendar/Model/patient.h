@@ -74,6 +74,8 @@ void freeNodePatient(ListPatient *l, NodePatient * n);
 void ListPatient_init(ListPatient * l);
 void ListPatient_free(ListPatient * l);
 
+int ListPatient_add(ListPatient * l, Patient * p);
+
 int ListPatient_isEmpty(ListPatient * l);
 int ListPatient_isFirst(ListPatient * l);
 int ListPatient_isLast(ListPatient * l);

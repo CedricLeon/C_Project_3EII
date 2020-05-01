@@ -274,7 +274,31 @@ void ListMedecin_free(ListMedecin * l){
             freeNodeMedecin(l, l->current);
         }
     }
-    free((void *) l);
+}
+/**
+ * ListMedecin_add : Ajoute un medecin à une liste de medecin (pas triée)
+ * @param l : la liste à laquelle on ajoute
+ * @param m : le medecin à ajouter
+ * @return -1 si la liste ou le medecin étaient NULL
+ *          1 si tout s'est bien passé
+ */
+int ListMedecin_add(ListMedecin * l, Medecin * m){
+    if(l == NULL || m == NULL){
+        printf("ListMedecin ou Medecin NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListMedecin_isEmpty(l)){
+        NodeMedecin * newNode = newNodeMedecin(m, &(l->sentinel_begin), &(l->sentinel_end));
+        l->sentinel_begin.next = newNode;
+        l->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on insère le mèdecine à la fin
+    NodeMedecin * newNode = newNodeMedecin(m, l->sentinel_end.previous, &(l->sentinel_end));
+    l->sentinel_end.previous->next = newNode;
+    l->sentinel_end.previous = newNode;
+    return 1;
 }
 
 /**
