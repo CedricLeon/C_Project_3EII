@@ -1,5 +1,29 @@
 #include "GPCalendar/Model/JsonSave.h"
 
+Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * consultingPatient, Calendrier calendrier){
+    Project* p = (Project*) malloc(sizeof(Project));
+    p->nom = nom;
+    p->workingMedecins = workingMedecins;
+    p->consultingPatient = consultingPatient;
+    p->calendrier = calendrier;
+}
+
+/**
+ * freeProject : Free entièrement un projet, à savoir :
+ *             - le calendrier de l'hopital (et donc tout les rdv qui le composent)
+ *             - les mèdecins de l'hopital qui ont été rentré dans la liste workingMedecins
+ *             - les patients de l'hopital qui ont été rentré dans la liste consultingPatients et donc leur dossier médical et ses ordonnances
+ * @param project : le projet à free
+ */
+void freeProject(Project* project){
+
+    freeCalendrier(project->calendrier);
+    ListMedecin_free(project->workingMedecins);
+    ListPatient_free(project->consultingPatient);
+
+    free((void*) project);
+}
+
 /**
  * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
  */

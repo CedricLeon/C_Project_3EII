@@ -30,6 +30,8 @@ typedef struct
     Calendrier calendrier;
 }Project;
 
+Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * consultingPatient, Calendrier calendrier);
+void freeProject(Project* project);
 
 int GPCalendar_saveProject(char* nomFichier, Project* project);
 
