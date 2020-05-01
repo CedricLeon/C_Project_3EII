@@ -67,8 +67,8 @@ add_executable(GPCalendar
     include/GPCalendar/View/fonctionsGraphiques.h
     src/View/fonctionsGraphiques.c
     include/GPCalendar/View/time.h
-    src/View/time.c
-    )
+    src/View/time.c)
+
 target_compile_features(GPCalendar PUBLIC c_std_99)              #Précise que le projet est réalisé dans la norme du C_99
 target_link_libraries(GPCalendar PUBLIC                          #Link à cet executable la librairie du projet et GTK3+
     GPCalendarUtils
@@ -76,7 +76,7 @@ target_link_libraries(GPCalendar PUBLIC                          #Link à cet ex
 target_include_directories(GPCalendar PUBLIC                     #On précise les répertoires des fichiers utilisés
     src/View                                                     #Les .c de la View
     ${GTK3_INCLUDE_DIRS})                                        #La librairie de GTK3+
-
+message(STATUS "GTK3_INCLUDE_DIRS : ${GTK3_INCLUDE_DIRS}")
 # ┌──────────────────────────────────────────────────────────────────┐
 # │                       GPCalendar_Tests                           │
 # └──────────────────────────────────────────────────────────────────┘

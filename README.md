@@ -122,8 +122,7 @@ sudo apt-get update
 ````
 This allows you to update your different packages. Then you'll need to install the *devpackages* and make sure you do have the runtime so type:
 ````bash
-sudo apt-get install libgtk3.0-dev
-sudo apt-get install libgtk3.0-0
+sudo apt-get install libgtk-3-dev
 ````
 
 #### How to build with your console
