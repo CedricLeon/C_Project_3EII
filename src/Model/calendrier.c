@@ -612,7 +612,8 @@ void ListRendezVous_free(ListRendezVous * l){
     if (l == NULL){
         printf("ListRendezVous_free : le jour est NULL !!!\n");
     }else if ( ListRendezVous_isEmpty(l)){
-        printf("ListRendezVous_free : la liste est vide, ce n'est pas normal !!!\n");
+        printf("ListRendezVous_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        free((void *) l);
     }else{
         printf("\t\t\tEntrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
         for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
@@ -802,7 +803,8 @@ void ListJour_free(ListJour * l){
     if (l == NULL){
         printf("ListJour_free : le jour est NULL !!!\n");
     }else if ( ListJour_isEmpty(l)){
-        printf("ListJour_free : la liste est vide, ce n'est pas normal !!!\n");
+        printf("ListJour_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        free((void *) l);
     }else{
         printf("\t\tEntrée dans la fonction ListJour_Free().\n");
         for(ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
@@ -985,7 +987,8 @@ void ListMois_free(ListMois * l){
     if (l == NULL){
         printf("ListMois_free : le jour est NULL !!!\n");
     }else if ( ListMois_isEmpty(l)){
-        printf("ListMois_free : la liste est vide, ce n'est pas normal !!!\n");
+        printf("ListMois_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        free((void *) l);
     }else{
         printf("\tEntrée dans ListMois_free.\n");
         for(ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
@@ -1176,7 +1179,8 @@ void ListAnnee_free(ListAnnee * l){
     if (l == NULL){
         printf("ListAnnee_free : le jour est NULL !!!\n");
     }else if ( ListAnnee_isEmpty(l)){
-        printf("ListAnnee_free : la liste est vide, ce n'est pas normal !!!\n");
+        printf("ListAnnee_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        free((void *) l);
     }else{
         printf("Entrée dans ListAnnee_free.\n");
         for(ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
