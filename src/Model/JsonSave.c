@@ -81,8 +81,8 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
          * patient on crée un string avec son numéro de sécurité sociale puis on ajoute ce string au tableau que l'on
          * vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son mèdecin
          */
-        cJSON* patientsRecus = cJSON_CreateArray();
-        cJSON_AddItemToArray(medecin, patientsRecus);   //idem
+
+        cJSON* patientsRecus = cJSON_AddArrayToObject(medecin, "patientsRecus");
 
         for(ListPatient_setOnFirst(l->current->medecin->patients_recus); !ListPatient_isOutOfList(l->current->medecin->patients_recus); ListPatient_setOnNext(l->current->medecin->patients_recus)){
             cJSON* IDpatient = cJSON_CreateString(ListPatient_getCurrent(l->current->medecin->patients_recus)->numero_secu_social);
@@ -153,6 +153,8 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
             cJSON* ordonnance = cJSON_CreateObject();
             cJSON_AddItemToArray(listOrdonnances, ordonnance);
 
+            //Une ordonnance ne contient plus de patient, on considère donc que toutes les ordonnances présentes dans la structure d'un patient le concerne
+            //Par conséquent on ne rajoute plus l'IDPatient dans une ordonnance
             if (cJSON_AddStringToObject(ordonnance, "IDmedecin", ListOrdonnance_getCurrent(ordonnancesPatients)->medecin->numero_RPS) == NULL)  return 0;
 
             char* tmp2 = (char*) malloc(10);
@@ -173,6 +175,46 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
     return 1;
 }
 int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
+
+    /**
+     * Avec les 4 boucles for qui suivent on vient chercher tout les rdv
+     */
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous * rdv = ListRendezVous_getCurrent(j);
+
+                    //Puis on store un à un les rdv
+                    cJSON* rdvJson = cJSON_CreateObject();
+                    cJSON_AddItemToArray(calendrierJson, rdvJson);
+
+                    char* tmp1 = (char*) malloc(10);
+                    getInfosDate(tmp1, rdv->date);
+                    if (cJSON_AddStringToObject(rdvJson, "date", tmp1) == NULL)  return 0;
+                    free((void*) tmp1);
+
+                    if (cJSON_AddNumberToObject(rdvJson, "heure_debut", rdv->heure_debut) == NULL)  return 0;
+                    if (cJSON_AddNumberToObject(rdvJson, "heure_fin", rdv->heure_fin) == NULL)  return 0;
+
+                    if (cJSON_AddStringToObject(rdvJson, "lieu", rdv->lieu) == NULL)  return 0;
+                    if (cJSON_AddStringToObject(rdvJson, "patient", rdv->patient->numero_secu_social) == NULL)  return 0;
+                    if (cJSON_AddStringToObject(rdvJson, "medecin", rdv->medecin->numero_RPS) == NULL)  return 0;
+                    if (cJSON_AddStringToObject(rdvJson, "motif", rdv->motif) == NULL)  return 0;
+
+                    //Là normalement on a tout ajouté à notre rdv on peut passer au suivant
+                }
+            }
+        }
+    }
+    //Là normalement on a ajouté tout les rdv de notre calendrier à l'objet cJson
     return 1;
 }
 
