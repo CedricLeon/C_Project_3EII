@@ -31,7 +31,7 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
  * @param medecin : le medecin à supprimer
  */
 void DeleteMedecin(Medecin * medecin){
-    ListPatient_free(medecin->patients_recus);
+    ListPatient_free_withoutDeletingPatient(medecin->patients_recus);
     free((void *) medecin);
     //Un free pour les spécialités et les diplômes ?
 }
@@ -160,7 +160,7 @@ int AddPatientRecuMedecin(Medecin * m, Patient * patient){
     if(!ListPatient_isEmpty(m->patients_recus)){
         for(ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
                 m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
-            if(ListPatient_getCurrent(m->patients_recus) == patient){
+            if(strcmp(ListPatient_getCurrent(m->patients_recus)->numero_secu_social, patient->numero_secu_social) == 0){
                 printf("Le patient %s %s a déjà été recu par le medecin %s %s, il n'est donc pas ajouté à la liste.\n", patient->nom, patient->prenom, m->nom, m->prenom);
                 return 0;
             }
@@ -204,7 +204,7 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
         if (ListPatient_getCurrent(m->patients_recus) == patient) {
             m->patients_recus->current->previous->next = m->patients_recus->current->next;
             m->patients_recus->current->next->previous = m->patients_recus->current->previous;
-            freeNodePatient(m->patients_recus, m->patients_recus->current);
+            freeNodePatient_withoutDeletingPatient(m->patients_recus, m->patients_recus->current);
             printf("Le patient %s a bien été retiré de la liste des patients recus par le medecin %s.\n", patient->nom, m->nom);
             return 1;
         }
@@ -234,17 +234,35 @@ NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMede
     return newNode;
 }
 /**
- * freeNodeMedecin : Permet de delete proprement (avec un free) un nodeMedecin
+ * freeNodeMedecin : Permet de delete proprement un nodeMedecin (en deletant le medecin lié au node) (workingMedecins)
  * @param n : le node à delete
  */
 void freeNodeMedecin(ListMedecin *l, NodeMedecin * n){
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListMedecin_setOnPrevious(l);
+    //C'est ici qu'on vient free les medecins.
+    //Pour l'instant cette fonction n'est appellée que par ListMedecin_free() qui est uniquement appellée par freeProject()
+
     //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
-    //et enfin on supprime le noeud
-    free((void*) n);
+    DeleteMedecin(n->medecin);
+    free((void *) n);
+
+    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
+    ListMedecin_setOnFirst(l);
+    ListMedecin_setOnPrevious(l);
+}
+/**
+ * freeNodeMedecin_withoutDeletingMedecin : Permet de delete un nodeMedecin mais sans delete le mèdecin lié au node *
+ *                                          (utile pour la liste des mèdecins consultés par un patient)
+ * @param n : le node à delete
+ */
+void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n){
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    free((void *) n);
+    ListMedecin_setOnFirst(l);
+    ListMedecin_setOnPrevious(l);
 }
 
 
@@ -269,10 +287,35 @@ void ListMedecin_init(ListMedecin * l){
  * @param l : la liste de mèdecin à free
  */
 void ListMedecin_free(ListMedecin * l){
-    if (l!= NULL && !ListMedecin_isEmpty(l)){
-        for(ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+
+    if (l == NULL){
+        printf("ListMedecin_free : le jour est NULL !!!\n");
+    }else if ( ListMedecin_isEmpty(l)){
+        printf("ListMedecin_free : la liste est vide, ce n'est pas normal !!!\n");
+    }else {
+        for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
             freeNodeMedecin(l, l->current);
         }
+        free((void *) l);
+    }
+}
+/**
+ * ListMedecin_free_withoutDeletingMedecin : Libère la mémoire occupée par l'objet ListMedecin passée en paramètre mais
+ *                                           sans delete les mèdecins de cette liste (uniquement les nodes)
+ * @param l : la liste de mèdecin à free
+ */
+void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l){
+
+    if (l == NULL){
+        printf("ListMedecin_free_withoutDeletingMedecin : le jour est NULL !!!\n");
+    }else if ( ListMedecin_isEmpty(l)){
+        printf("ListMedecin_free_withoutDeletingMedecin : la liste est vide, on ne free donc que la liste!!!\n");
+        free((void *) l);
+    }else {
+        for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+            freeNodeMedecin_withoutDeletingMedecin(l, l->current);
+        }
+        free((void *) l);
     }
 }
 /**
