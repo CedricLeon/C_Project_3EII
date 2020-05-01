@@ -24,7 +24,7 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
  * @param o : l'ordonnance à supprimer
  */
 void DeleteOrdonnance(Ordonnance * o){
-    //Il ne faut pas free le patient et le medecin !
+    //Il ne faut pas free le medecin !
     FreeDate(o->date_edition);
     FreeDate(o->date_expiration);
     free((void *) o);
@@ -89,14 +89,12 @@ NodeOrdonnance * newNodeOrdonnance(Ordonnance * ordo, NodeOrdonnance * previous,
  * @param n : le node à delete
  */
 void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
-    //On place current sur l'objet avant le noeud qu'on veut supprimer
-    ListOrdonnance_setOnPrevious(l);
-    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
-    //et enfin on supprime le noeud
     DeleteOrdonnance(n->ordo);
-    free((void*) n);
+    free((void *) n);
+    ListOrdonnance_setOnFirst(l);
+    ListOrdonnance_setOnPrevious(l);
 }
 
 
@@ -121,12 +119,17 @@ void ListOrdonnance_init(ListOrdonnance * l){
  * @param l : la liste de ordonnances à free
  */
 void ListOrdonnance_free(ListOrdonnance * l){
-    if (l!= NULL && !ListOrdonnance_isEmpty(l)){
+    if (l == NULL){
+        printf("ListOrdonnance_free : la liste d'ordonnance est NULL !!!\n");
+    }else if ( ListOrdonnance_isEmpty(l)){
+        printf("ListOrdonnance_free : la liste est vide, on free donc uniquement la liste!!!\n");
+        free((void *) l);
+    }else{
         for(ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
             freeNodeOrdonnance(l, l->current);
         }
+        free((void *) l);
     }
-    free((void *) l);
 }
 
 /**

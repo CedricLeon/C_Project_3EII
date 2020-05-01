@@ -24,10 +24,30 @@ DossierMedical * CreerDossierMedical(Patient * patient){
  * @param dm : le dossier � supprimer
  */
 void FreeDossierMedical(DossierMedical * dm){
-    ListMedecin_free(dm->medecins_consultes);
+    ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    //Il ne faut pas delete les mèdecins référencés
+                                                                        // par cette liste puisqu'on les delete dèjà
+                                                                        // depuis la liste workingMedecins
     ListOrdonnance_free(dm->ordonnances); //pareil
-    //Pour les antécédents voir comment on les gères (Cf si malloc)
     free((void *) dm);
+}
+
+int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
+    if(dm == NULL || ordonnance == NULL){
+        printf("DossierMedical ou Ordonnance NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListOrdonnance_isEmpty(dm->ordonnances)){
+        NodeOrdonnance * newNode = newNodeOrdonnance(ordonnance, &(dm->ordonnances->sentinel_begin), &(dm->ordonnances->sentinel_end));
+        dm->ordonnances->sentinel_begin.next = newNode;
+        dm->ordonnances->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on insère l'ordonnance à la fin
+    NodeOrdonnance * newNode = newNodeOrdonnance(ordonnance, dm->ordonnances->sentinel_end.previous, &(dm->ordonnances->sentinel_end));
+    dm->ordonnances->sentinel_end.previous->next = newNode;
+    dm->ordonnances->sentinel_end.previous = newNode;
+    return 1;
 }
 
 
