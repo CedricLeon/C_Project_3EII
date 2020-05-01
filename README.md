@@ -4,9 +4,9 @@ GPCalendar is an application allowing physician in a structure like an hospital 
 
 ## Unit-Testing
 
-For the moment (21/04/2020) unit-tested are implemented for the patient, physician, calendar, date and order functions.
+For the moment (01/05/2020) unit-tested are implemented for the patient, physician, calendar, date and order functions.
 
-If you want to run them you can execute the ````GPCalendar_Tests```` executable or do the following commands :
+If you want to run them you can execute the ````GPCalendar_Tests```` executable or execute the following commands :
 
 ````bash
 cd cmake-build-debug
@@ -25,7 +25,7 @@ And then run it in build :
 
 ````bash
 cd build
-#Make sure the project is already build else :
+#Make sure the project is already build, else :
 cmake ..
 cmake --build .
 #And then
@@ -36,13 +36,11 @@ You can also run it with your IDE like **Valgrind-MemoryCheck** in CLion.
 
 ## cJSON
 
-cJSON is a GitHub Project which allow to easily use JSON format in C code. It is used to "save" the application. **CODE in development**
-
-
+cJSON is a GitHub Project which allow to easily use **JSON** format in C code. It is used to "save" the application. **CODE in development**
 
 ## Build
 
-GPCalendar is (normally) a cross platform application and is build with CMake.
+GPCalendar is a cross platform application, built with CMake.
 
 To build the application, make sure you have CMake and clone the git repertory. Then create the source build folder and access it.
 
@@ -58,6 +56,14 @@ cmake ..
 cmake --build .
 ````
 
+If you are especially using `CodeBlocks`, you can generate a CodeBlocks project with :
+
+````bash
+cmake -G "CodeBlocks - Unix Makefiles"
+````
+
+(You can also see what other type of project you can build with CMake with `cmake -G`).
+
 ## CMake
 
 If you don't have CMake you can run the following commands (Credits **OlivierLdff**) :
@@ -68,16 +74,46 @@ wget https://github.com/Kitware/CMake/releases/download/v3.17.0-rc2/cmake-3.17.0
 tar zxvf cmake-3.17.0-rc2.tar.gz
 cd cmake-3.17.0-rc2
 ./configure
-make -j2
+make -j2	#You can also run make without -j or -j2 but it will be slower
 sudo make install
 # Restart terminal
 ````
 
 ## GTK3+
 
+### General Settings for CMake
+
+GTK3+ isn't build with CMake like `CMocka` or `cJSON`, it's built with `meson`. Therefore it isn't possible to just fetch content of the GTK3+ git project in our CMakeLists.txt and then build normally the project.
+
+To include GTK3+ in the project you have to download his libraries first :
+
+````bash
+sudo apt install libgtk-3-dev
+````
+
+You want the dev library. Be careful, the name of the package may have change. But you're looking for something like `libgtk-3`, `libgtk3.0` or `libgtk3-dev`.
+
+Once it's done, be sure you have `PkgConfig`(it's a package manager that we are using in our CMakeLists.txt) :
+
+````bash
+sudo apt install pkg-config 
+````
+
+And then you can normally run CMake (in your build repertory) with :
+
+````bash
+cmake ..
+cmake --build .
+````
+
+As the GTK3+ dependences are only include in `./GPCalendar` you can build the Model and tests of the project without GTK3+ by only building and executing `./GPCalendar_Tests`.
+
+
+### Manually Settings for CodeBlocks
+
 #### Installation
 
-GTK+ has been mostly conceived for Linux. Therefore, if you do not have it I invite you to check out the openclassroom course on how to create a GTK+ interface on MacOs or Windows.
+GTK+ has been mostly conceived for Linux. Therefore, if you do not have it, I invite you to check out the openclassroom course on how to create a GTK+ interface on MacOs or Windows.
 But If you have Linux, let's begin:
 
 First you should download the different libraries. To do so, open your Linux shell and type:
