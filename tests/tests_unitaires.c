@@ -1,4 +1,5 @@
 /*Header Files du Projet*/
+#include "GPCalendar/Model/JsonSave.h"
 #include "GPCalendar/Model/medecin.h"
 #include "GPCalendar/Model/patient.h"
 #include "GPCalendar/Model/date.h"
@@ -6,16 +7,15 @@
 #include "GPCalendar/Model/ordonnance.h"
 #include "GPCalendar/Model/dossier_medical.h"
 #include "GPCalendar/Model/rendezvous.h"
-#include "GPCalendar/Model/calendrier.h"
+
 
 /*Librairies nécessaire à CMocka*/
 #include <stdarg.h>
 #include <stddef.h>
-#include <setjmp.h>
-#include <cmocka.h>
+#include <setjmp.h> //Ne pas enlever même si l'IDE dit qu'elle n'est pas utilisée (Cf type ‘jmp_buf’)
+#include <cmocka.h> //bien mettre ce include après <setjmp.h>
 
 /*Librairies standards de C*/
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -390,8 +390,8 @@ static void testDate_creerDate(void ** state){
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
-    assert_int_equal(d->mois,04);   //! à changer !
-    assert_int_equal(d->jour,30);   //! à changer : si le test fail c'est car la date comparée ne
+    assert_int_equal(d->mois,05);   //! à changer !
+    assert_int_equal(d->jour,01);   //! à changer : si le test fail c'est car la date comparée ne
                                            //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
     FreeDate(d);
 }
@@ -516,10 +516,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(10); //large
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"30/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"1/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "30/7/2020"); //! à changer : idem
+    assert_string_equal(tmp, "1/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -531,6 +531,72 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
     DeleteMedecin(((Ordonnance *)*state)->medecin);
     assert_int_equal((modifierOrdonnance((Ordonnance *)*state, m2, "description2")),1);
+}
+
+/**********************************************************************************************************************/
+                                                /*Tests jsonSave*/
+/**********************************************************************************************************************/
+
+static int setup_JsonSave(void ** state){
+    //On crée un projet
+    Medecin * m1 = CreerMedecin("NomTestM1", "PrenomTestM1", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
+    Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
+
+    ListMedecin * workingMedecins = (ListMedecin*) malloc(sizeof(ListMedecin));
+    ListMedecin_init(workingMedecins);
+    ListMedecin_add(workingMedecins, m1);
+    ListMedecin_add(workingMedecins, m2);
+
+    Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 1111, 01, 01, "test@adresseMailP1", "testNumeroTelephoneP1", "testNumSecuP1");
+    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2222, 02, 02, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
+
+    ListPatient * consultingPatients = (ListPatient*) malloc(sizeof(ListPatient));
+    ListPatient_init(consultingPatients);
+    ListPatient_add(consultingPatients, p1);
+    ListPatient_add(consultingPatients, p2);
+
+    RendezVous * rdv1 = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", p1, m1, "motif1");
+    RendezVous * rdv2 = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", p2, m2, "motif2");
+    RendezVous * rdv3 = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", p2, m1, "motif3");
+    RendezVous * rdv4 = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", p1, m2, "motif4");
+
+    AddMedecinConsultePatient(p1, m1);
+    AddMedecinConsultePatient(p1, m2);
+    AddMedecinConsultePatient(p2, m1);
+    AddMedecinConsultePatient(p2, m2);
+    AddPatientRecuMedecin(m1, p1);
+    AddPatientRecuMedecin(m1, p2);
+    AddPatientRecuMedecin(m2, p1);
+    AddPatientRecuMedecin(m2, p2);
+
+    Calendrier c = creerCalendrier();
+
+    AddRendezVous_Calendrier(c, rdv1);
+    AddRendezVous_Calendrier(c, rdv2);
+    AddRendezVous_Calendrier(c, rdv3);
+    AddRendezVous_Calendrier(c, rdv4);
+
+    Ordonnance * o1 = CreerOrdonnance(m1, "descriptionOrdonnance1");
+    Ordonnance * o2 = CreerOrdonnance(m2, "descriptionOrdonnance2");
+    Ordonnance * o3 = CreerOrdonnance(m1, "descriptionOrdonnance3");
+
+    AddOrdonnanceDossierMedical(p1->dossierMedical, o1);
+    AddOrdonnanceDossierMedical(p1->dossierMedical, o2);
+    AddOrdonnanceDossierMedical(p2->dossierMedical, o3);
+
+    Project* p = CreerProject("nomProjetTest", workingMedecins, consultingPatients, c);
+
+    *state = p;
+    return *state == NULL;
+}
+static int teardown_JsonSave(void ** state){
+
+    freeProject((Project*) *state);
+
+    return 0;
+}
+static void testJsonSave_GPCalendar_saveProject(void ** state){
+    assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
 }
 
 /**********************************************************************************************************************/
@@ -614,6 +680,10 @@ int main(void){
             cmocka_unit_test(testOrdonnance_modifierOrdonnance),
     };
 
+    const struct CMUnitTest tests_fonctionsJsonSave[] = {
+            cmocka_unit_test(testJsonSave_GPCalendar_saveProject)
+    };
+
     printf("\033[34;01m\n****************************** Running Patient Tests ******************************\n\n\033[00m");
     int return_cmocka_P = cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
     printf("\033[34;01m\n****************************** Running Medecin Tests ******************************\n\n\033[00m");
@@ -624,8 +694,10 @@ int main(void){
     int return_cmocka_D = cmocka_run_group_tests(tests_fonctionsDate, setup_Date, teardown_Date);
     printf("\033[34;01m\n***************************** Running Ordonnance Tests *****************************\n\n\033[00m");
     int return_cmocka_O = cmocka_run_group_tests(tests_fonctionsOrdonnance, setup_Ordonnance, teardown_Ordonnance);
+    printf("\033[34;01m\n***************************** Running JsonSave Tests *****************************\n\n\033[00m");
+    int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O;
+    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_J;
 
 }
