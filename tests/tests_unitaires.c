@@ -390,8 +390,8 @@ static void testDate_creerDate(void ** state){
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
-    assert_int_equal(d->mois,05);   //! à changer !
-    assert_int_equal(d->jour,01);   //! à changer : si le test fail c'est car la date comparée ne
+    assert_int_equal(d->mois,5);   //! à changer !
+    assert_int_equal(d->jour,02);   //! à changer : si le test fail c'est car la date comparée ne
                                            //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
     FreeDate(d);
 }
@@ -405,7 +405,7 @@ static void testDate_creerDateCourante(void ** state){
 static void testDate_AjoutMoisDateCourante(void ** state){
     Date * d = AjoutMoisDate((Date*) *state, 3); //test ajout de 3 mois = 90 jours
     assert_int_equal(d->annee,2920); //! à changer !
-    assert_int_equal(d->mois,05);   //! à changer !
+    assert_int_equal(d->mois,5);   //! à changer !
     assert_int_equal(d->jour,01);   //! à changer !
     FreeDate(d);
 }
@@ -516,10 +516,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(10); //large
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"1/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"2/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "1/8/2020"); //! à changer : idem
+    assert_string_equal(tmp, "2/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -531,6 +531,43 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
     DeleteMedecin(((Ordonnance *)*state)->medecin);
     assert_int_equal((modifierOrdonnance((Ordonnance *)*state, m2, "description2")),1);
+}
+
+/**********************************************************************************************************************/
+                                                /*Tests DossierMedical*/
+/**********************************************************************************************************************/
+
+static int setup_DossierMedical(void ** state){
+    DossierMedical * doss = CreerDossierMedical(NULL);
+    *state=doss;
+    return *state==NULL;
+
+}
+
+static int teardown_DossierMedical(void ** state){
+    FreeDossierMedical((DossierMedical*) *state);
+}
+
+
+/**
+ * On teste de créer un DossierMedical
+ * @param state
+ */
+static void testDossierMedical_creerDossierMedical(void ** state){
+    assert_int_equal(ListMedecin_isEmpty(((DossierMedical*) *state)->medecins_consultes), 1);
+    assert_int_equal(ListOrdonnance_isEmpty(((DossierMedical*) *state)->ordonnances), 1);
+}
+
+
+static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
+    Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
+    Ordonnance * o = CreerOrdonnance(m, "test");
+    AddOrdonnanceDossierMedical((DossierMedical *) *state, o);
+    ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
+    assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
+
+    DeleteMedecin(m);
+    DeleteOrdonnance(o);
 }
 
 /**********************************************************************************************************************/
@@ -680,6 +717,11 @@ int main(void){
             cmocka_unit_test(testOrdonnance_modifierOrdonnance),
     };
 
+    const struct CMUnitTest tests_fonctionsDossierMedical[]={
+        cmocka_unit_test(testDossierMedical_creerDossierMedical),
+        cmocka_unit_test(testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded),
+    };
+
     const struct CMUnitTest tests_fonctionsJsonSave[] = {
             cmocka_unit_test(testJsonSave_GPCalendar_saveProject)
     };
@@ -694,10 +736,12 @@ int main(void){
     int return_cmocka_D = cmocka_run_group_tests(tests_fonctionsDate, setup_Date, teardown_Date);
     printf("\033[34;01m\n***************************** Running Ordonnance Tests *****************************\n\n\033[00m");
     int return_cmocka_O = cmocka_run_group_tests(tests_fonctionsOrdonnance, setup_Ordonnance, teardown_Ordonnance);
+    printf("\033[34;01m\n***************************** Running DossierMedical Tests *****************************\n\n\033[00m");
+    int return_cmocka_DM = cmocka_run_group_tests(tests_fonctionsDossierMedical, setup_DossierMedical, teardown_DossierMedical);
     printf("\033[34;01m\n***************************** Running JsonSave Tests *****************************\n\n\033[00m");
     int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_J;
+    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
 
 }
