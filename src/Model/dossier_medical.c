@@ -27,9 +27,15 @@ void FreeDossierMedical(DossierMedical * dm){
     ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    //Il ne faut pas delete les mèdecins référencés
                                                                         // par cette liste puisqu'on les delete dèjà
                                                                         // depuis la liste workingMedecins
-    ListOrdonnance_free(dm->ordonnances); //pareil
+    ListOrdonnance_free_withoutDeletingOrdonnance(dm->ordonnances); //pareil
     free((void *) dm);
 }
+
+/**
+ * AddOrdonnanceDossierMedical : Ajoute une ordonnance dans le dossier medical
+ * @param dm : le dossier dans lequel on veut ajouter
+ * @param ordonnance : l'ordonnance à ajouter
+ */
 
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
     if(dm == NULL || ordonnance == NULL){
@@ -50,4 +56,11 @@ int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
     return 1;
 }
 
+/**
+ * AddAntecedentDossierMedical : Ajoute un antecedent dans le dossier medical
+ * @param dm : le dossier dans lequel on veut ajouter
+ * @param antecedent : l'antecedent à ajouter
+ */
+
+//int AddAntecedentDossierMedical(DossierMedical * dm, char antecedent){}
 

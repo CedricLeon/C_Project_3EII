@@ -14,7 +14,7 @@ typedef struct DossierMedical{
     /**
      * Pas d'antécédents pour l'instant (pas implémenté dans dossier médical.c et dans Json.c
      */
-    //char ** antecedents; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
+   // char antecedents[]; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
 }DossierMedical;
 
 DossierMedical * CreerDossierMedical(Patient * patient);
@@ -26,7 +26,7 @@ void AccesDossier(Patient * p);    //Print toutes les infos je suppose
 
 
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
-int AddAntecedentDossierMedical(DossierMedical * dm, char * antecedent);
+int AddAntecedentDossierMedical(DossierMedical * dm, char antecedent);
 
 //void TransfertDossier(DossierMedical dm, ???); //J'avoue que je vois pas trop
 
