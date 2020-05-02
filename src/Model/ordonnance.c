@@ -96,6 +96,17 @@ void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
     ListOrdonnance_setOnFirst(l);
     ListOrdonnance_setOnPrevious(l);
 }
+/**
+ * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance lié au node *
+ * @param n : le node à delete
+ */
+void freeNodeOrdonnance_withoutDeletingOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
+    n->previous->next = n->next;
+    n->next->previous = n->previous;
+    free((void *) n);
+    ListOrdonnance_setOnFirst(l);
+    ListOrdonnance_setOnPrevious(l);
+}
 
 
 /**
@@ -127,6 +138,26 @@ void ListOrdonnance_free(ListOrdonnance * l){
     }else{
         for(ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
             freeNodeOrdonnance(l, l->current);
+        }
+        free((void *) l);
+    }
+}
+
+/**
+ * ListOrdonnance_free_withoutDeletingOrdonnance : Libère la mémoire occupée par l'objet ListOrdonnance passée en paramètre mais
+ *                                           sans delete les ordonnances de cette liste (uniquement les nodes)
+ * @param l : la liste d'ordonnances à free
+ */
+void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
+
+    if (l == NULL){
+        printf("ListOrdonnance_free_withoutDeletingOrdonnance : le jour est NULL !!!\n");
+    }else if ( ListOrdonnance_isEmpty(l)){
+        printf("ListOrdonnance_free_withoutDeletingOrdonnance : la liste est vide, on ne free donc que la liste!!!\n");
+        free((void *) l);
+    }else {
+        for (ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
+            freeNodeOrdonnance_withoutDeletingOrdonnance(l, l->current);
         }
         free((void *) l);
     }
