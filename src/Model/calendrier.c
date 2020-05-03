@@ -3,10 +3,10 @@
                                         /*Fonction d'ajout de RDV dans le calendrier*/
 /**********************************************************************************************************************/
 /**
- * AddRendezVous_Calendrier : Giga fonction permettant d'ajouter un rendez-vous à notre calendrier.
+ * AddRendezVous_Calendrier : Fonction permettant d'ajouter un rendez-vous à notre calendrier.
  *                            Pour cela il faut que le calendrier soit créé et initialisé avant l'appel et que le rdv
- *                            ait été testé comme valable au paravant (y'a-t-il de la place pour ce créneau horaire,
- *                            rentre-t-il dans les horaires du mèdecin etc...)
+ *                            ait été testé comme valable auparavant (y'a-t-il de la place pour ce créneau horaire,
+ *                            rentre-t-il dans les horaires du médecin etc...)
  *
  * @param c : Le calendrier auquel on veut ajouter notre rendez-vous
  * @param rdv : le rendez-vous à ajouter
@@ -16,20 +16,20 @@
 */
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
     if(c == NULL || rdv == NULL){
-        printf("Calendrier ou Rdv NULL.\n"); /*"Erreur Rdv ou calendrier inexistant" plus simple pour l'utilisateur ? (Elisabeth)*/
+        printf("Calendrier ou Rdv inexistant.\n");
         return -1;
     }
     /**
-     * Dans un premier temps on test si notre rdv est valable, ce serait d'ailleurs peut-être mieux de le faire
+     * Dans un premier temps on teste si notre rdv est valable, ce serait d'ailleurs peut-être mieux de le faire
      * dans une autre fonction, comme ça on pourrait l'appeller séparément de celle là. --> je suis ok vaut mieux en faire une à part (Elisabeth)
      * Et ensuite si le rdv peut être ajouté, bah on l'ajoute au calendrier.
      *
      * Et pour cela, la méthode va être toujours la même :
-     * On regarde si dans notre calendrier l'année correspondant à l'année ou le rdv va être ajouté existe déjà,
+     * On regarde si dans notre calendrier l'année correspondant à l'année où le rdv va être ajouté existe déjà,
      * si ce n'est pas le cas on la crée, l'initialise (et du coup on crée aussi le mois et le jour correspondants
      * à ceux du rdv) et on ajoute le rdv.
-     * Si l'année existaient déjà alors on cherche dans cette année le mois du rdv. Et là meme charabia, si on ne le
-     * trouve pas on le crée avec le jour du rdv et pn ajoute tout ce beau monde à l'année et donc au calendrier. Et s'il
+     * Si l'année existaient déjà alors on cherche dans cette année le mois du rdv. Et là même charabia, si on ne le
+     * trouve pas on le crée avec le jour du rdv et on ajoute tout ce beau monde à l'année et donc au calendrier. Et s'il
      * existait déjà on cherche le jour etc ...
      * Au final cela ressemble à ça :
      *
@@ -42,8 +42,8 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
      * }else if(jourDuRdv existe pas){
      *      Creer Jour du rdv l'ajouter avec le rdv au calendrier
      * }else{
-     *      //On considère pour l'instant que si on est arrivé dans cette fonction c'est que le rdv à déjà était considéré
-     *      //comme valide, cad qu'on peut le placé dans le jour sans qu'il empiete sur un autre rdv
+     *      //On considère pour l'instant que si on est arrivé dans cette fonction c'est que le rdv a déjà été considéré
+     *      //comme valide, cad qu'on peut le placer dans le jour sans qu'il empiete sur un autre rdv
      *      Ajoute le rdv au jour
      * }
      */
@@ -58,7 +58,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
 
-        //Ici on recréer une date au lieu de définir la date du jour comme la date du premier rdv quil contient
+        //Ici on recrée une date au lieu de définir la date du jour comme la date du premier rdv quil contient
         // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
         // le 1er rdv. C'est aussi plus simple pour les fonctions free
         Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
@@ -73,7 +73,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         AddJour_Mois(lJ, lRdv);
         ListJour_setOnFirst(lJ);
 
-        //Puis crée notre liste de mois, on l'initialise et on ajoute notre mois dedans
+        //Puis on crée notre liste de mois, on l'initialise et on ajoute notre mois dedans
         ListMois * lM = (ListMois *) malloc(sizeof(ListMois));
         ListMois_init(lM, rdv->date->annee);
         AddMois_Annee(lM, lJ);
@@ -93,7 +93,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
 
-        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        //Ici on recrée une date au lieu de définir la date du jour comme la date du premier rdv quil contient
         // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
         // le 1er rdv. C'est aussi plus simple pour les fonctions free
         Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
@@ -118,7 +118,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         //On crée notre liste de rdv, on l'initialise et on ajoute rdv dedans
         ListRendezVous * lRdv = (ListRendezVous *) malloc(sizeof(ListRendezVous));
 
-        //Ici on recréer une date au lieu de définir la date du jour comme la dtae du premier rdv quil contient
+        //Ici on recrée une date au lieu de définir la date du jour comme la date du premier rdv quil contient
         // car il ne faut pas que la date du jour et la date de son premier rdv soit lié si on veut pouvoir supprimer
         // le 1er rdv. C'est aussi plus simple pour les fonctions free
         Date * dateDuJour = CreerDate(rdv->date->annee, rdv->date->mois, rdv->date->jour);
@@ -138,8 +138,8 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
 
 /**
  * freeCalendrier : Cette fonction va entièrement free le contenu d'un calendrier, notamment ses rdv. Dans les faits elle
- *                  sera appellée quand l'utilisateur fermera l'application, après avoir sauvegardé le calendrier en
- *                  question dans un fichier ICS.
+ *                  sera appelée quand l'utilisateur fermera l'application, après avoir sauvegardé le calendrier en
+ *                  question dans un fichier cJSON.
  * @param c : le calendrier à free
  */
 void freeCalendrier(Calendrier c){
@@ -149,9 +149,8 @@ void freeCalendrier(Calendrier c){
 }
 
 /**
- * chercherRendezVous_Calendrier : Fonction qui positionne tous les pointeurs courent des listes d'années, de mois, de
+ * chercherRendezVous_Calendrier : Fonction qui positionne tous les pointeurs courants des listes d'années, de mois, de
  *                                 jours et de rdv sur la liste contenant notre rendez-vous s'il appartient au calendrier.
- *                                 Si ce n'est pas le cas
  * @param c : le calendrier dans lequel on cherche
  * @param rdv : le rdv cherché
  * @return 1 si le rdv a été trouvé, 0 si le rdv n'appartient pas au calendrier, -1 si l'un des objets est NULL
@@ -192,12 +191,12 @@ void printCalendrier(Calendrier c)
     {
         Annee a = ListAnnee_getCurrent(c);
         printf("%d :\n",a->annee);
-        //On parcours tous les mois présents dans l'année' et on "entre dedans"
+        //On parcourt tous les mois présents dans l'année' et on "entre dedans"
         for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
         {
             Mois m = ListMois_getCurrent(a);
             printf("\t - %d :\n",m->mois);
-            //On parcours tous les jours présents dans le mois et on "entre dedans"
+            //On parcourt tous les jours présents dans le mois et on "entre dedans"
             for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
             {
                 Jour j = ListJour_getCurrent(m);
@@ -251,7 +250,7 @@ int AddRendezVous_Jour(Jour j, RendezVous * rdv){
         j->current->previous = newNode;
         return 1;
     }
-    //Dans le cas ou ChercherRendezVousSuivant n'a pas return 1 c'est que notre rdv doit etre insérer en fin de
+    //Dans le cas ou ChercherRendezVousSuivant n'a pas return 1 c'est que notre rdv doit etre inséré en fin de
     //listRendezVous puisque ni j ni rdv ne sont nuls (testés plus haut)
     //On l'insère donc à la fin de liste
     ListRendezVous_setOnNext(j);
@@ -275,10 +274,10 @@ int ChercherRendezVousSuivant(Jour j, RendezVous * rdv){
         printf("Jour ou Rdv NULL.\n");
         return -1;
     }
-    //On parcours chronologiquement les rdv du jour
+    //On parcourt chronologiquement les rdv du jour
     for(ListRendezVous_setOnFirst(j); !ListRendezVous_isLast(j); ListRendezVous_setOnNext(j)){
         if(ListRendezVous_getCurrent(j)->heure_debut >= rdv->heure_fin){            //On met >= pcq pas de
-                                                                                    //pause pour les medecins #corona
+                                                                                    //pause pour les medecins
             return 1;   //Current est bien placé sur le rdv "suivant" celui passé en paramètre
         }
     }
@@ -289,7 +288,7 @@ int ChercherRendezVousSuivant(Jour j, RendezVous * rdv){
     return 0;
 }
 /**
- * AddJour_Mois : Ajoute un Jour à une liste de Jour triés chrnologiquement (via leur attribut Date)
+ * AddJour_Mois : Ajoute un Jour à une liste de Jour triée chrnologiquement (via leur attribut Date)
  * @param m : la liste de jour, le mois
  * @param j : le jour a ajouter
  * @return 1 Si le jour a bien été ajouté
@@ -327,9 +326,9 @@ int AddJour_Mois(Mois m, Jour j){
     return 1;
 }
 /**
- * AddMois_Annee : Ajoute un Mois à une liste de Mois triés chrnologiquement (via leur attribut int mois)
+ * AddMois_Annee : Ajoute un Mois à une liste de Mois triée chrnologiquement (via leur attribut int mois)
  * @param a : la liste de mois, l'année
- * @param m : le mois a ajouter
+ * @param m : le mois à ajouter
  * @return 1 Si le mois a bien été ajouté
  *         0 Si il ne l'a pas été
  *         -1 si le mois ou l'année étaient NULL
@@ -365,11 +364,11 @@ int AddMois_Annee(Annee a, Mois m){
     return 1;
 }
 /**
- * AddAnnee_Calendrier : Ajoute une annee à une liste d'annee triées chrnologiquement (via leur attribut int annee)
+ * AddAnnee_Calendrier : Ajoute une annee à une liste d'annee triée chrnologiquement (via leur attribut int annee)
  * @param c : la liste d'annee, le calendrier
  * @param a : l'annee à ajouter
- * @return 1 Si l'annee a bien été ajouté
- *         0 Si il ne l'a pas été
+ * @return 1 Si l'annee a bien été ajoutée
+ *         0 Si elle ne l'a pas été
  *         -1 si le calendrier ou l'année étaient NULL
  */
 int AddAnnee_Calendrier(Calendrier c, Annee a){
@@ -515,21 +514,21 @@ NodeRendezVous * newNodeRendezVous(RendezVous * rdv , NodeRendezVous * previous,
     return newNode;
 }
 /**
- * freeNodeRendezVous : Fonction libérant permettant de free un objet NodeRendezVous
+ * freeNodeRendezVous : Fonction permettant de free un objet NodeRendezVous
  * @param n : le node en question
  */
 void freeNodeRendezVous(ListRendezVous * l, NodeRendezVous * n){
     //C'est ici qu'on vient free les rdv.
     //Pour l'instant cette fonction n'est appellée que par ListRendezVous_free() qui est uniquement appellée par free_calendrier()
 
-    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    //On set les pointeurs des objets précédant et suivant le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
     printf("\t\t\t\tfreeNodeRendezVous : appel de FreeRendezVous.\n");
     FreeRendezVous(n->rdv);
     free((void *) n);
-    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListRendezVous_setOnFirst(l);
     ListRendezVous_setOnPrevious(l);
@@ -555,7 +554,7 @@ void ListRendezVous_init(ListRendezVous * l, Date * date){
     }
 }
 /**
- * ListRendezVous_free : Libère la mémoire occupée par l'objet ListRendezVous passée en paramètre
+ * ListRendezVous_free : Libère la mémoire occupée par l'objet ListRendezVous passé en paramètre
  * @param l : la liste de rendezVous à free
  */
 void ListRendezVous_free(ListRendezVous * l){
@@ -579,7 +578,9 @@ void ListRendezVous_free(ListRendezVous * l){
 /**
  * ListRendezVous_isEmpty : Vérifie si la liste de RendezVous est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListRendezVous_isEmpty(ListRendezVous * l){
     if (l != NULL){
@@ -590,7 +591,9 @@ int ListRendezVous_isEmpty(ListRendezVous * l){
 /**
  * ListRendezVous_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le premier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListRendezVous_isFirst(ListRendezVous * l){
     if (l != NULL){
@@ -601,7 +604,9 @@ int ListRendezVous_isFirst(ListRendezVous * l){
 /**
  * ListRendezVous_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListRendezVous_isLast(ListRendezVous * l){
     if (l != NULL){
@@ -613,7 +618,9 @@ int ListRendezVous_isLast(ListRendezVous * l){
  * ListRendezVous_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ * @return 1 si current vaut NULL
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListRendezVous_isOutOfList(ListRendezVous * l){
     if (l != NULL){
@@ -672,7 +679,8 @@ RendezVous * ListRendezVous_getCurrent(ListRendezVous * l){
 /**
  * ListRendezVous_getDate : Permet d'accéder à la date de cette liste de rdv (un jour)
  * @param l : la liste
- * @return la date si la liste n'est pas NULL, NULL si la liste est NULL
+ * @return la date si la liste n'est pas NULL,
+ *         NULL si la liste est NULL
  */
 Date * ListRendezVous_getDate(ListRendezVous * l){
     if(l != NULL){
@@ -707,7 +715,7 @@ NodeJour * newNodeJour(Jour jour , NodeJour * previous, NodeJour * next){
  */
 void freeNodeJour(ListJour * l, NodeJour * n){
 
-    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    //On set les pointeurs des objets précédant et suivant le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
@@ -717,10 +725,10 @@ void freeNodeJour(ListJour * l, NodeJour * n){
     printf("\t\t\tfreeNodeJour : Appel de ListRendezVous_free pourle jour : %s\n", tmp);
     free((void*) tmp);
 
-    ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle même free tous ses nodes) pointé par le Node
     free((void *) n);
 
-    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListJour_setOnFirst(l);
     ListJour_setOnPrevious(l);
@@ -730,7 +738,7 @@ void freeNodeJour(ListJour * l, NodeJour * n){
  * ListJour_init : Initialise correctement une liste de NodeJour en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)
  * @param l : la liste à initialiser
- * @param mois : le numéro correspondant au mois (la listes de jours)
+ * @param mois : le numéro correspondant au mois (la liste de jours)
  */
 void ListJour_init(ListJour * l, int mois){
     if (l != NULL){
@@ -745,7 +753,7 @@ void ListJour_init(ListJour * l, int mois){
     }
 }
 /**
- * ListJour_free : Libère la mémoire occupée par l'objet ListJour passée en paramètre
+ * ListJour_free : Libère la mémoire occupée par l'objet ListJour passé en paramètre
  * @param l : la liste de Jour à free
  */
 void ListJour_free(ListJour * l){
@@ -763,15 +771,16 @@ void ListJour_free(ListJour * l){
         }
         printf("\t\tLe mois %d a été free.\n", l->mois);
         free((void *) l);
-        //SEGFAULTING HERE FROM TEST_UNITAIRES.C
     }
 }
 
 /**
  * ListJour_isEmpty : Vérifie si la liste de Jour est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
- */
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
+*/
 int ListJour_isEmpty(ListJour * l){
     if (l != NULL){
         return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
@@ -781,7 +790,9 @@ int ListJour_isEmpty(ListJour * l){
 /**
  * ListJour_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le premier élément
+            0 si il ne l'est pas
+            -1 si la liste est NULL
  */
 int ListJour_isFirst(ListJour * l){
     if (l != NULL){
@@ -792,7 +803,9 @@ int ListJour_isFirst(ListJour * l){
 /**
  * ListJour_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListJour_isLast(ListJour * l){
     if (l != NULL){
@@ -804,8 +817,10 @@ int ListJour_isLast(ListJour * l){
  * ListJour_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
- */
+ * @return 1 si current vaut NULL
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
+*/
 int ListJour_isOutOfList(ListJour * l){
     if (l != NULL){
         return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
@@ -863,7 +878,8 @@ Jour ListJour_getCurrent(ListJour * l){
 /**
  * ListJour_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Jour (donc au mois)
  * @param l : la liste de jour
- * @return le numéro du mois si la liste n'est pas vide 0 sinon
+ * @return le numéro du mois si la liste n'est pas vide
+ *         0 sinon
  */
 int ListJour_getMois(ListJour * l){
     if(l != NULL){
@@ -896,15 +912,15 @@ NodeMois * newNodeMois(Mois mois , NodeMois * previous, NodeMois * next){
  */
 void freeNodeMois(ListMois * l, NodeMois * n){
 
-    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    //On set les pointeurs des objets précédant et suivant le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
     printf("\t\tfreeNodeMois : Appel de ListJour_free pour le mois : %d\n", l->current->mois->mois);
-    ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tous ses nodes) pointé par le Node
     free((void *) n);
 
-    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListMois_setOnFirst(l);
     ListMois_setOnPrevious(l);
@@ -914,7 +930,7 @@ void freeNodeMois(ListMois * l, NodeMois * n){
  * ListMois_init : Initialise correctement une liste de NodeMois en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)
  * @param l : la liste à initialiser
- * @param annee : le numéro correspondant au mois (la listes de Moiss)
+ * @param annee : le numéro correspondant au mois (la liste de Mois)
  */
 void ListMois_init(ListMois * l, int annee){
     if (l != NULL){
@@ -929,7 +945,7 @@ void ListMois_init(ListMois * l, int annee){
     }
 }
 /**
- * ListMois_free : Libère la mémoire occupée par l'objet ListMois passée en paramètre
+ * ListMois_free : Libère la mémoire occupée par l'objet ListMois passé en paramètre
  * @param l : la liste de Mois à free
  */
 void ListMois_free(ListMois * l){
@@ -953,7 +969,9 @@ void ListMois_free(ListMois * l){
 /**
  * ListMois_isEmpty : Vérifie si la liste de Mois est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListMois_isEmpty(ListMois * l){
     if (l != NULL){
@@ -964,7 +982,9 @@ int ListMois_isEmpty(ListMois * l){
 /**
  * ListMois_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le premier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListMois_isFirst(ListMois * l){
     if (l != NULL){
@@ -975,7 +995,9 @@ int ListMois_isFirst(ListMois * l){
 /**
  * ListMois_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListMois_isLast(ListMois * l){
     if (l != NULL){
@@ -987,7 +1009,9 @@ int ListMois_isLast(ListMois * l){
  * ListMois_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ * @return 1 si current vaut NULL
+ *         0 sinon
+ *         -1 si la liste est NULL
  */
 int ListMois_isOutOfList(ListMois * l){
     if (l != NULL){
@@ -1046,7 +1070,8 @@ Mois ListMois_getCurrent(ListMois * l){
 /**
  * ListMois_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Mois (donc au mois)
  * @param l : la liste de Mois
- * @return le numéro de l'annéée si la liste n'est pas vide 0 sinon
+ * @return le numéro de l'annéée si la liste n'est pas vide
+ *         0 sinon
  */
 int ListMois_getAnnee(ListMois * l){
     if(l != NULL){
@@ -1073,7 +1098,7 @@ Calendrier creerCalendrier(){
 
 /**
  * newNodeAnnee : Fonction permettant de créer un nouvel objet NodeAnnee
- * @param annee : l'annee' (donc une liste de mois ou une liste de listes de listes de rdv) pointé par ce nouveau NodeAnnee
+ * @param annee : l'annee (donc une liste de mois ou une liste de liste de liste de rdv) pointé par ce nouveau NodeAnnee
  * @param previous : le NodeAnnee précédant le nouveau node
  * @param next : le NodeAnnee suivant le nouveau node
  * @return un pointeur sur le noeud créé
@@ -1090,15 +1115,15 @@ NodeAnnee * newNodeAnnee(Annee annee , NodeAnnee * previous, NodeAnnee * next){
  * @param n : le node en question
  */
 void freeNodeAnnee(ListAnnee * l, NodeAnnee * n){
-    //On set les pointeurs des objets précédants et suivants le noeud à supprimer correctement
+    //On set les pointeurs des objets précédant et suivant le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
     printf("\tfreeNodeAnnee : Appel de ListMois_free() pour l'année : %d\n", l->current->annee->annee);
-    ListMois_free(n->annee);   //On free l'annee (donc la liste de listes de listes de RDV qui vient elle meme free tout ses nodes) pointé par le Node
+    ListMois_free(n->annee);   //On free l'annee (donc la liste de liste de liste de RDV qui vient elle meme free tous ses nodes) pointé par le Node
     free((void *) n);
 
-    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListAnnee_setOnFirst(l);
     ListAnnee_setOnPrevious(l);
@@ -1121,7 +1146,7 @@ void ListAnnee_init(ListAnnee * l){
     }
 }
 /**
- * ListAnnee_free : Libère la mémoire occupée par l'objet ListAnnee passée en paramètre
+ * ListAnnee_free : Libère la mémoire occupée par l'objet ListAnnee passé en paramètre
  * @param l : la liste de Annee à free
  */
 void ListAnnee_free(ListAnnee * l){
@@ -1146,7 +1171,9 @@ void ListAnnee_free(ListAnnee * l){
 /**
  * ListAnnee_isEmpty : Vérifie si la liste de Annee est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListAnnee_isEmpty(ListAnnee * l){
     if (l != NULL){
@@ -1157,8 +1184,9 @@ int ListAnnee_isEmpty(ListAnnee * l){
 /**
  * ListAnnee_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
- */
+ * @return 1 si current est bien sur le premier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL */
 int ListAnnee_isFirst(ListAnnee * l){
     if (l != NULL){
         return  l->current == l->sentinel_begin.next;
@@ -1168,8 +1196,9 @@ int ListAnnee_isFirst(ListAnnee * l){
 /**
  * ListAnnee_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
- */
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL */
 int ListAnnee_isLast(ListAnnee * l){
     if (l != NULL){
         return  l->current == l->sentinel_end.previous;
@@ -1180,8 +1209,9 @@ int ListAnnee_isLast(ListAnnee * l){
  * ListAnnee_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
- */
+ * @return 1 si current vaut NULL
+ *         0 sinon
+ *         -1 si la liste est NULL */
 int ListAnnee_isOutOfList(ListAnnee * l){
     if (l != NULL){
         return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
@@ -1228,7 +1258,7 @@ void ListAnnee_setOnPrevious(ListAnnee * l){
 /**
  * ListAnnee_getCurrent : Permet d'acceder au Annee pointé par current
  * @param l : la liste
- * @return Retourne un pointeur sur le Annee de l'élément courant de la liste
+ * @return Retourne un pointeur sur l'Annee de l'élément courant de la liste
  */
 Annee ListAnnee_getCurrent(ListAnnee * l){
     if(l != NULL && l->current != NULL){
