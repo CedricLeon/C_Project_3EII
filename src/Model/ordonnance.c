@@ -2,10 +2,10 @@
 
 /**
  * CreerOrdonnance : Creer dynamiquement un objet Ordonnance
- * @param patient : le patient concern� par l'ordonnance
+ * @param patient : le patient concerné par l'ordonnance
  * @param medecin : le medecin qui prescrit l'ordonnance
  * @param description : description de la prescription
- * @return l'ordonnance cr��e
+ * @return l'ordonnance créée
  */
 Ordonnance* CreerOrdonnance(Medecin* m, char* description){
     Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
@@ -32,8 +32,8 @@ void DeleteOrdonnance(Ordonnance * o){
 
 /**
  * ModifierOrdonnance : Modifier un objet Ordonnance
- * @param ordo : l'ordonnance qui n�cessite d'�tre modifi�e
- * @param p : le patient concern� par l'ordonnance
+ * @param ordo : l'ordonnance qui necessite d'être modifi�e
+ * @param p : le patient concerné par l'ordonnance
  * @param m : le medecin qui prescrit l'ordonnance
  * @param description : nouvelle description de la prescription
  * @return 1 si l'ordonnance a été modifiée
@@ -60,9 +60,9 @@ int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
  * @param ordo : l'ordonnance que l'on veut afficher
  */
 void printOrdonnance(Ordonnance * ordo){
-    printf("Ordonnance faite le %d/%d/%d par le mèdecin %s %s\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
+    printf("Ordonnance faite le %d/%d/%d par le médecin %s %s\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
     printf("Prescription : \n\t%s \n", ordo->description);
-    printf("A r�cup�rer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+    printf("A recuperer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
 }
 
 /**********************************************************************************************************************/
@@ -97,7 +97,7 @@ void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
     ListOrdonnance_setOnPrevious(l);
 }
 /**
- * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance lié au node
+ * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance liée au node
  * @param n : le node à delete
  */
 void freeNodeOrdonnance_withoutDeletingOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
@@ -126,7 +126,7 @@ void ListOrdonnance_init(ListOrdonnance * l){
     }
 }
 /**
- * ListOrdonnance_free : Libère la mémoire occupée par l'objet ListOrdonnance passée en paramètre
+ * ListOrdonnance_free : Libère la mémoire occupée par l'objet ListOrdonnance passé en paramètre
  * @param l : la liste de ordonnances à free
  */
 void ListOrdonnance_free(ListOrdonnance * l){
@@ -145,8 +145,8 @@ void ListOrdonnance_free(ListOrdonnance * l){
 }
 
 /**
- * ListOrdonnance_free_withoutDeletingOrdonnance : Libère la mémoire occupée par l'objet ListOrdonnance passée en paramètre mais
- *                                           sans delete les ordonnances de cette liste (uniquement les nodes)
+ * ListOrdonnance_free_withoutDeletingOrdonnance : Libère la mémoire occupée par l'objet ListOrdonnance passé en paramètre mais
+ * sans delete les ordonnances de cette liste (uniquement les nodes)
  * @param l : la liste d'ordonnances à free
  */
 void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
@@ -166,7 +166,9 @@ void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
 /**
  * ListOrdonnance_isEmpty : Vérifie si la liste de Ordonnance est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListOrdonnance_isEmpty(ListOrdonnance * l){
     if (l != NULL){
@@ -177,7 +179,9 @@ int ListOrdonnance_isEmpty(ListOrdonnance * l){
 /**
  * ListOrdonnance_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le premier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListOrdonnance_isFirst(ListOrdonnance * l){
     if (l != NULL){
@@ -188,7 +192,9 @@ int ListOrdonnance_isFirst(ListOrdonnance * l){
 /**
  * ListOrdonnance_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListOrdonnance_isLast(ListOrdonnance * l){
     if (l != NULL){
@@ -200,7 +206,9 @@ int ListOrdonnance_isLast(ListOrdonnance * l){
  * ListOrdonnance_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ * @return 1 si current vaut NULL
+ *         0 sinon
+ *         -1 si la liste est NULL
  */
 int ListOrdonnance_isOutOfList(ListOrdonnance * l){
     if (l != NULL){
