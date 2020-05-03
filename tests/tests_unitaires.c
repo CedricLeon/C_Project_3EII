@@ -642,7 +642,9 @@ int main(void){
 
     //tests à la main//
 
-    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
+    /GPCalendar_loadProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json");
+
+    /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
 
     RendezVous * rdv1 = CreerRendezVous(2001,01,01,01,60,"lieu1",p1,m1,"motif1");
@@ -659,7 +661,7 @@ int main(void){
     printCalendrier(c);
     freeCalendrier(c);
     DeletePatient(p1);
-    DeleteMedecin(m1);
+    DeleteMedecin(m1);*/
 
     const struct CMUnitTest tests_fonctionsPatient[] = {
 
