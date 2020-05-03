@@ -484,7 +484,7 @@ void ListPatient_setOnLast(ListPatient * l){
  * @param l : la liste
  */
 void ListPatient_setOnNext(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -493,7 +493,7 @@ void ListPatient_setOnNext(ListPatient * l){
  * @param l : la liste
  */
 void ListPatient_setOnPrevious(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }

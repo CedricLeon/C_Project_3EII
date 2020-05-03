@@ -232,7 +232,7 @@ void ListOrdonnance_setOnLast(ListOrdonnance * l){
  * @param l : la liste
  */
 void ListOrdonnance_setOnNext(ListOrdonnance * l){
-    if(l != NULL && !ListOrdonnance_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -241,7 +241,7 @@ void ListOrdonnance_setOnNext(ListOrdonnance * l){
  * @param l : la liste
  */
 void ListOrdonnance_setOnPrevious(ListOrdonnance * l){
-    if(l != NULL && !ListOrdonnance_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }
