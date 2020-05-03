@@ -190,7 +190,7 @@ void create_calendar()
 
   g_signal_connect(calendar, "day_selected", G_CALLBACK(cb_create_entry1), NULL);
 
-  separator = gtk_vseparator_new ();
+  separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
   gtk_box_pack_start (GTK_BOX (hbox), separator, FALSE, TRUE, 0);
 
   vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
@@ -198,19 +198,23 @@ void create_calendar()
 
   /* Build the Right frame with the flags in */
 
-  frame = gtk_frame_new ("Recherche Rendez-vous");
+  frame = gtk_frame_new ("Recherche Rendez-vous\n");
   gtk_box_pack_start (GTK_BOX (vbox2), frame, TRUE, TRUE, DEF_PAD);
-  vbox3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
+  vbox3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 100);
   gtk_container_add (GTK_CONTAINER (frame), vbox3);
 
 
-  /* Build the right font-button */
- // button = gtk_button_new_with_label ("Font...");
- /* g_signal_connect (button,
-		    "clicked",
-		    G_CALLBACK (calendar_select_font),
-		    &calendar_data);*/
-  gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, FALSE, 0);
+  /* Build the plus button */
+
+    GtkWidget * plusRDV = gtk_button_new_with_label("+");
+    gtk_box_pack_start(GTK_BOX(vbox3), plusRDV, FALSE, FALSE, 0);
+    gtk_widget_set_size_request(plusRDV, 50, 50);
+
+    g_signal_connect(G_OBJECT(plusRDV), "clicked", G_CALLBACK(cb_clicSurPlus), NULL);
+
+
+
+  gtk_box_pack_start (GTK_BOX (vbox2), plusRDV, FALSE, FALSE, 0);
 
   /*
    *  Build the Signal-event part.

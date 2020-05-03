@@ -63,6 +63,30 @@ void cb_recherchePatient(GtkWidget * widget, gpointer data){
 
 }
 
+
+/* Fonction callback execute lors du signal "activate" */
+void on_activate_entry(GtkWidget *saisie, gpointer destination)
+{
+    const gchar* Text= "";
+
+
+    /* Recuperation du texte contenu dans le GtkEntry */
+    Text = gtk_entry_get_text(GTK_ENTRY(saisie));
+    destination =g_strdup(Text);
+    printf("Salut c'est un printf %s\n\n",(char*)destination);
+
+}
+
+
+void enter_callback( GtkWidget *widget, GtkWidget *entry)
+{
+  const gchar *entry_text;
+  entry_text = gtk_entry_get_text (GTK_ENTRY (entry));
+  printf ("Entry contents: %s\n", entry_text);
+}
+
+
+
 void cb_creationPatient(GtkWidget * widget, gpointer data){
     //CreerPatient();
     fenetreCreerRDV(widget,data);
