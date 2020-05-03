@@ -40,10 +40,12 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l);
 int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l);
 int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c);
 
-Project*  GPCalendar_loadProject(char* nomFichier);
+Project* GPCalendar_loadProject(char* nomFichier);
 
-int Project_jsonLoad(Project*, const char*);
-
+Project* Project_jsonLoad(const char* const content);
+int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM);
+int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP);
+int Calendrier_jsonLoad(cJSON* calendrierJson, Calendrier c);
 
 
 

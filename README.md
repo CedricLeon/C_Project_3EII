@@ -96,7 +96,7 @@ You want the dev library. Be careful, the name of the package may have change. B
 Once it's done, be sure you have `PkgConfig`(it's a package manager that we are using in our CMakeLists.txt) :
 
 ````bash
-sudo apt install pkg-config 
+sudo apt install pkg-config
 ````
 
 And then you can normally run CMake (in your build repertory) with :
