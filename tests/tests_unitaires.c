@@ -557,16 +557,13 @@ static void testDossierMedical_creerDossierMedical(void ** state){
     assert_int_equal(ListOrdonnance_isEmpty(((DossierMedical*) *state)->ordonnances), 1);
 }
 
-
 static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
-    Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
-    Ordonnance * o = CreerOrdonnance(m, "test");
+    Ordonnance * o = CreerOrdonnance(NULL, "test");
     AddOrdonnanceDossierMedical((DossierMedical *) *state, o);
     ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
     assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
 
-    DeleteMedecin(m);
-    DeleteOrdonnance(o);
+    // /!\ il ne faut pas delete l'ordonnance ici car on le fait déjà dans le teardown !
 }
 
 /**********************************************************************************************************************/
