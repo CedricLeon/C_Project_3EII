@@ -145,16 +145,16 @@ void create_calendar()
   g_signal_connect (window, "delete-event", G_CALLBACK (gtk_false), NULL);
   gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
 
-  vbox = gtk_vbox_new (FALSE, DEF_PAD);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
   gtk_container_add (GTK_CONTAINER (window), vbox);
 
   /*
    * The top part of the window, Calendar, flags and fontsel.
    */
 
-  hbox = gtk_hbox_new (FALSE, DEF_PAD);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, DEF_PAD);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, DEF_PAD);
-  hbbox = gtk_hbutton_box_new ();
+  hbbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
   gtk_box_pack_start (GTK_BOX (hbox), hbbox, FALSE, FALSE, DEF_PAD);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (hbbox), GTK_BUTTONBOX_SPREAD);
   gtk_box_set_spacing (GTK_BOX (hbbox), 5);
@@ -164,8 +164,8 @@ void create_calendar()
   gtk_box_pack_start(GTK_BOX (hbbox), frame, FALSE, TRUE, DEF_PAD);
   calendar=gtk_calendar_new ();
   calendar_data.window = calendar;
-  gtk_calendar_set_detail_height_rows (calendar,127);
-  gtk_calendar_set_detail_width_chars (calendar,127);
+  gtk_calendar_set_detail_height_rows (GTK_CALENDAR(calendar),127);
+  gtk_calendar_set_detail_width_chars (GTK_CALENDAR(calendar),127);
 
 //  calendar_set_flags (&calendar_data);
   gtk_calendar_mark_day (GTK_CALENDAR (calendar), 19);
@@ -193,14 +193,14 @@ void create_calendar()
   separator = gtk_vseparator_new ();
   gtk_box_pack_start (GTK_BOX (hbox), separator, FALSE, TRUE, 0);
 
-  vbox2 = gtk_vbox_new (FALSE, DEF_PAD);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
   gtk_box_pack_start (GTK_BOX (hbox), vbox2, FALSE, FALSE, DEF_PAD);
 
   /* Build the Right frame with the flags in */
 
   frame = gtk_frame_new ("Recherche Rendez-vous");
   gtk_box_pack_start (GTK_BOX (vbox2), frame, TRUE, TRUE, DEF_PAD);
-  vbox3 = gtk_vbox_new (TRUE, DEF_PAD);
+  vbox3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
   gtk_container_add (GTK_CONTAINER (frame), vbox3);
 
 
@@ -219,10 +219,10 @@ void create_calendar()
   frame = gtk_frame_new ("Affichage");
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, DEF_PAD);
 
-  vbox2 = gtk_vbox_new (TRUE, DEF_PAD_SMALL);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD_SMALL);
   gtk_container_add (GTK_CONTAINER (frame), vbox2);
 
-  hbox = gtk_hbox_new (FALSE, 3);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, TRUE, 0);
   label = gtk_label_new ("-->");
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, TRUE, 0);
@@ -230,7 +230,7 @@ void create_calendar()
   gtk_box_pack_start (GTK_BOX (hbox), calendar_data.last_sig, FALSE, TRUE, 0);
 
 
-  bbox = gtk_hbutton_box_new ();
+  bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
   gtk_box_pack_start (GTK_BOX (vbox), bbox, FALSE, FALSE, 0);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
 
