@@ -365,16 +365,16 @@ void fenetreCreerPatient(GtkWidget * widget, gpointer data){
     GtkWidget * labelNumSS = gtk_label_new("\tNuméro de Sécurité Sociale : ");
     GtkWidget * labelMail = gtk_label_new("\tAdresse e-mail : ");
     GtkWidget * labelTel = gtk_label_new("\tNuméro de téléphone : ");
-    GtkEntryBuffer * nom = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisieNom = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(nom));
-    GtkEntryBuffer * prenom = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisiePrenom = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(prenom));
-    GtkEntryBuffer * numSecu = gtk_entry_buffer_new (NULL, 13);
-    GtkWidget * saisieNumSecu = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(numSecu));
-    GtkEntryBuffer * mail = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisieMail = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(mail));
-    GtkEntryBuffer * numTel = gtk_entry_buffer_new (NULL, 15);
-    GtkWidget * saisieTel = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(numTel));
+    char * nom = malloc(50);
+    GtkWidget * saisieNom = gtk_entry_new();
+    char * prenom = malloc(50);
+    GtkWidget * saisiePrenom = gtk_entry_new();
+    char * numSecu = malloc(14);
+    GtkWidget * saisieNumSecu = gtk_entry_new();
+    char * mail = malloc(50);
+    GtkWidget * saisieMail = gtk_entry_new();
+    char * numTel = malloc(16);
+    GtkWidget * saisieTel = gtk_entry_new();
     GtkWidget * choixJour = gtk_combo_box_text_new();
     GtkWidget * choixMois = gtk_combo_box_text_new();
     GtkWidget * choixAnnee = gtk_combo_box_text_new();
@@ -456,6 +456,30 @@ void fenetreCreerPatient(GtkWidget * widget, gpointer data){
     gtk_container_add (GTK_CONTAINER (box8), valider);
 
     gtk_widget_show_all(window);
+
+    /* Récupération des entrées patient */
+//
+//    GtkWidget * entry = gtk_entry_new();
+////    g_signal_connect (saisieNom, "activate", G_CALLBACK (enter_callback), saisieNom);
+//
+//    /* Connexion du signal "activate" du GtkEntry */
+//   // g_signal_connect(G_OBJECT(saisieNom), "activate", G_CALLBACK(enter_callback), );
+//    g_signal_connect(G_OBJECT(saisiePrenom), "activate", G_CALLBACK(on_activate_entry), prenom);
+//    g_signal_connect(G_OBJECT(saisieNumSecu), "activate", G_CALLBACK(on_activate_entry), numSecu);
+//    g_signal_connect(G_OBJECT(saisieTel), "activate", G_CALLBACK(on_activate_entry), numTel);
+//    g_signal_connect(G_OBJECT(saisieMail), "activate", G_CALLBACK(on_activate_entry), mail);
+//
+//    int jour = (int)gtk_combo_box_get_active_id(GTK_COMBO_BOX(choixJour));
+//    int mois = (int)gtk_combo_box_get_active_id(GTK_COMBO_BOX(choixMois));
+//    int an = (int)gtk_combo_box_get_active_id(GTK_COMBO_BOX(choixAnnee));
+
+
+//    /*Pour tester */
+//    Patient *p = CreerPatient((char*)nom, (char*)prenom, (int)an, (int)mois, (int)jour, (char*)mail, (char*)numTel, (char*)numSecu);
+//    char * info = malloc(100);
+//    getInfoPatient(info, p);
+//    printf("%s\n",info);
+//    free(info);
 
 
     /* callbacks */

@@ -19,4 +19,6 @@ void cb_clicSurPlus(GtkWidget * widget, gpointer data);
 void cb_recherchePatient(GtkWidget * widget, gpointer data);
 void cb_creationPatient(GtkWidget * widget, gpointer data);
 void cb_creationRDV(GtkWidget * widget, gpointer data);
+void on_activate_entry(GtkWidget *saisie, gpointer destination);
+void enter_callback( GtkWidget *widget, GtkWidget *entry);
 #endif
