@@ -143,34 +143,8 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
  * @param c : le calendrier à free
  */
 void freeCalendrier(Calendrier c){
-
     printf("\n Entrée dans FreeCalendrier() :\n\n");
     ListAnnee_free(c);
-
-    //la partie qui suit est commentée car elle parcourait tout le calendrier et appellait les fonctions freeAnnee/Mois/etc..
-    //Mais ces fonctions parcourent deja le calendrier, on faisait donc des doubles free
-
-    /*//On parcours toutes les années présentes dans le calendrier et on "entre dedans"
-    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c)){
-        Annee a = ListAnnee_getCurrent(c);
-        //On parcours tous les mois présents dans l'année' et on "entre dedans"
-        for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a)){
-            Mois m = ListMois_getCurrent(a);
-            //On parcours tous les jours présents dans le mois et on "entre dedans"
-            for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m)){
-                Jour j = ListJour_getCurrent(m);
-                //Pour free un jour et les rendezvous qui le compose on va simplement appeller ListRendezVous_free()
-                ListRendezVous_free(j);
-            }
-            //On fait la même chose pour le mois
-            ListJour_free(m);
-        }
-        //Puis pour l'année
-        ListMois_free(a);
-    }
-    //et enfin on free le calendrier
-    ListAnnee_free(c);
-     */
     printf("\n Fin de FreeCalendrier().\n");
 }
 
@@ -189,7 +163,6 @@ int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
     }
 
     Date * dateDuRdv = rdv->date;
-
     Annee anneeRdv = Annee_existe(c, dateDuRdv->annee);
     if (anneeRdv != NULL){
         Mois moisRdv = Mois_existe(anneeRdv, dateDuRdv->mois);
@@ -596,7 +569,6 @@ void ListRendezVous_free(ListRendezVous * l){
         for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
             printf("\t\t\t\tListRendezVous_free : début boucle for \n");
             freeNodeRendezVous(l, l->current);
-            if(l->current == &(l->sentinel_begin)) printf("\t\t\t\tOn est sur sentinel begin : normal\n");
         }
         printf("\t\t\tLe jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
         FreeDate(l->date);

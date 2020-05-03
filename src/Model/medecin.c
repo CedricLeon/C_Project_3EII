@@ -258,6 +258,7 @@ void freeNodeMedecin(ListMedecin *l, NodeMedecin * n){
  * @param n : le node à delete
  */
 void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n){
+    printf("freeNodeMedecin_withoutDeletingMedecin()\n");
     n->previous->next = n->next;
     n->next->previous = n->previous;
     free((void *) n);
@@ -323,6 +324,7 @@ void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l){
         free((void *) l);
     }else {
         for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+            printf("ListMedecin_free_withoutDeletingMedecin() Appel de freeNodeMedecin_withoutDeletingMedecin() pour le mèdecin : %s\n", l->current->medecin->numero_RPS);
             freeNodeMedecin_withoutDeletingMedecin(l, l->current);
         }
         free((void *) l);

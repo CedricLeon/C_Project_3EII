@@ -142,6 +142,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** st
 
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m2),0);
     assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);
+    assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m1),1);
 
     DeleteMedecin(m1);
     DeleteMedecin(m2);
@@ -538,16 +539,14 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
 /**********************************************************************************************************************/
 
 static int setup_DossierMedical(void ** state){
-    DossierMedical * doss = CreerDossierMedical();
-    *state=doss;
-    return *state==NULL;
+    DossierMedical* doss = CreerDossierMedical();
+    *state = doss;
+    return *state == NULL;
 
 }
-
 static int teardown_DossierMedical(void ** state){
     FreeDossierMedical((DossierMedical*) *state);
 }
-
 
 /**
  * On teste de créer un DossierMedical

@@ -22,7 +22,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->numero_telephone = num_tel;
     p->numero_secu_social = numero_secu_social;
 
-    p->dossierMedical = CreerDossierMedical(p);
+    p->dossierMedical = CreerDossierMedical();
     return p;
 }
 
@@ -31,8 +31,9 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  * @param patient : le patient à supprimer
  */
 void DeletePatient(Patient * patient){
-    FreeDate(patient->date_naissance);
+    printf("DeletePatient() : pour le patient %s.\n", patient->numero_secu_social);
     FreeDossierMedical(patient->dossierMedical);
+    FreeDate(patient->date_naissance);
     free((void *) patient);
 }
 
@@ -366,6 +367,7 @@ void ListPatient_free(ListPatient * l){
         free((void *) l);
     }else {
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
+            printf("ListPatient_free() : appel de freeNodePatient() sur %s.\n", l->current->patient->numero_secu_social);
             freeNodePatient(l, l->current);
         }
         free((void *) l);

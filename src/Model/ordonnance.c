@@ -88,6 +88,7 @@ NodeOrdonnance * newNodeOrdonnance(Ordonnance * ordo, NodeOrdonnance * previous,
  * @param n : le node à delete
  */
 void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
+    printf("freeNodeOrdonnance()\n");
     n->previous->next = n->next;
     n->next->previous = n->previous;
     DeleteOrdonnance(n->ordo);
@@ -96,7 +97,7 @@ void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
     ListOrdonnance_setOnPrevious(l);
 }
 /**
- * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance lié au node *
+ * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance lié au node
  * @param n : le node à delete
  */
 void freeNodeOrdonnance_withoutDeletingOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
@@ -131,11 +132,12 @@ void ListOrdonnance_init(ListOrdonnance * l){
 void ListOrdonnance_free(ListOrdonnance * l){
     if (l == NULL){
         printf("ListOrdonnance_free : la liste d'ordonnance est NULL !!!\n");
-    }else if ( ListOrdonnance_isEmpty(l)){
-        printf("ListOrdonnance_free : la liste est vide, on free donc uniquement la liste!!!\n");
+    }else if (ListOrdonnance_isEmpty(l)){
+        printf("ListOrdonnance_free : la liste est vide, on free donc uniquement la liste\n");
         free((void *) l);
     }else{
         for(ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
+            printf("ListOrdonnance_free : Appel de freeNodeOrdonnance() pour l'ordonnance : %s\n", l->current->ordo->description);
             freeNodeOrdonnance(l, l->current);
         }
         free((void *) l);
@@ -148,7 +150,6 @@ void ListOrdonnance_free(ListOrdonnance * l){
  * @param l : la liste d'ordonnances à free
  */
 void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
-
     if (l == NULL){
         printf("ListOrdonnance_free_withoutDeletingOrdonnance : le jour est NULL !!!\n");
     }else if ( ListOrdonnance_isEmpty(l)){
