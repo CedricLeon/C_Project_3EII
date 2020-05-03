@@ -642,7 +642,8 @@ int main(void){
 
     //tests à la main//
 
-    /GPCalendar_loadProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json");
+    //test pour mon Pc : Cédric
+    //GPCalendar_loadProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json");
 
     /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");

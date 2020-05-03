@@ -31,6 +31,13 @@ void freeProject(Project* project){
 /**
  * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
  */
+ /**
+  * GPCalendar_saveProject : Sauvegarde un projet (liste de mèdecins, patient et un calendrier) sous forme de fichier texte au format JSON
+  * @param nomFichier : le nom du fichier qui contiendra les données au format JSON
+  * @param project : le projet à sauvegarder
+  * @return 1 si tout s'est bien passé
+  *         0 sinon (erreur d'ouverture de fichier ou de parsing : Cf cJSON)
+  */
 int GPCalendar_saveProject(char* nomFichier, Project* project){
 
     FILE* savingFile = NULL;
@@ -58,9 +65,9 @@ int GPCalendar_saveProject(char* nomFichier, Project* project){
 }
 
 /**
- * jsonSave : Fonction permettant de sauvegarder un objet projet dans un fichier .json à l'aide de la librairie cjson
+ * Project_jsonSave : Fonction permettant de sauvegarder un objet projet dans un fichier .json à l'aide de la librairie cjson
  * @param p : l'instance de projet à save
- * @return un string qu'il faudra écrire dans un fichier texte
+ * @return un string qui sera écrit dans un fichier texte
  */
 char* Project_jsonSave(Project* project)
 {
@@ -226,6 +233,13 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
     }
     return 1;
 }
+/**
+ * Calendrier_jsonSave : fonction qui écrit dans un objet cJson une liste de Rendez-vous (triée chronologiquement)
+ * @param calendrierJson : l'objet cJSON dans lequel on sauvegarde le calendrier
+ * @param c : le calendrier à save
+ * @return 1 si tout s'est bien passé
+ *         0 sinon
+ */
 int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
 
     /**
@@ -274,9 +288,11 @@ int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
                                             /*Load Functions*/
 /**********************************************************************************************************************/
 
-/**
- * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
- */
+ /**
+  * GPCalendar_loadProject : fonction récupérant les données d'un projet depuis un fichier au format JSON
+  * @param nomFichier : le fichier depuis lequel on récupère les données
+  * @return un pointeur sur le projet créé avec les données JSON
+  */
 Project*  GPCalendar_loadProject(char* nomFichier){
 
     FILE* loadingFile = NULL;
@@ -294,10 +310,10 @@ Project*  GPCalendar_loadProject(char* nomFichier){
         content[size] = 0; // terminate the string
         printf("\n\nGPCalendar_loadProject() : the whole file is:\n %s\n", content);
 
-        //Appel de Project_jsonload(content)
+        Project * p = Project_jsonLoad(content);
 
         fclose(loadingFile);
-        return NULL;
+        return p;
     }
     else
     {
@@ -305,43 +321,118 @@ Project*  GPCalendar_loadProject(char* nomFichier){
         return NULL;
     }
 }
+/**
+ * Project_jsonLoad : Crée un objet project depuis un char* au format JSON
+ * @param content : le char* avec les données du projet
+ * @return un pointeur sur le projet créé si tout s'est bien passé
+ *         NULL si un erreur a eu lieu (Cf cJSON)
+ */
+Project* Project_jsonLoad(const char* const content){
 
+    Project * project = NULL;
+
+    const cJSON* nameJson = NULL;
+    char* project_name = NULL;
+    const cJSON* workingMedecinsJson = NULL;
+    ListMedecin* project_workingMedecins = NULL;
+    const cJSON* consultingPatientsJson = NULL;
+    ListPatient* project_consultingPatient = NULL;
+    const cJSON* calendrierJson = NULL;
+    Calendrier project_calendrier = NULL;
+
+    //On crée d'abord un objet cJSON avec tout le contenu du fichier qu'il faudra delete à la fin !!!
+    cJSON* projectJson = cJSON_Parse(content);
+    if (projectJson == NULL)
+    {
+        const char* error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL)
+        {
+            fprintf(stderr, "Error before: %s\n", error_ptr);
+        }
+        goto end;
+    }
+
+    //Puis on commence à aller chercher les infos : d'abord le nom du projet
+    nameJson = cJSON_GetObjectItemCaseSensitive(projectJson, "name");
+    if (cJSON_IsString(nameJson) && (nameJson->valuestring != NULL))
+    {
+        project_name = nameJson->valuestring;
+        printf("Name of project loaded : \"%s\"\n", project_name);
+    }
+
+    if(!ListMedecin_jsonLoad(projectJson, project_workingMedecins)){
+        printf("Erreur dans ListMedecin_jsonLoad().\n");
+        goto end;
+    }
+
+    project = CreerProject(project_name, project_workingMedecins, project_consultingPatient, project_calendrier);
+
+    end:
+    cJSON_Delete(projectJson);
+    return project;
+}
+/**
+ * ListMedecin_jsonLoad : Load depuis un objet cJSON une liste de mèdecins
+ * @param projectJson : l'objet cJSON contenant les données pour la liste de mèdecins
+ * @return 1 si tout c'est bien passé
+ *         0 sinon
+ */
+int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
+    return 0;
+}
+int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
+    return 0;
+}
+int Calendrier_jsonLoad(cJSON* calendrierJson, Calendrier c){
+    return 0;
+}
 /**
  * Exemple de cJSON sur leur git
  */
-char *create_monitor_with_helpers(void)
+int supports_full_hd(const char * const monitor)
 {
-    const unsigned int resolution_numbers[3][2] = {
-            {1280, 720},
-            {1920, 1080},
-            {3840, 2160}
-    };
-    char *string = NULL;
-    cJSON *resolutions = NULL;
-    size_t index = 0;
-
-    cJSON *monitor = cJSON_CreateObject();
-    if (cJSON_AddStringToObject(monitor, "name", "Awesome 4K") == NULL)                           goto end;
-
-    resolutions = cJSON_AddArrayToObject(monitor, "resolutions");
-
-    if (resolutions == NULL)                                                                                   goto end;
-
-    for (index = 0; index < (sizeof(resolution_numbers) / (2 * sizeof(int))); ++index)
+    const cJSON *resolution = NULL;
+    const cJSON *resolutions = NULL;
+    const cJSON *name = NULL;
+    int status = 0;
+    cJSON *monitor_json = cJSON_Parse(monitor);
+    if (monitor_json == NULL)
     {
-        cJSON *resolution = cJSON_CreateObject();
-
-        if (cJSON_AddNumberToObject(resolution, "width", resolution_numbers[index][0]) == NULL)  goto end;
-
-        if (cJSON_AddNumberToObject(resolution, "height", resolution_numbers[index][1]) == NULL) goto end;
-
-        cJSON_AddItemToArray(resolutions, resolution);
+        const char *error_ptr = cJSON_GetErrorPtr();
+        if (error_ptr != NULL)
+        {
+            fprintf(stderr, "Error before: %s\n", error_ptr);
+        }
+        status = 0;
+        goto end;
     }
 
-    string = cJSON_Print(monitor);
-    if (string == NULL)        fprintf(stderr, "Failed to print monitor.\n");
+    name = cJSON_GetObjectItemCaseSensitive(monitor_json, "name");
+    if (cJSON_IsString(name) && (name->valuestring != NULL))
+    {
+        printf("Checking monitor \"%s\"\n", name->valuestring);
+    }
+
+    resolutions = cJSON_GetObjectItemCaseSensitive(monitor_json, "resolutions");
+    cJSON_ArrayForEach(resolution, resolutions)
+    {
+        cJSON *width = cJSON_GetObjectItemCaseSensitive(resolution, "width");
+        cJSON *height = cJSON_GetObjectItemCaseSensitive(resolution, "height");
+
+        if (!cJSON_IsNumber(width) || !cJSON_IsNumber(height))
+        {
+            status = 0;
+            goto end;
+        }
+
+        if ((width->valuedouble == 1920) && (height->valuedouble == 1080))
+        {
+            status = 1;
+            goto end;
+        }
+    }
 
     end:
-    cJSON_Delete(monitor);
-    return string;
+    cJSON_Delete(monitor_json);
+    return status;
 }
