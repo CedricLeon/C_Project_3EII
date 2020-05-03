@@ -40,25 +40,26 @@ void DeletePatient(Patient * patient){
  * AffichePatient : Affiche les informations d'un patient dans la console
  * @param p : le patient
  */
-void AffichePatient(Patient * p){
+void printPatient(Patient * p){
     printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
             p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
             p->numero_telephone, p->adresse_mail, p->numero_secu_social);
-    printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
+    printf("Il a consulté les mèdecins suivants :\n");
+    AccesDossierMedical(p);
 }
 
 /**
-* AccesDossier : Accede au dossier du patient et l'affiche
+* AccesDossierMedical : Accede au dossier du patient et l'affiche
 * @param p : le patient dont on veut acceder au dossier
 */
-void AccesDossier(Patient * p){
+void AccesDossierMedical(Patient * p){
     char* nom = (char*) malloc(100);
     DossierMedical * d = p->dossierMedical;
-    printf("Medecins consultés : ");
     for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
         getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
         printf("%s ; ", nom);
     }
+    printf("\n");
     free((void*) nom);
     PrintListOrdonnances(p);
 }
@@ -71,11 +72,7 @@ void PrintListOrdonnances(Patient* p){
 
     for(ListOrdonnance_setOnFirst(lo); !ListOrdonnance_isOutOfList(lo); ListOrdonnance_setOnNext(lo)){
         Ordonnance* ordo = ListOrdonnance_getCurrent(lo);
-        printf("Ordonnance faite le %d/%d/%d \n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
-        printf("Patient : %s %s\n", p->nom, p->prenom);
-        printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
-        printf("Prescription : \n %s \n", ordo->description);
-        printf("A r�cup�rer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+        printOrdonnance(ordo);
     }
 }
 
@@ -366,6 +363,7 @@ void ListPatient_free(ListPatient * l){
         printf("ListPatient_free : le jour est NULL !!!\n");
     }else if ( ListPatient_isEmpty(l)){
         printf("ListPatient_free : la liste est vide, ce n'est pas normal !!!\n");
+        free((void *) l);
     }else {
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
             freeNodePatient(l, l->current);

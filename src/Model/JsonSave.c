@@ -18,8 +18,8 @@ Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * c
 void freeProject(Project* project){
 
     freeCalendrier(project->calendrier);
-    ListMedecin_free(project->workingMedecins);
     ListPatient_free(project->consultingPatient);
+    ListMedecin_free(project->workingMedecins);
 
     free((void*) project);
 }

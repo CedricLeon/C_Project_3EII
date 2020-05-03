@@ -60,10 +60,9 @@ int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
  * @param ordo : l'ordonnance que l'on veut afficher
  */
 void printOrdonnance(Ordonnance * ordo){
-    printf("Ordonnance faite le %d/%d/%d \n\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
-    printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
-    printf("Prescription : \n %s \n", ordo->description);
-    printf("A r�cup�rer avant le %d/%d/%d", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+    printf("Ordonnance faite le %d/%d/%d par le mèdecin %s %s\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
+    printf("Prescription : \n\t%s \n", ordo->description);
+    printf("A r�cup�rer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
 }
 
 /**********************************************************************************************************************/

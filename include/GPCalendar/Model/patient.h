@@ -26,7 +26,7 @@ struct Patient{
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char * numero_secu_social);
 void DeletePatient(Patient * patient);
 
-void AffichePatient(Patient * p); //Utilisée pour le debugging
+void printPatient(Patient * p); //Utilisée pour le debugging
 void AccesDossierMedical(Patient * p);
 void PrintListOrdonnances(Patient* p);
 

@@ -629,6 +629,12 @@ static int teardown_JsonSave(void ** state){
     return 0;
 }
 static void testJsonSave_GPCalendar_saveProject(void ** state){
+    printCalendrier(((Project*) *state)->calendrier);
+
+    for(ListPatient_setOnFirst(((Project*) *state)->consultingPatient); !ListPatient_isOutOfList(((Project*) *state)->consultingPatient); ListPatient_setOnNext(((Project*) *state)->consultingPatient)){
+        printPatient(ListPatient_getCurrent(((Project*) *state)->consultingPatient));
+    }
+
     assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
 }
 
