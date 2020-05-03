@@ -2,8 +2,8 @@
 
 /**
  * CreerDossier : Creer dynamiquement un objet DossierMedical
- * @param patient : le patient concerne par le dossier=
- * @return le dossier cr��
+ * @param patient : le patient concerné par le dossier
+ * @return le dossier crée
  */
 DossierMedical * CreerDossierMedical(){
     DossierMedical* dm = (DossierMedical*) malloc(sizeof(DossierMedical));

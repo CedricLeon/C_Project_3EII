@@ -81,7 +81,7 @@ void getMoisDate(char * infos, Date * d){
 }
 /**
  *  getAnneeDate : Passe l'annee de la date en paramètre sous forme de string dans infos
- * @param infos : l'annee' de la date sous forme de string
+ * @param infos : l'annee de la date sous forme de string
  * @param d : la date dont on veut l'annee
  */
 void getAnneeDate(char * infos, Date * d){
@@ -98,7 +98,7 @@ void getAnneeDate(char * infos, Date * d){
  */
 void getInfosDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(10);    //j'ai pris large
+    char * tmp = (char*) malloc(10);
     getJourDate(tmp, d);
     strcpy(infos, tmp);
     strcat(infos, "/");
@@ -110,7 +110,7 @@ void getInfosDate(char * infos, Date * d){
     free((void*) tmp);
 }
 /**
- * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leurs année, leurs mois et leurs jours sont les mêmes
+ * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leur année, leur mois et leur jours sont les mêmes
  * @param d1 : la première date à comparer
  * @param d2 : la 2eme date
  * @return 1 si les dates sont les mêmes
