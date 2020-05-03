@@ -59,7 +59,7 @@ cmake --build .
 If you are especially using `CodeBlocks`, you can generate a CodeBlocks project with :
 
 ````bash
-cmake -G "CodeBlocks - Unix Makefiles"
+cmake -G "CodeBlocks - Unix Makefiles" ..
 ````
 
 (You can also see what other type of project you can build with CMake with `cmake -G`).
