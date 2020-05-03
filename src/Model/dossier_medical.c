@@ -5,7 +5,7 @@
  * @param patient : le patient concerne par le dossier=
  * @return le dossier cr��
  */
-DossierMedical * CreerDossierMedical(Patient * patient){
+DossierMedical * CreerDossierMedical(){
     DossierMedical * dm = (DossierMedical*)malloc(sizeof(DossierMedical));
 
     dm->medecins_consultes = (ListMedecin*) malloc(sizeof(ListMedecin));

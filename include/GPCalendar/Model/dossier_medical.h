@@ -17,7 +17,7 @@ typedef struct DossierMedical{
    // char antecedents[]; //CR des pr�c�dents passage � l'hopital pour les prochaines versions
 }DossierMedical;
 
-DossierMedical * CreerDossierMedical(Patient * patient);
+DossierMedical * CreerDossierMedical();
 void FreeDossierMedical(DossierMedical * d);
 void AccesDossier(Patient * p);    //Print toutes les infos je suppose
 
