@@ -579,16 +579,14 @@ static int setup_JsonSave(void ** state){
     Medecin * m1 = CreerMedecin("NomTestM1", "PrenomTestM1", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
 
-    ListMedecin * workingMedecins = (ListMedecin*) malloc(sizeof(ListMedecin));
-    ListMedecin_init(workingMedecins);
+    ListMedecin * workingMedecins = CreerListMedecin();
     ListMedecin_add(workingMedecins, m1);
     ListMedecin_add(workingMedecins, m2);
 
     Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 1111, 01, 01, "test@adresseMailP1", "testNumeroTelephoneP1", "testNumSecuP1");
     Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2222, 02, 02, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
 
-    ListPatient * consultingPatients = (ListPatient*) malloc(sizeof(ListPatient));
-    ListPatient_init(consultingPatients);
+    ListPatient * consultingPatients = CreerListPatient();
     ListPatient_add(consultingPatients, p1);
     ListPatient_add(consultingPatients, p2);
 
@@ -627,9 +625,7 @@ static int setup_JsonSave(void ** state){
     return *state == NULL;
 }
 static int teardown_JsonSave(void ** state){
-
     freeProject((Project*) *state);
-
     return 0;
 }
 static void testJsonSave_GPCalendar_saveProject(void ** state){

@@ -330,7 +330,16 @@ void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient * n){
     ListPatient_setOnPrevious(l);
 }
 
-
+/**
+ * CreerListPatient : malloc et initialise une liste de mèdecins
+ * @return la liste initialisée
+ */
+ListPatient * CreerListPatient(){
+    ListPatient * lP;
+    lP = (ListPatient*) malloc(sizeof(ListPatient));
+    ListPatient_init(lP);
+    return lP;
+}
 /**
  * ListPatient_init : Initialise correctement une liste de NodePatient en mettant reliant sentinel_begin et end entre eux
  * et en mettant current à NULL en dehors de la liste
@@ -390,7 +399,7 @@ void ListPatient_free_withoutDeletingPatient(ListPatient * l){
  */
 int ListPatient_add(ListPatient * l, Patient * p){
     if(l == NULL || p == NULL){
-        printf("ListMedecin ou Patient NULL.\n");
+        printf("ListPatient ou Patient NULL.\n");
         return -1;
     }
     //Si Liste vide on insère au début

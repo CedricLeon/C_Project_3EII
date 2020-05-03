@@ -265,7 +265,16 @@ void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n){
     ListMedecin_setOnPrevious(l);
 }
 
-
+/**
+ * CreerListMedecin : malloc et initialise une liste de mèdecins
+ * @return la liste initialisée
+ */
+ListMedecin * CreerListMedecin(){
+    ListMedecin * lM;
+    lM = (ListMedecin*) malloc(sizeof(ListMedecin));
+    ListMedecin_init(lM);
+    return lM;
+}
 /**
  * ListMedecin_init : Initialise correctement une liste de NodeMedecin en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)
@@ -292,6 +301,7 @@ void ListMedecin_free(ListMedecin * l){
         printf("ListMedecin_free : le jour est NULL !!!\n");
     }else if ( ListMedecin_isEmpty(l)){
         printf("ListMedecin_free : la liste est vide, ce n'est pas normal !!!\n");
+        free((void *) l);
     }else {
         for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
             freeNodeMedecin(l, l->current);
