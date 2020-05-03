@@ -59,7 +59,7 @@ cmake --build .
 If you are especially using `CodeBlocks`, you can generate a CodeBlocks project with :
 
 ````bash
-cmake -G "CodeBlocks - Unix Makefiles" ..
+cmake -G "CodeBlocks - Unix Makefiles" .
 ````
 
 (You can also see what other type of project you can build with CMake with `cmake -G`).
@@ -96,7 +96,7 @@ You want the dev library. Be careful, the name of the package may have change. B
 Once it's done, be sure you have `PkgConfig`(it's a package manager that we are using in our CMakeLists.txt) :
 
 ````bash
-sudo apt install pkg-config 
+sudo apt install pkg-config
 ````
 
 And then you can normally run CMake (in your build repertory) with :
