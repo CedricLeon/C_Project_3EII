@@ -18,16 +18,19 @@ Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * c
 void freeProject(Project* project){
 
     freeCalendrier(project->calendrier);
-    ListMedecin_free(project->workingMedecins);
     ListPatient_free(project->consultingPatient);
+    ListMedecin_free(project->workingMedecins);
 
     free((void*) project);
 }
 
+/**********************************************************************************************************************/
+                                            /*Save Functions*/
+/**********************************************************************************************************************/
+
 /**
  * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
  */
-
 int GPCalendar_saveProject(char* nomFichier, Project* project){
 
     FILE* savingFile = NULL;
@@ -35,7 +38,7 @@ int GPCalendar_saveProject(char* nomFichier, Project* project){
 
     if (savingFile != NULL)
     {
-        char* toPrint = jsonSave(project);
+        char* toPrint = Project_jsonSave(project);
         if(toPrint == NULL){
             printf("\n MDR go debugger.\n");
             return 0;
@@ -59,7 +62,7 @@ int GPCalendar_saveProject(char* nomFichier, Project* project){
  * @param p : l'instance de projet à save
  * @return un string qu'il faudra écrire dans un fichier texte
  */
-char* jsonSave(Project* project)
+char* Project_jsonSave(Project* project)
 {
     //Création des variables qu'on va utiliser
     char* string = NULL;
@@ -267,6 +270,41 @@ int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
     return 1;
 }
 
+/**********************************************************************************************************************/
+                                            /*Load Functions*/
+/**********************************************************************************************************************/
+
+/**
+ * Pour l'instant On ne sauvegarde pas les diplomes et spécialités des mèdecins ainsi que les antécédents des DossierMédicaux
+ */
+Project*  GPCalendar_loadProject(char* nomFichier){
+
+    FILE* loadingFile = NULL;
+    loadingFile = fopen(nomFichier, "r");
+    long int size = 0;
+
+    if (loadingFile != NULL)
+    {
+
+        fseek(loadingFile, 0L, SEEK_END);
+        size = ftell(loadingFile);
+        char content[size + 1];
+        rewind(loadingFile);
+        fread(content, size, 1, loadingFile);
+        content[size] = 0; // terminate the string
+        printf("\n\nGPCalendar_loadProject() : the whole file is:\n %s\n", content);
+
+        //Appel de Project_jsonload(content)
+
+        fclose(loadingFile);
+        return NULL;
+    }
+    else
+    {
+        printf("\nGPCalendar_loadProject : Impossible d'ouvrir le fichier \"%s\".\nLe projet return est donc NULL.\n", nomFichier);
+        return NULL;
+    }
+}
 
 /**
  * Exemple de cJSON sur leur git

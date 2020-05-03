@@ -258,6 +258,7 @@ void freeNodeMedecin(ListMedecin *l, NodeMedecin * n){
  * @param n : le node à delete
  */
 void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n){
+    printf("freeNodeMedecin_withoutDeletingMedecin()\n");
     n->previous->next = n->next;
     n->next->previous = n->previous;
     free((void *) n);
@@ -265,7 +266,16 @@ void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n){
     ListMedecin_setOnPrevious(l);
 }
 
-
+/**
+ * CreerListMedecin : malloc et initialise une liste de mèdecins
+ * @return la liste initialisée
+ */
+ListMedecin * CreerListMedecin(){
+    ListMedecin * lM;
+    lM = (ListMedecin*) malloc(sizeof(ListMedecin));
+    ListMedecin_init(lM);
+    return lM;
+}
 /**
  * ListMedecin_init : Initialise correctement une liste de NodeMedecin en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)
@@ -292,6 +302,7 @@ void ListMedecin_free(ListMedecin * l){
         printf("ListMedecin_free : le jour est NULL !!!\n");
     }else if ( ListMedecin_isEmpty(l)){
         printf("ListMedecin_free : la liste est vide, ce n'est pas normal !!!\n");
+        free((void *) l);
     }else {
         for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
             freeNodeMedecin(l, l->current);
@@ -313,6 +324,7 @@ void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l){
         free((void *) l);
     }else {
         for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+            printf("ListMedecin_free_withoutDeletingMedecin() Appel de freeNodeMedecin_withoutDeletingMedecin() pour le mèdecin : %s\n", l->current->medecin->numero_RPS);
             freeNodeMedecin_withoutDeletingMedecin(l, l->current);
         }
         free((void *) l);
@@ -413,7 +425,7 @@ void ListMedecin_setOnLast(ListMedecin * l){
  * @param l : la liste
  */
 void ListMedecin_setOnNext(ListMedecin * l){
-    if(l != NULL && !ListMedecin_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -422,7 +434,7 @@ void ListMedecin_setOnNext(ListMedecin * l){
  * @param l : la liste
  */
 void ListMedecin_setOnPrevious(ListMedecin * l){
-    if(l != NULL && !ListMedecin_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }

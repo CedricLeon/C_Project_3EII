@@ -22,7 +22,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
     p->numero_telephone = num_tel;
     p->numero_secu_social = numero_secu_social;
 
-    p->dossierMedical = CreerDossierMedical(p);
+    p->dossierMedical = CreerDossierMedical();
     return p;
 }
 
@@ -31,8 +31,9 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  * @param patient : le patient à supprimer
  */
 void DeletePatient(Patient * patient){
-    FreeDate(patient->date_naissance);
+    printf("DeletePatient() : pour le patient %s.\n", patient->numero_secu_social);
     FreeDossierMedical(patient->dossierMedical);
+    FreeDate(patient->date_naissance);
     free((void *) patient);
 }
 
@@ -40,25 +41,26 @@ void DeletePatient(Patient * patient){
  * AffichePatient : Affiche les informations d'un patient dans la console
  * @param p : le patient
  */
-void AffichePatient(Patient * p){
+void printPatient(Patient * p){
     printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
             p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
             p->numero_telephone, p->adresse_mail, p->numero_secu_social);
-    printf("Flemme d'afficher la liste des medecins consultés pour l'instant.\n");
+    printf("Il a consulté les mèdecins suivants :\n");
+    AccesDossierMedical(p);
 }
 
 /**
-* AccesDossier : Accede au dossier du patient et l'affiche
+* AccesDossierMedical : Accede au dossier du patient et l'affiche
 * @param p : le patient dont on veut acceder au dossier
 */
-void AccesDossier(Patient * p){
+void AccesDossierMedical(Patient * p){
     char* nom = (char*) malloc(100);
     DossierMedical * d = p->dossierMedical;
-    printf("Medecins consultés : ");
     for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
         getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
         printf("%s ; ", nom);
     }
+    printf("\n");
     free((void*) nom);
     PrintListOrdonnances(p);
 }
@@ -71,11 +73,7 @@ void PrintListOrdonnances(Patient* p){
 
     for(ListOrdonnance_setOnFirst(lo); !ListOrdonnance_isOutOfList(lo); ListOrdonnance_setOnNext(lo)){
         Ordonnance* ordo = ListOrdonnance_getCurrent(lo);
-        printf("Ordonnance faite le %d/%d/%d \n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee);
-        printf("Patient : %s %s\n", p->nom, p->prenom);
-        printf("suivi par le m�decin : %s %s \n", ordo->medecin->nom, ordo->medecin->prenom);
-        printf("Prescription : \n %s \n", ordo->description);
-        printf("A r�cup�rer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+        printOrdonnance(ordo);
     }
 }
 
@@ -330,7 +328,16 @@ void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient * n){
     ListPatient_setOnPrevious(l);
 }
 
-
+/**
+ * CreerListPatient : malloc et initialise une liste de mèdecins
+ * @return la liste initialisée
+ */
+ListPatient * CreerListPatient(){
+    ListPatient * lP;
+    lP = (ListPatient*) malloc(sizeof(ListPatient));
+    ListPatient_init(lP);
+    return lP;
+}
 /**
  * ListPatient_init : Initialise correctement une liste de NodePatient en mettant reliant sentinel_begin et end entre eux
  * et en mettant current à NULL en dehors de la liste
@@ -357,8 +364,10 @@ void ListPatient_free(ListPatient * l){
         printf("ListPatient_free : le jour est NULL !!!\n");
     }else if ( ListPatient_isEmpty(l)){
         printf("ListPatient_free : la liste est vide, ce n'est pas normal !!!\n");
+        free((void *) l);
     }else {
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
+            printf("ListPatient_free() : appel de freeNodePatient() sur %s.\n", l->current->patient->numero_secu_social);
             freeNodePatient(l, l->current);
         }
         free((void *) l);
@@ -390,7 +399,7 @@ void ListPatient_free_withoutDeletingPatient(ListPatient * l){
  */
 int ListPatient_add(ListPatient * l, Patient * p){
     if(l == NULL || p == NULL){
-        printf("ListMedecin ou Patient NULL.\n");
+        printf("ListPatient ou Patient NULL.\n");
         return -1;
     }
     //Si Liste vide on insère au début
@@ -475,7 +484,7 @@ void ListPatient_setOnLast(ListPatient * l){
  * @param l : la liste
  */
 void ListPatient_setOnNext(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
+    if(l != NULL && l->current->next != NULL){
         l->current = l->current->next;
     }
 }
@@ -484,7 +493,7 @@ void ListPatient_setOnNext(ListPatient * l){
  * @param l : la liste
  */
 void ListPatient_setOnPrevious(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
+    if(l != NULL && l->current->previous != NULL){
         l->current = l->current->previous;
     }
 }

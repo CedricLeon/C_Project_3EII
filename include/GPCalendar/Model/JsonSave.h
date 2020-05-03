@@ -35,13 +35,14 @@ void freeProject(Project* project);
 
 int GPCalendar_saveProject(char* nomFichier, Project* project);
 
-char* jsonSave(Project* p);
+char* Project_jsonSave(Project* p);
 int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l);
 int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l);
 int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c);
 
+Project*  GPCalendar_loadProject(char* nomFichier);
 
-int jsonLoad(Project*, const char*);
+int Project_jsonLoad(Project*, const char*);
 
 
 

@@ -142,6 +142,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** st
 
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m2),0);
     assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);
+    assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m1),1);
 
     DeleteMedecin(m1);
     DeleteMedecin(m2);
@@ -538,16 +539,14 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
 /**********************************************************************************************************************/
 
 static int setup_DossierMedical(void ** state){
-    DossierMedical * doss = CreerDossierMedical();
-    *state=doss;
-    return *state==NULL;
+    DossierMedical* doss = CreerDossierMedical();
+    *state = doss;
+    return *state == NULL;
 
 }
-
 static int teardown_DossierMedical(void ** state){
     FreeDossierMedical((DossierMedical*) *state);
 }
-
 
 /**
  * On teste de créer un DossierMedical
@@ -558,16 +557,13 @@ static void testDossierMedical_creerDossierMedical(void ** state){
     assert_int_equal(ListOrdonnance_isEmpty(((DossierMedical*) *state)->ordonnances), 1);
 }
 
-
 static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
-    Medecin * m = CreerMedecin("NomTestM", "PrenomTestM", "test@adresseMailM", "testNumeroTelephoneM", "NumRPSM");
-    Ordonnance * o = CreerOrdonnance(m, "test");
+    Ordonnance * o = CreerOrdonnance(NULL, "test");
     AddOrdonnanceDossierMedical((DossierMedical *) *state, o);
     ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
     assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
 
-    DeleteMedecin(m);
-    DeleteOrdonnance(o);
+    // /!\ il ne faut pas delete l'ordonnance ici car on le fait déjà dans le teardown !
 }
 
 /**********************************************************************************************************************/
@@ -579,16 +575,14 @@ static int setup_JsonSave(void ** state){
     Medecin * m1 = CreerMedecin("NomTestM1", "PrenomTestM1", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
     Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
 
-    ListMedecin * workingMedecins = (ListMedecin*) malloc(sizeof(ListMedecin));
-    ListMedecin_init(workingMedecins);
+    ListMedecin * workingMedecins = CreerListMedecin();
     ListMedecin_add(workingMedecins, m1);
     ListMedecin_add(workingMedecins, m2);
 
     Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 1111, 01, 01, "test@adresseMailP1", "testNumeroTelephoneP1", "testNumSecuP1");
     Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2222, 02, 02, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
 
-    ListPatient * consultingPatients = (ListPatient*) malloc(sizeof(ListPatient));
-    ListPatient_init(consultingPatients);
+    ListPatient * consultingPatients = CreerListPatient();
     ListPatient_add(consultingPatients, p1);
     ListPatient_add(consultingPatients, p2);
 
@@ -627,12 +621,16 @@ static int setup_JsonSave(void ** state){
     return *state == NULL;
 }
 static int teardown_JsonSave(void ** state){
-
     freeProject((Project*) *state);
-
     return 0;
 }
 static void testJsonSave_GPCalendar_saveProject(void ** state){
+    printCalendrier(((Project*) *state)->calendrier);
+
+    for(ListPatient_setOnFirst(((Project*) *state)->consultingPatient); !ListPatient_isOutOfList(((Project*) *state)->consultingPatient); ListPatient_setOnNext(((Project*) *state)->consultingPatient)){
+        printPatient(ListPatient_getCurrent(((Project*) *state)->consultingPatient));
+    }
+
     assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
 }
 
@@ -644,7 +642,9 @@ int main(void){
 
     //tests à la main//
 
-    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
+    /GPCalendar_loadProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json");
+
+    /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
 
     RendezVous * rdv1 = CreerRendezVous(2001,01,01,01,60,"lieu1",p1,m1,"motif1");
@@ -661,7 +661,7 @@ int main(void){
     printCalendrier(c);
     freeCalendrier(c);
     DeletePatient(p1);
-    DeleteMedecin(m1);
+    DeleteMedecin(m1);*/
 
     const struct CMUnitTest tests_fonctionsPatient[] = {
 

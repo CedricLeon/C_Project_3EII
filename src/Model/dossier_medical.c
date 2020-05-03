@@ -6,7 +6,7 @@
  * @return le dossier cr��
  */
 DossierMedical * CreerDossierMedical(){
-    DossierMedical * dm = (DossierMedical*)malloc(sizeof(DossierMedical));
+    DossierMedical* dm = (DossierMedical*) malloc(sizeof(DossierMedical));
 
     dm->medecins_consultes = (ListMedecin*) malloc(sizeof(ListMedecin));
     ListMedecin_init(dm->medecins_consultes);
@@ -24,10 +24,11 @@ DossierMedical * CreerDossierMedical(){
  * @param dm : le dossier � supprimer
  */
 void FreeDossierMedical(DossierMedical * dm){
-    ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    //Il ne faut pas delete les mèdecins référencés
+    printf("FreeDossierMedical() : \n");
+    ListOrdonnance_free(dm->ordonnances);     // Il faut delete les ordonnances
+    ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    // Il ne faut pas delete les mèdecins référencés
                                                                         // par cette liste puisqu'on les delete dèjà
                                                                         // depuis la liste workingMedecins
-    ListOrdonnance_free_withoutDeletingOrdonnance(dm->ordonnances); //pareil
     free((void *) dm);
 }
 
