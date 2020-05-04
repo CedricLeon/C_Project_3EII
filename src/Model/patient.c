@@ -45,7 +45,7 @@ void printPatient(Patient * p){
     printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
             p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
             p->numero_telephone, p->adresse_mail, p->numero_secu_social);
-    printf("Il a consulté les mèdecins suivants :\n");
+    printf("Il a consulté les médecins suivants :\n");
     AccesDossierMedical(p);
 }
 
@@ -63,13 +63,19 @@ void AccesDossierMedical(Patient * p){
     printf("\n");
     free((void*) nom);
     PrintListOrdonnances(p);
+    PrintListAntecedents(p);
 }
+
+/**
+* voidPrintListOrdonnances : Affiche la liste d'ordonnances du patient
+* @param p : le patient dont on veut afficher les ordonnances
+*/
 
 void PrintListOrdonnances(Patient* p){
 
     ListOrdonnance * lo = p->dossierMedical->ordonnances;
 
-    printf("Liste d'ordonnance du patient %s %s :\n\n", p->nom, p->prenom);
+    printf("Liste d'ordonnances du patient %s %s :\n\n", p->nom, p->prenom);
 
     for(ListOrdonnance_setOnFirst(lo); !ListOrdonnance_isOutOfList(lo); ListOrdonnance_setOnNext(lo)){
         Ordonnance* ordo = ListOrdonnance_getCurrent(lo);
@@ -77,6 +83,22 @@ void PrintListOrdonnances(Patient* p){
     }
 }
 
+/**
+* voidPrintListAntecedents : Affiche la liste d'antecedents du patient
+* @param p : le patient dont on veut afficher les antecedents
+*/
+
+void PrintListAntecedents(Patient* p){
+
+    ListAntecedent * la = p->dossierMedical->antecedents;
+
+    printf("Liste d'antecedents du patient %s %s :\n\n", p->nom, p->prenom);
+
+    for(ListAntecedent_setOnFirst(la); !ListAntecedent_isOutOfList(la); ListAntecedent_setOnNext(la)){
+        char* ante = ListAntecedent_getCurrent(la);
+        printAntecedent(ante);
+    }
+}
 /********************************************************************************************************************/
                                             /*Setteurs de Patient*/
 /*******************************************************************************************************************/
@@ -91,7 +113,7 @@ void SetNomPatient(Patient * p, char * nom){
 }
 /**
  * SetPrenomPatient : Setteur du prénom d'un patient
- * @param p : la patient
+ * @param p : le patient
  * @param prenom : le nouveau prénom
  */
 void SetPrenomPatient(Patient * p, char * prenom){
@@ -111,7 +133,7 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour){
 }
 /**
  * SetAdresseMailPatient : Setteur de l'adresse mail d'un patient
- * @param p : la patient
+ * @param p : le patient
  * @param mail : la nouvelle adresse mail
  */
 void SetAdresseMailPatient(Patient * p, char * mail){
@@ -119,7 +141,7 @@ void SetAdresseMailPatient(Patient * p, char * mail){
 }
 /**
  * SetNumeroTelephonePatient : Setteur du numero de telephone d'un patient
- * @param p : la patient
+ * @param p : le patient
  * @param tel : le nouveau numero de telephone
  */
 void SetNumeroTelephonePatient(Patient * p, char * tel){
@@ -127,7 +149,7 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
 }
 /**
  * SetNumeroSecuSocialePatient : Setteur du numero de sécurité sociale d'un patient
- * @param p : la patient
+ * @param p : le patient
  * @param tel : le nouveau numero de sécurité sociale
  */
 void SetNumeroSecuSocialePatient(Patient * p, char * secu){
@@ -173,7 +195,7 @@ char * getNumeroTelephonePatient(Patient * p){
     return  p->numero_telephone;
 }
 /**
- * ggetNumeroSecuSocialePatient : retourne le numéro de sécurité sociale du patient sous forme de char* (pour l'affichage)
+ * getNumeroSecuSocialePatient : retourne le numéro de sécurité sociale du patient sous forme de char* (pour l'affichage)
  * @param p : le patient dont on veut le numéro de sécurité sociale
  * @return un char * avec le numero de sécurité sociale
  */
@@ -184,7 +206,7 @@ char * getNumeroSecuSocialePatient(Patient * p){
 
 /**
  * getInfoPatient : Place les infos du patient dans infos
- * @param infos : La char* dans lequel on met les infos
+ * @param infos : le char* dans lequel on met les infos
  * @param p : le patient dont on veut les informations
  */
 void getInfoPatient(char* infos, Patient* p){
@@ -214,22 +236,23 @@ void getInfoPatient(char* infos, Patient* p){
  * AddMedecincConsultePatient : Ajoute un Medecin à la première position de la liste des medecins consultés par un patient
  * @param p : le patient consultant
  * @param medecin : le medecin consulté
- * @return 1 si le mèdecin a bien été ajouté à la liste 0 sinon (mèdecin déjà consulté par exemple)
+ * @return 1 si le médecin a bien été ajouté à la liste
+ *         0 sinon (médecin déjà consulté par exemple)
  */
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
 
-    /*On vient tester si le mèdecin n'a pas déjà été consulté si la liste n'est pas vide*/
+    /*On vient tester si le médecin n'a pas déjà été consulté si la liste n'est pas vide*/
     if(!ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
         for(ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(
             p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
             if(strcmp(ListMedecin_getCurrent(p->dossierMedical->medecins_consultes)->numero_RPS, medecin->numero_RPS) == 0){
-                printf("Le mèdecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
+                printf("Le médecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
                 return 0;
             }
         }
     }
 
-    //Ajout dans le cas où c'est le premier mèdecin consulté (setup avec sentinel_end)
+    //Ajout dans le cas où c'est le premier médecin consulté (setup avec sentinel_end)
     if(ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
         NodeMedecin * newNode = newNodeMedecin(medecin, &(p->dossierMedical->medecins_consultes->sentinel_begin), &(p->dossierMedical->medecins_consultes->sentinel_end));
         p->dossierMedical->medecins_consultes->sentinel_begin.next = newNode;
@@ -250,7 +273,8 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
  * DeleteMedecinPatient : Enleve un Medecin de la liste des medecins consultés par un patient
  * @param p : le patient à qui on retire un medecin consultés
  * @param medecin : le medecin qui n'a pas été consulté
- * @return 1 si l'enlevement du mèdecin a bien été réalisé 0 sinon (le patient n'avait pas consulté ce mèdecin par exemple)
+ * @return 1 si l'enlevement du médecin a bien été réalisé
+ *         0 sinon (le patient n'avait pas consulté ce médecin par exemple)
  */
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
 
@@ -260,7 +284,7 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
         return 0;
     }
 
-    //On cherche si le mèdecin a été consulté par le patient
+    //On cherche si le médecin a été consulté par le patient
     for (ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(
             p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
 
@@ -274,8 +298,8 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
         }
     }
 
-    /*Si on n'a pas trouvé le mèdecin on l'affiche et on return 0*/
-    printf("Le patient %s n'a pas consuté le mèdecin %s, on ne peut donc pas le retirer de la liste.\n", p->nom, medecin->nom);
+    /*Si on n'a pas trouvé le médecin on l'affiche et on return 0*/
+    printf("Le patient %s n'a pas consuté le médecin %s, on ne peut donc pas le retirer de la liste.\n", p->nom, medecin->nom);
     return 0;
 }
 
@@ -303,15 +327,15 @@ NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePati
  */
 void freeNodePatient(ListPatient *l, NodePatient * n){
     //C'est ici qu'on vient free les patients.
-    //Pour l'instant cette fonction n'est appellée que par ListPatient_free() qui est uniquement appellée par freeProject()
+    //Pour l'instant cette fonction n'est appelée que par ListPatient_free() qui est uniquement appelée par freeProject()
 
-    //On set les pointeurs des objets précédents et suivants le noeud à supprimer correctement
+    //On set les pointeurs des objets précédent et suivant le noeud à supprimer correctement
     n->previous->next = n->next;
     n->next->previous = n->previous;
     DeletePatient(n->patient);
     free((void *) n);
 
-    //On place current sur sentinel_begin pour quye le setOnnext de la boucle for le place sur le premier élément de liste
+    //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListPatient_setOnFirst(l);
     ListPatient_setOnPrevious(l);
@@ -329,7 +353,7 @@ void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient * n){
 }
 
 /**
- * CreerListPatient : malloc et initialise une liste de mèdecins
+ * CreerListPatient : malloc et initialise une liste de patients
  * @return la liste initialisée
  */
 ListPatient * CreerListPatient(){
@@ -339,7 +363,7 @@ ListPatient * CreerListPatient(){
     return lP;
 }
 /**
- * ListPatient_init : Initialise correctement une liste de NodePatient en mettant reliant sentinel_begin et end entre eux
+ * ListPatient_init : Initialise correctement une liste de NodePatient en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL en dehors de la liste
  * @param l : la liste à initialiser
  */
@@ -391,7 +415,7 @@ void ListPatient_free_withoutDeletingPatient(ListPatient * l){
     }
 }
 /**
- * ListPatient_add : Ajoute un patient à une liste de patient (pas triée)
+ * ListPatient_add : Ajoute un patient à une liste de patients (pas triée)
  * @param l : la liste à laquelle on ajoute
  * @param p : le patient à ajouter
  * @return -1 si la liste ou le patient étaient NULL
@@ -419,7 +443,9 @@ int ListPatient_add(ListPatient * l, Patient * p){
 /**
  * ListPatient_isEmpty : Vérifie si la liste de Patient est vide ou non
  * @param l : la liste
- * @return 1 si la liste est vide 0 si elle ne l'est pas et -1 si la liste est NULL
+ * @return 1 si la liste est vide
+ *         0 si elle ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListPatient_isEmpty(ListPatient * l){
     if (l != NULL){
@@ -430,7 +456,9 @@ int ListPatient_isEmpty(ListPatient * l){
 /**
  * ListPatient_isFirst : Vérifie si current est positionné sur le premier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le premier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le premier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListPatient_isFirst(ListPatient * l){
     if (l != NULL){
@@ -441,7 +469,9 @@ int ListPatient_isFirst(ListPatient * l){
 /**
  * ListPatient_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
- * @return 1 si current est bien sur le dernier élément 0 si il ne l'est pas et -1 si la liste est NULL
+ * @return 1 si current est bien sur le dernier élément
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListPatient_isLast(ListPatient * l){
     if (l != NULL){
@@ -452,7 +482,9 @@ int ListPatient_isLast(ListPatient * l){
 /**
  * ListPatient_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * @param l : la liste
- * @return 1 si current vaut NULL 0 sinon et -1 si la liste est NULL
+ * @return 1 si current vaut NULL
+ *         0 si il ne l'est pas
+ *         -1 si la liste est NULL
  */
 int ListPatient_isOutOfList(ListPatient * l){
     if (l != NULL){

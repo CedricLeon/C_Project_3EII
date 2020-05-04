@@ -29,6 +29,7 @@ void DeletePatient(Patient * patient);
 void printPatient(Patient * p); //Utilisée pour le debugging
 void AccesDossierMedical(Patient * p);
 void PrintListOrdonnances(Patient* p);
+void PrintListAntecedents(Patient* p);
 
 /* Setteurs */ /*en vrai ça sert à rien*/
 void SetNomPatient(Patient * p, char * nom);

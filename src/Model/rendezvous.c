@@ -28,7 +28,7 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
 
 /**
  * FreeRendezVous : Free un objet rdv (seulement sa date et le rdv en lui-même), on ne touche pas au patient et au
- *                  medecin car il existent toujours dans d'autres rdv
+ *                  medecin car ils existent toujours dans d'autres rdv
  * @param rdv : le rdv à free
  */
 void FreeRendezVous(RendezVous * rdv){
@@ -38,19 +38,19 @@ void FreeRendezVous(RendezVous * rdv){
 }
 
 /**
- * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide          FONCTION PAS FINIE
+ * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide
  * @param rdv : le rdv qu'on veut annuler
  * @return 1 si le rdv a bien été annulé
  */
 int AnnulerRendezVous(RendezVous * rdv){
 
-    //On test si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
+    //On teste si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on ne regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
     Date * date_courante = CreerDateCourante();
     if ((date_courante->annee - rdv->date->annee)>0 || (date_courante->mois - rdv->date->mois)>0 || (date_courante->jour - rdv->date->jour)>0){
 
         //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
 
-        /*Pour cela on parcourt tout les rdv du patient dans le calendrier et on cherche le medecin*/
+        /*Pour cela on parcourt tous les rdv du patient dans le calendrier et on cherche le medecin*/
 
         if(DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) && DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
 
