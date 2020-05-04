@@ -542,6 +542,7 @@ static int setup_DossierMedical(void ** state){
 }
 static int teardown_DossierMedical(void ** state){
     FreeDossierMedical((DossierMedical*) *state);
+    return 0;
 }
 
 /**
@@ -563,7 +564,7 @@ static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdde
 }
 
 static void testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded(void ** state){
-       char * ant = (char*)malloc(50);
+    char * ant = (char*)malloc(50);
     AddAntecedentDossierMedical((DossierMedical *) *state, ant); //!il faut ecrire "test"
     ListAntecedent_setOnFirst(((DossierMedical *) *state)->antecedents);
     assert_string_equal(ListAntecedent_getCurrent(((DossierMedical *) *state)->antecedents), "test");
