@@ -89,7 +89,14 @@ int AddAntecedentDossierMedical(DossierMedical * dm){
     return 1;
 }
 
+/**
+ * printAntecedent : Affiche un antecedent dans le dossier medical
+ * @param ante : l'antecedent à afficher
+ */
 
+void printAntecedent(char * ante){
+    printf("%s", ante);
+}
 
 
 /**********************************************************************************************************************/

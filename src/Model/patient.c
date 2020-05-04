@@ -63,6 +63,7 @@ void AccesDossierMedical(Patient * p){
     printf("\n");
     free((void*) nom);
     PrintListOrdonnances(p);
+    PrintListAntecedents(p);
 }
 
 /**
@@ -82,6 +83,22 @@ void PrintListOrdonnances(Patient* p){
     }
 }
 
+/**
+* voidPrintListAntecedents : Affiche la liste d'antecedents du patient
+* @param p : le patient dont on veut afficher les antecedents
+*/
+
+void PrintListAntecedents(Patient* p){
+
+    ListAntecedent * la = p->dossierMedical->antecedents;
+
+    printf("Liste d'antecedents du patient %s %s :\n\n", p->nom, p->prenom);
+
+    for(ListAntecedent_setOnFirst(la); !ListAntecedent_isOutOfList(la); ListAntecedent_setOnNext(la)){
+        char* ante = ListAntecedent_getCurrent(la);
+        printAntecedent(ante);
+    }
+}
 /********************************************************************************************************************/
                                             /*Setteurs de Patient*/
 /*******************************************************************************************************************/
