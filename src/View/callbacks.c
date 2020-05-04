@@ -64,19 +64,6 @@ void cb_recherchePatient(GtkWidget * widget, gpointer data){
 }
 
 
-/* Fonction callback execute lors du signal "activate" */
-void on_activate_entry(GtkWidget *saisie, gpointer destination)
-{
-    const gchar* Text= "";
-
-
-    /* Recuperation du texte contenu dans le GtkEntry */
-    Text = gtk_entry_get_text(GTK_ENTRY(saisie));
-    destination =g_strdup(Text);
-    printf("Salut c'est un printf %s\n\n",(char*)destination);
-
-}
-
 
 void enter_callback( GtkWidget *widget, GtkWidget *entry)
 {
@@ -88,12 +75,42 @@ void enter_callback( GtkWidget *widget, GtkWidget *entry)
 
 
 void cb_creationPatient(GtkWidget * widget, gpointer data){
-    //CreerPatient();
+
+    char* nom ="";
+    char* prenom="";
+    char* mail="";
+    char* tel="";
+    char* secu="";
+    int jour, mois, annee;
+
+    /* Recuperation du texte contenu dans le GtkEntry */
+    nom = gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Enom));
+    prenom = gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Eprenom));
+    mail = gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Email));
+    tel = gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->EnumTel));
+    secu = gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->EnumSecu));
+    jour = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->jour)));
+    mois = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->mois)));
+    annee = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->annee)));
+
+    Patient *p = CreerPatient(nom, prenom,jour,mois,annee, mail, tel, secu);         //Il faudra exporter la donnée au format Json
+    printf("\n\n\n");
+    printPatient(p); //  pour tester par affichage sur console
     fenetreCreerRDV(widget,data);
 
 }
 
 
-void cb_creationRDV(GtkWidget * widget, gpointer data){
+void cb_creationRDV(GtkWidget * widget, gpointer datardv){
+
+
+    int jour = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->jour)));
+    int mois = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->mois)));
+    int annee = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->annee)));
+    double hDebut = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->heure)))+(atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->minutes)))/60);
+    int duree = atoi(gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct DataRDV*)datardv)->duree)));
+    char * motif = gtk_entry_get_text(GTK_ENTRY(((struct DataRDV*)datardv)->motif));
+    //Patient *p
     //CreerRendezVous();
+
 }
