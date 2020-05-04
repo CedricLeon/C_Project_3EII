@@ -66,23 +66,23 @@ int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
  * @param antecedent : l'antecedent à ajouter
  */
 
-int AddAntecedentDossierMedical(DossierMedical * dm){
-    char * ante;
-    char  * ant;
+int AddAntecedentDossierMedical(DossierMedical * dm, char * ant){
      if(dm == NULL){
         printf("DossierMedical NULL.\n");
         return -1;
     }
     //Si Liste vide on insère au début
     if(ListAntecedent_isEmpty(dm->antecedents)){
-        scanf("Compte-rendu du rdv : %s", ante);
-        NodeAntecedent * newNode = newNodeAntecedent(ante, &(dm->antecedents->sentinel_begin), &(dm->antecedents->sentinel_end));
+        printf("\nCompte-rendu du rdv : \n");
+        scanf("%[^\n]",ant);
+        NodeAntecedent * newNode = newNodeAntecedent(ant, &(dm->antecedents->sentinel_begin), &(dm->antecedents->sentinel_end));
         dm->antecedents->sentinel_begin.next = newNode;
         dm->antecedents->sentinel_end.previous = newNode;
         return 1;
     }
-    //Si pas vide on insère l'ordonnance à la fin
-    scanf("Compte-rendu du rdv : %s", ante);
+    //Si pas vide on insère l'antecedent à la fin
+    printf("\nCompte-rendu du rdv : \n");
+    scanf("%[^\n]",ant);
     NodeAntecedent * newNode = newNodeAntecedent(ant, dm->antecedents->sentinel_end.previous, &(dm->antecedents->sentinel_end));
     dm->antecedents->sentinel_end.previous->next = newNode;
     dm->antecedents->sentinel_end.previous = newNode;
@@ -105,7 +105,7 @@ void printAntecedent(char * ante){
 
 /**
  * newNodeAntecedent : Permet de créer dynamiquement un nouveau node de Antecedent pour la liste
- * @param Antecedent : l'antecedent pointé par ce nouveau noeud
+ * @param ante : l'antecedent pointé par ce nouveau noeud
  * @param previous : le noeud précédant le nouveau noeud dans la liste
  * @param next : le prochain noeud de la liste
  * @return un pointeur sur le nouveau noeud créé
@@ -158,7 +158,7 @@ void ListAntecedent_free(ListAntecedent * l){
         free((void *) l);
     }else{
         for(ListAntecedent_setOnFirst(l); !ListAntecedent_isOutOfList(l); ListAntecedent_setOnNext(l)) {
-            printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent : %s\n", l->current->ante);
+            printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent ");
             freeNodeAntecedent(l, l->current);
         }
         free((void *) l);
