@@ -13,9 +13,40 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
     Date* expi = AjoutMoisDate(d, 3);
 
     o->medecin = m;
+    o->numRPSMedecin = NULL;
     o->description = description;
     o->date_edition = d;
     o->date_expiration = expi;
+
+    return o;
+}
+/**
+ * LoadOrdonnance : Fonction utilisée lors du load d'un projet JSON, initialise une ordonnance avec son pointeur sur le mèdecin à NULL
+ *                  mais avec numRPSMedecin avec le num RPS du mèdecin, il faudra donc aller chercher le mèdecin correspondant plus tard
+ *                  et avec les bonnes dates (pas la courante et celle 3 mois plus tard) : l'ordonnance ne date pas forcément du jour présent,
+ *                  elle peut être plus vieille
+ * @param rpsMedecin : le num RPS du mèdecin ayant fait l'ordonnance
+ *
+ * @param date_edi_jour   |
+ * @param date_edi_mois   | ---> La date d'édition de l'ordonnance
+ * @param date_edi_annee  |
+ *
+ * @param date_expi_jour  |
+ * @param date_expi_mois  | ---> La date d'espiration de l'ordonnance
+ * @param date_expi_annee |
+ * @param description :   la description de l'ordonnance
+ * @return l'ordonnance initialisée
+ */
+Ordonnance* LoadOrdonnance(char* rpsMedecin, int date_edi_jour, int date_edi_mois, int date_edi_annee, int date_expi_jour, int date_expi_mois, int date_expi_annee, char* description){
+    Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
+    Date* date_edition = CreerDate(date_edi_jour, date_edi_mois, date_edi_annee);
+    Date* date_expiration = CreerDate(date_expi_jour, date_expi_mois, date_expi_annee);
+
+    o->medecin = NULL;
+    o->numRPSMedecin = rpsMedecin;
+    o->description = description;
+    o->date_edition = date_edition;
+    o->date_expiration = date_expiration;
 
     return o;
 }

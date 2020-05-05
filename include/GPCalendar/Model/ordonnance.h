@@ -10,13 +10,16 @@
 
 typedef struct{
     //Patient * patient;
-    Medecin * medecin;
-    Date * date_edition;
-    Date * date_expiration;
-    char * description;
+    Medecin* medecin;
+    char* numRPSMedecin;    //Pour loader un projet : par défaut vaut NULL sauf lors du load d'un projet (remis à NULL après utilisation)
+    Date* date_edition;
+    Date* date_expiration;
+    char* description;
 }Ordonnance;
 
-Ordonnance * CreerOrdonnance(Medecin * m, char * description);
+Ordonnance* CreerOrdonnance(Medecin * m, char * description);
+Ordonnance* LoadOrdonnance(char* rpsMedecin, int date_edi_jour, int date_edi_mois, int date_edi_annee, int date_expi_jour, int date_expi_mois, int date_expi_annee, char* description);
+
 void DeleteOrdonnance(Ordonnance * o);
 int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description);
 void printOrdonnance(Ordonnance * ordo);
