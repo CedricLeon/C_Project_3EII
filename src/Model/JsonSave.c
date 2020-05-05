@@ -174,14 +174,20 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
         cJSON_AddItemToArray(listPatientJson, patient); //On le fait juste après la création de l'objet pour ne pas avoir
                                                         //de LEAK MEMORY si l'un des ajouts qui suit fail et du coup
                                                         //quitte la fonction avant d'avoir ajouter l'objet au tableau
+        Patient* p = ListPatient_getCurrent(l);
 
-        if (cJSON_AddStringToObject(patient, "nom", ListPatient_getCurrent(l)->nom) == NULL)  return 0;
-        if (cJSON_AddStringToObject(patient, "prenom", ListPatient_getCurrent(l)->prenom) == NULL) return 0;
+        if (cJSON_AddStringToObject(patient, "nom", p->nom) == NULL)  return 0;
+        if (cJSON_AddStringToObject(patient, "prenom", p->prenom) == NULL) return 0;
 
-        char* tmp1 = (char*) malloc(10);
+        if (cJSON_AddNumberToObject(patient, "date_naissance_jour", p->date_naissance->jour) == NULL)  return 0;
+        if (cJSON_AddNumberToObject(patient, "date_naissance_mois", p->date_naissance->mois) == NULL)  return 0;
+        if (cJSON_AddNumberToObject(patient, "date_naissance_annee", p->date_naissance->annee) == NULL)  return 0;
+
+        //On ne passe pas la date sous forme de String car c'est trop galère à load (=> 3 int)
+        /*char* tmp1 = (char*) malloc(10);
         getInfosDate(tmp1, ListPatient_getCurrent(l)->date_naissance);
         if (cJSON_AddStringToObject(patient, "dateNaissance", tmp1) == NULL) return 0;
-        free((void*) tmp1);
+        free((void*) tmp1);*/
 
         if (cJSON_AddStringToObject(patient, "mail", ListPatient_getCurrent(l)->adresse_mail) == NULL) return 0;
         if (cJSON_AddStringToObject(patient, "tel", ListPatient_getCurrent(l)->numero_telephone) == NULL) return 0;
@@ -216,21 +222,33 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
             cJSON* ordonnance = cJSON_CreateObject();
             cJSON_AddItemToArray(listOrdonnances, ordonnance);
 
+            Ordonnance* ordo = ListOrdonnance_getCurrent(ordonnancesPatients);
+
             //Une ordonnance ne contient plus de patient, on considère donc que toutes les ordonnances présentes dans la structure d'un patient le concerne
             //Par conséquent on ne rajoute plus l'IDPatient dans une ordonnance
-            if (cJSON_AddStringToObject(ordonnance, "IDmedecin", ListOrdonnance_getCurrent(ordonnancesPatients)->medecin->numero_RPS) == NULL)  return 0;
+            if (cJSON_AddStringToObject(ordonnance, "IDmedecin", ordo->medecin->numero_RPS) == NULL)  return 0;
 
-            char* tmp2 = (char*) malloc(10);
-            getInfosDate(tmp2, ListOrdonnance_getCurrent(ordonnancesPatients)->date_edition);
+            if (cJSON_AddNumberToObject(ordonnance, "date_edition_jour", ordo->date_edition->jour) == NULL)  return 0;
+            if (cJSON_AddNumberToObject(ordonnance, "date_edition_mois", ordo->date_edition->mois) == NULL)  return 0;
+            if (cJSON_AddNumberToObject(ordonnance, "date_edition_annee", ordo->date_edition->annee) == NULL)  return 0;
+
+            //On ne passe pas la date sous forme de String car c'est trop galère à load (=> 3 int)
+            /*char* tmp2 = (char*) malloc(10);
+            getInfosDate(tmp2, ordo->date_edition);
             if (cJSON_AddStringToObject(ordonnance, "date_edition", tmp2) == NULL) return 0;
-            free((void*) tmp2);
+            free((void*) tmp2);*/
 
-            char* tmp3 = (char*) malloc(10);
-            getInfosDate(tmp3, ListOrdonnance_getCurrent(ordonnancesPatients)->date_expiration);
+            if (cJSON_AddNumberToObject(ordonnance, "date_expiration_jour", ordo->date_expiration->jour) == NULL)  return 0;
+            if (cJSON_AddNumberToObject(ordonnance, "date_expiration_mois", ordo->date_expiration->mois) == NULL)  return 0;
+            if (cJSON_AddNumberToObject(ordonnance, "date_expiration_annee", ordo->date_expiration->annee) == NULL)  return 0;
+
+            //On ne passe pas la date sous forme de String car c'est trop galère à load (=> 3 int)
+            /*char* tmp3 = (char*) malloc(10);
+            getInfosDate(tmp3, ordo->date_expiration);
             if (cJSON_AddStringToObject(ordonnance, "date_expiration", tmp3) == NULL) return 0;
-            free((void*) tmp3);
+            free((void*) tmp3);*/
 
-            if (cJSON_AddStringToObject(ordonnance, "description", ListOrdonnance_getCurrent(ordonnancesPatients)->description) == NULL)  return 0;
+            if (cJSON_AddStringToObject(ordonnance, "description", ordo->description) == NULL)  return 0;
             //Là normalement on a tout ajouté à notre ordonnance à notre liste d'ordonnances, on peut passer au suivant
         }
         //Là normalement on a tout ajouté à notre patient on peut passer au suivant
@@ -266,10 +284,15 @@ int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
                     cJSON* rdvJson = cJSON_CreateObject();
                     cJSON_AddItemToArray(calendrierJson, rdvJson);
 
-                    char* tmp1 = (char*) malloc(10);
+                    if (cJSON_AddNumberToObject(rdvJson, "date_jour", rdv->date->jour) == NULL)  return 0;
+                    if (cJSON_AddNumberToObject(rdvJson, "date_mois", rdv->date->mois) == NULL)  return 0;
+                    if (cJSON_AddNumberToObject(rdvJson, "date_annee", rdv->date->annee) == NULL)  return 0;
+
+                    //On ne passe pas la date sous forme de String car c'est trop galère à load (=> 3 int)
+                    /*char* tmp1 = (char*) malloc(10);
                     getInfosDate(tmp1, rdv->date);
                     if (cJSON_AddStringToObject(rdvJson, "date", tmp1) == NULL)  return 0;
-                    free((void*) tmp1);
+                    free((void*) tmp1);*/
 
                     if (cJSON_AddNumberToObject(rdvJson, "heure_debut", rdv->heure_debut) == NULL)  return 0;
                     if (cJSON_AddNumberToObject(rdvJson, "heure_fin", rdv->heure_fin) == NULL)  return 0;
