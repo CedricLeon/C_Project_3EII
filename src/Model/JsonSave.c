@@ -139,15 +139,17 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
          * On gère la liste des patients recus : on crée un tableau, on parcourt la liste des patients recus et à chaque
          * patient on crée un string avec son numéro de sécurité sociale puis on ajoute ce string au tableau que l'on
          * vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son médecin
+         *
+         * EDIT : POUR LA V0 ON NE MET PAS LES PATIENTS RECUS : TROP GALERE, ON AJOUTERA LES COUPLES PATIENT / MEDECIN DEPUIS LES RDV
          */
 
-        cJSON* patientsRecus = cJSON_AddArrayToObject(medecin, "patientsRecus");
+        /*cJSON* patientsRecus = cJSON_AddArrayToObject(medecin, "patientsRecus");
 
         for(ListPatient_setOnFirst(l->current->medecin->patients_recus); !ListPatient_isOutOfList(l->current->medecin->patients_recus); ListPatient_setOnNext(l->current->medecin->patients_recus)){
             cJSON* IDpatient = cJSON_CreateString(ListPatient_getCurrent(l->current->medecin->patients_recus)->numero_secu_social);
             if(IDpatient == NULL) return 0;
             cJSON_AddItemToArray(patientsRecus, IDpatient);
-        }
+        }*/
         //Là normalement on a tout ajouté à notre médecin on peut passer au suivant
     }
     return 1;
@@ -190,15 +192,17 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
          * On gère la liste des medecins consultes : on crée un tableau, on parcourt la liste des medecins consultes et à chaque
          * medecin on crée un string avec son numéro_RPS puis on ajoute ce string au tableau que l'on
          * vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son patient
+         *
+         * EDIT : POUR LA V0 ON NE MET PAS LES MEDECINS CONSULTES : TROP GALERE, ON AJOUTERA LES COUPLES PATIENT / MEDECIN DEPUIS LES RDV
          */
 
-        cJSON* medecinsConsultes = cJSON_AddArrayToObject(patient, "medecinsConsultes");   //idem
+        /*cJSON* medecinsConsultes = cJSON_AddArrayToObject(patient, "medecinsConsultes");   //idem
 
         for(ListMedecin_setOnFirst(l->current->patient->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(l->current->patient->dossierMedical->medecins_consultes); ListMedecin_setOnNext(l->current->patient->dossierMedical->medecins_consultes)){
             cJSON* IDmedecin = cJSON_CreateString(ListMedecin_getCurrent(l->current->patient->dossierMedical->medecins_consultes)->numero_RPS);
             if(IDmedecin == NULL) return 0;
             cJSON_AddItemToArray(medecinsConsultes, IDmedecin);
-        }
+        }*/
 
         /**
          * On gère la liste d'ordonnances du dossier médical de notre patient
