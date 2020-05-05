@@ -88,5 +88,9 @@ target_link_libraries(GPCalendar_Tests PUBLIC
     GPCalendarUtils
     cmocka-static)                                              #La librairie STATIC de CMocka
 
-enable_testing()                                                #Permet de setup Ctest
-add_test(NAME GPCalendar_Tests COMMAND GPCalendar_Tests)        #Dans la console : cd cmake-build-debug && ctest -C Release
+# ┌──────────────────────────────────────────────────────────────────┐
+# │                 Ctest : unused (Cf. CMocka)                      │
+# └──────────────────────────────────────────────────────────────────┘
+
+#enable_testing()                                                #Permet de setup Ctest
+#add_test(NAME GPCalendar_Tests COMMAND GPCalendar_Tests)        #Dans la console : cd cmake-build-debug && ctest -C Release
