@@ -323,22 +323,31 @@ int Calendrier_jsonSave(cJSON* calendrierJson, Calendrier c){
 Project*  GPCalendar_loadProject(char* nomFichier){
 
     FILE* loadingFile = NULL;
+    //on ouvre le fichier
     loadingFile = fopen(nomFichier, "r");
     long int size = 0;
 
     if (loadingFile != NULL)
     {
-
+        //Pn se place à la fin du fichier
         fseek(loadingFile, 0L, SEEK_END);
+        //et on cherche le nb de caractère qu'on a parcouru
         size = ftell(loadingFile);
+        //On alloue un tableau de char de la taille du fichier
         char content[size + 1];
+        //On se remet au début du fichier
         rewind(loadingFile);
+        //On charge dans notre tableau de charge 1 buffer de la taille du fichier
         fread(content, size, 1, loadingFile);
-        content[size] = 0; // terminate the string
+        // terminate the string
+        content[size] = 0;
+        // On affiche le fichier pour tester
         printf("\n\nGPCalendar_loadProject() : the whole file is:\n %s\n", content);
 
+        //on load un projet depuis le contenu du fichier
         Project * p = Project_jsonLoad(content);
 
+        //Et enfin on ferme le fichier
         fclose(loadingFile);
         return p;
     }
@@ -360,9 +369,7 @@ Project* Project_jsonLoad(const char* const content){
 
     const cJSON* nameJson = NULL;
     char* project_name = NULL;
-    const cJSON* workingMedecinsJson = NULL;
     ListMedecin* project_workingMedecins = NULL;
-    const cJSON* consultingPatientsJson = NULL;
     ListPatient* project_consultingPatient = NULL;
     const cJSON* calendrierJson = NULL;
     Calendrier project_calendrier = NULL;
@@ -391,6 +398,7 @@ Project* Project_jsonLoad(const char* const content){
         printf("Erreur dans ListMedecin_jsonLoad().\n");
         goto end;
     }
+    // ListMedecin_jsonLoad() s'est bien passé on ajoute la liste de mèdecin au projet
 
     project = CreerProject(project_name, project_workingMedecins, project_consultingPatient, project_calendrier);
 
