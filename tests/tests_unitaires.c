@@ -388,7 +388,7 @@ static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
     assert_int_equal(d->mois,5);   //! à changer !
-    assert_int_equal(d->jour,05);   //! à changer : si le test fail c'est car la date comparée ne
+    assert_int_equal(d->jour,04);   //! à changer : si le test fail c'est car la date comparée ne
                                            //! correspond plus à la date courante (On est peut etre plus le 23/4/2020)
     FreeDate(d);
 }
@@ -513,10 +513,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(10);
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"5/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"4/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "5/8/2020"); //! à changer : idem
+    assert_string_equal(tmp, "4/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -745,11 +745,11 @@ int main(void){
     printf("\033[34;01m\n***************************** Running Ordonnance Tests *****************************\n\n\033[00m");
     int return_cmocka_O = cmocka_run_group_tests(tests_fonctionsOrdonnance, setup_Ordonnance, teardown_Ordonnance);
     printf("\033[34;01m\n***************************** Running DossierMedical Tests *****************************\n\n\033[00m");
-    //int return_cmocka_DM = cmocka_run_group_tests(tests_fonctionsDossierMedical, setup_DossierMedical, teardown_DossierMedical);
+    int return_cmocka_DM = cmocka_run_group_tests(tests_fonctionsDossierMedical, setup_DossierMedical, teardown_DossierMedical);
     printf("\033[34;01m\n***************************** Running JsonSave Tests *****************************\n\n\033[00m");
     int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
-    //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc on passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O /*&& return_cmocka_DM*/ && return_cmocka_J;
+    //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
+    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
 
 }
