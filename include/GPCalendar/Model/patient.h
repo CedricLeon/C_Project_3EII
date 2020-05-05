@@ -57,11 +57,12 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 /**
  * Structure NodePatient permettant de créer une Doubly linked list avec des sentinels pour la liste des Medecins consultés par un patient
  */
-typedef struct NodePatient{
+typedef struct NodePatient NodePatient;
+struct NodePatient{
     Patient * patient;
     struct NodePatient * previous;
     struct NodePatient * next;
-}NodePatient;
+};
 
 struct ListPatient{
     NodePatient sentinel_begin;
