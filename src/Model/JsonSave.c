@@ -413,10 +413,117 @@ Project* Project_jsonLoad(const char* const content){
  *         0 sinon
  */
 int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
-    return 0;
+
+    const cJSON* workingMedecinsJson = NULL;
+    const cJSON* medecinJson = NULL;
+
+    workingMedecinsJson = cJSON_GetObjectItemCaseSensitive(projectJson, "Working Medecins");
+    cJSON_ArrayForEach(medecinJson, workingMedecinsJson)
+    {
+        cJSON* nomMedecinJson = cJSON_GetObjectItemCaseSensitive(medecinJson, "nom");
+        cJSON* prenomMedecinJson = cJSON_GetObjectItemCaseSensitive(medecinJson, "prenom");
+        cJSON* mailMedecinJson = cJSON_GetObjectItemCaseSensitive(medecinJson, "mail");
+        cJSON* telMedecinJson = cJSON_GetObjectItemCaseSensitive(medecinJson, "tel");
+        cJSON* rpsMedecinJson = cJSON_GetObjectItemCaseSensitive(medecinJson, "rps");
+
+        //Comme il y a déjà un check de NULL dans cJson_isString() on est pas obligé de le faire :
+        if (!cJSON_IsString(nomMedecinJson) || !cJSON_IsString(prenomMedecinJson) || !cJSON_IsString(mailMedecinJson)
+            || !cJSON_IsString(telMedecinJson) || !cJSON_IsString(rpsMedecinJson)){
+            printf("ListMedecin_jsonLoad() : une des valeurs n'est pas au format attendu : return 0.\n");
+            //l'une des valeur lue n'est pas un string : erreur
+            return 0;
+        }
+
+        Medecin * medecin = CreerMedecin(nomMedecinJson->valuestring, prenomMedecinJson->valuestring,
+                mailMedecinJson->valuestring, telMedecinJson->valuestring, rpsMedecinJson->valuestring);
+        if(!ListMedecin_add(lM, medecin)){
+            printf("ListMedecin_jsonLoad() : Echec de l'ajout du mèdecin %s %s à la liste.\n", medecin->nom, medecin->prenom);
+            return 0;
+        }
+
+    }
+    printf("ListMedecin_jsonLoad() : normalement tous les mèdecins ont été add à la liste workingMedecins.\n");
+    return 1;
 }
 int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
-    return 0;
+
+    const cJSON* consultingPatientsJson = NULL;
+    const cJSON* patientJson = NULL;
+
+    const cJSON* ordonnancesPatientJson = NULL;
+    const cJSON* ordonnanceJson = NULL;
+
+    consultingPatientsJson = cJSON_GetObjectItemCaseSensitive(projectJson, "Consulting Patients");
+    cJSON_ArrayForEach(patientJson, consultingPatientsJson)
+    {
+        cJSON* nomPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "nom");
+        cJSON* prenomPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "prenom");
+
+        cJSON* jourDatePatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "date_naissance_jour");
+        cJSON* moisDatePatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "date_naissance_mois");
+        cJSON* anneeDatePatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "date_naissance_annee");
+
+        cJSON* mailPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "mail");
+        cJSON* telPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "tel");
+        cJSON* secuPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "numeroSecuriteSociale");
+
+        //Comme il y a déjà un check de NULL dans cJson_isString() on est pas obligé de le faire :
+        if (!cJSON_IsString(nomPatientJson) || !cJSON_IsString(prenomPatientJson) || !cJSON_IsNumber(jourDatePatientJson)
+            || !cJSON_IsNumber(moisDatePatientJson) || !cJSON_IsNumber(anneeDatePatientJson) ||!cJSON_IsString(mailPatientJson)
+            || !cJSON_IsString(telPatientJson) || !cJSON_IsString(secuPatientJson))
+        {
+            //l'une des valeur lue n'est pas au format attendu : erreur
+            printf("ListPatient_jsonLoad() : une des valeurs du Patient n'est pas au format attendu : return 0.\n");
+            return 0;
+        }
+        Patient * patient = CreerPatient(nomPatientJson->valuestring, prenomPatientJson->valuestring, jourDatePatientJson->valueint,
+                moisDatePatientJson->valueint, anneeDatePatientJson->valueint,
+                mailPatientJson->valuestring, telPatientJson->valuestring, secuPatientJson->valuestring);
+
+        ordonnancesPatientJson = cJSON_GetObjectItemCaseSensitive(projectJson, "ordonnances");
+        cJSON_ArrayForEach(ordonnanceJson, ordonnancesPatientJson)
+        {
+            cJSON* IDmedecinJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "IDmedecin");
+
+            cJSON* jourDateEditionOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_edition_jour");
+            cJSON* moisDateEditionOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_edition_mois");
+            cJSON* anneeDateEditionOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_edition_annee");
+
+            cJSON* jourDateExpirationOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_expiration_jour");
+            cJSON* moisDateExpirationOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_expiration_mois");
+            cJSON* anneeDateExpirationOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "date_expiration_annee");
+
+            cJSON* descriptionOrdonnanceJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "description");
+
+            if (!cJSON_IsString(IDmedecinJson) || !cJSON_IsNumber(jourDateEditionOrdonnanceJson) || !cJSON_IsNumber(moisDateEditionOrdonnanceJson)
+                || !cJSON_IsNumber(anneeDateEditionOrdonnanceJson) || !cJSON_IsNumber(jourDateExpirationOrdonnanceJson)
+                || !cJSON_IsNumber(moisDateExpirationOrdonnanceJson) || !cJSON_IsNumber(anneeDateExpirationOrdonnanceJson)
+                || !cJSON_IsString(descriptionOrdonnanceJson))
+            {
+                //l'une des valeur lue n'est pas au format attendu : erreur
+                printf("ListPatient_jsonLoad() : une des valeurs d'une ordonnance' n'est pas au format attendu : return 0.\n");
+                return 0;
+            }
+
+            Ordonnance* ordo = LoadOrdonnance(IDmedecinJson->valuestring, jourDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
+                    anneeDateEditionOrdonnanceJson->valueint, jourDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
+                    anneeDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
+
+            if(AddOrdonnanceDossierMedical(patient->dossierMedical, ordo) == -1)
+            {
+                printf("ListPatient_jsonLoad() : Echec (ordo NULL ou litsOrdo NULL) de l'ajout d'une ordonnance au dossier médical du patient %s %s.\n", patient->nom, patient->prenom);
+            }
+        }
+
+        if(!ListPatient_add(lP, patient))
+        {
+            printf("ListPatient_jsonLoad() : Echec de l'ajout du patient %s %s à la liste.\n", patient->nom, patient->prenom);
+            return 0;
+        }
+
+    }
+    printf("ListPatient_jsonLoad() : normalement tous les patients ont été add à la liste consultingPatients.\n");
+    return 1;
 }
 int Calendrier_jsonLoad(cJSON* calendrierJson, Calendrier c){
     return 0;
