@@ -565,9 +565,10 @@ static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdde
 
 static void testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded(void ** state){
     char * ant = (char*)malloc(50);
-    AddAntecedentDossierMedical((DossierMedical *) *state, ant); //!il faut ecrire "test"
+    printf("ecrire : test si espaces marchent");
+    AddAntecedentDossierMedical((DossierMedical *) *state, ant); //!il faut ecrire "test si espaces marchent"
     ListAntecedent_setOnFirst(((DossierMedical *) *state)->antecedents);
-    assert_string_equal(ListAntecedent_getCurrent(((DossierMedical *) *state)->antecedents), "test");
+    assert_string_equal(ListAntecedent_getCurrent(((DossierMedical *) *state)->antecedents), "test si espaces marchent");
     free((void*)ant);
 }
 
