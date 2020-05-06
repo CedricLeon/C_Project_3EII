@@ -369,10 +369,9 @@ Project* Project_jsonLoad(const char* const content){
 
     const cJSON* nameJson = NULL;
     char* project_name = NULL;
-    ListMedecin* project_workingMedecins = NULL;
-    ListPatient* project_consultingPatient = NULL;
-    const cJSON* calendrierJson = NULL;
-    Calendrier project_calendrier = NULL;
+    ListMedecin* project_workingMedecins = CreerListMedecin();
+    ListPatient* project_consultingPatient = CreerListPatient();
+    Calendrier project_calendrier = CreerCalendrier();
 
     //On crée d'abord un objet cJSON avec tout le contenu du fichier qu'il faudra delete à la fin !!!
     cJSON* projectJson = cJSON_Parse(content);
@@ -394,12 +393,25 @@ Project* Project_jsonLoad(const char* const content){
         printf("Name of project loaded : \"%s\"\n", project_name);
     }
 
-    if(!ListMedecin_jsonLoad(projectJson, project_workingMedecins)){
+    if(!ListMedecin_jsonLoad(projectJson, project_workingMedecins))
+    {
         printf("Erreur dans ListMedecin_jsonLoad().\n");
         goto end;
     }
-    // ListMedecin_jsonLoad() s'est bien passé on ajoute la liste de mèdecin au projet
+    // ListMedecin_jsonLoad() s'est bien passé on ajoute la liste de mèdecin au projet lors de sa création
+    if(!ListPatient_jsonLoad(projectJson, project_consultingPatient))
+    {
+        printf("Erreur dans ListPatient_jsonLoad().\n");
+        goto end;
+    }
 
+    //PENSER A BIEN LINK LES MEDECINS DANS CHAQUE ORDONNANCE
+
+    if(!Calendrier_jsonLoad(projectJson, project_workingMedecins, project_consultingPatient, project_calendrier))
+    {
+        printf("Erreur dans Calendrier_jsonLoad().\n");
+        goto end;
+    }
     project = CreerProject(project_name, project_workingMedecins, project_consultingPatient, project_calendrier);
 
     end:
@@ -525,7 +537,51 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
     printf("ListPatient_jsonLoad() : normalement tous les patients ont été add à la liste consultingPatients.\n");
     return 1;
 }
-int Calendrier_jsonLoad(cJSON* calendrierJson, Calendrier c){
+int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Calendrier c){
+    const cJSON* calendrierJson = NULL;
+    const cJSON* rendezVousJason = NULL;
+
+    calendrierJson = cJSON_GetObjectItemCaseSensitive(projectJson, "Hospital Calendar");
+    cJSON_ArrayForEach(rendezVousJason, calendrierJson)
+    {
+        cJSON* jourDateRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "date_jour");
+        cJSON* moisDateRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "date_mois");
+        cJSON* anneeDateRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "date_annee");
+
+        cJSON* heureDebutRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "heure_debut");
+        cJSON* heureFinRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "heure_fin");
+
+        cJSON* lieuRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "lieu");
+        cJSON* IDpatientRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "patient");
+        cJSON* IDmedecinRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "medecin");
+        cJSON* motifRDVJson = cJSON_GetObjectItemCaseSensitive(rendezVousJason, "motif");
+
+        if (   !cJSON_IsNumber(jourDateRDVJson)  || !cJSON_IsNumber(moisDateRDVJson)
+            || !cJSON_IsNumber(anneeDateRDVJson) || !cJSON_IsNumber(heureDebutRDVJson)
+            || !cJSON_IsNumber(heureFinRDVJson)  || !cJSON_IsString(lieuRDVJson)
+            || !cJSON_IsString(IDpatientRDVJson) || !cJSON_IsString(IDmedecinRDVJson)
+            || !cJSON_IsString(motifRDVJson))
+        {
+            //l'une des valeur lue n'est pas au format attendu : erreur
+            printf("Calendrier_jsonLoad() : une des valeurs d'un rendezVous n'est pas au format attendu : return 0.\n");
+            return 0;
+        }
+
+        //on cherche le patient et le mèdecin correspondant à ces ID avec Listpatient_seek(ListPatient* lP, char* IDPatient) et idem pour Mèdecin
+
+        Patient* patientRDV = ListPatient_seek(lP, IDpatientRDVJson->valuestring);
+        Medecin* medecinRDV = ListMedecin_seek(lM, IDmedecinRDVJson->valuestring);
+        if(patientRDV == NULL || medecinRDV == NULL)
+        {
+            printf("Calendrier_jsonLoad() : On a pas trouvé le patient ou le mèdecin d'un des rendezVous : return 0.\n");
+            return 0;
+        }
+        RendezVous* rdv = CreerRendezVous(anneeDateRDVJson->valueint, moisDateRDVJson->valueint, jourDateRDVJson->valueint,
+                heureDebutRDVJson->valueint, 0, lieuRDVJson->valuestring, patientRDV, medecinRDV, motifRDVJson->valuestring);
+        rdv->heure_fin = heureFinRDVJson->valueint; //C'est moche mais sinon c'est galère de re caster la diff entre les 2 heures en int pour la duree
+
+        AddRendezVous_Calendrier(c,rdv);
+    }
     return 0;
 }
 /**
