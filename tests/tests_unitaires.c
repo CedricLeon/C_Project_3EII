@@ -388,7 +388,7 @@ static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
     assert_int_equal(d->mois,5);   //! à changer !
-    assert_int_equal(d->jour,05);   //! à changer : si le test fail c'est car la date comparée ne
+    assert_int_equal(d->jour,06);   //! à changer : si le test fail c'est car la date comparée ne
                                            //! correspond plus à la date courante (On est peut etre plus le 23/4/2020)
     FreeDate(d);
 }
@@ -399,7 +399,7 @@ static void testDate_creerDateCourante(void ** state){
  * même problème qu'au dessus il faut changer le test à la main
  * @param state
  */
-static void testDate_AjoutMoisDateCourante(void ** state){
+static void testDate_AjoutMoisDate(void ** state){
     Date * d = AjoutMoisDate((Date*) *state, 3); //test ajout de 3 mois = 90 jours
     assert_int_equal(d->annee,2920); //! à changer !
     assert_int_equal(d->mois,5);   //! à changer !
@@ -513,10 +513,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(10);
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"5/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"6/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "5/8/2020"); //! à changer : idem
+    assert_string_equal(tmp, "6/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -607,7 +607,7 @@ static int setup_JsonSave(void ** state){
     AddPatientRecuMedecin(m2, p1);
     AddPatientRecuMedecin(m2, p2);
 
-    Calendrier c = creerCalendrier();
+    Calendrier c = CreerCalendrier();
 
     AddRendezVous_Calendrier(c, rdv1);
     AddRendezVous_Calendrier(c, rdv2);
@@ -710,7 +710,7 @@ int main(void){
     const struct CMUnitTest tests_fonctionsDate[] = {
             cmocka_unit_test(testDate_creerDate),
             cmocka_unit_test(testDate_creerDateCourante),
-            cmocka_unit_test(testDate_AjoutMoisDateCourante),
+            cmocka_unit_test(testDate_AjoutMoisDate),
             cmocka_unit_test(testDate_getJourDate),
             cmocka_unit_test(testDate_getMoisDate),
             cmocka_unit_test(testDate_getAnneeDate),

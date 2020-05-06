@@ -1086,10 +1086,10 @@ int ListMois_getAnnee(ListMois * l){
 /**********************************************************************************************************************/
 
 /**
- * creerCalendrier : Fonction qui Cree et intialise un objet calendrier
+ * CreerCalendrier : Fonction qui Cree et intialise un objet calendrier
  * @return le calendrier initialisé.
  */
-Calendrier creerCalendrier(){
+Calendrier CreerCalendrier(){
     ListAnnee* c;
     c = (ListAnnee*) malloc(sizeof(ListAnnee));
     ListAnnee_init(c);
