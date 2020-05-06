@@ -82,6 +82,8 @@ void ListPatient_free_withoutDeletingPatient(ListPatient * l);
 
 int ListPatient_add(ListPatient * l, Patient * p);
 
+Patient* ListPatient_seek(ListPatient* lP, char* IDPatient);
+
 int ListPatient_isEmpty(ListPatient * l);
 int ListPatient_isFirst(ListPatient * l);
 int ListPatient_isLast(ListPatient * l);
@@ -91,7 +93,7 @@ void ListPatient_setOnFirst(ListPatient * l);
 void ListPatient_setOnLast(ListPatient * l);
 void ListPatient_setOnNext(ListPatient * l);
 void ListPatient_setOnPrevious(ListPatient * l);
-Patient * ListPatient_getCurrent(ListPatient * l);
+Patient* ListPatient_getCurrent(ListPatient * l);
 
 //void ListPatient_printList(ListPatient * l);          A voir si c'est nécessaire
 

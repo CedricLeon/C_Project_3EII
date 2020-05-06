@@ -79,6 +79,8 @@ void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l);
 
 int ListMedecin_add(ListMedecin * l, Medecin * m);
 
+Medecin* ListMedecin_seek(ListMedecin* lP, char* IDMedecin);
+
 int ListMedecin_isEmpty(ListMedecin * l);
 int ListMedecin_isFirst(ListMedecin * l);
 int ListMedecin_isLast(ListMedecin * l);

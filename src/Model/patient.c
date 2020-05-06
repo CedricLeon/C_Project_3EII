@@ -439,7 +439,25 @@ int ListPatient_add(ListPatient * l, Patient * p){
     l->sentinel_end.previous = newNode;
     return 1;
 }
-
+/**
+ * Listpatient_seek : Permet de chercher un patient dans une list de patient depuis son Numéro de sécurité sociale (son ID)
+ * @param lP : la liste dans laquelle on cherche
+ * @param IDPatient : l'ID du patient cherché
+ * @return un pointeur sur le patient
+ *         NULL si on ne l'a pas trouvé
+ */
+Patient* ListPatient_seek(ListPatient* lP, char* IDPatient){
+    for(ListPatient_setOnFirst(lP); !ListPatient_isOutOfList(lP); ListPatient_setOnNext(lP))
+    {
+        if(strcmp(ListPatient_getCurrent(lP)->numero_secu_social, IDPatient) == 0)
+        {
+            printf("ListPatient_seek() : On a trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
+            return ListPatient_getCurrent(lP);
+        }
+    }
+    printf("ListPatient_seek() : On a pas trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
+    return NULL;
+}
 /**
  * ListPatient_isEmpty : Vérifie si la liste de Patient est vide ou non
  * @param l : la liste

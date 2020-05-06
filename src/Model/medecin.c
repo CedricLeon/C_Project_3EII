@@ -357,7 +357,25 @@ int ListMedecin_add(ListMedecin * l, Medecin * m){
     l->sentinel_end.previous = newNode;
     return 1;
 }
-
+/**
+ * ListMedecin_seek : Permet de chercher un Medecin dans une list de Medecin depuis son Numéro RPS (son ID)
+ * @param lP : la liste dans laquelle on cherche
+ * @param IDMedecin : l'ID du Medecin cherché
+ * @return un pointeur sur le Medecin
+ *         NULL si on ne l'a pas trouvé
+ */
+Medecin* ListMedecin_seek(ListMedecin* lP, char* IDMedecin){
+    for(ListMedecin_setOnFirst(lP); !ListMedecin_isOutOfList(lP); ListMedecin_setOnNext(lP))
+    {
+        if(strcmp(ListMedecin_getCurrent(lP)->numero_RPS, IDMedecin) == 0)
+        {
+            printf("ListMedecin_seek() : On a trouvé le Medecin au numéro de sécu : \"%s\".\n", IDMedecin);
+            return ListMedecin_getCurrent(lP);
+        }
+    }
+    printf("ListMedecin_seek() : On a pas trouvé le Medecin au numéro de sécu : \"%s\".\n", IDMedecin);
+    return NULL;
+}
 /**
  * ListMedecin_isEmpty : Vérifie si la liste de Medecin est vide ou non
  * @param l : la liste
