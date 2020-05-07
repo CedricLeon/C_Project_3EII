@@ -29,7 +29,7 @@ void FreeDossierMedical(DossierMedical * dm){
     ListOrdonnance_free(dm->ordonnances);     // Il faut delete les ordonnances
     ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    // Il ne faut pas delete les mèdecins référencés
                                                                         // par cette liste puisqu'on les delete dèjà
-    ListAntecedent_free(dm->antecedents);                                                                   // depuis la liste workingMedecins
+    ListAntecedent_free(dm->antecedents);                               // depuis la liste workingMedecins
 
     free((void *) dm);
 }
@@ -111,7 +111,10 @@ void printAntecedent(char* infos, char * ante){
  */
 NodeAntecedent * newNodeAntecedent(char * ante, NodeAntecedent * previous, NodeAntecedent * next){
     NodeAntecedent * newNode = (NodeAntecedent *) malloc(sizeof(NodeAntecedent));
-    newNode->ante = ante;
+
+    newNode->ante = (char*) malloc(strlen(ante)+1);
+    strcpy( newNode->ante, ante);
+
     newNode->next = next;
     newNode->previous = previous;
     return newNode;
@@ -123,6 +126,7 @@ NodeAntecedent * newNodeAntecedent(char * ante, NodeAntecedent * previous, NodeA
 void freeNodeAntecedent(ListAntecedent *l, NodeAntecedent * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
+    free((void*)n->ante);
     free((void *) n);
     ListAntecedent_setOnFirst(l);
     ListAntecedent_setOnPrevious(l);

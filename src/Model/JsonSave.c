@@ -1,11 +1,15 @@
 #include "GPCalendar/Model/JsonSave.h"
 
-Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * consultingPatient, Calendrier calendrier){
+Project* CreerProject(char* nom, ListMedecin* workingMedecins, ListPatient* consultingPatient, Calendrier calendrier){
     Project* p = (Project*) malloc(sizeof(Project));
-    p->nom = nom;
+
+    p->nom = (char*) malloc(strlen(nom)+1);
+    strcpy(p->nom, nom);
+
     p->workingMedecins = workingMedecins;
     p->consultingPatient = consultingPatient;
     p->calendrier = calendrier;
+    return p;
 }
 
 /**
@@ -20,6 +24,7 @@ void freeProject(Project* project){
     freeCalendrier(project->calendrier);
     ListPatient_free(project->consultingPatient);
     ListMedecin_free(project->workingMedecins);
+    free((void*) project->nom);
 
     free((void*) project);
 }

@@ -14,7 +14,10 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
 
     o->medecin = m;
     //o->numRPSMedecin = NULL;
-    o->description = description;
+
+    o->description = (char*) malloc(strlen(description)+1);
+    strcpy(o->description, description);
+
     o->date_edition = d;
     o->date_expiration = expi;
 
@@ -39,12 +42,14 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
  * @return l'ordonnance initialisée
  */
 Ordonnance* LoadOrdonnance(Medecin* medecin, int date_edi_jour, int date_edi_mois, int date_edi_annee, int date_expi_jour, int date_expi_mois, int date_expi_annee, char* description){
+
     Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
     Date* date_edition = CreerDate(date_edi_jour, date_edi_mois, date_edi_annee);
     Date* date_expiration = CreerDate(date_expi_jour, date_expi_mois, date_expi_annee);
 
     o->medecin = medecin;
-    o->description = description;
+    o->description = (char*) malloc(strlen(description)+1);
+    strcpy(o->description, description);
     o->date_edition = date_edition;
     o->date_expiration = date_expiration;
 
@@ -58,6 +63,9 @@ void DeleteOrdonnance(Ordonnance * o){
     //Il ne faut pas free le medecin !
     FreeDate(o->date_edition);
     FreeDate(o->date_expiration);
+
+    free((void*)o->description);
+
     free((void *) o);
 }
 
@@ -72,7 +80,10 @@ void DeleteOrdonnance(Ordonnance * o){
  */
 int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
     ordo->medecin = m;
-    ordo->description = description;
+
+    free((void*)ordo->description);
+    ordo->description = (char*) malloc(strlen(description)+1);
+    strcpy(ordo->description, description);
 
     FreeDate(ordo->date_edition);
     FreeDate(ordo->date_expiration);

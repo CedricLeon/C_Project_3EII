@@ -19,10 +19,16 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
     rdv->heure_debut = heure_debut;
     rdv->heure_fin = heure_debut + (double) (duree/60);
     rdv->date = CreerDate(an, mois, jour);
-    rdv->lieu = lieu;
+
+    rdv->lieu = (char*) malloc(strlen(lieu)+1);
+    strcpy(rdv->lieu, lieu);
+
     rdv->patient = patient;
     rdv->medecin = medecin;
-    rdv->motif = motif;
+
+    rdv->motif = (char*) malloc(strlen(motif)+1);
+    strcpy(rdv->motif, motif);
+
     return rdv;
 }
 
@@ -34,6 +40,8 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
 void FreeRendezVous(RendezVous * rdv){
     printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
     FreeDate(rdv->date);
+    free((void*) rdv->motif);
+    free((void*) rdv->lieu);
     free((void *) rdv);         //Apparement le rdv est déjà free mais je sais pas où ???
 }
 

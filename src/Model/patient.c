@@ -15,12 +15,18 @@
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char* numero_secu_social){
 
     Patient* p = (Patient *) malloc(sizeof(Patient));
-    p->nom = nom;
-    p->prenom = prenom;
+
+    p->nom = (char*) malloc(strlen(nom)+1);
+    strcpy(p->nom, nom);
+    p->prenom = (char*) malloc(strlen(prenom)+1);
+    strcpy(p->prenom, prenom);
     p->date_naissance = CreerDate(annee_naissance, mois_naissance, jour_naissance);
-    p->adresse_mail = mail;
-    p->numero_telephone = num_tel;
-    p->numero_secu_social = numero_secu_social;
+    p->adresse_mail = (char*) malloc(strlen(mail)+1);
+    strcpy(p->adresse_mail, mail);
+    p->numero_telephone = (char*) malloc(strlen(num_tel)+1);
+    strcpy(p->numero_telephone, num_tel);
+    p->numero_secu_social = (char*) malloc(strlen(numero_secu_social)+1);
+    strcpy(p->numero_secu_social, numero_secu_social);
 
     p->dossierMedical = CreerDossierMedical();
     return p;
@@ -32,8 +38,17 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  */
 void DeletePatient(Patient * patient){
     printf("DeletePatient() : pour le patient %s.\n", patient->numero_secu_social);
+
     FreeDossierMedical(patient->dossierMedical);
+
     FreeDate(patient->date_naissance);
+
+    free((void*)patient->nom);
+    free((void*)patient->prenom);
+    free((void*)patient->adresse_mail);
+    free((void*)patient->numero_telephone);
+    free((void*)patient->numero_secu_social);
+
     free((void *) patient);
 }
 
@@ -64,9 +79,11 @@ void printPatient(char* infos, Patient * p){
 * @param p : le patient dont on veut acceder au dossier
 */
 void AccesDossierMedical(char* infos, Patient * p){
+
     char* nom = (char*) malloc(100);
     DossierMedical * d = p->dossierMedical;
     strcat(infos, "  ");
+
     for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
         getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
         strcat(infos, "\"");
@@ -75,6 +92,7 @@ void AccesDossierMedical(char* infos, Patient * p){
         strcat(infos, " ; ");
     }
     free((void*) nom);
+
     strcat(infos, "\n\tOrdonnances :\n");
     PrintListOrdonnances(infos, p);
     strcat(infos, "\tAntécédents :");
@@ -121,7 +139,9 @@ void PrintListAntecedents(char* infos, Patient* p){
  * @param nom : le nouveau nom
  */
 void SetNomPatient(Patient * p, char * nom){
-    p->nom = nom;
+    free((void*) p->nom);
+    p->nom = (char*) malloc(strlen(nom)+1);
+    strcpy(p->nom, nom);
 }
 /**
  * SetPrenomPatient : Setteur du prénom d'un patient
@@ -129,7 +149,9 @@ void SetNomPatient(Patient * p, char * nom){
  * @param prenom : le nouveau prénom
  */
 void SetPrenomPatient(Patient * p, char * prenom){
-    p->prenom = prenom;
+    free((void*) p->prenom);
+    p->prenom = (char*) malloc(strlen(prenom)+1);
+    strcpy(p->prenom, prenom);
 }
 /**
  * SetDateNaissancePatient : Setteur de la date de naissance d'un patient
@@ -149,7 +171,9 @@ void SetDateNaissancePatient(Patient * p, int an, int mois, int jour){
  * @param mail : la nouvelle adresse mail
  */
 void SetAdresseMailPatient(Patient * p, char * mail){
-    p->adresse_mail = mail;
+    free((void*) p->adresse_mail);
+    p->adresse_mail = (char*) malloc(strlen(mail)+1);
+    strcpy(p->adresse_mail, mail);
 }
 /**
  * SetNumeroTelephonePatient : Setteur du numero de telephone d'un patient
@@ -157,7 +181,9 @@ void SetAdresseMailPatient(Patient * p, char * mail){
  * @param tel : le nouveau numero de telephone
  */
 void SetNumeroTelephonePatient(Patient * p, char * tel){
-    p->numero_telephone = tel;
+    free((void*) p->numero_telephone);
+    p->numero_telephone = (char*) malloc(strlen(tel)+1);
+    strcpy(p->numero_telephone, tel);
 }
 /**
  * SetNumeroSecuSocialePatient : Setteur du numero de sécurité sociale d'un patient
@@ -165,7 +191,9 @@ void SetNumeroTelephonePatient(Patient * p, char * tel){
  * @param tel : le nouveau numero de sécurité sociale
  */
 void SetNumeroSecuSocialePatient(Patient * p, char * secu){
-    p->numero_secu_social = secu;
+    free((void*) p->numero_secu_social);
+    p->numero_secu_social = (char*) malloc(strlen(secu)+1);
+    strcpy(p->numero_secu_social, secu);
 }
 /********************************************************************************************************************/
                                              /*Getteurs de Patient*/

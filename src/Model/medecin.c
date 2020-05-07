@@ -13,11 +13,17 @@
 Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, char * num_RPS){
 
     Medecin * m = (Medecin *) malloc(sizeof(Medecin));
-    m->nom = nom;
-    m->prenom = prenom;
-    m->adresse_mail = mail;
-    m->numero_telephone = num_tel;
-    m->numero_RPS = num_RPS;
+
+    m->nom = (char*) malloc(strlen(nom)+1);
+    strcpy(m->nom, nom);
+    m->prenom = (char*) malloc(strlen(prenom)+1);
+    strcpy(m->prenom, prenom);
+    m->adresse_mail = (char*) malloc(strlen(mail)+1);
+    strcpy(m->adresse_mail, mail);
+    m->numero_telephone = (char*) malloc(strlen(num_tel)+1);
+    strcpy(m->numero_telephone, num_tel);
+    m->numero_RPS = (char*) malloc(strlen(num_RPS)+1);
+    strcpy(m->numero_RPS, num_RPS);
 
     //On initialise pas les diplomes et les specialites
 
@@ -31,6 +37,11 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
  * @param medecin : le medecin à supprimer
  */
 void DeleteMedecin(Medecin * medecin){
+    free((void*) medecin->nom);
+    free((void*) medecin->prenom);
+    free((void*) medecin->adresse_mail);
+    free((void*) medecin->numero_telephone);
+    free((void*) medecin->numero_RPS);
     ListPatient_free_withoutDeletingPatient(medecin->patients_recus);
     free((void *) medecin);
     //Un free pour les spécialités et les diplômes ?
@@ -56,7 +67,9 @@ void AfficheMedecin(Medecin * m){
  * @param nom : le nouveau nom
  */
 void SetNomMedecin(Medecin * medecin, char * nom){
-    medecin->nom = nom;
+    free((void*) medecin->nom);
+    medecin->nom = (char*) malloc(strlen(nom)+1);
+    strcpy(medecin->nom, nom);
 }
 /**
  * SetPrenomMedecin : Setteur du prenom d'un medecin
@@ -64,7 +77,9 @@ void SetNomMedecin(Medecin * medecin, char * nom){
  * @param prenom : le nouveau prenom
  */
 void SetPrenomMedecin(Medecin * medecin, char * prenom){
-    medecin->prenom = prenom;
+    free((void*) medecin->prenom);
+    medecin->prenom = (char*) malloc(strlen(prenom)+1);
+    strcpy(medecin->prenom, prenom);
 }
 /**
  * SetAdresseMailMedecin : Setteur de l'adrese mail d'un medecin
@@ -72,7 +87,9 @@ void SetPrenomMedecin(Medecin * medecin, char * prenom){
  * @param mail : la nouvelle adresse mail
  */
 void SetAdresseMailMedecin(Medecin * medecin, char * mail){
-    medecin->adresse_mail = mail;
+    free((void*) medecin->adresse_mail);
+    medecin->adresse_mail = (char*) malloc(strlen(mail)+1);
+    strcpy(medecin->adresse_mail, mail);
 }
 /**
  * SetNumeroTelephoneMedecin : Setteur du numero de telephone professionnel d'un medecin
@@ -80,7 +97,9 @@ void SetAdresseMailMedecin(Medecin * medecin, char * mail){
  * @param tel : le nouveau numero de telephone
  */
 void SetNumeroTelephoneMedecin(Medecin * medecin, char * tel){
-    medecin->numero_telephone = tel;
+    free((void*) medecin->numero_telephone);
+    medecin->numero_telephone = (char*) malloc(strlen(tel)+1);
+    strcpy(medecin->numero_telephone, tel);
 }
 /**
  * SetNumeroRPSMedecin : Setteur du numéro RPS d'un medecin
@@ -88,7 +107,9 @@ void SetNumeroTelephoneMedecin(Medecin * medecin, char * tel){
  * @param num_RPS : le nouveau numéro RPS
  */
 void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
-    medecin->numero_RPS = num_RPS;
+    free((void*) medecin->numero_RPS);
+    medecin->numero_RPS = (char*) malloc(strlen(num_RPS)+1);
+    strcpy(medecin->numero_RPS, num_RPS);
 }
 
 /********************************************************************************************************************/
