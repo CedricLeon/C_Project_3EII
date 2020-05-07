@@ -632,13 +632,15 @@ static int teardown_JsonSave(void ** state){
     return 0;
 }
 static void testJsonSave_GPCalendar_saveProject(void ** state){
-    printCalendrier(((Project*) *state)->calendrier);
-
-    for(ListPatient_setOnFirst(((Project*) *state)->consultingPatient); !ListPatient_isOutOfList(((Project*) *state)->consultingPatient); ListPatient_setOnNext(((Project*) *state)->consultingPatient)){
-        printPatient(ListPatient_getCurrent(((Project*) *state)->consultingPatient));
-    }
-
+    printProject((Project*) *state);
     assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
+}
+
+static void testJsonSave_GPCalendar_loadProject(void ** state){
+    Project* p = GPCalendar_loadProject("CefichierEstUnTestdeSaveGPCalendarJson.json");
+    printProject(p);
+    assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeLoadGPCalendarJson.json", p), 1);
+    freeProject(p);
 }
 
 /**********************************************************************************************************************/
@@ -732,7 +734,8 @@ int main(void){
     };
 
     const struct CMUnitTest tests_fonctionsJsonSave[] = {
-            cmocka_unit_test(testJsonSave_GPCalendar_saveProject)
+            cmocka_unit_test(testJsonSave_GPCalendar_saveProject),
+            cmocka_unit_test(testJsonSave_GPCalendar_loadProject)
     };
 
     printf("\033[34;01m\n****************************** Running Patient Tests ******************************\n\n\033[00m");
