@@ -93,7 +93,7 @@ int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
 void printOrdonnance(char* infos, Ordonnance * ordo){
     strcat(infos, "date_edition : ");
 
-    char* tmp = (char*) malloc(strlen(ordo->description));
+    char* tmp = (char*) malloc(strlen(ordo->description)+10);
     getInfosDate(tmp, ordo->date_edition);
     strcat(infos, tmp);
     strcat(infos, "\n\t\tdate_expiration : ");
@@ -102,6 +102,8 @@ void printOrdonnance(char* infos, Ordonnance * ordo){
     strcat(infos, "\n\t\tMedecin : \"");
     getNomMedecin(tmp, ordo->medecin);
     strcat(infos, tmp);
+    free((void*) tmp);
+
     strcat(infos, "\"\n\t\tPrescription : ");
     strcat(infos, ordo->description);
     strcat(infos, "\n");
