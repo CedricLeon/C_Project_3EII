@@ -112,21 +112,33 @@ char* Project_jsonSave(Project* project)
     listMedecinJson = cJSON_AddArrayToObject(projectJson, "Working Medecins");
     if(listMedecinJson == NULL)
     {
-        printf("Project_jsonSave() : Working Medecins mal ajouté.\n");
+        printf("Project_jsonSave() : Working Medecins mal crée.\n");
         goto end;
     }
     //On vient écrire dans cet objet tous les medecins
-    if(ListMedecin_jsonSave(listMedecinJson, project->workingMedecins) != 1) goto end;
+    if(!ListMedecin_jsonSave(listMedecinJson, project->workingMedecins))
+    {
+        printf("Project_jsonSave() : Working Medecins mal configuré.\n");
+        goto end;
+    }
 
     //On ajoute à notre objet cJSON un tableau appellé Consulting Patients
     listPatientJson = cJSON_AddArrayToObject(projectJson, "Consulting Patients");
-    if(listPatientJson == NULL)                                             goto end;
+    if(listPatientJson == NULL)
+    {
+        printf("Project_jsonSave() : Consulting Patients mal crée.\n");
+        goto end;
+    }
     //On vient écrire dans cet objet tous les patients
     ListPatient_jsonSave(listPatientJson, project->consultingPatient);
 
     //On ajoute à notre objet cJSON un tableau de rdv appellé Hospital Calendar
     calendrierJson = cJSON_AddArrayToObject(projectJson, "Hospital Calendar");
-    if(calendrierJson == NULL)                                             goto end;
+    if(calendrierJson == NULL)
+    {
+        printf("Project_jsonSave() : Working Medecins mal configuré.\n");
+        goto end;
+    }
     Calendrier_jsonSave(calendrierJson, project->calendrier);
 
     //Une fois tout ajouté on écrit notre objet cjson dans un char* et on le return
@@ -204,7 +216,7 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
         cJSON* patient = cJSON_CreateObject();
         cJSON_AddItemToArray(listPatientJson, patient); //On le fait juste après la création de l'objet pour ne pas avoir
                                                         //de LEAK MEMORY si l'un des ajouts qui suit fail et du coup
-                                                        //quitte la fonction avant d'avoir ajouter l'objet au tableau
+                                                        //quitte la fonction avant d'avoir ajouté l'objet au tableau
         Patient* p = ListPatient_getCurrent(l);
 
         if (cJSON_AddStringToObject(patient, "nom", p->nom) == NULL)  return 0;
@@ -373,10 +385,10 @@ Project*  GPCalendar_loadProject(char* nomFichier){
         // terminate the string
         content[size] = 0;
         // On affiche le fichier pour tester
-        printf("\n\nGPCalendar_loadProject() : the whole file is:\n %s\n", content);
+        //printf("\n\nGPCalendar_loadProject() : the whole file is:\n %s\n", content);
 
         //on load un projet depuis le contenu du fichier
-        Project * p = Project_jsonLoad(content);
+        Project* p = Project_jsonLoad(content);
 
         //Et enfin on ferme le fichier
         fclose(loadingFile);
@@ -396,7 +408,7 @@ Project*  GPCalendar_loadProject(char* nomFichier){
  */
 Project* Project_jsonLoad(const char* const content){
 
-    Project * project = NULL;
+    Project* project = NULL;
 
     const cJSON* nameJson = NULL;
     char* project_name = NULL;
@@ -446,6 +458,7 @@ Project* Project_jsonLoad(const char* const content){
 
     end:
     cJSON_Delete(projectJson);
+
     return project;
 }
 /**
@@ -484,7 +497,7 @@ int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
         }
 
     }
-    printf("ListMedecin_jsonLoad() : normalement tous les mèdecins ont été add à la liste workingMedecins.\n");
+    printf("ListMedecin_jsonLoad() : Tous les mèdecins ont été add à la liste workingMedecins.\n");
     return 1;
 }
 int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecins, ListPatient * lP){
@@ -522,7 +535,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
                 moisDatePatientJson->valueint, anneeDatePatientJson->valueint,
                 mailPatientJson->valuestring, telPatientJson->valuestring, secuPatientJson->valuestring);
 
-        ordonnancesPatientJson = cJSON_GetObjectItemCaseSensitive(projectJson, "ordonnances");
+        ordonnancesPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "ordonnances");
         cJSON_ArrayForEach(ordonnanceJson, ordonnancesPatientJson)
         {
             cJSON* IDmedecinJson = cJSON_GetObjectItemCaseSensitive(ordonnanceJson, "IDmedecin");
@@ -563,6 +576,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
                 printf("ListPatient_jsonLoad() : Echec (ordo NULL ou litsOrdo NULL) de l'ajout d'une ordonnance au dossier médical du patient %s %s.\n", patient->nom, patient->prenom);
                 return 0;
             }
+            printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
         }
 
         if(!ListPatient_add(lP, patient))
@@ -572,7 +586,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
         }
 
     }
-    printf("ListPatient_jsonLoad() : normalement tous les patients et toutes leurs ordonnances ont bien été load.\n");
+    printf("ListPatient_jsonLoad() : Tous les patients et toutes leurs ordonnances ont bien été load.\n");
     return 1;
 }
 int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Calendrier c){
@@ -624,7 +638,7 @@ int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Ca
         AddMedecinConsultePatient(patientRDV, medecinRDV);
         AddPatientRecuMedecin(medecinRDV, patientRDV);
     }
-    printf("Calendrier_jsonLoad() : normalement tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
+    printf("Calendrier_jsonLoad() : Tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
     return 1;
 }
 /**

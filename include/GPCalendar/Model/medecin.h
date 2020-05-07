@@ -13,8 +13,8 @@
 struct Medecin{
     char * nom;
     char * prenom;
-    char ** specialites;            //medecin->specialites = (char **) malloc(NB_MAX_SPECIALITES * sizeof(char*));
-    char ** diplomes;               //medecin->diplomes = (char **) malloc(NB_MAX_DIPLOMES * sizeof(char*));        Pour une V1 ou V2 je pense
+    char ** specialites;            //malloc premieer tableau puis boucle malloc gros tableau
+    char ** diplomes;               //Pour une V1 ou V2 je pense
     char * adresse_mail;
     char * numero_telephone;
     char * numero_RPS;

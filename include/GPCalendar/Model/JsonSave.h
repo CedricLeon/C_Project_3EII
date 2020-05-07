@@ -32,7 +32,6 @@ typedef struct
 
 Project * CreerProject(char* nom, ListMedecin * workingMedecins, ListPatient * consultingPatient, Calendrier calendrier);
 void freeProject(Project* project);
-
 void printProject(Project* p);
 
 int GPCalendar_saveProject(char* nomFichier, Project* project);
