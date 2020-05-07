@@ -93,8 +93,8 @@ int AddAntecedentDossierMedical(DossierMedical * dm, char * ant){
  * @param ante : l'antecedent à afficher
  */
 
-void printAntecedent(char * ante){
-    printf("%s", ante);
+void printAntecedent(char* infos, char * ante){
+    strcat(infos, ante);
 }
 
 

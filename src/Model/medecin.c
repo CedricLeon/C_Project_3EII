@@ -136,11 +136,11 @@ char * getNumeroRPSMedecin(Medecin * medecin){
  */
 void getInfoMedecin(char * infos, Medecin * medecin){
     getNomMedecin(infos, medecin);
-    strcat(infos,"\nNuméro RPS : ");
+    strcat(infos,"\n\tNuméro RPS : ");
     strcat(infos,getNumeroRPSMedecin(medecin));
-    strcat(infos, "\n@ : ");
+    strcat(infos, "\n\t@ : ");
     strcat(infos, getAdresseMailMedecin(medecin));
-    strcat(infos, "\nTel : ");
+    strcat(infos, "\n\tTel : ");
     strcat(infos, getNumeroTelephoneMedecin(medecin));
 }
 

@@ -28,7 +28,7 @@ void AccesDossier(Patient * p);
 
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
 int AddAntecedentDossierMedical(DossierMedical * dm, char * ant);
-void printAntecedent(char * ante);
+void printAntecedent(char* infos, char * ante);
 
 /**********************************************************************************************************************/
                                                 /*ListAntecedent*/

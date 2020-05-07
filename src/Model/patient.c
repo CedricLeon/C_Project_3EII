@@ -41,29 +41,44 @@ void DeletePatient(Patient * patient){
  * AffichePatient : Affiche les informations d'un patient dans la console
  * @param p : le patient
  */
-void printPatient(Patient * p){
-    printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
+void printPatient(char* infos, Patient * p){
+    /*printf("Le patient %s %s né le %d/%d/%d est contactable au %s ou par mail à l'adresse suivante : %s. Ce patient est associé au numéro de sécurité social suivant : %s\n",
             p->nom, p->prenom, p->date_naissance->jour, p->date_naissance->mois, p->date_naissance->annee,
             p->numero_telephone, p->adresse_mail, p->numero_secu_social);
-    printf("Il a consulté les médecins suivants :\n");
-    AccesDossierMedical(p);
+    printf("\tIl a consulté les médecins suivants :\n");*/
+
+
+    getNomPatient(infos, p);
+    strcat(infos,"\n\tNuméro Sécu : ");
+    strcat(infos,getNumeroSecuSocialePatient(p));
+    strcat(infos, "\n\t@ : ");
+    strcat(infos, getAdresseMailPatient(p));
+    strcat(infos, "\n\tTel : ");
+    strcat(infos, getNumeroTelephonePatient(p));
+    strcat(infos, "\n\tMedecins consultés : ");
+    AccesDossierMedical(infos, p);
 }
 
 /**
 * AccesDossierMedical : Accede au dossier du patient et l'affiche
 * @param p : le patient dont on veut acceder au dossier
 */
-void AccesDossierMedical(Patient * p){
+void AccesDossierMedical(char* infos, Patient * p){
     char* nom = (char*) malloc(100);
     DossierMedical * d = p->dossierMedical;
+    strcat(infos, "  ");
     for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
         getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
-        printf("%s ; ", nom);
+        strcat(infos, "\"");
+        strcat(infos, nom);
+        strcat(infos, "\"");
+        strcat(infos, " ; ");
     }
-    printf("\n");
     free((void*) nom);
-    PrintListOrdonnances(p);
-    PrintListAntecedents(p);
+    strcat(infos, "\n\tOrdonnances :\n");
+    PrintListOrdonnances(infos, p);
+    strcat(infos, "\tAntécédents :");
+    PrintListAntecedents(infos, p);
 }
 
 /**
@@ -71,15 +86,14 @@ void AccesDossierMedical(Patient * p){
 * @param p : le patient dont on veut afficher les ordonnances
 */
 
-void PrintListOrdonnances(Patient* p){
+void PrintListOrdonnances(char* infos, Patient* p){
 
     ListOrdonnance * lo = p->dossierMedical->ordonnances;
 
-    printf("Liste d'ordonnances du patient %s %s :\n\n", p->nom, p->prenom);
-
     for(ListOrdonnance_setOnFirst(lo); !ListOrdonnance_isOutOfList(lo); ListOrdonnance_setOnNext(lo)){
+        strcat(infos, "\t -  ");
         Ordonnance* ordo = ListOrdonnance_getCurrent(lo);
-        printOrdonnance(ordo);
+        printOrdonnance(infos, ordo);
     }
 }
 
@@ -88,15 +102,13 @@ void PrintListOrdonnances(Patient* p){
 * @param p : le patient dont on veut afficher les antecedents
 */
 
-void PrintListAntecedents(Patient* p){
+void PrintListAntecedents(char* infos, Patient* p){
 
     ListAntecedent * la = p->dossierMedical->antecedents;
 
-    printf("Liste d'antecedents du patient %s %s :\n\n", p->nom, p->prenom);
-
     for(ListAntecedent_setOnFirst(la); !ListAntecedent_isOutOfList(la); ListAntecedent_setOnNext(la)){
         char* ante = ListAntecedent_getCurrent(la);
-        printAntecedent(ante);
+        printAntecedent(infos, ante);
     }
 }
 /********************************************************************************************************************/

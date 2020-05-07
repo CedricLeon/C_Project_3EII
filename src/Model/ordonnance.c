@@ -90,10 +90,25 @@ int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description){
  * AfficherOrdonnance : Afficher un objet Ordonnance
  * @param ordo : l'ordonnance que l'on veut afficher
  */
-void printOrdonnance(Ordonnance * ordo){
-    printf("Ordonnance faite le %d/%d/%d par le médecin %s %s\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
-    printf("Prescription : \n\t%s \n", ordo->description);
-    printf("A recuperer avant le %d/%d/%d\n\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);
+void printOrdonnance(char* infos, Ordonnance * ordo){
+    strcat(infos, "date_edition : ");
+
+    char* tmp = (char*) malloc(strlen(ordo->description));
+    getInfosDate(tmp, ordo->date_edition);
+    strcat(infos, tmp);
+    strcat(infos, "\n\t\tdate_expiration : ");
+    getInfosDate(tmp, ordo->date_expiration);
+    strcat(infos, tmp);
+    strcat(infos, "\n\t\tMedecin : \"");
+    getNomMedecin(tmp, ordo->medecin);
+    strcat(infos, tmp);
+    strcat(infos, "\"\n\t\tPrescription : ");
+    strcat(infos, ordo->description);
+    strcat(infos, "\n");
+
+    /*printf("Ordonnance faite le %d/%d/%d par le médecin \"%s %s\"\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
+    printf("\t\t\tPrescription :  %s \n", ordo->description);
+    printf("\t\t\tA recuperer avant le %d/%d/%d\n", ordo->date_expiration->jour, ordo->date_expiration->mois, ordo->date_expiration->annee);*/
 }
 
 /**********************************************************************************************************************/

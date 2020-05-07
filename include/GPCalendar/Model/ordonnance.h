@@ -22,7 +22,7 @@ Ordonnance* LoadOrdonnance(Medecin* medecin, int date_edi_jour, int date_edi_moi
 
 void DeleteOrdonnance(Ordonnance * o);
 int modifierOrdonnance(Ordonnance * ordo, Medecin * m, char * description);
-void printOrdonnance(Ordonnance * ordo);
+void printOrdonnance(char* infos, Ordonnance * ordo);
 
 /**********************************************************************************************************************/
                                                 /*ListOrdonnance*/
