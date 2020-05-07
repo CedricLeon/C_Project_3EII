@@ -98,11 +98,18 @@ char* Project_jsonSave(Project* project)
     //On crée un objet cJSOn qu'on deletera après avoir print son contenu dans un string
     cJSON* projectJson = cJSON_CreateObject();
     //On y ajoute le nom du projet
-    if (cJSON_AddStringToObject(projectJson, "nom", project->nom) == NULL)  goto end;
-
+    if (cJSON_AddStringToObject(projectJson, "nom", project->nom) == NULL)
+    {
+        printf("Project_jsonSave() : nom du projet mal ajouté.\n");
+        goto end;
+    }
     //On ajoute à notre objet cJSON un tableau appellé Working Medecins
     listMedecinJson = cJSON_AddArrayToObject(projectJson, "Working Medecins");
-    if(listMedecinJson == NULL)                                             goto end;
+    if(listMedecinJson == NULL)
+    {
+        printf("Project_jsonSave() : Working Medecins mal ajouté.\n");
+        goto end;
+    }
     //On vient écrire dans cet objet tous les medecins
     if(ListMedecin_jsonSave(listMedecinJson, project->workingMedecins) != 1) goto end;
 
@@ -170,6 +177,7 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
         }*/
         //Là normalement on a tout ajouté à notre médecin on peut passer au suivant
     }
+    printf("ListMedecin_jsonSave() : Liste de mèdecins bien save.\n");
     return 1;
 }
 
@@ -404,7 +412,7 @@ Project* Project_jsonLoad(const char* const content){
     }
 
     //Puis on commence à aller chercher les infos : d'abord le nom du projet
-    nameJson = cJSON_GetObjectItemCaseSensitive(projectJson, "name");
+    nameJson = cJSON_GetObjectItemCaseSensitive(projectJson, "nom");
     if (cJSON_IsString(nameJson) && (nameJson->valuestring != NULL))
     {
         project_name = nameJson->valuestring;
@@ -606,8 +614,13 @@ int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Ca
         rdv->heure_fin = heureFinRDVJson->valueint; //C'est moche mais sinon c'est galère de re caster la diff entre les 2 heures en int pour la duree
 
         AddRendezVous_Calendrier(c,rdv);
+
+        //On ajoute le patient et le mèdecin dans leurs listes respectives de personnes recues / consultées
+        AddMedecinConsultePatient(patientRDV, medecinRDV);
+        AddPatientRecuMedecin(medecinRDV, patientRDV);
     }
-    return 0;
+    printf("Calendrier_jsonLoad() : normalement tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
+    return 1;
 }
 /**
  * Exemple de cJSON sur leur git
