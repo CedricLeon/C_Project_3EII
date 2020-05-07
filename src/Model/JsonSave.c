@@ -399,19 +399,18 @@ Project* Project_jsonLoad(const char* const content){
         goto end;
     }
     // ListMedecin_jsonLoad() s'est bien passé on ajoute la liste de mèdecin au projet lors de sa création
-    if(!ListPatient_jsonLoad(projectJson, project_consultingPatient))
+    if(!ListPatient_jsonLoad(projectJson, project_workingMedecins, project_consultingPatient))
     {
         printf("Erreur dans ListPatient_jsonLoad().\n");
         goto end;
     }
-
-    //PENSER A BIEN LINK LES MEDECINS DANS CHAQUE ORDONNANCE
-
+    // ListPatient_jsonLoad() s'est bien passé on ajoute la liste de patient au projet lors de sa création
     if(!Calendrier_jsonLoad(projectJson, project_workingMedecins, project_consultingPatient, project_calendrier))
     {
         printf("Erreur dans Calendrier_jsonLoad().\n");
         goto end;
     }
+    // Calendrier_jsonLoad() s'est bien passé on ajoute la liste de rdv au projet lors de sa création
     project = CreerProject(project_name, project_workingMedecins, project_consultingPatient, project_calendrier);
 
     end:
@@ -457,7 +456,7 @@ int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
     printf("ListMedecin_jsonLoad() : normalement tous les mèdecins ont été add à la liste workingMedecins.\n");
     return 1;
 }
-int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
+int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecins, ListPatient * lP){
 
     const cJSON* consultingPatientsJson = NULL;
     const cJSON* patientJson = NULL;
@@ -517,13 +516,21 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
                 return 0;
             }
 
-            Ordonnance* ordo = LoadOrdonnance(IDmedecinJson->valuestring, jourDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
+            Medecin* medecinOrdo = ListMedecin_seek(project_workingMedecins, IDmedecinJson->valuestring);
+            if(medecinOrdo == NULL)
+            {
+                printf("ListPatient_jsonLoad() : On a pas trouvé le mèdecin d'une des ordonnances : return 0.\n");
+                return 0;
+            }
+
+            Ordonnance* ordo = LoadOrdonnance(medecinOrdo, jourDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
                     anneeDateEditionOrdonnanceJson->valueint, jourDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
                     anneeDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
 
             if(AddOrdonnanceDossierMedical(patient->dossierMedical, ordo) == -1)
             {
                 printf("ListPatient_jsonLoad() : Echec (ordo NULL ou litsOrdo NULL) de l'ajout d'une ordonnance au dossier médical du patient %s %s.\n", patient->nom, patient->prenom);
+                return 0;
             }
         }
 
@@ -534,7 +541,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListPatient * lP){
         }
 
     }
-    printf("ListPatient_jsonLoad() : normalement tous les patients ont été add à la liste consultingPatients.\n");
+    printf("ListPatient_jsonLoad() : normalement tous les patients et toutes leurs ordonnances ont bien été load.\n");
     return 1;
 }
 int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Calendrier c){

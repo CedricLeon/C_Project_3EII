@@ -13,13 +13,14 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
     Date* expi = AjoutMoisDate(d, 3);
 
     o->medecin = m;
-    o->numRPSMedecin = NULL;
+    //o->numRPSMedecin = NULL;
     o->description = description;
     o->date_edition = d;
     o->date_expiration = expi;
 
     return o;
 }
+
 /**
  * LoadOrdonnance : Fonction utilisée lors du load d'un projet JSON, initialise une ordonnance avec son pointeur sur le mèdecin à NULL
  *                  mais avec numRPSMedecin avec le num RPS du mèdecin, il faudra donc aller chercher le mèdecin correspondant plus tard
@@ -37,13 +38,12 @@ Ordonnance* CreerOrdonnance(Medecin* m, char* description){
  * @param description :   la description de l'ordonnance
  * @return l'ordonnance initialisée
  */
-Ordonnance* LoadOrdonnance(char* rpsMedecin, int date_edi_jour, int date_edi_mois, int date_edi_annee, int date_expi_jour, int date_expi_mois, int date_expi_annee, char* description){
+Ordonnance* LoadOrdonnance(Medecin* medecin, int date_edi_jour, int date_edi_mois, int date_edi_annee, int date_expi_jour, int date_expi_mois, int date_expi_annee, char* description){
     Ordonnance* o = (Ordonnance*) malloc(sizeof(Ordonnance));
     Date* date_edition = CreerDate(date_edi_jour, date_edi_mois, date_edi_annee);
     Date* date_expiration = CreerDate(date_expi_jour, date_expi_mois, date_expi_annee);
 
-    o->medecin = NULL;
-    o->numRPSMedecin = rpsMedecin;
+    o->medecin = medecin;
     o->description = description;
     o->date_edition = date_edition;
     o->date_expiration = date_expiration;
