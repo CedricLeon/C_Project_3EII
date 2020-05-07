@@ -374,6 +374,24 @@ ListPatient * CreerListPatient(){
     ListPatient_init(lP);
     return lP;
 }
+
+/**
+ * printListPatient : Affiche une liste de mèdecins (notamment pour printProject)
+ * @param l : la liste à afficher
+ */
+void printListPatient(ListPatient* l){
+    char* infosPatient;
+    for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
+        printf("\n *  ");
+        infosPatient = (char*) malloc(1000);
+        printPatient(infosPatient, ListPatient_getCurrent(l));
+        printf("%s", infosPatient);
+        free((void*) infosPatient);
+        printf("\n");
+    }
+}
+
+
 /**
  * ListPatient_init : Initialise correctement une liste de NodePatient en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL en dehors de la liste

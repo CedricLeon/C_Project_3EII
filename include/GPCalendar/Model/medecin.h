@@ -73,6 +73,8 @@ void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n);
 
 ListMedecin * CreerListMedecin();
 
+void printListMedecin(ListMedecin* l);
+
 void ListMedecin_init(ListMedecin * l);
 void ListMedecin_free(ListMedecin * l);
 void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l);

@@ -76,6 +76,8 @@ void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient * n);
 
 ListPatient * CreerListPatient();
 
+void printListPatient(ListPatient* l);
+
 void ListPatient_init(ListPatient * l);
 void ListPatient_free(ListPatient * l);
 void ListPatient_free_withoutDeletingPatient(ListPatient * l);

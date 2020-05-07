@@ -278,6 +278,23 @@ ListMedecin * CreerListMedecin(){
     ListMedecin_init(lM);
     return lM;
 }
+
+/**
+ * printListMedecin : Affiche une liste de mèdecins (notamment pour printProject)
+ * @param l : la liste à afficher
+ */
+void printListMedecin(ListMedecin* l){
+    char* infosMedecin;
+    for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
+        printf("\n *  ");
+        infosMedecin = (char*) malloc(200);
+        getInfoMedecin(infosMedecin, ListMedecin_getCurrent(l));
+        printf("%s",infosMedecin);
+        free((void*)infosMedecin);
+        printf("\n");
+    }
+}
+
 /**
  * ListMedecin_init : Initialise correctement une liste de NodeMedecin en reliant sentinel_begin et end entre eux
  * et en mettant current à NULL (en dehors de la liste)

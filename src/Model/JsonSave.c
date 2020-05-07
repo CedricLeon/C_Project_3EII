@@ -24,6 +24,24 @@ void freeProject(Project* project){
     free((void*) project);
 }
 
+/**
+ * printProject : Affiche dans la console toutes les données d'un projet
+ * @param p : le projet à afficher
+ */
+void printProject(Project* p){
+    printf("\n*******************************Affichage du projet : \"%s\"******************************\n", p->nom);
+    //Affichage de la liste des mèdecins de l'hopital
+    printf("\n *** Working medecins :\n");
+    printListMedecin(p->workingMedecins);
+    //Affichage de la liste de patients de l'hopital avec leurs ordonnances
+    printf("\n\n *** Consulting Patients :\n");
+    printListPatient(p->consultingPatient);
+    //Affichage du calendrier de l'hopital
+    printf("\n\n *** Hospital Calendar :\n");
+    printCalendrier(p->calendrier);
+    printf("\n**************************************************************************************\n");
+}
+
 /**********************************************************************************************************************/
                                             /*Save Functions*/
 /**********************************************************************************************************************/
