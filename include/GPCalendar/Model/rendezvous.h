@@ -25,4 +25,6 @@ void FreeRendezVous(RendezVous * rdv);
 int AnnulerRendezVous(RendezVous * rdv);
 RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree);
 
+void getInfosRendezVous(char* infos, RendezVous* rdv);
+
 #endif

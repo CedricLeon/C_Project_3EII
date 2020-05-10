@@ -42,7 +42,7 @@ void FreeRendezVous(RendezVous * rdv){
     FreeDate(rdv->date);
     free((void*) rdv->motif);
     free((void*) rdv->lieu);
-    free((void *) rdv);         //Apparement le rdv est déjà free mais je sais pas où ???
+    free((void *) rdv);
 }
 
 /**
@@ -95,4 +95,43 @@ RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jo
     rdv->heure_debut = n_heure_debut;
     rdv->heure_fin = n_heure_debut + (double) (n_duree/60);
     return rdv;
+}
+
+/**
+ * getInfosRendezVous : Place dans une chaine de caractères passée en paramètre les informations d'un RendezVous
+ * @param infos : la chaîne qui va contenir les informations
+ * @param rdv : le rdv dont on veut les infos
+ */
+void getInfosRendezVous(char* infos, RendezVous* rdv){
+
+    char* tmp = (char*) malloc(10);
+
+    strcpy(infos, "\n\tRendez-vous du : ");
+    getInfosDate(tmp, rdv->date);
+    strcat(infos, tmp);
+
+    strcat(infos,"\n\tDe ");
+    sprintf(tmp, "%2.1f", rdv->heure_debut);
+    strcat(infos, tmp);
+    strcat(infos,"h à ");
+
+    sprintf(tmp, "%2.1f", rdv->heure_fin);
+    strcat(infos, tmp);
+    strcat(infos,"h.\n\tA l'endroit : ");
+    strcat(infos, rdv->lieu);
+
+    strcat(infos,"\n\tEntre le patient \"");
+    strcat(infos, rdv->patient->nom);
+    strcat(infos, " ");
+    strcat(infos, rdv->patient->prenom);
+    strcat(infos, "\" et le médecin \"");
+    strcat(infos, rdv->medecin->nom);
+    strcat(infos, " ");
+    strcat(infos, rdv->medecin->prenom);
+    strcat(infos, "\".\n\tPour le motif : ");
+
+    strcat(infos, rdv->motif);
+    strcat(infos, "\n");
+
+    free((void*) tmp);
 }
