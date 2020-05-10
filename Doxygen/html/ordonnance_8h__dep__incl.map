@@ -1,0 +1,26 @@
+<map id="include/GPCalendar/Model/ordonnance.h" name="include/GPCalendar/Model/ordonnance.h">
+<area shape="rect" id="node2" href="$main_8c.html" title="src/App/main.c" alt="" coords="825,829,935,856"/>
+<area shape="rect" id="node3" href="$ordonnance_8c.html" title="src/Model/ordonnance.c" alt="" coords="1947,104,2108,131"/>
+<area shape="rect" id="node4" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="82,920,232,947"/>
+<area shape="rect" id="node5" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="1642,913,1805,954"/>
+<area shape="rect" id="node7" href="$dossier__medical_8h.html" title="include/GPCalendar\l/Model/dossier_medical.h" alt="" coords="581,97,752,138"/>
+<area shape="rect" id="node9" href="$_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="1491,822,1629,863"/>
+<area shape="rect" id="node6" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="1633,1003,1815,1029"/>
+<area shape="rect" id="node8" href="$dossier__medical_8c.html" title="src/Model/dossier_medical.c" alt="" coords="479,195,667,221"/>
+<area shape="rect" id="node11" href="$patient_8h.html" title="include/GPCalendar\l/Model/patient.h" alt="" coords="692,187,831,229"/>
+<area shape="rect" id="node10" href="$_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="1465,920,1617,947"/>
+<area shape="rect" id="node12" href="$medecin_8c.html" title="src/Model/medecin.c" alt="" coords="398,285,540,312"/>
+<area shape="rect" id="node13" href="$patient_8c.html" title="src/Model/patient.c" alt="" coords="565,285,699,312"/>
+<area shape="rect" id="node14" href="$fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="449,648,655,675"/>
+<area shape="rect" id="node15" href="$rendezvous_8h.html" title="include/GPCalendar\l/Model/rendezvous.h" alt="" coords="1057,278,1199,319"/>
+<area shape="rect" id="node19" href="$callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="861,459,1000,501"/>
+<area shape="rect" id="node16" href="$rendezvous_8c.html" title="src/Model/rendezvous.c" alt="" coords="1275,376,1436,403"/>
+<area shape="rect" id="node17" href="$calendrier_8h.html" title="include/GPCalendar\l/Model/calendrier.h" alt="" coords="1112,369,1251,410"/>
+<area shape="rect" id="node18" href="$calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="1214,467,1364,493"/>
+<area shape="rect" id="node20" href="$callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="969,648,1111,675"/>
+<area shape="rect" id="node21" href="$time_8c.html" title="src/View/time.c" alt="" coords="918,739,1031,765"/>
+<area shape="rect" id="node22" href="$fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="836,550,1025,591"/>
+<area shape="rect" id="node23" href="$time_8h.html" title="include/GPCalendar\l/View/time.h" alt="" coords="680,641,819,682"/>
+<area shape="rect" id="node24" href="$date_8h.html" title="include/GPCalendar\l/Model/date.h" alt="" coords="573,731,712,773"/>
+<area shape="rect" id="node25" href="$date_8c.html" title="src/Model/date.c" alt="" coords="583,829,701,856"/>
+</map>

@@ -1,0 +1,139 @@
+\hypertarget{rendezvous_8h}{\section{Référence du fichier include/\-G\-P\-Calendar/\-Model/rendezvous.h}
+\label{rendezvous_8h}\index{include/\-G\-P\-Calendar/\-Model/rendezvous.\-h@{include/\-G\-P\-Calendar/\-Model/rendezvous.\-h}}
+}
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/date.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/medecin.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/patient.\-h\char`\"{}}\\*
+Graphe des dépendances par inclusion de rendezvous.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rendezvous_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rendezvous_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Structures de données}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_rendez_vous}{Rendez\-Vous}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$ \hyperlink{rendezvous_8h_ae62501b5f409d83dc182560bbb97a276}{Creer\-Rendez\-Vous} (int an, int mois, int jour, double heure\-\_\-debut, int duree, char $\ast$lieu, \hyperlink{struct_patient}{Patient} $\ast$patient, \hyperlink{struct_medecin}{Medecin} $\ast$medecin, char $\ast$motif)
+\item 
+void \hyperlink{rendezvous_8h_a1d5659faf0a3498ce343e7d14015489d}{Free\-Rendez\-Vous} (\hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$rdv)
+\item 
+int \hyperlink{rendezvous_8h_a78731530177f360d1452c1dbe7c8bdef}{Annuler\-Rendez\-Vous} (\hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$rdv)
+\item 
+\hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$ \hyperlink{rendezvous_8h_a75dec28fc6cc82183dec57c710e87b0e}{Deplacer\-Rendez\-Vous} (\hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$rdv, int n\-\_\-an, int n\-\_\-mois, int n\-\_\-jour, double n\-\_\-heure\-\_\-debut, int n\-\_\-duree)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des fonctions}
+\hypertarget{rendezvous_8h_a78731530177f360d1452c1dbe7c8bdef}{\index{rendezvous.\-h@{rendezvous.\-h}!Annuler\-Rendez\-Vous@{Annuler\-Rendez\-Vous}}
+\index{Annuler\-Rendez\-Vous@{Annuler\-Rendez\-Vous}!rendezvous.h@{rendezvous.\-h}}
+\subsubsection[{Annuler\-Rendez\-Vous}]{\setlength{\rightskip}{0pt plus 5cm}int Annuler\-Rendez\-Vous (
+\begin{DoxyParamCaption}
+\item[{{\bf Rendez\-Vous} $\ast$}]{rdv}
+\end{DoxyParamCaption}
+)}}\label{rendezvous_8h_a78731530177f360d1452c1dbe7c8bdef}
+Annuler\-Rendez\-Vous \-: Annuler un \hyperlink{struct_rendez_vous}{Rendez\-Vous}, l'initialiser à vide 
+\begin{DoxyParams}{Paramètres}
+{\em rdv} & \-: le rdv qu'on veut annuler \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si le rdv a bien été annulé 
+\end{DoxyReturn}
+\hypertarget{rendezvous_8h_ae62501b5f409d83dc182560bbb97a276}{\index{rendezvous.\-h@{rendezvous.\-h}!Creer\-Rendez\-Vous@{Creer\-Rendez\-Vous}}
+\index{Creer\-Rendez\-Vous@{Creer\-Rendez\-Vous}!rendezvous.h@{rendezvous.\-h}}
+\subsubsection[{Creer\-Rendez\-Vous}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rendez\-Vous}$\ast$ Creer\-Rendez\-Vous (
+\begin{DoxyParamCaption}
+\item[{int}]{an, }
+\item[{int}]{mois, }
+\item[{int}]{jour, }
+\item[{double}]{heure\-\_\-debut, }
+\item[{int}]{duree, }
+\item[{char $\ast$}]{lieu, }
+\item[{{\bf Patient} $\ast$}]{patient, }
+\item[{{\bf Medecin} $\ast$}]{medecin, }
+\item[{char $\ast$}]{motif}
+\end{DoxyParamCaption}
+)}}\label{rendezvous_8h_ae62501b5f409d83dc182560bbb97a276}
+Creer\-Rendez\-Vous \-: Creer dynamiquement un objet \hyperlink{struct_rendez_vous}{Rendez\-Vous} 
+\begin{DoxyParams}{Paramètres}
+{\em an} & \-: l'annee \\
+\hline
+{\em mois} & \-: le mois \\
+\hline
+{\em jour} & \-: le jour \\
+\hline
+{\em heure\-\_\-debut} & \-: l'heure ((sous forme de double \-: 16.\-5 $<$=$>$ 16\-H30) du début du rdv \\
+\hline
+{\em duree} & \-: la duree du rdv, avec on détermine heure\-\_\-fin du rdv \\
+\hline
+{\em lieu} & \-: le lieu du rdv \\
+\hline
+{\em patient} & \-: le patient demandant le rdv \\
+\hline
+{\em médecin} & \-: le medecin choisi pour le rdv \\
+\hline
+{\em motif} & \-: le motif du rdv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+le rdv créé 
+\end{DoxyReturn}
+\hypertarget{rendezvous_8h_a75dec28fc6cc82183dec57c710e87b0e}{\index{rendezvous.\-h@{rendezvous.\-h}!Deplacer\-Rendez\-Vous@{Deplacer\-Rendez\-Vous}}
+\index{Deplacer\-Rendez\-Vous@{Deplacer\-Rendez\-Vous}!rendezvous.h@{rendezvous.\-h}}
+\subsubsection[{Deplacer\-Rendez\-Vous}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rendez\-Vous}$\ast$ Deplacer\-Rendez\-Vous (
+\begin{DoxyParamCaption}
+\item[{{\bf Rendez\-Vous} $\ast$}]{rdv, }
+\item[{int}]{n\-\_\-an, }
+\item[{int}]{n\-\_\-mois, }
+\item[{int}]{n\-\_\-jour, }
+\item[{double}]{n\-\_\-heure\-\_\-debut, }
+\item[{int}]{n\-\_\-duree}
+\end{DoxyParamCaption}
+)}}\label{rendezvous_8h_a75dec28fc6cc82183dec57c710e87b0e}
+Deplacer\-Rendez\-Vous \-: Deplacer un \hyperlink{struct_rendez_vous}{Rendez\-Vous} 
+\begin{DoxyParams}{Paramètres}
+{\em rdv} & \-: le rdv qu'on veut deplacer \\
+\hline
+{\em n\-\_\-an} & \-: nouvelle année du rdv \\
+\hline
+{\em n\-\_\-mois} & \-: nouveau mois du rdv \\
+\hline
+{\em n\-\_\-jour} & \-: nouveau jour du rdv \\
+\hline
+{\em n\-\_\-heure} & \-: nouvelle heure du rdv \\
+\hline
+{\em n\-\_\-minute} & \-: nouvelle minute de l'horaire du rdv \\
+\hline
+{\em n\-\_\-duree} & \-: nouvelle duree du rdv \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+le rdv deplacé 
+\end{DoxyReturn}
+\hypertarget{rendezvous_8h_a1d5659faf0a3498ce343e7d14015489d}{\index{rendezvous.\-h@{rendezvous.\-h}!Free\-Rendez\-Vous@{Free\-Rendez\-Vous}}
+\index{Free\-Rendez\-Vous@{Free\-Rendez\-Vous}!rendezvous.h@{rendezvous.\-h}}
+\subsubsection[{Free\-Rendez\-Vous}]{\setlength{\rightskip}{0pt plus 5cm}void Free\-Rendez\-Vous (
+\begin{DoxyParamCaption}
+\item[{{\bf Rendez\-Vous} $\ast$}]{rdv}
+\end{DoxyParamCaption}
+)}}\label{rendezvous_8h_a1d5659faf0a3498ce343e7d14015489d}
+Free\-Rendez\-Vous \-: Free un objet rdv (seulement sa date et le rdv en lui-\/même), on ne touche pas au patient et au medecin car ils existent toujours dans d'autres rdv 
+\begin{DoxyParams}{Paramètres}
+{\em rdv} & \-: le rdv à free \\
+\hline
+\end{DoxyParams}

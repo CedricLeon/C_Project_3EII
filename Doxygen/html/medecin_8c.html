@@ -1,0 +1,1146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier src/Model/medecin.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('medecin_8c.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier medecin.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="medecin_8h_source.html">GPCalendar/Model/medecin.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="patient_8h_source.html">GPCalendar/Model/patient.h</a>&quot;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de medecin.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="medecin_8c__incl.png" border="0" usemap="#src_2_model_2medecin_8c" alt=""/></div>
+<map name="src_2_model_2medecin_8c" id="src_2_model_2medecin_8c">
+<area shape="rect" id="node2" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="958,784,1153,811"/><area shape="rect" id="node7" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="1048,80,1235,107"/><area shape="rect" id="node3" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="1281,859,1487,885"/><area shape="rect" id="node8" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="654,320,825,347"/><area shape="rect" id="node15" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="651,155,829,197"/><area shape="rect" id="node9" href="time_8h.html" title="time.h" alt="" coords="649,395,707,421"/><area shape="rect" id="node10" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="651,470,833,511"/><area shape="rect" id="node11" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="702,560,897,587"/><area shape="rect" id="node12" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="749,635,952,661"/><area shape="rect" id="node13" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="838,709,1052,736"/><area shape="rect" id="node16" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="633,245,847,272"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0afe5fb66e0cb635d1ab76b51a6b1758"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a0afe5fb66e0cb635d1ab76b51a6b1758">CreerMedecin</a> (char *nom, char *prenom, char *mail, char *num_tel, char *num_RPS)</td></tr>
+<tr class="separator:a0afe5fb66e0cb635d1ab76b51a6b1758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71bcd5e35819a7252983451b7a6397d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a71bcd5e35819a7252983451b7a6397d8">DeleteMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
+<tr class="separator:a71bcd5e35819a7252983451b7a6397d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bcf828900177b22789cd327fc16c34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a05bcf828900177b22789cd327fc16c34">AfficheMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *m)</td></tr>
+<tr class="separator:a05bcf828900177b22789cd327fc16c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a351b689795ff9543c5ed4236f3934d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a351b689795ff9543c5ed4236f3934d04">SetNomMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *nom)</td></tr>
+<tr class="separator:a351b689795ff9543c5ed4236f3934d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ea71bb483a62977a39b3cefc018783"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ab0ea71bb483a62977a39b3cefc018783">SetPrenomMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *prenom)</td></tr>
+<tr class="separator:ab0ea71bb483a62977a39b3cefc018783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f15cb667271234dd0f0e6433be5d060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6f15cb667271234dd0f0e6433be5d060">SetAdresseMailMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *mail)</td></tr>
+<tr class="separator:a6f15cb667271234dd0f0e6433be5d060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bcc618408c8c672056f01110a4f41d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#aa1bcc618408c8c672056f01110a4f41d">SetNumeroTelephoneMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *tel)</td></tr>
+<tr class="separator:aa1bcc618408c8c672056f01110a4f41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9176e649f75181c288b50f1abae82759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a9176e649f75181c288b50f1abae82759">SetNumeroRPSMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *num_RPS)</td></tr>
+<tr class="separator:a9176e649f75181c288b50f1abae82759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59bd5d29002e8d49f09775294999b57f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a59bd5d29002e8d49f09775294999b57f">getNomMedecin</a> (char *nom, <a class="el" href="struct_medecin.html">Medecin</a> *m)</td></tr>
+<tr class="separator:a59bd5d29002e8d49f09775294999b57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e4bf2ef1e173182f36ff76165acb777"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a4e4bf2ef1e173182f36ff76165acb777">getAdresseMailMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
+<tr class="separator:a4e4bf2ef1e173182f36ff76165acb777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930b0a763fdcfec514809669fbbd5290"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a930b0a763fdcfec514809669fbbd5290">getNumeroTelephoneMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
+<tr class="separator:a930b0a763fdcfec514809669fbbd5290"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd4693b2cb4795a4b749866e9127a09"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a1bd4693b2cb4795a4b749866e9127a09">getNumeroRPSMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
+<tr class="separator:a1bd4693b2cb4795a4b749866e9127a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e47cda987182a19e519a89782bc63f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6e47cda987182a19e519a89782bc63f1">getInfoMedecin</a> (char *infos, <a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
+<tr class="separator:a6e47cda987182a19e519a89782bc63f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae523afbd8be2ec7cbf04c5990e22e5f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ae523afbd8be2ec7cbf04c5990e22e5f6">AddPatientRecuMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *m, <a class="el" href="struct_patient.html">Patient</a> *patient)</td></tr>
+<tr class="separator:ae523afbd8be2ec7cbf04c5990e22e5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ee02a57bad305bda1ac2510370e3c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#aa1ee02a57bad305bda1ac2510370e3c0">DeletePatientRecuMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *m, <a class="el" href="struct_patient.html">Patient</a> *patient)</td></tr>
+<tr class="separator:aa1ee02a57bad305bda1ac2510370e3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44be774cac54154a80da40db3bcc6a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_medecin.html">NodeMedecin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ae44be774cac54154a80da40db3bcc6a6">newNodeMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, <a class="el" href="struct_node_medecin.html">NodeMedecin</a> *previous, <a class="el" href="struct_node_medecin.html">NodeMedecin</a> *next)</td></tr>
+<tr class="separator:ae44be774cac54154a80da40db3bcc6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96995b3a980662761de97d6024d9ecf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a96995b3a980662761de97d6024d9ecf4">freeNodeMedecin</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l, <a class="el" href="struct_node_medecin.html">NodeMedecin</a> *n)</td></tr>
+<tr class="separator:a96995b3a980662761de97d6024d9ecf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d0ca07d61f1aab69e37294af0a2a924"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a7d0ca07d61f1aab69e37294af0a2a924">freeNodeMedecin_withoutDeletingMedecin</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l, <a class="el" href="struct_node_medecin.html">NodeMedecin</a> *n)</td></tr>
+<tr class="separator:a7d0ca07d61f1aab69e37294af0a2a924"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1cfbfa2117c0a7b5a7218017f2a7f75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ae1cfbfa2117c0a7b5a7218017f2a7f75">CreerListMedecin</a> ()</td></tr>
+<tr class="separator:ae1cfbfa2117c0a7b5a7218017f2a7f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac056ba7705fe9857a63dc2df920e0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#acac056ba7705fe9857a63dc2df920e0d">printListMedecin</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:acac056ba7705fe9857a63dc2df920e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8a93013bb8621ea73405a9b741a26d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#abf8a93013bb8621ea73405a9b741a26d">ListMedecin_init</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:abf8a93013bb8621ea73405a9b741a26d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af77a41e56d333dfe3cac87dc4207dc1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#af77a41e56d333dfe3cac87dc4207dc1c">ListMedecin_free</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:af77a41e56d333dfe3cac87dc4207dc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d35f3a662b16d86c05261b44a32e98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a33d35f3a662b16d86c05261b44a32e98">ListMedecin_free_withoutDeletingMedecin</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a33d35f3a662b16d86c05261b44a32e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3522c7b9f20aa7fcecc4392251d1a0c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ab3522c7b9f20aa7fcecc4392251d1a0c">ListMedecin_add</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l, <a class="el" href="struct_medecin.html">Medecin</a> *m)</td></tr>
+<tr class="separator:ab3522c7b9f20aa7fcecc4392251d1a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf3f272f044ddfcc66e2d0118ae89b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#acdf3f272f044ddfcc66e2d0118ae89b5">ListMedecin_seek</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *lP, char *IDMedecin)</td></tr>
+<tr class="separator:acdf3f272f044ddfcc66e2d0118ae89b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b1b4efabf71bc3ee7195ad73f953189"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a7b1b4efabf71bc3ee7195ad73f953189">ListMedecin_isEmpty</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a7b1b4efabf71bc3ee7195ad73f953189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ad08529d7153844dfdb4121e95cfcd9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a3ad08529d7153844dfdb4121e95cfcd9">ListMedecin_isFirst</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a3ad08529d7153844dfdb4121e95cfcd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b718985c956faf4a6b917c55c3b934"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a54b718985c956faf4a6b917c55c3b934">ListMedecin_isLast</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a54b718985c956faf4a6b917c55c3b934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b57e943628fac1c5739ac370f06d983"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6b57e943628fac1c5739ac370f06d983">ListMedecin_isOutOfList</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a6b57e943628fac1c5739ac370f06d983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1511c4a3885355a88a6b87040298168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ae1511c4a3885355a88a6b87040298168">ListMedecin_setOnFirst</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:ae1511c4a3885355a88a6b87040298168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a33d1d7aeec168b9db04680114bbb2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6a33d1d7aeec168b9db04680114bbb2d">ListMedecin_setOnLast</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a6a33d1d7aeec168b9db04680114bbb2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af977ed01cae64e1d77011a3c6555d88e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#af977ed01cae64e1d77011a3c6555d88e">ListMedecin_setOnNext</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:af977ed01cae64e1d77011a3c6555d88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e65abd3210688fdb92699ef2e2ade15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a7e65abd3210688fdb92699ef2e2ade15">ListMedecin_setOnPrevious</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a7e65abd3210688fdb92699ef2e2ade15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a3982adfbf8b1deb4abdb091dee173"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a97a3982adfbf8b1deb4abdb091dee173">ListMedecin_getCurrent</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a97a3982adfbf8b1deb4abdb091dee173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="ae523afbd8be2ec7cbf04c5990e22e5f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddPatientRecuMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_patient.html">Patient</a> *&#160;</td>
+          <td class="paramname"><em>patient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddPatientRecuMedecin : Ajoute un patient à la liste des patient recus par un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>: le medecin recevant </td></tr>
+    <tr><td class="paramname">patient</td><td>: le patient recu </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le patient a bien été ajouté à la liste 0 sinon (patient déjà recu par exemple) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a05bcf828900177b22789cd327fc16c34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AfficheMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AfficheMedecin : Affiche les informations d'un medecin dans la console </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>: le medecin </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae1cfbfa2117c0a7b5a7218017f2a7f75"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_list_medecin.html">ListMedecin</a>* CreerListMedecin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CreerListMedecin : malloc et initialise une liste de médecins </p>
+<dl class="section return"><dt>Renvoie</dt><dd>la liste initialisée </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0afe5fb66e0cb635d1ab76b51a6b1758"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_medecin.html">Medecin</a>* CreerMedecin </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>prenom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mail</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>num_tel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>num_RPS</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CreerMedecin : Creer une nouvelle instance de la structure <a class="el" href="struct_medecin.html">Medecin</a> avec toutes les informations basiques mais pas ses spécialités ou ses diplômes </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nom</td><td>: le nom du medecin </td></tr>
+    <tr><td class="paramname">prenom</td><td>: le prenom du medecin </td></tr>
+    <tr><td class="paramname">mail</td><td>: l'adresse mail du medecin </td></tr>
+    <tr><td class="paramname">num_tel</td><td>: le numero de telephone du medecin </td></tr>
+    <tr><td class="paramname">num_RPS</td><td>: le numéro RPS du medecin </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le medecin créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a71bcd5e35819a7252983451b7a6397d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeleteMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DeleteMedecin : Supprime proprement une instance de la structure medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin à supprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa1ee02a57bad305bda1ac2510370e3c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DeletePatientRecuMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_patient.html">Patient</a> *&#160;</td>
+          <td class="paramname"><em>patient</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DeletePatientRecuMedecin : Enlève un <a class="el" href="struct_patient.html">Patient</a> de la liste des patients recus par un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>: le medecin recevant </td></tr>
+    <tr><td class="paramname">patient</td><td>: le patient qui doit être retiré de la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si l'enlevement du patient à la liste a bien été réalisé 0 sinon (le medecin ne connaissait pas ce patient ou autre) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a96995b3a980662761de97d6024d9ecf4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_medecin.html">NodeMedecin</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeMedecin : Permet de delete proprement un nodeMedecin (en deletant le medecin lié au node) (workingMedecins) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node à delete </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d0ca07d61f1aab69e37294af0a2a924"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeMedecin_withoutDeletingMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_medecin.html">NodeMedecin</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeMedecin_withoutDeletingMedecin : Permet de delete un nodeMedecin mais sans delete le médecin lié au node * (utile pour la liste des médecins consultés par un patient) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node à delete </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4e4bf2ef1e173182f36ff76165acb777"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getAdresseMailMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getAdresseMailMedecin : retourne l'adresse mail du <a class="el" href="struct_medecin.html">Medecin</a> sous forme de char* (pour l'affichage) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> dont on veut l'adresse mail </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un char* avec l'adresse mail </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6e47cda987182a19e519a89782bc63f1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getInfoMedecin </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>infos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getInfoMedecin : retourne une chaine de caractères résumant les attributs du <a class="el" href="struct_medecin.html">Medecin</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">infos</td><td>: la chaine où l'on stocke les infos sur le médecin </td></tr>
+    <tr><td class="paramname">medecin</td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> dont on veut les informations </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a59bd5d29002e8d49f09775294999b57f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getNomMedecin </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getNomMedecin : retourne le nom et le prénom du <a class="el" href="struct_medecin.html">Medecin</a> sous forme de char* (pour l'affichage du RDV) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nom</td><td>: la chaine où on veut stocker le nom </td></tr>
+    <tr><td class="paramname">medecin</td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> dont on veut le nom </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1bd4693b2cb4795a4b749866e9127a09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getNumeroRPSMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getNumeroRPSMedecin : retourne le Numero RPS du <a class="el" href="struct_medecin.html">Medecin</a> sous forme de char* (pour l'affichage) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> dont on veut le Numero RPS </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un char* avec le Numero RPS </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a930b0a763fdcfec514809669fbbd5290"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* getNumeroTelephoneMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getNumeroTelephoneMedecin : retourne le numéro de téléphone du <a class="el" href="struct_medecin.html">Medecin</a> sous forme de char* (pour l'affichage) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> dont on veut le numéro de téléphone </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un char * avec le numero de téléphone </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab3522c7b9f20aa7fcecc4392251d1a0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_add : Ajoute un medecin à une liste de medecin (pas triée) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à laquelle on ajoute </td></tr>
+    <tr><td class="paramname">m</td><td>: le medecin à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>-1 si la liste ou le medecin étaient NULL 1 si tout s'est bien passé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af77a41e56d333dfe3cac87dc4207dc1c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_free : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_medecin.html">ListMedecin</a> passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de médecins à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a33d35f3a662b16d86c05261b44a32e98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_free_withoutDeletingMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_free_withoutDeletingMedecin : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_medecin.html">ListMedecin</a> passé en paramètre mais sans delete les médecins de cette liste (uniquement les nodes) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de médecins à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a97a3982adfbf8b1deb4abdb091dee173"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_medecin.html">Medecin</a>* ListMedecin_getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_getCurrent : Permet d'acceder au <a class="el" href="struct_medecin.html">Medecin</a> pointé par current </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne un pointeur sur le <a class="el" href="struct_medecin.html">Medecin</a> de l'élément courant de la liste </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abf8a93013bb8621ea73405a9b741a26d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_init : Initialise correctement une liste de <a class="el" href="struct_node_medecin.html">NodeMedecin</a> en reliant sentinel_begin et end entre eux et en mettant current à NULL (en dehors de la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à initialiser </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7b1b4efabf71bc3ee7195ad73f953189"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_isEmpty : Vérifie si la liste de <a class="el" href="struct_medecin.html">Medecin</a> est vide ou non </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la liste est vide 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ad08529d7153844dfdb4121e95cfcd9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_isFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_isFirst : Vérifie si current est positionné sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le premier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a54b718985c956faf4a6b917c55c3b934"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_isLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_isLast : Vérifie si current est positionné sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le dernier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6b57e943628fac1c5739ac370f06d983"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_isOutOfList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_isOutOfList : Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current vaut NULL 0 sinon -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acdf3f272f044ddfcc66e2d0118ae89b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_medecin.html">Medecin</a>* ListMedecin_seek </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>lP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>IDMedecin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_seek : Permet de chercher un <a class="el" href="struct_medecin.html">Medecin</a> dans une list de <a class="el" href="struct_medecin.html">Medecin</a> depuis son Numéro RPS (son ID) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lP</td><td>: la liste dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">IDMedecin</td><td>: l'ID du <a class="el" href="struct_medecin.html">Medecin</a> cherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le <a class="el" href="struct_medecin.html">Medecin</a> NULL si on ne l'a pas trouvé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae1511c4a3885355a88a6b87040298168"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_setOnFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6a33d1d7aeec168b9db04680114bbb2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_setOnLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af977ed01cae64e1d77011a3c6555d88e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_setOnNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e65abd3210688fdb92699ef2e2ade15"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMedecin_setOnPrevious </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae44be774cac54154a80da40db3bcc6a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node_medecin.html">NodeMedecin</a>* newNodeMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_medecin.html">NodeMedecin</a> *&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_medecin.html">NodeMedecin</a> *&#160;</td>
+          <td class="paramname"><em>next</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>newNodeMedecin : Permet de créer dynamiquement un nouveau node de <a class="el" href="struct_medecin.html">Medecin</a> pour la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="struct_medecin.html">Medecin</a></td><td>: le <a class="el" href="struct_medecin.html">Medecin</a> pointé par ce nouveau noeud </td></tr>
+    <tr><td class="paramname">previous</td><td>: le noeud précédant le nouveau noeud dans la liste </td></tr>
+    <tr><td class="paramname">next</td><td>: le prochain noeud de la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le nouveau noeud créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acac056ba7705fe9857a63dc2df920e0d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printListMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>printListMedecin : Affiche une liste de mèdecins (notamment pour printProject) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6f15cb667271234dd0f0e6433be5d060"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetAdresseMailMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SetAdresseMailMedecin : Setteur de l'adrese mail d'un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin </td></tr>
+    <tr><td class="paramname">mail</td><td>: la nouvelle adresse mail </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a351b689795ff9543c5ed4236f3934d04"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetNomMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SetNomMedecin : Setteur du nom d'un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin </td></tr>
+    <tr><td class="paramname">nom</td><td>: le nouveau nom </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9176e649f75181c288b50f1abae82759"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetNumeroRPSMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>num_RPS</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SetNumeroRPSMedecin : Setteur du numéro RPS d'un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin </td></tr>
+    <tr><td class="paramname">num_RPS</td><td>: le nouveau numéro RPS </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa1bcc618408c8c672056f01110a4f41d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetNumeroTelephoneMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>tel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SetNumeroTelephoneMedecin : Setteur du numero de telephone professionnel d'un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin </td></tr>
+    <tr><td class="paramname">tel</td><td>: le nouveau numero de telephone </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab0ea71bb483a62977a39b3cefc018783"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetPrenomMedecin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>prenom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>SetPrenomMedecin : Setteur du prenom d'un medecin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">medecin</td><td>: le medecin </td></tr>
+    <tr><td class="paramname">prenom</td><td>: le nouveau prenom </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_32e188284d239da8bb14ec1dabb0c35f.html">Model</a></li><li class="navelem"><a class="el" href="medecin_8c.html">medecin.c</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 15:32:32 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

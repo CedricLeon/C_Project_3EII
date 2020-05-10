@@ -1,0 +1,119 @@
+\hypertarget{fonctions_graphiques_8c}{\section{Référence du fichier src/\-View/fonctions\-Graphiques.c}
+\label{fonctions_graphiques_8c}\index{src/\-View/fonctions\-Graphiques.\-c@{src/\-View/fonctions\-Graphiques.\-c}}
+}
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-View/fonctions\-Graphiques.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-View/callbacks.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/patient.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$gtk/gtk.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+Graphe des dépendances par inclusion de fonctions\-Graphiques.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fonctions_graphiques_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fonctions_graphiques_8c_a755b1b7ec6cb455f973e0b3f59fdfa1f}{L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E}~266
+\item 
+\#define \hyperlink{fonctions_graphiques_8c_a077641040862b83bcd2d2e236fab0c44}{H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E}~50
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fonctions_graphiques_8c_a8ca01db52b3fbb75e9632ff6dc724a50}{bouton\-R\-D\-V} (Gtk\-Widget $\ast$wid, Gtk\-Grid grid)
+\item 
+int \hyperlink{fonctions_graphiques_8c_a0503e871db78e3e885c9ecd7a5cfbbcf}{create\-\_\-window} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{fonctions_graphiques_8c_a081c88af684f01079fb65d79a6d9ae87}{fenetre\-Recherche\-Patient} (Gtk\-Widget $\ast$widget, gpointer data)
+\item 
+void \hyperlink{fonctions_graphiques_8c_aaa8afd3fb1c2eef8ad968bf26becc0b4}{fenetre\-Creer\-R\-D\-V} (Gtk\-Widget $\ast$widget, gpointer data)
+\item 
+void \hyperlink{fonctions_graphiques_8c_a280d9560dd03e3e4dd7d11a0e7542b3e}{fenetre\-Creer\-Patient} (Gtk\-Widget $\ast$widget, gpointer data)
+\item 
+void \hyperlink{fonctions_graphiques_8c_a75501679d12a0842dbdc6194358f97d7}{parcours\-Jour} (\hyperlink{calendrier_8h_a99e50633bb5c551d09693a390acd33d1}{Jour} j)
+\item 
+void \hyperlink{fonctions_graphiques_8c_af9da0b3c4675cb9a0cbb0e09e154bb80}{creer\-Bouton\-R\-D\-V} (Gtk\-Widget $\ast$bouton, \hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$rdv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des macros}
+\hypertarget{fonctions_graphiques_8c_a077641040862b83bcd2d2e236fab0c44}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E@{H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E}}
+\index{H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E@{H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-A\-U\-T\-E\-U\-R\-\_\-\-P\-R\-E\-M\-I\-E\-R\-E\-\_\-\-L\-I\-G\-N\-E~50}}\label{fonctions_graphiques_8c_a077641040862b83bcd2d2e236fab0c44}
+\hypertarget{fonctions_graphiques_8c_a755b1b7ec6cb455f973e0b3f59fdfa1f}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E@{L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E}}
+\index{L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E@{L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-A\-R\-G\-E\-U\-R\-\_\-\-C\-O\-L\-O\-N\-N\-E~266}}\label{fonctions_graphiques_8c_a755b1b7ec6cb455f973e0b3f59fdfa1f}
+
+
+\subsection{Documentation des fonctions}
+\hypertarget{fonctions_graphiques_8c_a8ca01db52b3fbb75e9632ff6dc724a50}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!bouton\-R\-D\-V@{bouton\-R\-D\-V}}
+\index{bouton\-R\-D\-V@{bouton\-R\-D\-V}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{bouton\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void bouton\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{wid, }
+\item[{Gtk\-Grid}]{grid}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_a8ca01db52b3fbb75e9632ff6dc724a50}
+\hypertarget{fonctions_graphiques_8c_a0503e871db78e3e885c9ecd7a5cfbbcf}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!create\-\_\-window@{create\-\_\-window}}
+\index{create\-\_\-window@{create\-\_\-window}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{create\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}int create\-\_\-window (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_a0503e871db78e3e885c9ecd7a5cfbbcf}
+\hypertarget{fonctions_graphiques_8c_af9da0b3c4675cb9a0cbb0e09e154bb80}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!creer\-Bouton\-R\-D\-V@{creer\-Bouton\-R\-D\-V}}
+\index{creer\-Bouton\-R\-D\-V@{creer\-Bouton\-R\-D\-V}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{creer\-Bouton\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void creer\-Bouton\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{bouton, }
+\item[{{\bf Rendez\-Vous} $\ast$}]{rdv}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_af9da0b3c4675cb9a0cbb0e09e154bb80}
+creer\-Bouton\-R\-D\-V \-: associe un bouton du calendrier au patient reçu lors du rendez-\/vous 
+\begin{DoxyParams}{Paramètres}
+{\em bouton} & \-: le bouton affiché \\
+\hline
+{\em rdv} & \-: le rendez-\/vous dont on veut associer le patient \\
+\hline
+\end{DoxyParams}
+\hypertarget{fonctions_graphiques_8c_a280d9560dd03e3e4dd7d11a0e7542b3e}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!fenetre\-Creer\-Patient@{fenetre\-Creer\-Patient}}
+\index{fenetre\-Creer\-Patient@{fenetre\-Creer\-Patient}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{fenetre\-Creer\-Patient}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Creer\-Patient (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_a280d9560dd03e3e4dd7d11a0e7542b3e}
+\hypertarget{fonctions_graphiques_8c_aaa8afd3fb1c2eef8ad968bf26becc0b4}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!fenetre\-Creer\-R\-D\-V@{fenetre\-Creer\-R\-D\-V}}
+\index{fenetre\-Creer\-R\-D\-V@{fenetre\-Creer\-R\-D\-V}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{fenetre\-Creer\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Creer\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_aaa8afd3fb1c2eef8ad968bf26becc0b4}
+\hypertarget{fonctions_graphiques_8c_a081c88af684f01079fb65d79a6d9ae87}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!fenetre\-Recherche\-Patient@{fenetre\-Recherche\-Patient}}
+\index{fenetre\-Recherche\-Patient@{fenetre\-Recherche\-Patient}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{fenetre\-Recherche\-Patient}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Recherche\-Patient (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_a081c88af684f01079fb65d79a6d9ae87}
+\hypertarget{fonctions_graphiques_8c_a75501679d12a0842dbdc6194358f97d7}{\index{fonctions\-Graphiques.\-c@{fonctions\-Graphiques.\-c}!parcours\-Jour@{parcours\-Jour}}
+\index{parcours\-Jour@{parcours\-Jour}!fonctionsGraphiques.c@{fonctions\-Graphiques.\-c}}
+\subsubsection[{parcours\-Jour}]{\setlength{\rightskip}{0pt plus 5cm}void parcours\-Jour (
+\begin{DoxyParamCaption}
+\item[{{\bf Jour}}]{j}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8c_a75501679d12a0842dbdc6194358f97d7}
+parcours\-Jour \-: Parcourir le jour en paramètre et créer un bouton associé à chaque rendez-\/vous 
+\begin{DoxyParams}{Paramètres}
+{\em j} & \-: le jour (liste de rendez-\/vous) parcouru \\
+\hline
+\end{DoxyParams}

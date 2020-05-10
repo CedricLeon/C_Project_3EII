@@ -1,0 +1,117 @@
+\hypertarget{fonctions_graphiques_8h}{\section{Référence du fichier include/\-G\-P\-Calendar/\-View/fonctions\-Graphiques.h}
+\label{fonctions_graphiques_8h}\index{include/\-G\-P\-Calendar/\-View/fonctions\-Graphiques.\-h@{include/\-G\-P\-Calendar/\-View/fonctions\-Graphiques.\-h}}
+}
+
+
+Provides basic unit testing functions declaration.  
+
+
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-View/callbacks.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$gtk/gtk.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+Graphe des dépendances par inclusion de fonctions\-Graphiques.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fonctions_graphiques_8h__incl}
+\end{center}
+\end{figure}
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier \-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fonctions_graphiques_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{fonctions_graphiques_8h_a0503e871db78e3e885c9ecd7a5cfbbcf}{create\-\_\-window} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{fonctions_graphiques_8h_a8ca01db52b3fbb75e9632ff6dc724a50}{bouton\-R\-D\-V} (Gtk\-Widget $\ast$wid, Gtk\-Grid grid)
+\item 
+void \hyperlink{fonctions_graphiques_8h_a75501679d12a0842dbdc6194358f97d7}{parcours\-Jour} (\hyperlink{calendrier_8h_a99e50633bb5c551d09693a390acd33d1}{Jour} j)
+\item 
+void \hyperlink{fonctions_graphiques_8h_af9da0b3c4675cb9a0cbb0e09e154bb80}{creer\-Bouton\-R\-D\-V} (Gtk\-Widget $\ast$bouton, \hyperlink{struct_rendez_vous}{Rendez\-Vous} $\ast$rdv)
+\item 
+void \hyperlink{fonctions_graphiques_8h_a081c88af684f01079fb65d79a6d9ae87}{fenetre\-Recherche\-Patient} (Gtk\-Widget $\ast$widget, gpointer data)
+\item 
+void \hyperlink{fonctions_graphiques_8h_aaa8afd3fb1c2eef8ad968bf26becc0b4}{fenetre\-Creer\-R\-D\-V} (Gtk\-Widget $\ast$widget, gpointer data)
+\item 
+void \hyperlink{fonctions_graphiques_8h_a280d9560dd03e3e4dd7d11a0e7542b3e}{fenetre\-Creer\-Patient} (Gtk\-Widget $\ast$widget, gpointer data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Provides basic unit testing functions declaration. 
+
+\subsection{Documentation des fonctions}
+\hypertarget{fonctions_graphiques_8h_a8ca01db52b3fbb75e9632ff6dc724a50}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!bouton\-R\-D\-V@{bouton\-R\-D\-V}}
+\index{bouton\-R\-D\-V@{bouton\-R\-D\-V}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{bouton\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void bouton\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{wid, }
+\item[{Gtk\-Grid}]{grid}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_a8ca01db52b3fbb75e9632ff6dc724a50}
+\hypertarget{fonctions_graphiques_8h_a0503e871db78e3e885c9ecd7a5cfbbcf}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!create\-\_\-window@{create\-\_\-window}}
+\index{create\-\_\-window@{create\-\_\-window}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{create\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}int create\-\_\-window (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_a0503e871db78e3e885c9ecd7a5cfbbcf}
+\hypertarget{fonctions_graphiques_8h_af9da0b3c4675cb9a0cbb0e09e154bb80}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!creer\-Bouton\-R\-D\-V@{creer\-Bouton\-R\-D\-V}}
+\index{creer\-Bouton\-R\-D\-V@{creer\-Bouton\-R\-D\-V}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{creer\-Bouton\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void creer\-Bouton\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{bouton, }
+\item[{{\bf Rendez\-Vous} $\ast$}]{rdv}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_af9da0b3c4675cb9a0cbb0e09e154bb80}
+creer\-Bouton\-R\-D\-V \-: associe un bouton du calendrier au patient reçu lors du rendez-\/vous 
+\begin{DoxyParams}{Paramètres}
+{\em bouton} & \-: le bouton affiché \\
+\hline
+{\em rdv} & \-: le rendez-\/vous dont on veut associer le patient \\
+\hline
+\end{DoxyParams}
+\hypertarget{fonctions_graphiques_8h_a280d9560dd03e3e4dd7d11a0e7542b3e}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!fenetre\-Creer\-Patient@{fenetre\-Creer\-Patient}}
+\index{fenetre\-Creer\-Patient@{fenetre\-Creer\-Patient}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{fenetre\-Creer\-Patient}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Creer\-Patient (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_a280d9560dd03e3e4dd7d11a0e7542b3e}
+\hypertarget{fonctions_graphiques_8h_aaa8afd3fb1c2eef8ad968bf26becc0b4}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!fenetre\-Creer\-R\-D\-V@{fenetre\-Creer\-R\-D\-V}}
+\index{fenetre\-Creer\-R\-D\-V@{fenetre\-Creer\-R\-D\-V}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{fenetre\-Creer\-R\-D\-V}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Creer\-R\-D\-V (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_aaa8afd3fb1c2eef8ad968bf26becc0b4}
+\hypertarget{fonctions_graphiques_8h_a081c88af684f01079fb65d79a6d9ae87}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!fenetre\-Recherche\-Patient@{fenetre\-Recherche\-Patient}}
+\index{fenetre\-Recherche\-Patient@{fenetre\-Recherche\-Patient}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{fenetre\-Recherche\-Patient}]{\setlength{\rightskip}{0pt plus 5cm}void fenetre\-Recherche\-Patient (
+\begin{DoxyParamCaption}
+\item[{Gtk\-Widget $\ast$}]{widget, }
+\item[{gpointer}]{data}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_a081c88af684f01079fb65d79a6d9ae87}
+\hypertarget{fonctions_graphiques_8h_a75501679d12a0842dbdc6194358f97d7}{\index{fonctions\-Graphiques.\-h@{fonctions\-Graphiques.\-h}!parcours\-Jour@{parcours\-Jour}}
+\index{parcours\-Jour@{parcours\-Jour}!fonctionsGraphiques.h@{fonctions\-Graphiques.\-h}}
+\subsubsection[{parcours\-Jour}]{\setlength{\rightskip}{0pt plus 5cm}void parcours\-Jour (
+\begin{DoxyParamCaption}
+\item[{{\bf Jour}}]{j}
+\end{DoxyParamCaption}
+)}}\label{fonctions_graphiques_8h_a75501679d12a0842dbdc6194358f97d7}
+parcours\-Jour \-: Parcourir le jour en paramètre et créer un bouton associé à chaque rendez-\/vous 
+\begin{DoxyParams}{Paramètres}
+{\em j} & \-: le jour (liste de rendez-\/vous) parcouru \\
+\hline
+\end{DoxyParams}

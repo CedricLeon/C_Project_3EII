@@ -1,0 +1,305 @@
+\hypertarget{dossier__medical_8c}{\section{Référence du fichier src/\-Model/dossier\-\_\-medical.c}
+\label{dossier__medical_8c}\index{src/\-Model/dossier\-\_\-medical.\-c@{src/\-Model/dossier\-\_\-medical.\-c}}
+}
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/dossier\-\_\-medical.\-h\char`\"{}}\\*
+Graphe des dépendances par inclusion de dossier\-\_\-medical.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dossier__medical_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_dossier_medical}{Dossier\-Medical} $\ast$ \hyperlink{dossier__medical_8c_a1db3210daf71ff58dc58d74d5a07bf62}{Creer\-Dossier\-Medical} ()
+\item 
+void \hyperlink{dossier__medical_8c_a9a882cd2ebc85ec2fa8b48fdf818a2b1}{Free\-Dossier\-Medical} (\hyperlink{struct_dossier_medical}{Dossier\-Medical} $\ast$dm)
+\item 
+int \hyperlink{dossier__medical_8c_a055a11ab5b446aff1ea072b18e0b0c80}{Add\-Ordonnance\-Dossier\-Medical} (\hyperlink{struct_dossier_medical}{Dossier\-Medical} $\ast$dm, \hyperlink{struct_ordonnance}{Ordonnance} $\ast$ordonnance)
+\item 
+int \hyperlink{dossier__medical_8c_aca624d76847984c3ab23fb8f4087527c}{Add\-Antecedent\-Dossier\-Medical} (\hyperlink{struct_dossier_medical}{Dossier\-Medical} $\ast$dm, char $\ast$ant)
+\item 
+void \hyperlink{dossier__medical_8c_a8e4a0090325fda62a95dacf809982593}{print\-Antecedent} (char $\ast$infos, char $\ast$ante)
+\item 
+\hyperlink{struct_node_antecedent}{Node\-Antecedent} $\ast$ \hyperlink{dossier__medical_8c_ac8a65401429da15e4e5438c27f1d5bc7}{new\-Node\-Antecedent} (char $\ast$ante, \hyperlink{struct_node_antecedent}{Node\-Antecedent} $\ast$previous, \hyperlink{struct_node_antecedent}{Node\-Antecedent} $\ast$next)
+\item 
+void \hyperlink{dossier__medical_8c_a0fca73fc369dd709c14e7de2682ec7da}{free\-Node\-Antecedent} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l, \hyperlink{struct_node_antecedent}{Node\-Antecedent} $\ast$n)
+\item 
+void \hyperlink{dossier__medical_8c_a85174cddd32f52cb915ce0dc1f67af77}{List\-Antecedent\-\_\-init} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+void \hyperlink{dossier__medical_8c_aeb097f92ae54258f575ef3d1a548b4a2}{List\-Antecedent\-\_\-free} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+int \hyperlink{dossier__medical_8c_a45c487156c6665f976e3bd236d33a20d}{List\-Antecedent\-\_\-is\-Empty} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+int \hyperlink{dossier__medical_8c_a31102bf36a7cb7b42f3e1dac1f6f941b}{List\-Antecedent\-\_\-is\-First} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+int \hyperlink{dossier__medical_8c_a7266fb96edb1bc50da80ec5d82b17f70}{List\-Antecedent\-\_\-is\-Last} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+int \hyperlink{dossier__medical_8c_af42338122c4597a30b844ca68996c1aa}{List\-Antecedent\-\_\-is\-Out\-Of\-List} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+void \hyperlink{dossier__medical_8c_a31fd0b56dd2cc3875a0fcb1313495f3c}{List\-Antecedent\-\_\-set\-On\-First} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+void \hyperlink{dossier__medical_8c_a8a564a91ea100e308d68a53db7aee9fc}{List\-Antecedent\-\_\-set\-On\-Last} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+void \hyperlink{dossier__medical_8c_a6905d735ace0ed3489d72c8fbd677238}{List\-Antecedent\-\_\-set\-On\-Next} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+void \hyperlink{dossier__medical_8c_a4269123aeb4a2223826fd39e74cdf90f}{List\-Antecedent\-\_\-set\-On\-Previous} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\item 
+char $\ast$ \hyperlink{dossier__medical_8c_a7d4086d62ff250c2f21718b1fb690d03}{List\-Antecedent\-\_\-get\-Current} (\hyperlink{struct_list_antecedent}{List\-Antecedent} $\ast$l)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des fonctions}
+\hypertarget{dossier__medical_8c_aca624d76847984c3ab23fb8f4087527c}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!Add\-Antecedent\-Dossier\-Medical@{Add\-Antecedent\-Dossier\-Medical}}
+\index{Add\-Antecedent\-Dossier\-Medical@{Add\-Antecedent\-Dossier\-Medical}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{Add\-Antecedent\-Dossier\-Medical}]{\setlength{\rightskip}{0pt plus 5cm}int Add\-Antecedent\-Dossier\-Medical (
+\begin{DoxyParamCaption}
+\item[{{\bf Dossier\-Medical} $\ast$}]{dm, }
+\item[{char $\ast$}]{ant}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_aca624d76847984c3ab23fb8f4087527c}
+Add\-Antecedent\-Dossier\-Medical \-: Ajoute un antecedent dans le dossier medical 
+\begin{DoxyParams}{Paramètres}
+{\em dm} & \-: le dossier dans lequel on veut ajouter \\
+\hline
+{\em antecedent} & \-: l'antecedent à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a055a11ab5b446aff1ea072b18e0b0c80}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!Add\-Ordonnance\-Dossier\-Medical@{Add\-Ordonnance\-Dossier\-Medical}}
+\index{Add\-Ordonnance\-Dossier\-Medical@{Add\-Ordonnance\-Dossier\-Medical}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{Add\-Ordonnance\-Dossier\-Medical}]{\setlength{\rightskip}{0pt plus 5cm}int Add\-Ordonnance\-Dossier\-Medical (
+\begin{DoxyParamCaption}
+\item[{{\bf Dossier\-Medical} $\ast$}]{dm, }
+\item[{{\bf Ordonnance} $\ast$}]{ordonnance}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a055a11ab5b446aff1ea072b18e0b0c80}
+Add\-Ordonnance\-Dossier\-Medical \-: Ajoute une ordonnance dans le dossier medical 
+\begin{DoxyParams}{Paramètres}
+{\em dm} & \-: le dossier dans lequel on veut ajouter \\
+\hline
+{\em ordonnance} & \-: l'ordonnance à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a1db3210daf71ff58dc58d74d5a07bf62}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!Creer\-Dossier\-Medical@{Creer\-Dossier\-Medical}}
+\index{Creer\-Dossier\-Medical@{Creer\-Dossier\-Medical}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{Creer\-Dossier\-Medical}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dossier\-Medical}$\ast$ Creer\-Dossier\-Medical (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a1db3210daf71ff58dc58d74d5a07bf62}
+Creer\-Dossier \-: Creer dynamiquement un objet \hyperlink{struct_dossier_medical}{Dossier\-Medical} 
+\begin{DoxyParams}{Paramètres}
+{\em patient} & \-: le patient concerné par le dossier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+le dossier crée 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a9a882cd2ebc85ec2fa8b48fdf818a2b1}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!Free\-Dossier\-Medical@{Free\-Dossier\-Medical}}
+\index{Free\-Dossier\-Medical@{Free\-Dossier\-Medical}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{Free\-Dossier\-Medical}]{\setlength{\rightskip}{0pt plus 5cm}void Free\-Dossier\-Medical (
+\begin{DoxyParamCaption}
+\item[{{\bf Dossier\-Medical} $\ast$}]{dm}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a9a882cd2ebc85ec2fa8b48fdf818a2b1}
+Free\-Dossier \-: Free un objet \hyperlink{struct_dossier_medical}{Dossier\-Medical} 
+\begin{DoxyParams}{Paramètres}
+{\em dm} & \-: le dossier à supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a0fca73fc369dd709c14e7de2682ec7da}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!free\-Node\-Antecedent@{free\-Node\-Antecedent}}
+\index{free\-Node\-Antecedent@{free\-Node\-Antecedent}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{free\-Node\-Antecedent}]{\setlength{\rightskip}{0pt plus 5cm}void free\-Node\-Antecedent (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l, }
+\item[{{\bf Node\-Antecedent} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a0fca73fc369dd709c14e7de2682ec7da}
+free\-Node\-Antecedent \-: Permet de delete proprement (avec un free) un \hyperlink{struct_node_antecedent}{Node\-Antecedent} 
+\begin{DoxyParams}{Paramètres}
+{\em n} & \-: le node à delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_aeb097f92ae54258f575ef3d1a548b4a2}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-free@{List\-Antecedent\-\_\-free}}
+\index{List\-Antecedent\-\_\-free@{List\-Antecedent\-\_\-free}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_aeb097f92ae54258f575ef3d1a548b4a2}
+List\-Antecedent\-\_\-free \-: Libère la mémoire occupée par l'objet \hyperlink{struct_list_antecedent}{List\-Antecedent} passé en paramètre 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste de antecedents à free \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a7d4086d62ff250c2f21718b1fb690d03}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-get\-Current@{List\-Antecedent\-\_\-get\-Current}}
+\index{List\-Antecedent\-\_\-get\-Current@{List\-Antecedent\-\_\-get\-Current}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-get\-Current}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ List\-Antecedent\-\_\-get\-Current (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a7d4086d62ff250c2f21718b1fb690d03}
+List\-Antecedent\-\_\-get\-Current \-: Permet d'acceder à l'\hyperlink{struct_ordonnance}{Ordonnance} pointée par current 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne un pointeur sur l'\hyperlink{struct_ordonnance}{Ordonnance} de l'élément courant de la liste 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a85174cddd32f52cb915ce0dc1f67af77}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-init@{List\-Antecedent\-\_\-init}}
+\index{List\-Antecedent\-\_\-init@{List\-Antecedent\-\_\-init}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a85174cddd32f52cb915ce0dc1f67af77}
+List\-Antecedent\-\_\-init \-: Initialise correctement une liste de \hyperlink{struct_node_antecedent}{Node\-Antecedent} en reliant sentinel\-\_\-begin et end entre eux et en mettant current à N\-U\-L\-L (en dehors de la liste) 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste à initialiser \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a45c487156c6665f976e3bd236d33a20d}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-is\-Empty@{List\-Antecedent\-\_\-is\-Empty}}
+\index{List\-Antecedent\-\_\-is\-Empty@{List\-Antecedent\-\_\-is\-Empty}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Antecedent\-\_\-is\-Empty (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a45c487156c6665f976e3bd236d33a20d}
+List\-Antecedent\-\_\-is\-Empty \-: Vérifie si la liste de Antecedent est vide ou non 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si la liste est vide 0 si elle ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a31102bf36a7cb7b42f3e1dac1f6f941b}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-is\-First@{List\-Antecedent\-\_\-is\-First}}
+\index{List\-Antecedent\-\_\-is\-First@{List\-Antecedent\-\_\-is\-First}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-is\-First}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Antecedent\-\_\-is\-First (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a31102bf36a7cb7b42f3e1dac1f6f941b}
+List\-Antecedent\-\_\-is\-First \-: Vérifie si current est positionné sur le premier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current est bien sur le premier élément 0 si il ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a7266fb96edb1bc50da80ec5d82b17f70}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-is\-Last@{List\-Antecedent\-\_\-is\-Last}}
+\index{List\-Antecedent\-\_\-is\-Last@{List\-Antecedent\-\_\-is\-Last}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-is\-Last}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Antecedent\-\_\-is\-Last (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a7266fb96edb1bc50da80ec5d82b17f70}
+List\-Antecedent\-\_\-is\-Last \-: Vérifie si current est positionné sur le dernier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current est bien sur le dernier élément 0 si il ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_af42338122c4597a30b844ca68996c1aa}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-is\-Out\-Of\-List@{List\-Antecedent\-\_\-is\-Out\-Of\-List}}
+\index{List\-Antecedent\-\_\-is\-Out\-Of\-List@{List\-Antecedent\-\_\-is\-Out\-Of\-List}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-is\-Out\-Of\-List}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Antecedent\-\_\-is\-Out\-Of\-List (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_af42338122c4597a30b844ca68996c1aa}
+List\-Antecedent\-\_\-is\-Out\-Of\-List \-: Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current vaut N\-U\-L\-L 0 sinon -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a31fd0b56dd2cc3875a0fcb1313495f3c}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-set\-On\-First@{List\-Antecedent\-\_\-set\-On\-First}}
+\index{List\-Antecedent\-\_\-set\-On\-First@{List\-Antecedent\-\_\-set\-On\-First}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-set\-On\-First}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-set\-On\-First (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a31fd0b56dd2cc3875a0fcb1313495f3c}
+List\-Antecedent\-\_\-set\-On\-First \-: Positionne le pointeur courant sur le premier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a8a564a91ea100e308d68a53db7aee9fc}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-set\-On\-Last@{List\-Antecedent\-\_\-set\-On\-Last}}
+\index{List\-Antecedent\-\_\-set\-On\-Last@{List\-Antecedent\-\_\-set\-On\-Last}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-set\-On\-Last}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-set\-On\-Last (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a8a564a91ea100e308d68a53db7aee9fc}
+List\-Antecedent\-\_\-set\-On\-Last \-: Positionne le pointeur courant sur le dernier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a6905d735ace0ed3489d72c8fbd677238}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-set\-On\-Next@{List\-Antecedent\-\_\-set\-On\-Next}}
+\index{List\-Antecedent\-\_\-set\-On\-Next@{List\-Antecedent\-\_\-set\-On\-Next}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-set\-On\-Next}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-set\-On\-Next (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a6905d735ace0ed3489d72c8fbd677238}
+List\-Antecedent\-\_\-set\-On\-Next \-: Positionne le pointeur courant sur le prochain élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_a4269123aeb4a2223826fd39e74cdf90f}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!List\-Antecedent\-\_\-set\-On\-Previous@{List\-Antecedent\-\_\-set\-On\-Previous}}
+\index{List\-Antecedent\-\_\-set\-On\-Previous@{List\-Antecedent\-\_\-set\-On\-Previous}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{List\-Antecedent\-\_\-set\-On\-Previous}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Antecedent\-\_\-set\-On\-Previous (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Antecedent} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a4269123aeb4a2223826fd39e74cdf90f}
+List\-Antecedent\-\_\-set\-On\-Previous \-: Positionne le pointeur courant sur l'élément le précédant dans la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{dossier__medical_8c_ac8a65401429da15e4e5438c27f1d5bc7}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!new\-Node\-Antecedent@{new\-Node\-Antecedent}}
+\index{new\-Node\-Antecedent@{new\-Node\-Antecedent}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{new\-Node\-Antecedent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Antecedent}$\ast$ new\-Node\-Antecedent (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ante, }
+\item[{{\bf Node\-Antecedent} $\ast$}]{previous, }
+\item[{{\bf Node\-Antecedent} $\ast$}]{next}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_ac8a65401429da15e4e5438c27f1d5bc7}
+new\-Node\-Antecedent \-: Permet de créer dynamiquement un nouveau node de Antecedent pour la liste 
+\begin{DoxyParams}{Paramètres}
+{\em ante} & \-: l'antecedent pointé par ce nouveau noeud \\
+\hline
+{\em previous} & \-: le noeud précédant le nouveau noeud dans la liste \\
+\hline
+{\em next} & \-: le prochain noeud de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+un pointeur sur le nouveau noeud créé 
+\end{DoxyReturn}
+\hypertarget{dossier__medical_8c_a8e4a0090325fda62a95dacf809982593}{\index{dossier\-\_\-medical.\-c@{dossier\-\_\-medical.\-c}!print\-Antecedent@{print\-Antecedent}}
+\index{print\-Antecedent@{print\-Antecedent}!dossier_medical.c@{dossier\-\_\-medical.\-c}}
+\subsubsection[{print\-Antecedent}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Antecedent (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{infos, }
+\item[{char $\ast$}]{ante}
+\end{DoxyParamCaption}
+)}}\label{dossier__medical_8c_a8e4a0090325fda62a95dacf809982593}
+print\-Antecedent \-: Affiche un antecedent dans le dossier medical 
+\begin{DoxyParams}{Paramètres}
+{\em ante} & \-: l'antecedent à afficher \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/Model/rendezvous.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('rendezvous_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">rendezvous.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="rendezvous_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef RENDEZVOUS_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define RENDEZVOUS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">GPCalendar/Model/date.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="medecin_8h.html">GPCalendar/Model/medecin.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="patient_8h.html">GPCalendar/Model/patient.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html">   13</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span>{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a73fc78564c9badbcea68f2f2331c74db">   14</a></span>&#160;    <a class="code" href="struct_date.html">Date</a> * <a class="code" href="struct_rendez_vous.html#a73fc78564c9badbcea68f2f2331c74db">date</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a3877de0db2ba94f6179438f6ce2d79e4">   15</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="struct_rendez_vous.html#a3877de0db2ba94f6179438f6ce2d79e4">heure_debut</a>;      <span class="comment">//16h30 &lt;=&gt; 16.5</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a91f724ef59fa01719e26c722ce70666f">   16</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="struct_rendez_vous.html#a91f724ef59fa01719e26c722ce70666f">heure_fin</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a4e5bf777d1128fd5e62442afa61ea3c9">   17</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_rendez_vous.html#a4e5bf777d1128fd5e62442afa61ea3c9">lieu</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a602d93e6dfbb9a54fc31419f2463ac2b">   18</a></span>&#160;    <a class="code" href="struct_patient.html">Patient</a> * <a class="code" href="struct_rendez_vous.html#a602d93e6dfbb9a54fc31419f2463ac2b">patient</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#a59131973441fcf6250df021bcf96d17c">   19</a></span>&#160;    <a class="code" href="struct_medecin.html">Medecin</a> * <a class="code" href="struct_rendez_vous.html#a59131973441fcf6250df021bcf96d17c">medecin</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_rendez_vous.html#ac1d72cddca5f2d79a6b2691aacd03850">   20</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_rendez_vous.html#ac1d72cddca5f2d79a6b2691aacd03850">motif</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}<a class="code" href="struct_rendez_vous.html">RendezVous</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="struct_rendez_vous.html">RendezVous</a> * <a class="code" href="rendezvous_8h.html#ae62501b5f409d83dc182560bbb97a276">CreerRendezVous</a>(<span class="keywordtype">int</span> an, <span class="keywordtype">int</span> mois, <span class="keywordtype">int</span> jour, <span class="keywordtype">double</span> heure_debut, <span class="keywordtype">int</span> duree, <span class="keywordtype">char</span> * lieu, <a class="code" href="struct_patient.html">Patient</a> * patient, <a class="code" href="struct_medecin.html">Medecin</a> * medecin, <span class="keywordtype">char</span> * motif);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rendezvous_8h.html#a1d5659faf0a3498ce343e7d14015489d">FreeRendezVous</a>(<a class="code" href="struct_rendez_vous.html">RendezVous</a> * rdv);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rendezvous_8h.html#a78731530177f360d1452c1dbe7c8bdef">AnnulerRendezVous</a>(<a class="code" href="struct_rendez_vous.html">RendezVous</a> * rdv);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="struct_rendez_vous.html">RendezVous</a> * <a class="code" href="rendezvous_8h.html#a75dec28fc6cc82183dec57c710e87b0e">DeplacerRendezVous</a>(<a class="code" href="struct_rendez_vous.html">RendezVous</a> * rdv, <span class="keywordtype">int</span> n_an, <span class="keywordtype">int</span> n_mois, <span class="keywordtype">int</span> n_jour, <span class="keywordtype">double</span> n_heure_debut, <span class="keywordtype">int</span> n_duree);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="rendezvous_8h_html_a75dec28fc6cc82183dec57c710e87b0e"><div class="ttname"><a href="rendezvous_8h.html#a75dec28fc6cc82183dec57c710e87b0e">DeplacerRendezVous</a></div><div class="ttdeci">RendezVous * DeplacerRendezVous(RendezVous *rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree)</div><div class="ttdef"><b>Definition:</b> rendezvous.c:90</div></div>
+<div class="ttc" id="medecin_8h_html"><div class="ttname"><a href="medecin_8h.html">medecin.h</a></div></div>
+<div class="ttc" id="rendezvous_8h_html_a1d5659faf0a3498ce343e7d14015489d"><div class="ttname"><a href="rendezvous_8h.html#a1d5659faf0a3498ce343e7d14015489d">FreeRendezVous</a></div><div class="ttdeci">void FreeRendezVous(RendezVous *rdv)</div><div class="ttdef"><b>Definition:</b> rendezvous.c:40</div></div>
+<div class="ttc" id="struct_date_html"><div class="ttname"><a href="struct_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:9</div></div>
+<div class="ttc" id="struct_patient_html"><div class="ttname"><a href="struct_patient.html">Patient</a></div><div class="ttdef"><b>Definition:</b> patient.h:15</div></div>
+<div class="ttc" id="struct_rendez_vous_html_a602d93e6dfbb9a54fc31419f2463ac2b"><div class="ttname"><a href="struct_rendez_vous.html#a602d93e6dfbb9a54fc31419f2463ac2b">RendezVous::patient</a></div><div class="ttdeci">Patient * patient</div><div class="ttdef"><b>Definition:</b> rendezvous.h:18</div></div>
+<div class="ttc" id="struct_rendez_vous_html_ac1d72cddca5f2d79a6b2691aacd03850"><div class="ttname"><a href="struct_rendez_vous.html#ac1d72cddca5f2d79a6b2691aacd03850">RendezVous::motif</a></div><div class="ttdeci">char * motif</div><div class="ttdef"><b>Definition:</b> rendezvous.h:20</div></div>
+<div class="ttc" id="struct_rendez_vous_html_a59131973441fcf6250df021bcf96d17c"><div class="ttname"><a href="struct_rendez_vous.html#a59131973441fcf6250df021bcf96d17c">RendezVous::medecin</a></div><div class="ttdeci">Medecin * medecin</div><div class="ttdef"><b>Definition:</b> rendezvous.h:19</div></div>
+<div class="ttc" id="struct_medecin_html"><div class="ttname"><a href="struct_medecin.html">Medecin</a></div><div class="ttdef"><b>Definition:</b> medecin.h:13</div></div>
+<div class="ttc" id="struct_rendez_vous_html_a4e5bf777d1128fd5e62442afa61ea3c9"><div class="ttname"><a href="struct_rendez_vous.html#a4e5bf777d1128fd5e62442afa61ea3c9">RendezVous::lieu</a></div><div class="ttdeci">char * lieu</div><div class="ttdef"><b>Definition:</b> rendezvous.h:17</div></div>
+<div class="ttc" id="struct_rendez_vous_html_a73fc78564c9badbcea68f2f2331c74db"><div class="ttname"><a href="struct_rendez_vous.html#a73fc78564c9badbcea68f2f2331c74db">RendezVous::date</a></div><div class="ttdeci">Date * date</div><div class="ttdef"><b>Definition:</b> rendezvous.h:14</div></div>
+<div class="ttc" id="struct_rendez_vous_html"><div class="ttname"><a href="struct_rendez_vous.html">RendezVous</a></div><div class="ttdef"><b>Definition:</b> rendezvous.h:13</div></div>
+<div class="ttc" id="struct_rendez_vous_html_a3877de0db2ba94f6179438f6ce2d79e4"><div class="ttname"><a href="struct_rendez_vous.html#a3877de0db2ba94f6179438f6ce2d79e4">RendezVous::heure_debut</a></div><div class="ttdeci">double heure_debut</div><div class="ttdef"><b>Definition:</b> rendezvous.h:15</div></div>
+<div class="ttc" id="rendezvous_8h_html_ae62501b5f409d83dc182560bbb97a276"><div class="ttname"><a href="rendezvous_8h.html#ae62501b5f409d83dc182560bbb97a276">CreerRendezVous</a></div><div class="ttdeci">RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char *lieu, Patient *patient, Medecin *medecin, char *motif)</div><div class="ttdef"><b>Definition:</b> rendezvous.c:16</div></div>
+<div class="ttc" id="rendezvous_8h_html_a78731530177f360d1452c1dbe7c8bdef"><div class="ttname"><a href="rendezvous_8h.html#a78731530177f360d1452c1dbe7c8bdef">AnnulerRendezVous</a></div><div class="ttdeci">int AnnulerRendezVous(RendezVous *rdv)</div><div class="ttdef"><b>Definition:</b> rendezvous.c:53</div></div>
+<div class="ttc" id="patient_8h_html"><div class="ttname"><a href="patient_8h.html">patient.h</a></div></div>
+<div class="ttc" id="struct_rendez_vous_html_a91f724ef59fa01719e26c722ce70666f"><div class="ttname"><a href="struct_rendez_vous.html#a91f724ef59fa01719e26c722ce70666f">RendezVous::heure_fin</a></div><div class="ttdeci">double heure_fin</div><div class="ttdef"><b>Definition:</b> rendezvous.h:16</div></div>
+<div class="ttc" id="date_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="rendezvous_8h.html">rendezvous.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 15:32:31 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

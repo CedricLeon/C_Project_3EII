@@ -1,0 +1,26 @@
+<map id="include/GPCalendar/View/callbacks.h" name="include/GPCalendar/View/callbacks.h">
+<area shape="rect" id="node2" href="$main_8c.html" title="src/App/main.c" alt="" coords="611,829,721,856"/>
+<area shape="rect" id="node3" href="$callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="43,195,185,221"/>
+<area shape="rect" id="node4" href="$fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="118,648,324,675"/>
+<area shape="rect" id="node5" href="$time_8c.html" title="src/View/time.c" alt="" coords="313,285,425,312"/>
+<area shape="rect" id="node6" href="$fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="152,97,341,138"/>
+<area shape="rect" id="node7" href="$time_8h.html" title="include/GPCalendar\l/View/time.h" alt="" coords="413,187,552,229"/>
+<area shape="rect" id="node8" href="$date_8h.html" title="include/GPCalendar\l/Model/date.h" alt="" coords="911,278,1049,319"/>
+<area shape="rect" id="node9" href="$date_8c.html" title="src/Model/date.c" alt="" coords="766,376,884,403"/>
+<area shape="rect" id="node10" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="907,920,1057,947"/>
+<area shape="rect" id="node11" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="1639,913,1803,954"/>
+<area shape="rect" id="node13" href="$_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="1055,822,1193,863"/>
+<area shape="rect" id="node15" href="$ordonnance_8h.html" title="include/GPCalendar\l/Model/ordonnance.h" alt="" coords="909,369,1051,410"/>
+<area shape="rect" id="node19" href="$patient_8h.html" title="include/GPCalendar\l/Model/patient.h" alt="" coords="1171,550,1309,591"/>
+<area shape="rect" id="node22" href="$rendezvous_8h.html" title="include/GPCalendar\l/Model/rendezvous.h" alt="" coords="1490,641,1632,682"/>
+<area shape="rect" id="node12" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="1630,1003,1812,1029"/>
+<area shape="rect" id="node14" href="$_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="1083,920,1235,947"/>
+<area shape="rect" id="node16" href="$ordonnance_8c.html" title="src/Model/ordonnance.c" alt="" coords="899,467,1060,493"/>
+<area shape="rect" id="node17" href="$dossier__medical_8h.html" title="include/GPCalendar\l/Model/dossier_medical.h" alt="" coords="704,459,875,501"/>
+<area shape="rect" id="node18" href="$dossier__medical_8c.html" title="src/Model/dossier_medical.c" alt="" coords="806,557,993,584"/>
+<area shape="rect" id="node20" href="$medecin_8c.html" title="src/Model/medecin.c" alt="" coords="1165,648,1307,675"/>
+<area shape="rect" id="node21" href="$patient_8c.html" title="src/Model/patient.c" alt="" coords="1332,648,1465,675"/>
+<area shape="rect" id="node23" href="$rendezvous_8c.html" title="src/Model/rendezvous.c" alt="" coords="1309,739,1469,765"/>
+<area shape="rect" id="node24" href="$calendrier_8h.html" title="include/GPCalendar\l/Model/calendrier.h" alt="" coords="1495,731,1633,773"/>
+<area shape="rect" id="node25" href="$calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="1482,829,1632,856"/>
+</map>

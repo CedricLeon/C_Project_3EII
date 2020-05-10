@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/View/callbacks.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('callbacks_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">callbacks.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="callbacks_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CALLBACKS_H_INC</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CALLBACKS_H_INC</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fonctions_graphiques_8h.html">GPCalendar/View/fonctionsGraphiques.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="patient_8h.html">GPCalendar/Model/patient.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="calendrier_8h.html">GPCalendar/Model/calendrier.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;gtk/gtk.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct_data.html">   15</a></span>&#160;   <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_data.html">Data</a>{</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_data.html#ad897fb7c962d60832bc766fa99da9db9">   16</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#ad897fb7c962d60832bc766fa99da9db9">Enom</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_data.html#a7004a9a326ad19f493ca2f6f3cc4577c">   17</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#a7004a9a326ad19f493ca2f6f3cc4577c">Eprenom</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_data.html#abd6fcac327f5f3b0629a93916e3c29da">   18</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#abd6fcac327f5f3b0629a93916e3c29da">EnumSecu</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_data.html#ae300afceb0206bd32dc11312abd38df6">   19</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#ae300afceb0206bd32dc11312abd38df6">EnumTel</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_data.html#a1003606a7c4d6a289a7de796987f6efc">   20</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#a1003606a7c4d6a289a7de796987f6efc">Email</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_data.html#a366c31a9b090d9870030fe2ac52d6e46">   21</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#a366c31a9b090d9870030fe2ac52d6e46">jour</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_data.html#a430ab7341bb11cda80f096a2ec12d8d7">   22</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#a430ab7341bb11cda80f096a2ec12d8d7">mois</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct_data.html#a123c0853fe0470eb0a0f0af055eecc9f">   23</a></span>&#160;   GtkWidget * <a class="code" href="struct_data.html#a123c0853fe0470eb0a0f0af055eecc9f">annee</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct_data.html#ab6da0510b3f88800fe3d3ee7e9cd9d7b">   24</a></span>&#160;   <a class="code" href="struct_patient.html">Patient</a> * <a class="code" href="struct_data.html#ab6da0510b3f88800fe3d3ee7e9cd9d7b">p</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;   }<a class="code" href="callbacks_8h.html#aa29088b0ebf449924c098ffbc3fb8350">dataPatient</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html">   27</a></span>&#160;   <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_data_r_d_v.html">DataRDV</a>{</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a366c31a9b090d9870030fe2ac52d6e46">   28</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a366c31a9b090d9870030fe2ac52d6e46">jour</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a430ab7341bb11cda80f096a2ec12d8d7">   29</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a430ab7341bb11cda80f096a2ec12d8d7">mois</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a123c0853fe0470eb0a0f0af055eecc9f">   30</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a123c0853fe0470eb0a0f0af055eecc9f">annee</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a4eb5541c2c8d07380c735d1603dc7ecb">   31</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a4eb5541c2c8d07380c735d1603dc7ecb">heure</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a27524e2f658f644a11dbb3a8f9b5ab97">   32</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a27524e2f658f644a11dbb3a8f9b5ab97">minutes</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a14f0b724f1decdb5bdad19079ec1d675">   33</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#a14f0b724f1decdb5bdad19079ec1d675">duree</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#ae22ca5875ee8b6bdccaa89afda5779a4">   34</a></span>&#160;    GtkWidget * <a class="code" href="struct_data_r_d_v.html#ae22ca5875ee8b6bdccaa89afda5779a4">motif</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a017a2a103427c89eebac9921f00620ab">   35</a></span>&#160;    <a class="code" href="struct_rendez_vous.html">RendezVous</a> *<a class="code" href="struct_data_r_d_v.html#a017a2a103427c89eebac9921f00620ab">r</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_data_r_d_v.html#a537ec1a4e0cf2f81d81bf4da1a0a3f2f">   36</a></span>&#160;    <a class="code" href="struct_data.html">dataPatient</a> * <a class="code" href="struct_data_r_d_v.html#a537ec1a4e0cf2f81d81bf4da1a0a3f2f">p</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">//Medecin *m;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;   }<a class="code" href="callbacks_8h.html#aabd3ef47a662e3ae616f0f2025264e05">dataRdv</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a1c6426a0d3e99e004d82d19d6217c285">cb_create_entry</a>(GtkWidget *p_widget, gpointer user_data);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a2d84262978bfceef5a73b41fcf73ab79">cb_create_entry1</a>(GtkWidget *p_widget, gpointer user_data);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#aaa57391a0ab9a2a118578182fe80dd44">cb_clicSurPlus</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a4f53175f04259ff4ad1e805fc6aabe41">cb_recherchePatient</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a12248d7cb83a202f6b18f1cc8de967e4">cb_creationPatient</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a695fea329709691f3aabb1a8413628d8">cb_creationRDV</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="callbacks_8h.html#a38edcb4bfb81adbb28c91e175520acee">enter_callback</a>( GtkWidget *widget, GtkWidget *entry);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="struct_data_r_d_v_html_a430ab7341bb11cda80f096a2ec12d8d7"><div class="ttname"><a href="struct_data_r_d_v.html#a430ab7341bb11cda80f096a2ec12d8d7">DataRDV::mois</a></div><div class="ttdeci">GtkWidget * mois</div><div class="ttdef"><b>Definition:</b> callbacks.h:29</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a14f0b724f1decdb5bdad19079ec1d675"><div class="ttname"><a href="struct_data_r_d_v.html#a14f0b724f1decdb5bdad19079ec1d675">DataRDV::duree</a></div><div class="ttdeci">GtkWidget * duree</div><div class="ttdef"><b>Definition:</b> callbacks.h:33</div></div>
+<div class="ttc" id="callbacks_8h_html_aabd3ef47a662e3ae616f0f2025264e05"><div class="ttname"><a href="callbacks_8h.html#aabd3ef47a662e3ae616f0f2025264e05">dataRdv</a></div><div class="ttdeci">struct DataRDV dataRdv</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a4eb5541c2c8d07380c735d1603dc7ecb"><div class="ttname"><a href="struct_data_r_d_v.html#a4eb5541c2c8d07380c735d1603dc7ecb">DataRDV::heure</a></div><div class="ttdeci">GtkWidget * heure</div><div class="ttdef"><b>Definition:</b> callbacks.h:31</div></div>
+<div class="ttc" id="callbacks_8h_html_a1c6426a0d3e99e004d82d19d6217c285"><div class="ttname"><a href="callbacks_8h.html#a1c6426a0d3e99e004d82d19d6217c285">cb_create_entry</a></div><div class="ttdeci">void cb_create_entry(GtkWidget *p_widget, gpointer user_data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:6</div></div>
+<div class="ttc" id="struct_data_html_ae300afceb0206bd32dc11312abd38df6"><div class="ttname"><a href="struct_data.html#ae300afceb0206bd32dc11312abd38df6">Data::EnumTel</a></div><div class="ttdeci">GtkWidget * EnumTel</div><div class="ttdef"><b>Definition:</b> callbacks.h:19</div></div>
+<div class="ttc" id="callbacks_8h_html_a38edcb4bfb81adbb28c91e175520acee"><div class="ttname"><a href="callbacks_8h.html#a38edcb4bfb81adbb28c91e175520acee">enter_callback</a></div><div class="ttdeci">void enter_callback(GtkWidget *widget, GtkWidget *entry)</div><div class="ttdef"><b>Definition:</b> callbacks.c:68</div></div>
+<div class="ttc" id="struct_patient_html"><div class="ttname"><a href="struct_patient.html">Patient</a></div><div class="ttdef"><b>Definition:</b> patient.h:15</div></div>
+<div class="ttc" id="struct_data_html_a430ab7341bb11cda80f096a2ec12d8d7"><div class="ttname"><a href="struct_data.html#a430ab7341bb11cda80f096a2ec12d8d7">Data::mois</a></div><div class="ttdeci">GtkWidget * mois</div><div class="ttdef"><b>Definition:</b> callbacks.h:22</div></div>
+<div class="ttc" id="callbacks_8h_html_a4f53175f04259ff4ad1e805fc6aabe41"><div class="ttname"><a href="callbacks_8h.html#a4f53175f04259ff4ad1e805fc6aabe41">cb_recherchePatient</a></div><div class="ttdeci">void cb_recherchePatient(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:47</div></div>
+<div class="ttc" id="struct_data_html_a123c0853fe0470eb0a0f0af055eecc9f"><div class="ttname"><a href="struct_data.html#a123c0853fe0470eb0a0f0af055eecc9f">Data::annee</a></div><div class="ttdeci">GtkWidget * annee</div><div class="ttdef"><b>Definition:</b> callbacks.h:23</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a366c31a9b090d9870030fe2ac52d6e46"><div class="ttname"><a href="struct_data_r_d_v.html#a366c31a9b090d9870030fe2ac52d6e46">DataRDV::jour</a></div><div class="ttdeci">GtkWidget * jour</div><div class="ttdef"><b>Definition:</b> callbacks.h:28</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a537ec1a4e0cf2f81d81bf4da1a0a3f2f"><div class="ttname"><a href="struct_data_r_d_v.html#a537ec1a4e0cf2f81d81bf4da1a0a3f2f">DataRDV::p</a></div><div class="ttdeci">dataPatient * p</div><div class="ttdef"><b>Definition:</b> callbacks.h:36</div></div>
+<div class="ttc" id="callbacks_8h_html_aa29088b0ebf449924c098ffbc3fb8350"><div class="ttname"><a href="callbacks_8h.html#aa29088b0ebf449924c098ffbc3fb8350">dataPatient</a></div><div class="ttdeci">struct Data dataPatient</div></div>
+<div class="ttc" id="struct_rendez_vous_html"><div class="ttname"><a href="struct_rendez_vous.html">RendezVous</a></div><div class="ttdef"><b>Definition:</b> rendezvous.h:13</div></div>
+<div class="ttc" id="calendrier_8h_html"><div class="ttname"><a href="calendrier_8h.html">calendrier.h</a></div></div>
+<div class="ttc" id="struct_data_html"><div class="ttname"><a href="struct_data.html">Data</a></div><div class="ttdef"><b>Definition:</b> callbacks.h:15</div></div>
+<div class="ttc" id="struct_data_html_abd6fcac327f5f3b0629a93916e3c29da"><div class="ttname"><a href="struct_data.html#abd6fcac327f5f3b0629a93916e3c29da">Data::EnumSecu</a></div><div class="ttdeci">GtkWidget * EnumSecu</div><div class="ttdef"><b>Definition:</b> callbacks.h:18</div></div>
+<div class="ttc" id="callbacks_8h_html_aaa57391a0ab9a2a118578182fe80dd44"><div class="ttname"><a href="callbacks_8h.html#aaa57391a0ab9a2a118578182fe80dd44">cb_clicSurPlus</a></div><div class="ttdeci">void cb_clicSurPlus(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:42</div></div>
+<div class="ttc" id="struct_data_html_ad897fb7c962d60832bc766fa99da9db9"><div class="ttname"><a href="struct_data.html#ad897fb7c962d60832bc766fa99da9db9">Data::Enom</a></div><div class="ttdeci">GtkWidget * Enom</div><div class="ttdef"><b>Definition:</b> callbacks.h:16</div></div>
+<div class="ttc" id="callbacks_8h_html_a695fea329709691f3aabb1a8413628d8"><div class="ttname"><a href="callbacks_8h.html#a695fea329709691f3aabb1a8413628d8">cb_creationRDV</a></div><div class="ttdeci">void cb_creationRDV(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:104</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a017a2a103427c89eebac9921f00620ab"><div class="ttname"><a href="struct_data_r_d_v.html#a017a2a103427c89eebac9921f00620ab">DataRDV::r</a></div><div class="ttdeci">RendezVous * r</div><div class="ttdef"><b>Definition:</b> callbacks.h:35</div></div>
+<div class="ttc" id="callbacks_8h_html_a12248d7cb83a202f6b18f1cc8de967e4"><div class="ttname"><a href="callbacks_8h.html#a12248d7cb83a202f6b18f1cc8de967e4">cb_creationPatient</a></div><div class="ttdeci">void cb_creationPatient(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:77</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html"><div class="ttname"><a href="fonctions_graphiques_8h.html">fonctionsGraphiques.h</a></div><div class="ttdoc">Provides basic unit testing functions declaration. </div></div>
+<div class="ttc" id="patient_8h_html"><div class="ttname"><a href="patient_8h.html">patient.h</a></div></div>
+<div class="ttc" id="struct_data_r_d_v_html_ae22ca5875ee8b6bdccaa89afda5779a4"><div class="ttname"><a href="struct_data_r_d_v.html#ae22ca5875ee8b6bdccaa89afda5779a4">DataRDV::motif</a></div><div class="ttdeci">GtkWidget * motif</div><div class="ttdef"><b>Definition:</b> callbacks.h:34</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a27524e2f658f644a11dbb3a8f9b5ab97"><div class="ttname"><a href="struct_data_r_d_v.html#a27524e2f658f644a11dbb3a8f9b5ab97">DataRDV::minutes</a></div><div class="ttdeci">GtkWidget * minutes</div><div class="ttdef"><b>Definition:</b> callbacks.h:32</div></div>
+<div class="ttc" id="struct_data_html_a1003606a7c4d6a289a7de796987f6efc"><div class="ttname"><a href="struct_data.html#a1003606a7c4d6a289a7de796987f6efc">Data::Email</a></div><div class="ttdeci">GtkWidget * Email</div><div class="ttdef"><b>Definition:</b> callbacks.h:20</div></div>
+<div class="ttc" id="struct_data_r_d_v_html"><div class="ttname"><a href="struct_data_r_d_v.html">DataRDV</a></div><div class="ttdef"><b>Definition:</b> callbacks.h:27</div></div>
+<div class="ttc" id="struct_data_html_ab6da0510b3f88800fe3d3ee7e9cd9d7b"><div class="ttname"><a href="struct_data.html#ab6da0510b3f88800fe3d3ee7e9cd9d7b">Data::p</a></div><div class="ttdeci">Patient * p</div><div class="ttdef"><b>Definition:</b> callbacks.h:24</div></div>
+<div class="ttc" id="struct_data_html_a7004a9a326ad19f493ca2f6f3cc4577c"><div class="ttname"><a href="struct_data.html#a7004a9a326ad19f493ca2f6f3cc4577c">Data::Eprenom</a></div><div class="ttdeci">GtkWidget * Eprenom</div><div class="ttdef"><b>Definition:</b> callbacks.h:17</div></div>
+<div class="ttc" id="callbacks_8h_html_a2d84262978bfceef5a73b41fcf73ab79"><div class="ttname"><a href="callbacks_8h.html#a2d84262978bfceef5a73b41fcf73ab79">cb_create_entry1</a></div><div class="ttdeci">void cb_create_entry1(GtkWidget *p_widget, gpointer user_data)</div><div class="ttdef"><b>Definition:</b> callbacks.c:23</div></div>
+<div class="ttc" id="struct_data_r_d_v_html_a123c0853fe0470eb0a0f0af055eecc9f"><div class="ttname"><a href="struct_data_r_d_v.html#a123c0853fe0470eb0a0f0af055eecc9f">DataRDV::annee</a></div><div class="ttdeci">GtkWidget * annee</div><div class="ttdef"><b>Definition:</b> callbacks.h:30</div></div>
+<div class="ttc" id="struct_data_html_a366c31a9b090d9870030fe2ac52d6e46"><div class="ttname"><a href="struct_data.html#a366c31a9b090d9870030fe2ac52d6e46">Data::jour</a></div><div class="ttdeci">GtkWidget * jour</div><div class="ttdef"><b>Definition:</b> callbacks.h:21</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_bcfceead3b84f67cd3d92ab17b267287.html">View</a></li><li class="navelem"><a class="el" href="callbacks_8h.html">callbacks.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 15:32:31 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier src/App/main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('main_8c.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="medecin_8h_source.html">GPCalendar/Model/medecin.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="patient_8h_source.html">GPCalendar/Model/patient.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="date_8h_source.html">GPCalendar/Model/date.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="calendrier_8h_source.html">GPCalendar/Model/calendrier.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="ordonnance_8h_source.html">GPCalendar/Model/ordonnance.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="dossier__medical_8h_source.html">GPCalendar/Model/dossier_medical.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="rendezvous_8h_source.html">GPCalendar/Model/rendezvous.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="fonctions_graphiques_8h_source.html">GPCalendar/View/fonctionsGraphiques.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="callbacks_8h_source.html">GPCalendar/View/callbacks.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="time_8h_source.html">GPCalendar/View/time.h</a>&quot;</code><br/>
+<code>#include &lt;gtk/gtk.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de main.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c__incl.png" border="0" usemap="#src_2_app_2main_8c" alt=""/></div>
+<map name="src_2_app_2main_8c" id="src_2_app_2main_8c">
+<area shape="rect" id="node2" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="438,784,633,811"/><area shape="rect" id="node7" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="865,80,1052,107"/><area shape="rect" id="node8" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="873,320,1044,347"/><area shape="rect" id="node9" href="time_8h.html" title="time.h" alt="" coords="1408,395,1465,421"/><area shape="rect" id="node10" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="1627,470,1809,511"/><area shape="rect" id="node11" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="1478,560,1673,587"/><area shape="rect" id="node12" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="640,635,843,661"/><area shape="rect" id="node13" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="429,709,643,736"/><area shape="rect" id="node15" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="996,155,1175,197"/><area shape="rect" id="node16" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="706,245,920,272"/><area shape="rect" id="node3" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="5,859,211,885"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 - Récupération des listes de patients et de mèdecins existants (On les appellera un truc comme RegisteredPatient/Medecin)</p>
+<p>2 - Récupération du ou des Calendriers (dépendra de la version, pour la V0 c'est du : le calendrier de l'hopital)</p>
+<p>3 - Un petit print dans GTK et la console pour voir le fichier ISC qu'on à load</p>
+<p>Inscription de nouveaux patients / mèdecins Création de nouveaux rdv / ordonnances et maj du calendrier Lecture d'infos persos de <a class="el" href="struct_patient.html">Patient</a> / Medecins etc ...</p>
+<p>1 - Demande à l'utilisateur si il veut save ses données dans un fichier ISC, si oui bah le faire</p>
+<p>2 - Après avoir save, free tout les objets load en mémoire après l'ouverture et l'utilisation de l'appli</p>
+<p>3 - Fermer GTK</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_951f43124f8a9985ab7802551d674f01.html">App</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 15:32:32 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

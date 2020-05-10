@@ -1,0 +1,368 @@
+\hypertarget{ordonnance_8c}{\section{Référence du fichier src/\-Model/ordonnance.c}
+\label{ordonnance_8c}\index{src/\-Model/ordonnance.\-c@{src/\-Model/ordonnance.\-c}}
+}
+{\ttfamily \#include \char`\"{}G\-P\-Calendar/\-Model/ordonnance.\-h\char`\"{}}\\*
+Graphe des dépendances par inclusion de ordonnance.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ordonnance_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_ordonnance}{Ordonnance} $\ast$ \hyperlink{ordonnance_8c_ab80465380858194f28db009b8cd305fd}{Creer\-Ordonnance} (\hyperlink{struct_medecin}{Medecin} $\ast$m, char $\ast$description)
+\item 
+\hyperlink{struct_ordonnance}{Ordonnance} $\ast$ \hyperlink{ordonnance_8c_a0a7106efdac4dac48a3654833fa0f963}{Load\-Ordonnance} (\hyperlink{struct_medecin}{Medecin} $\ast$medecin, int date\-\_\-edi\-\_\-jour, int date\-\_\-edi\-\_\-mois, int date\-\_\-edi\-\_\-annee, int date\-\_\-expi\-\_\-jour, int date\-\_\-expi\-\_\-mois, int date\-\_\-expi\-\_\-annee, char $\ast$description)
+\item 
+void \hyperlink{ordonnance_8c_a896ca490c0275822a13514c8248d277d}{Delete\-Ordonnance} (\hyperlink{struct_ordonnance}{Ordonnance} $\ast$o)
+\item 
+int \hyperlink{ordonnance_8c_aa94cf1a1467605f806b896f0ef8a34bd}{modifier\-Ordonnance} (\hyperlink{struct_ordonnance}{Ordonnance} $\ast$ordo, \hyperlink{struct_medecin}{Medecin} $\ast$m, char $\ast$description)
+\item 
+void \hyperlink{ordonnance_8c_ac59dd8024ed866b917e09ca8de7ef5ae}{print\-Ordonnance} (char $\ast$infos, \hyperlink{struct_ordonnance}{Ordonnance} $\ast$ordo)
+\item 
+\hyperlink{struct_node_ordonnance}{Node\-Ordonnance} $\ast$ \hyperlink{ordonnance_8c_a987e17e6e23bd95403c477386e3bcb8c}{new\-Node\-Ordonnance} (\hyperlink{struct_ordonnance}{Ordonnance} $\ast$ordo, \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} $\ast$previous, \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} $\ast$next)
+\item 
+void \hyperlink{ordonnance_8c_a870956eab1e669be1956d4da5a75c51c}{free\-Node\-Ordonnance} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l, \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} $\ast$n)
+\item 
+void \hyperlink{ordonnance_8c_ad40e3d193cdc208b3bf052457c2557db}{free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l, \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} $\ast$n)
+\item 
+void \hyperlink{ordonnance_8c_ae41a4766285c1bf190f73beda51b26b1}{List\-Ordonnance\-\_\-init} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_ab2374a904522f810e38a96ab2b70a96b}{List\-Ordonnance\-\_\-free} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_ada3306a875d73fdbc4c597335cb8648a}{List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+int \hyperlink{ordonnance_8c_ad36331d7ecda656771d1560d3015ca08}{List\-Ordonnance\-\_\-is\-Empty} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+int \hyperlink{ordonnance_8c_ad16d6389aa9f75d7a4642fdd0f47ce75}{List\-Ordonnance\-\_\-is\-First} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+int \hyperlink{ordonnance_8c_a274c3a2b9f3497657df33212a41cece7}{List\-Ordonnance\-\_\-is\-Last} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+int \hyperlink{ordonnance_8c_a1467b36f1510a920d26c7f47934c732d}{List\-Ordonnance\-\_\-is\-Out\-Of\-List} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_add110561a476b06a4666aca1e1873518}{List\-Ordonnance\-\_\-set\-On\-First} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_acd59abef86cb57ef0c75847488ce817d}{List\-Ordonnance\-\_\-set\-On\-Last} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_a6eac0d9f4066e9f674590a8b85a02bc8}{List\-Ordonnance\-\_\-set\-On\-Next} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+void \hyperlink{ordonnance_8c_a05fb637a10a8c2cea759faedde76d0fd}{List\-Ordonnance\-\_\-set\-On\-Previous} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\item 
+\hyperlink{struct_ordonnance}{Ordonnance} $\ast$ \hyperlink{ordonnance_8c_a4a12cc83df7aa0debd28203bde798721}{List\-Ordonnance\-\_\-get\-Current} (\hyperlink{struct_list_ordonnance}{List\-Ordonnance} $\ast$l)
+\end{DoxyCompactItemize}
+
+
+\subsection{Documentation des fonctions}
+\hypertarget{ordonnance_8c_ab80465380858194f28db009b8cd305fd}{\index{ordonnance.\-c@{ordonnance.\-c}!Creer\-Ordonnance@{Creer\-Ordonnance}}
+\index{Creer\-Ordonnance@{Creer\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{Creer\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ordonnance}$\ast$ Creer\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf Medecin} $\ast$}]{m, }
+\item[{char $\ast$}]{description}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ab80465380858194f28db009b8cd305fd}
+Creer\-Ordonnance \-: Creer dynamiquement un objet \hyperlink{struct_ordonnance}{Ordonnance} 
+\begin{DoxyParams}{Paramètres}
+{\em patient} & \-: le patient concerné par l'ordonnance \\
+\hline
+{\em medecin} & \-: le medecin qui prescrit l'ordonnance \\
+\hline
+{\em description} & \-: description de la prescription \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+l'ordonnance créée 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_a896ca490c0275822a13514c8248d277d}{\index{ordonnance.\-c@{ordonnance.\-c}!Delete\-Ordonnance@{Delete\-Ordonnance}}
+\index{Delete\-Ordonnance@{Delete\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{Delete\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf Ordonnance} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a896ca490c0275822a13514c8248d277d}
+Delete\-Ordonnance \-: Free un objet ordonnance 
+\begin{DoxyParams}{Paramètres}
+{\em o} & \-: l'ordonnance à supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_a870956eab1e669be1956d4da5a75c51c}{\index{ordonnance.\-c@{ordonnance.\-c}!free\-Node\-Ordonnance@{free\-Node\-Ordonnance}}
+\index{free\-Node\-Ordonnance@{free\-Node\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{free\-Node\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}void free\-Node\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l, }
+\item[{{\bf Node\-Ordonnance} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a870956eab1e669be1956d4da5a75c51c}
+free\-Node\-Ordonnance \-: Permet de delete proprement (avec un free) un \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} 
+\begin{DoxyParams}{Paramètres}
+{\em n} & \-: le node à delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_ad40e3d193cdc208b3bf052457c2557db}{\index{ordonnance.\-c@{ordonnance.\-c}!free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance@{free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance}}
+\index{free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance@{free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}void free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l, }
+\item[{{\bf Node\-Ordonnance} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ad40e3d193cdc208b3bf052457c2557db}
+free\-Node\-Ordonnance\-\_\-without\-Deleting\-Ordonnance \-: Permet de delete un node\-Ordonnance mais sans delete l'ordonnance liée au node 
+\begin{DoxyParams}{Paramètres}
+{\em n} & \-: le node à delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_ab2374a904522f810e38a96ab2b70a96b}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-free@{List\-Ordonnance\-\_\-free}}
+\index{List\-Ordonnance\-\_\-free@{List\-Ordonnance\-\_\-free}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-free}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-free (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ab2374a904522f810e38a96ab2b70a96b}
+List\-Ordonnance\-\_\-free \-: Libère la mémoire occupée par l'objet \hyperlink{struct_list_ordonnance}{List\-Ordonnance} passé en paramètre 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste de ordonnances à free \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_ada3306a875d73fdbc4c597335cb8648a}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance@{List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance}}
+\index{List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance@{List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ada3306a875d73fdbc4c597335cb8648a}
+List\-Ordonnance\-\_\-free\-\_\-without\-Deleting\-Ordonnance \-: Libère la mémoire occupée par l'objet \hyperlink{struct_list_ordonnance}{List\-Ordonnance} passé en paramètre mais sans delete les ordonnances de cette liste (uniquement les nodes) 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste d'ordonnances à free \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_a4a12cc83df7aa0debd28203bde798721}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-get\-Current@{List\-Ordonnance\-\_\-get\-Current}}
+\index{List\-Ordonnance\-\_\-get\-Current@{List\-Ordonnance\-\_\-get\-Current}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-get\-Current}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ordonnance}$\ast$ List\-Ordonnance\-\_\-get\-Current (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a4a12cc83df7aa0debd28203bde798721}
+List\-Ordonnance\-\_\-get\-Current \-: Permet d'acceder à l'\hyperlink{struct_ordonnance}{Ordonnance} pointée par current 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Retourne un pointeur sur l'\hyperlink{struct_ordonnance}{Ordonnance} de l'élément courant de la liste 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_ae41a4766285c1bf190f73beda51b26b1}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-init@{List\-Ordonnance\-\_\-init}}
+\index{List\-Ordonnance\-\_\-init@{List\-Ordonnance\-\_\-init}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ae41a4766285c1bf190f73beda51b26b1}
+List\-Ordonnance\-\_\-init \-: Initialise correctement une liste de \hyperlink{struct_node_ordonnance}{Node\-Ordonnance} en reliant sentinel\-\_\-begin et end entre eux et en mettant current à N\-U\-L\-L (en dehors de la liste) 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste à initialiser \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_ad36331d7ecda656771d1560d3015ca08}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-is\-Empty@{List\-Ordonnance\-\_\-is\-Empty}}
+\index{List\-Ordonnance\-\_\-is\-Empty@{List\-Ordonnance\-\_\-is\-Empty}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Ordonnance\-\_\-is\-Empty (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ad36331d7ecda656771d1560d3015ca08}
+List\-Ordonnance\-\_\-is\-Empty \-: Vérifie si la liste de \hyperlink{struct_ordonnance}{Ordonnance} est vide ou non 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si la liste est vide 0 si elle ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_ad16d6389aa9f75d7a4642fdd0f47ce75}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-is\-First@{List\-Ordonnance\-\_\-is\-First}}
+\index{List\-Ordonnance\-\_\-is\-First@{List\-Ordonnance\-\_\-is\-First}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-is\-First}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Ordonnance\-\_\-is\-First (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ad16d6389aa9f75d7a4642fdd0f47ce75}
+List\-Ordonnance\-\_\-is\-First \-: Vérifie si current est positionné sur le premier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current est bien sur le premier élément 0 si il ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_a274c3a2b9f3497657df33212a41cece7}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-is\-Last@{List\-Ordonnance\-\_\-is\-Last}}
+\index{List\-Ordonnance\-\_\-is\-Last@{List\-Ordonnance\-\_\-is\-Last}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-is\-Last}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Ordonnance\-\_\-is\-Last (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a274c3a2b9f3497657df33212a41cece7}
+List\-Ordonnance\-\_\-is\-Last \-: Vérifie si current est positionné sur le dernier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current est bien sur le dernier élément 0 si il ne l'est pas -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_a1467b36f1510a920d26c7f47934c732d}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-is\-Out\-Of\-List@{List\-Ordonnance\-\_\-is\-Out\-Of\-List}}
+\index{List\-Ordonnance\-\_\-is\-Out\-Of\-List@{List\-Ordonnance\-\_\-is\-Out\-Of\-List}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-is\-Out\-Of\-List}]{\setlength{\rightskip}{0pt plus 5cm}int List\-Ordonnance\-\_\-is\-Out\-Of\-List (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a1467b36f1510a920d26c7f47934c732d}
+List\-Ordonnance\-\_\-is\-Out\-Of\-List \-: Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si current vaut N\-U\-L\-L 0 sinon -\/1 si la liste est N\-U\-L\-L 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_add110561a476b06a4666aca1e1873518}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-set\-On\-First@{List\-Ordonnance\-\_\-set\-On\-First}}
+\index{List\-Ordonnance\-\_\-set\-On\-First@{List\-Ordonnance\-\_\-set\-On\-First}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-set\-On\-First}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-set\-On\-First (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_add110561a476b06a4666aca1e1873518}
+List\-Ordonnance\-\_\-set\-On\-First \-: Positionne le pointeur courant sur le premier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_acd59abef86cb57ef0c75847488ce817d}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-set\-On\-Last@{List\-Ordonnance\-\_\-set\-On\-Last}}
+\index{List\-Ordonnance\-\_\-set\-On\-Last@{List\-Ordonnance\-\_\-set\-On\-Last}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-set\-On\-Last}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-set\-On\-Last (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_acd59abef86cb57ef0c75847488ce817d}
+List\-Ordonnance\-\_\-set\-On\-Last \-: Positionne le pointeur courant sur le dernier élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_a6eac0d9f4066e9f674590a8b85a02bc8}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-set\-On\-Next@{List\-Ordonnance\-\_\-set\-On\-Next}}
+\index{List\-Ordonnance\-\_\-set\-On\-Next@{List\-Ordonnance\-\_\-set\-On\-Next}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-set\-On\-Next}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-set\-On\-Next (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a6eac0d9f4066e9f674590a8b85a02bc8}
+List\-Ordonnance\-\_\-set\-On\-Next \-: Positionne le pointeur courant sur le prochain élément de la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_a05fb637a10a8c2cea759faedde76d0fd}{\index{ordonnance.\-c@{ordonnance.\-c}!List\-Ordonnance\-\_\-set\-On\-Previous@{List\-Ordonnance\-\_\-set\-On\-Previous}}
+\index{List\-Ordonnance\-\_\-set\-On\-Previous@{List\-Ordonnance\-\_\-set\-On\-Previous}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{List\-Ordonnance\-\_\-set\-On\-Previous}]{\setlength{\rightskip}{0pt plus 5cm}void List\-Ordonnance\-\_\-set\-On\-Previous (
+\begin{DoxyParamCaption}
+\item[{{\bf List\-Ordonnance} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a05fb637a10a8c2cea759faedde76d0fd}
+List\-Ordonnance\-\_\-set\-On\-Previous \-: Positionne le pointeur courant sur l'élément le précédant dans la liste 
+\begin{DoxyParams}{Paramètres}
+{\em l} & \-: la liste \\
+\hline
+\end{DoxyParams}
+\hypertarget{ordonnance_8c_a0a7106efdac4dac48a3654833fa0f963}{\index{ordonnance.\-c@{ordonnance.\-c}!Load\-Ordonnance@{Load\-Ordonnance}}
+\index{Load\-Ordonnance@{Load\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{Load\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ordonnance}$\ast$ Load\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf Medecin} $\ast$}]{medecin, }
+\item[{int}]{date\-\_\-edi\-\_\-jour, }
+\item[{int}]{date\-\_\-edi\-\_\-mois, }
+\item[{int}]{date\-\_\-edi\-\_\-annee, }
+\item[{int}]{date\-\_\-expi\-\_\-jour, }
+\item[{int}]{date\-\_\-expi\-\_\-mois, }
+\item[{int}]{date\-\_\-expi\-\_\-annee, }
+\item[{char $\ast$}]{description}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a0a7106efdac4dac48a3654833fa0f963}
+Load\-Ordonnance \-: Fonction utilisée lors du load d'un projet J\-S\-O\-N, initialise une ordonnance avec son pointeur sur le mèdecin à N\-U\-L\-L mais avec num\-R\-P\-S\-Medecin avec le num R\-P\-S du mèdecin, il faudra donc aller chercher le mèdecin correspondant plus tard et avec les bonnes dates (pas la courante et celle 3 mois plus tard) \-: l'ordonnance ne date pas forcément du jour présent, elle peut être plus vieille 
+\begin{DoxyParams}{Paramètres}
+{\em rps\-Medecin} & \-: le num R\-P\-S du mèdecin ayant fait l'ordonnance\\
+\hline
+{\em date\-\_\-edi\-\_\-jour} & $\vert$ \\
+\hline
+{\em date\-\_\-edi\-\_\-mois} & $\vert$ ---$>$ La date d'édition de l'ordonnance \\
+\hline
+{\em date\-\_\-edi\-\_\-annee} & $\vert$\\
+\hline
+{\em date\-\_\-expi\-\_\-jour} & $\vert$ \\
+\hline
+{\em date\-\_\-expi\-\_\-mois} & $\vert$ ---$>$ La date d'espiration de l'ordonnance \\
+\hline
+{\em date\-\_\-expi\-\_\-annee} & $\vert$ \\
+\hline
+{\em description} & \-: la description de l'ordonnance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+l'ordonnance initialisée 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_aa94cf1a1467605f806b896f0ef8a34bd}{\index{ordonnance.\-c@{ordonnance.\-c}!modifier\-Ordonnance@{modifier\-Ordonnance}}
+\index{modifier\-Ordonnance@{modifier\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{modifier\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}int modifier\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf Ordonnance} $\ast$}]{ordo, }
+\item[{{\bf Medecin} $\ast$}]{m, }
+\item[{char $\ast$}]{description}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_aa94cf1a1467605f806b896f0ef8a34bd}
+Modifier\-Ordonnance \-: Modifier un objet \hyperlink{struct_ordonnance}{Ordonnance} 
+\begin{DoxyParams}{Paramètres}
+{\em ordo} & \-: l'ordonnance qui necessite d'être modifi�e \\
+\hline
+{\em p} & \-: le patient concerné par l'ordonnance \\
+\hline
+{\em m} & \-: le medecin qui prescrit l'ordonnance \\
+\hline
+{\em description} & \-: nouvelle description de la prescription \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 si l'ordonnance a été modifiée 0 sinon 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_a987e17e6e23bd95403c477386e3bcb8c}{\index{ordonnance.\-c@{ordonnance.\-c}!new\-Node\-Ordonnance@{new\-Node\-Ordonnance}}
+\index{new\-Node\-Ordonnance@{new\-Node\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{new\-Node\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node\-Ordonnance}$\ast$ new\-Node\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{{\bf Ordonnance} $\ast$}]{ordo, }
+\item[{{\bf Node\-Ordonnance} $\ast$}]{previous, }
+\item[{{\bf Node\-Ordonnance} $\ast$}]{next}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_a987e17e6e23bd95403c477386e3bcb8c}
+new\-Node\-Ordonnance \-: Permet de créer dynamiquement un nouveau node de \hyperlink{struct_ordonnance}{Ordonnance} pour la liste 
+\begin{DoxyParams}{Paramètres}
+{\em \hyperlink{struct_ordonnance}{Ordonnance}} & \-: l'\hyperlink{struct_ordonnance}{Ordonnance} pointée par ce nouveau noeud \\
+\hline
+{\em previous} & \-: le noeud précédant le nouveau noeud dans la liste \\
+\hline
+{\em next} & \-: le prochain noeud de la liste \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+un pointeur sur le nouveau noeud créé 
+\end{DoxyReturn}
+\hypertarget{ordonnance_8c_ac59dd8024ed866b917e09ca8de7ef5ae}{\index{ordonnance.\-c@{ordonnance.\-c}!print\-Ordonnance@{print\-Ordonnance}}
+\index{print\-Ordonnance@{print\-Ordonnance}!ordonnance.c@{ordonnance.\-c}}
+\subsubsection[{print\-Ordonnance}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Ordonnance (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{infos, }
+\item[{{\bf Ordonnance} $\ast$}]{ordo}
+\end{DoxyParamCaption}
+)}}\label{ordonnance_8c_ac59dd8024ed866b917e09ca8de7ef5ae}
+Afficher\-Ordonnance \-: Afficher un objet \hyperlink{struct_ordonnance}{Ordonnance} 
+\begin{DoxyParams}{Paramètres}
+{\em ordo} & \-: l'ordonnance que l'on veut afficher \\
+\hline
+\end{DoxyParams}
