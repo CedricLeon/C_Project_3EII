@@ -89,6 +89,17 @@ target_link_libraries(GPCalendar_Tests PUBLIC
     cmocka-static)                                              #La librairie STATIC de CMocka
 
 # ┌──────────────────────────────────────────────────────────────────┐
+# │                       GPCalendar_Shell                           │
+# └──────────────────────────────────────────────────────────────────┘
+
+add_executable(GPCalendar_Shell                                 #Executable gérant l'application dans la console
+    src/App/GPCalendarShell.c                                       #Nécessite seulement le 3ème main : GPCalendarShell.c
+    include/GPCalendar/App/GPCalendarShell.h)
+target_compile_features(GPCalendar_Shell PUBLIC c_std_99)
+target_link_libraries(GPCalendar_Shell PUBLIC GPCalendarUtils)
+target_include_directories(GPCalendar_Shell PUBLIC include/GPCalendar/App)
+
+# ┌──────────────────────────────────────────────────────────────────┐
 # │                 Ctest : unused (Cf. CMocka)                      │
 # └──────────────────────────────────────────────────────────────────┘
 
