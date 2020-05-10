@@ -36,7 +36,13 @@ You can also run it with your IDE like **Valgrind-MemoryCheck** in CLion.
 
 ## cJSON
 
-cJSON is a GitHub Project which allow to easily use **JSON** format in C code. It is used to "save" the application. **CODE in development**
+cJSON is a GitHub Project which allow to easily use **JSON** format in C code. It is used to "save" the application. 
+
+If you want to save or load one of your project you have to type the absolute path with the name of the file you want to load or the name of the file you want to create to save your project.
+
+Example : - Load : ```C:\Documents\YourProject.json```
+
+​				  - Save : ```C:\Documents\NomDeMonFichierDeSauvegarde.json```
 
 ## Build
 
