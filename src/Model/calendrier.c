@@ -82,7 +82,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         //Et finalement on prend notre calendrier, il est déjà initialisé donc on ajoute juste notre année dedans
         AddAnnee_Calendrier(c, lM);
         ListAnnee_setOnFirst(c);
-        printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+            //printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
         return 1;
     }
     //Notre calendrier n'était pas vide et l'année du rdv existait déjà donc on regarde si le mois du rdv est déjà
@@ -108,7 +108,7 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
 
         //On ajoute notre nouveau mois à l'année du rdv, ce qui l'ajoute donc à notre calendrier
         AddMois_Annee(anneeDuRdv, lJ);
-        printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+            //printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
         return 1;
     }
     //Vous commencez à avoir la logique : le calendrier n'était pas vide. Il contenait déjà l'année du rdv.
@@ -127,11 +127,11 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
         AddRendezVous_Jour(lRdv, rdv);
 
         AddJour_Mois(moisDuRdv, lRdv);
-        printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+        //printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
         return 1;
     }else{
         AddRendezVous_Jour(jourDuRdv, rdv);
-        printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+        //printf("Rendez-vous du %d/%d/%d à %2.1fh ajouté au calendrier.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
         return 1;
     }
 }
@@ -143,9 +143,9 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
  * @param c : le calendrier à free
  */
 void freeCalendrier(Calendrier c){
-    printf("\n Entrée dans FreeCalendrier() :\n\n");
+    //printf("\n Entrée dans FreeCalendrier() :\n\n");
     ListAnnee_free(c);
-    printf("\n Fin de FreeCalendrier().\n");
+    //printf("\n Fin de FreeCalendrier().\n");
 }
 
 /**
@@ -171,15 +171,15 @@ int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
                 RendezVous * rdvCalendrier = RendezVous_existe(jourRdv, rdv);
                 return 1;
             }else{
-                printf("Le jour %d n'appartient pas au calendrier.\n", dateDuRdv->jour);
+                //printf("Le jour %d n'appartient pas au calendrier.\n", dateDuRdv->jour);
                 return 0;
             }
         }else{
-            printf("Le mois %d n'appartient pas au calendrier.\n", dateDuRdv->mois);
+            //printf("Le mois %d n'appartient pas au calendrier.\n", dateDuRdv->mois);
             return 0;
         }
     }else{
-        printf("L'année %d n'appartient pas au calendrier.\n", dateDuRdv->annee);
+        //printf("L'année %d n'appartient pas au calendrier.\n", dateDuRdv->annee);
         return 0;
     }
 }
@@ -414,7 +414,7 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
         printf("RendezVous_existe() : La liste de rdv ou le rdv est NULL.\n");
         return NULL;
     }else if(ListRendezVous_isEmpty(l)){
-        printf("RendezVous_existe() : La liste de rdv est vide, on ne peut donc pas trouver le rdv cherché.\n");
+        //printf("RendezVous_existe() : La liste de rdv est vide, on ne peut donc pas trouver le rdv cherché.\n");
         return NULL;
     }
     for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)){
@@ -422,7 +422,7 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
             return ListRendezVous_getCurrent(l);
         }
     }
-    printf("RendezVous_existe() : Rdv non-trouvé.\n");
+    //printf("RendezVous_existe() : Rdv non-trouvé.\n");
     return NULL;
 }
 
@@ -467,7 +467,7 @@ ListRendezVous * Jour_existe(ListJour * l, Date * d){
         printf("Jour_existe() : La list de jour ou le jour est NULL.\n");
         return NULL;
     }else if(ListJour_isEmpty(l)){
-        printf("Jour_existe() : La liste de jours est vide, on ne peut donc pas trouver le jour cherché.\n");
+        //printf("Jour_existe() : La liste de jours est vide, on ne peut donc pas trouver le jour cherché.\n");
         return NULL;
     }
     for (ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)){
@@ -475,7 +475,7 @@ ListRendezVous * Jour_existe(ListJour * l, Date * d){
             return ListJour_getCurrent(l);
         }
     }
-    printf("Jour_existe() : Jour non-trouvé.\n");
+    //printf("Jour_existe() : Jour non-trouvé.\n");
     return NULL;
 }
 /**
@@ -490,7 +490,7 @@ ListJour *  Mois_existe(ListMois * l, int mois){
         printf("Mois_existe() : La list de mois est NULL.\n");
         return NULL;
     }else if(ListMois_isEmpty(l)){
-        printf("Mois_existe() : La liste de mois est vide, on ne peut donc pas trouver le mois cherché.\n");
+        //printf("Mois_existe() : La liste de mois est vide, on ne peut donc pas trouver le mois cherché.\n");
         return NULL;
     }
     for (ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)){
@@ -498,7 +498,7 @@ ListJour *  Mois_existe(ListMois * l, int mois){
             return ListMois_getCurrent(l);
         }
     }
-    printf("Mois_existe() : Mois non-trouvé.\n");
+    //printf("Mois_existe() : Mois non-trouvé.\n");
     return NULL;
 }
 /**
@@ -513,7 +513,7 @@ ListMois * Annee_existe(ListAnnee * l, int annee){
         printf("Annee_existe() : La list d'Annee est NULL.\n");
         return NULL;
     }else if(ListAnnee_isEmpty(l)){
-        printf("Annee_existe() : La liste d'années est vide, on ne peut donc pas trouver l'année cherchée.\n");
+        //printf("Annee_existe() : La liste d'années est vide, on ne peut donc pas trouver l'année cherchée.\n");
         return NULL;
     }
     for (ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)){
@@ -521,7 +521,7 @@ ListMois * Annee_existe(ListAnnee * l, int annee){
             return ListAnnee_getCurrent(l);
         }
     }
-    printf("Annee_existe() : Annee non-trouvé.\n");
+    //printf("Annee_existe() : Annee non-trouvé.\n");
     return NULL;
 }
 
@@ -555,14 +555,14 @@ void freeNodeRendezVous(ListRendezVous * l, NodeRendezVous * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
-    printf("\t\t\t\tfreeNodeRendezVous : appel de FreeRendezVous.\n");
+    //printf("\t\t\t\tfreeNodeRendezVous : appel de FreeRendezVous.\n");
     FreeRendezVous(n->rdv);
     free((void *) n);
     //On place current sur sentinel_begin pour que le setOnnext de la boucle for le place sur le premier élément de liste
     //On est obligé de faire ça car sinon current reste sur le noeud qu'on vient de free et donc sur NULL et isOutOfList return true alors que pas forcément
     ListRendezVous_setOnFirst(l);
     ListRendezVous_setOnPrevious(l);
-    printf("\t\t\t\tfreeNodeRendezVous : fin de la fonction.\n");
+    //printf("\t\t\t\tfreeNodeRendezVous : fin de la fonction.\n");
 }
 
 /**
@@ -591,15 +591,15 @@ void ListRendezVous_free(ListRendezVous * l){
     if (l == NULL){
         printf("ListRendezVous_free : le jour est NULL !!!\n");
     }else if ( ListRendezVous_isEmpty(l)){
-        printf("ListRendezVous_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        //printf("ListRendezVous_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
         free((void *) l);
     }else{
-        printf("\t\t\tEntrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
+        //printf("\t\t\tEntrée dans ListRendezVous_free() pour le jour : %d/%d/%d.\n", l->date->jour, l->date->mois, l->date->annee);
         for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)) {
-            printf("\t\t\t\tListRendezVous_free : début boucle for \n");
+            //printf("\t\t\t\tListRendezVous_free : début boucle for \n");
             freeNodeRendezVous(l, l->current);
         }
-        printf("\t\t\tLe jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
+        //printf("\t\t\tLe jour %d/%d/%d a bien été free.\n", l->date->jour, l->date->mois, l->date->annee);
         FreeDate(l->date);
         free((void *) l);
     }
@@ -752,7 +752,7 @@ void freeNodeJour(ListJour * l, NodeJour * n){
 
     char * tmp = (char*) malloc(10);
     getInfosDate(tmp, l->current->jour->date);
-    printf("\t\t\tfreeNodeJour : Appel de ListRendezVous_free pourle jour : %s\n", tmp);
+    //printf("\t\t\tfreeNodeJour : Appel de ListRendezVous_free pourle jour : %s\n", tmp);
     free((void*) tmp);
 
     ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle même free tous ses nodes) pointé par le Node
@@ -790,16 +790,16 @@ void ListJour_free(ListJour * l){
     if (l == NULL){
         printf("ListJour_free : le jour est NULL !!!\n");
     }else if ( ListJour_isEmpty(l)){
-        printf("ListJour_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        //printf("ListJour_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
         free((void *) l);
     }else{
-        printf("\t\tEntrée dans la fonction ListJour_Free().\n");
+        //printf("\t\tEntrée dans la fonction ListJour_Free().\n");
         for(ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)) {
-            printf("\t\t\tListJour_free : début boucle for\n");
+            //printf("\t\t\tListJour_free : début boucle for\n");
             freeNodeJour(l, l->current);
-            if(l->current == &(l->sentinel_begin)) printf("\t\t\tOn est sur sentinel_begin : normal\n");
+            //if(l->current == &(l->sentinel_begin)) printf("\t\t\tOn est sur sentinel_begin : normal\n");
         }
-        printf("\t\tLe mois %d a été free.\n", l->mois);
+        //printf("\t\tLe mois %d a été free.\n", l->mois);
         free((void *) l);
     }
 }
@@ -946,7 +946,7 @@ void freeNodeMois(ListMois * l, NodeMois * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
-    printf("\t\tfreeNodeMois : Appel de ListJour_free pour le mois : %d\n", l->current->mois->mois);
+    //printf("\t\tfreeNodeMois : Appel de ListJour_free pour le mois : %d\n", l->current->mois->mois);
     ListJour_free(n->mois);   //On free le mois (donc la liste de listes de RDV qui vient elle meme free tous ses nodes) pointé par le Node
     free((void *) n);
 
@@ -982,17 +982,17 @@ void ListMois_free(ListMois * l){
     if (l == NULL){
         printf("ListMois_free : le jour est NULL !!!\n");
     }else if ( ListMois_isEmpty(l)){
-        printf("ListMois_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        //printf("ListMois_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
         free((void *) l);
     }else{
-        printf("\tEntrée dans ListMois_free.\n");
+        //printf("\tEntrée dans ListMois_free.\n");
         for(ListMois_setOnFirst(l); !ListMois_isOutOfList(l); ListMois_setOnNext(l)) {
-            printf("\t\tListMois_free : debut boucle for\n");
+            //printf("\t\tListMois_free : debut boucle for\n");
             freeNodeMois(l, l->current);
-            printf("\t\tNodeMois free (fin boucle for).\n");
+            //printf("\t\tNodeMois free (fin boucle for).\n");
         }
     }
-    printf("\tLa liste de mois %d a bien été free.\n", l->annee);
+    //printf("\tLa liste de mois %d a bien été free.\n", l->annee);
     free((void *) l);
 }
 
@@ -1149,7 +1149,7 @@ void freeNodeAnnee(ListAnnee * l, NodeAnnee * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
-    printf("\tfreeNodeAnnee : Appel de ListMois_free() pour l'année : %d\n", l->current->annee->annee);
+    //printf("\tfreeNodeAnnee : Appel de ListMois_free() pour l'année : %d\n", l->current->annee->annee);
     ListMois_free(n->annee);   //On free l'annee (donc la liste de liste de liste de RDV qui vient elle meme free tous ses nodes) pointé par le Node
     free((void *) n);
 
@@ -1183,19 +1183,19 @@ void ListAnnee_free(ListAnnee * l){
     if (l == NULL){
         printf("ListAnnee_free : le jour est NULL !!!\n");
     }else if ( ListAnnee_isEmpty(l)){
-        printf("ListAnnee_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
+        //printf("ListAnnee_free : la liste est vide, ce n'est pas normal (mais si ca arrive on free juste la liste)!!!\n");
         free((void *) l);
     }else{
-        printf("Entrée dans ListAnnee_free.\n");
+        //printf("Entrée dans ListAnnee_free.\n");
         for(ListAnnee_setOnFirst(l); !ListAnnee_isOutOfList(l); ListAnnee_setOnNext(l)) {
-            printf("\tListAnnee_free : debut boucle for\n");
+            //printf("\tListAnnee_free : debut boucle for\n");
             freeNodeAnnee(l, l->current);
-            printf("\tNodeAnnee free (fin boucle for.\n");
+            //printf("\tNodeAnnee free (fin boucle for.\n");
         }
     }
-    printCalendrier(l); // On vérifie que le calendrier est vide
+    //printCalendrier(l); // On vérifie que le calendrier est vide
     free((void *) l);
-    printf("La liste d'années a bien été free.\n");
+    //printf("La liste d'années a bien été free.\n");
 }
 
 /**

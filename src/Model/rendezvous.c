@@ -38,7 +38,7 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
  * @param rdv : le rdv à free
  */
 void FreeRendezVous(RendezVous * rdv){
-    printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+    //printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
     FreeDate(rdv->date);
     free((void*) rdv->motif);
     free((void*) rdv->lieu);
@@ -106,7 +106,7 @@ void getInfosRendezVous(char* infos, RendezVous* rdv){
 
     char* tmp = (char*) malloc(10);
 
-    strcpy(infos, "\n\tRendez-vous du : ");
+    strcpy(infos, "\tRendez-vous du : ");
     getInfosDate(tmp, rdv->date);
     strcat(infos, tmp);
 
@@ -131,7 +131,7 @@ void getInfosRendezVous(char* infos, RendezVous* rdv){
     strcat(infos, "\".\n\tPour le motif : ");
 
     strcat(infos, rdv->motif);
-    strcat(infos, "\n");
+    strcat(infos, "\n\n");
 
     free((void*) tmp);
 }

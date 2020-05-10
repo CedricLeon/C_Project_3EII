@@ -147,7 +147,7 @@ NodeOrdonnance * newNodeOrdonnance(Ordonnance * ordo, NodeOrdonnance * previous,
  * @param n : le node à delete
  */
 void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
-    printf("freeNodeOrdonnance()\n");
+    //printf("freeNodeOrdonnance()\n");
     n->previous->next = n->next;
     n->next->previous = n->previous;
     DeleteOrdonnance(n->ordo);
@@ -192,11 +192,11 @@ void ListOrdonnance_free(ListOrdonnance * l){
     if (l == NULL){
         printf("ListOrdonnance_free : la liste d'ordonnance est NULL !!!\n");
     }else if (ListOrdonnance_isEmpty(l)){
-        printf("ListOrdonnance_free : la liste est vide, on free donc uniquement la liste\n");
+        //printf("ListOrdonnance_free : la liste est vide, on free donc uniquement la liste\n");
         free((void *) l);
     }else{
         for(ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
-            printf("ListOrdonnance_free : Appel de freeNodeOrdonnance() pour l'ordonnance : %s\n", l->current->ordo->description);
+            //printf("ListOrdonnance_free : Appel de freeNodeOrdonnance() pour l'ordonnance : %s\n", l->current->ordo->description);
             freeNodeOrdonnance(l, l->current);
         }
         free((void *) l);
@@ -212,7 +212,7 @@ void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
     if (l == NULL){
         printf("ListOrdonnance_free_withoutDeletingOrdonnance : le jour est NULL !!!\n");
     }else if ( ListOrdonnance_isEmpty(l)){
-        printf("ListOrdonnance_free_withoutDeletingOrdonnance : la liste est vide, on ne free donc que la liste!!!\n");
+        //printf("ListOrdonnance_free_withoutDeletingOrdonnance : la liste est vide, on ne free donc que la liste!!!\n");
         free((void *) l);
     }else {
         for (ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {

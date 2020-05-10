@@ -25,7 +25,7 @@ DossierMedical * CreerDossierMedical(){
  * @param dm : le dossier à supprimer
  */
 void FreeDossierMedical(DossierMedical * dm){
-    printf("FreeDossierMedical() : \n");
+    //printf("FreeDossierMedical() : \n");
     ListOrdonnance_free(dm->ordonnances);     // Il faut delete les ordonnances
     ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    // Il ne faut pas delete les mèdecins référencés
                                                                         // par cette liste puisqu'on les delete dèjà
@@ -157,11 +157,11 @@ void ListAntecedent_free(ListAntecedent * l){
     if (l == NULL){
         printf("ListAntecedent_free : la liste d'antecedents est NULL !!!\n");
     }else if (ListAntecedent_isEmpty(l)){
-        printf("ListAntecedent_free : la liste est vide, on free donc uniquement la liste\n");
+        //printf("ListAntecedent_free : la liste est vide, on free donc uniquement la liste\n");
         free((void *) l);
     }else{
         for(ListAntecedent_setOnFirst(l); !ListAntecedent_isOutOfList(l); ListAntecedent_setOnNext(l)) {
-            printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent courant \n");
+            //printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent courant \n");
             freeNodeAntecedent(l, l->current);
         }
         free((void *) l);

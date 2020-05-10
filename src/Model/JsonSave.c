@@ -70,7 +70,7 @@ int GPCalendar_saveProject(char* nomFichier, Project* project){
     {
         char* toPrint = Project_jsonSave(project);
         if(toPrint == NULL){
-            printf("\n MDR go debugger.\n");
+            printf("\n GPCalendar_saveProject() : char* toPrint is NULL.\n");
             return 0;
         }
         fprintf(savingFile, "%s", toPrint);
@@ -433,7 +433,7 @@ Project* Project_jsonLoad(const char* const content){
     if (cJSON_IsString(nameJson) && (nameJson->valuestring != NULL))
     {
         project_name = nameJson->valuestring;
-        printf("Name of project loaded : \"%s\"\n", project_name);
+        //printf("Name of project loaded : \"%s\"\n", project_name);
     }
 
     if(!ListMedecin_jsonLoad(projectJson, project_workingMedecins))
@@ -497,7 +497,7 @@ int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
         }
 
     }
-    printf("ListMedecin_jsonLoad() : Tous les mèdecins ont été add à la liste workingMedecins.\n");
+    //printf("ListMedecin_jsonLoad() : Tous les mèdecins ont été add à la liste workingMedecins.\n");
     return 1;
 }
 int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecins, ListPatient * lP){
@@ -576,7 +576,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
                 printf("ListPatient_jsonLoad() : Echec (ordo NULL ou litsOrdo NULL) de l'ajout d'une ordonnance au dossier médical du patient %s %s.\n", patient->nom, patient->prenom);
                 return 0;
             }
-            printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
+            //printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
         }
 
         if(!ListPatient_add(lP, patient))
@@ -586,7 +586,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
         }
 
     }
-    printf("ListPatient_jsonLoad() : Tous les patients et toutes leurs ordonnances ont bien été load.\n");
+    //printf("ListPatient_jsonLoad() : Tous les patients et toutes leurs ordonnances ont bien été load.\n");
     return 1;
 }
 int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Calendrier c){
@@ -638,7 +638,7 @@ int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Ca
         AddMedecinConsultePatient(patientRDV, medecinRDV);
         AddPatientRecuMedecin(medecinRDV, patientRDV);
     }
-    printf("Calendrier_jsonLoad() : Tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
+    //printf("Calendrier_jsonLoad() : Tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
     return 1;
 }
 /**

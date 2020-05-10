@@ -37,7 +37,7 @@ Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_
  * @param patient : le patient à supprimer
  */
 void DeletePatient(Patient * patient){
-    printf("DeletePatient() : pour le patient %s.\n", patient->numero_secu_social);
+    //printf("DeletePatient() : pour le patient %s.\n", patient->numero_secu_social);
 
     FreeDossierMedical(patient->dossierMedical);
 
@@ -291,7 +291,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
         for(ListMedecin_setOnFirst(p->dossierMedical->medecins_consultes); !ListMedecin_isOutOfList(
             p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
             if(strcmp(ListMedecin_getCurrent(p->dossierMedical->medecins_consultes)->numero_RPS, medecin->numero_RPS) == 0){
-                printf("Le médecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
+                //printf("Le médecin %s %s a déjà été consulté par le patient %s %s, il n'est donc pas ajouté à la liste.\n", medecin->nom, medecin->prenom, p->nom, p->prenom);
                 return 0;
             }
         }
@@ -302,7 +302,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
         NodeMedecin * newNode = newNodeMedecin(medecin, &(p->dossierMedical->medecins_consultes->sentinel_begin), &(p->dossierMedical->medecins_consultes->sentinel_end));
         p->dossierMedical->medecins_consultes->sentinel_begin.next = newNode;
         p->dossierMedical->medecins_consultes->sentinel_end.previous = newNode;
-        printf("Le mèdecin est le premier mèdecin consulté par le patient, il a bien été ajouté.\n");
+        //printf("Le mèdecin est le premier mèdecin consulté par le patient, il a bien été ajouté.\n");
         return 1;
     }
 
@@ -311,7 +311,7 @@ int AddMedecinConsultePatient(Patient * p, Medecin * medecin){
     NodeMedecin * newNode = newNodeMedecin(medecin, &(p->dossierMedical->medecins_consultes->sentinel_begin), p->dossierMedical->medecins_consultes->current);
     p->dossierMedical->medecins_consultes->sentinel_begin.next = newNode;
     p->dossierMedical->medecins_consultes->current->previous = newNode;
-    printf("Le medecin a été ajouté au début de la liste du patient.\n");
+    //printf("Le medecin a été ajouté au début de la liste du patient.\n");
     return 1;
 }
 /**
@@ -325,7 +325,7 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
 
     //Cas où la liste est vide
     if(ListMedecin_isEmpty(p->dossierMedical->medecins_consultes)){
-        printf("La liste des mèdecins consultés par le patient %s est vide, on ne peut donc pas y retirer le mèdecin %s.\n", p->nom, medecin->nom);
+        //printf("La liste des mèdecins consultés par le patient %s est vide, on ne peut donc pas y retirer le mèdecin %s.\n", p->nom, medecin->nom);
         return 0;
     }
 
@@ -338,13 +338,13 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
             p->dossierMedical->medecins_consultes->current->previous->next = p->dossierMedical->medecins_consultes->current->next;
             p->dossierMedical->medecins_consultes->current->next->previous = p->dossierMedical->medecins_consultes->current->previous;
             freeNodeMedecin_withoutDeletingMedecin(p->dossierMedical->medecins_consultes, p->dossierMedical->medecins_consultes->current);
-            printf("Le mèdecin %s a bien été retiré de la liste des mèdecins consulté par le patient %s.\n", medecin->nom, p->nom);
+            //printf("Le mèdecin %s a bien été retiré de la liste des mèdecins consulté par le patient %s.\n", medecin->nom, p->nom);
             return 1;
         }
     }
 
     /*Si on n'a pas trouvé le médecin on l'affiche et on return 0*/
-    printf("Le patient %s n'a pas consuté le médecin %s, on ne peut donc pas le retirer de la liste.\n", p->nom, medecin->nom);
+    //printf("Le patient %s n'a pas consuté le médecin %s, on ne peut donc pas le retirer de la liste.\n", p->nom, medecin->nom);
     return 0;
 }
 
@@ -450,11 +450,11 @@ void ListPatient_free(ListPatient * l){
     if (l == NULL){
         printf("ListPatient_free : le jour est NULL !!!\n");
     }else if ( ListPatient_isEmpty(l)){
-        printf("ListPatient_free : la liste est vide, ce n'est pas normal !!!\n");
+        //printf("ListPatient_free : la liste est vide, ce n'est pas normal !!!\n");
         free((void *) l);
     }else {
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
-            printf("ListPatient_free() : appel de freeNodePatient() sur %s.\n", l->current->patient->numero_secu_social);
+            //printf("ListPatient_free() : appel de freeNodePatient() sur %s.\n", l->current->patient->numero_secu_social);
             freeNodePatient(l, l->current);
         }
         free((void *) l);
@@ -468,7 +468,7 @@ void ListPatient_free_withoutDeletingPatient(ListPatient * l){
     if (l == NULL){
         printf("ListPatient_free_withoutDeletingPatient : le jour est NULL !!!\n");
     }else if ( ListPatient_isEmpty(l)){
-        printf("ListPatient_free_withoutDeletingPatient : la liste est vide, on ne free donc que la liste!!!\n");
+        //printf("ListPatient_free_withoutDeletingPatient : la liste est vide, on ne free donc que la liste!!!\n");
         free((void *) l);
     }else {
         for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
@@ -514,11 +514,11 @@ Patient* ListPatient_seek(ListPatient* lP, char* IDPatient){
     {
         if(strcmp(ListPatient_getCurrent(lP)->numero_secu_social, IDPatient) == 0)
         {
-            printf("ListPatient_seek() : On a trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
+            //printf("ListPatient_seek() : On a trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
             return ListPatient_getCurrent(lP);
         }
     }
-    printf("ListPatient_seek() : On a pas trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
+    //printf("ListPatient_seek() : On a pas trouvé le patient au numéro de sécu : \"%s\".\n", IDPatient);
     return NULL;
 }
 /**

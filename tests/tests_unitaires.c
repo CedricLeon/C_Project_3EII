@@ -633,7 +633,7 @@ static int teardown_JsonSave(void ** state){
 }
 static void testJsonSave_GPCalendar_saveProject(void ** state){
     printProject((Project*) *state);
-    assert_int_equal(GPCalendar_saveProject("/home/cleonard/dev/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
+    assert_int_equal(GPCalendar_saveProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
 }
 
 static void testJsonSave_GPCalendar_loadProject(void ** state){
