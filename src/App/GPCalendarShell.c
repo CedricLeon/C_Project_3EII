@@ -71,7 +71,53 @@ void Shell_creerMedecin(Project* project){
     }
 }
 void Shell_creerRendezVous(Project* project){
+    int jourRdv;
+    int moisRdv;
+    int anneeRdv;
+    float heure_debut;
+    int duree;
+    char lieu[30];
+    char motif[100];
+    char secuP[30];
+    char rpsM[30];
 
+    printf("Pour créer un rendez-vous, vous avez besoin des informations suivantes :\n");
+    printf("\t- Date (au format XX/XX/XXXX)\n\t- Heure de début (au format 16.5 pour 16h30 par exemple)\n\t- "
+           "Durée (en min)\n\t- Lieu\n\t- Motif\n\t- Numéro de sécurité sociale du patient\n\t- Numéro RPS du mèdecin\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du rendez-vous :\n");
+    scanf("%d/%d/%d %f %d %s %s %s %s", &jourRdv, &moisRdv, &anneeRdv, &heure_debut, &duree, lieu, motif, secuP, rpsM);
+
+    Patient* p = ListPatient_seek(project->consultingPatient, secuP);
+    if(p == NULL){
+        printf("Le patient au numéro de sécurité sociale \"%s\" ne fait pas partie de notre base de données, "
+               "veuillez l'inscrire avant de mettre en place ce rendez-vous", secuP);
+        return;
+    }
+    Medecin* m = ListMedecin_seek(project->workingMedecins, rpsM);
+    if(m == NULL){
+        printf("Le médecin au numéro RPS \"%s\" ne fait pas partie de notre base de données, "
+               "veuillez l'inscrire avant de mettre en place ce rendez-vous", rpsM);
+        return;
+    }
+
+    RendezVous* rdv = CreerRendezVous(anneeRdv, moisRdv, jourRdv, heure_debut, duree, lieu, p, m, motif);
+
+    char* infos = (char*) malloc(200);
+    getInfosRendezVous(infos, rdv);
+    printf("%s",infos);
+    free((void*) infos);
+
+    if(AddRendezVous_Calendrier(project->calendrier, rdv)){
+        printf("Le rendez-vous a bien été ajouté au calendrier de l'hôpital, vous "
+               "pourrez le voir en affichant le calendrier.\n");
+    }else{
+        printf("Erreur lors de l'ajout du rendez-vous au calendrier de l'hopital. RendezVous Delete.\n");
+        FreeRendezVous(rdv);
+        return;
+    }
+
+    AddMedecinConsultePatient(p, m);    //pas de cas d'erreur (le return 0 est uniquement dans le cas ou le patient connaissait déjà le medecin)
+    AddPatientRecuMedecin(m, p);
 }
 void Shell_consulterInformations(Project* project){
 
