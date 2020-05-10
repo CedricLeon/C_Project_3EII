@@ -100,6 +100,8 @@ Fonctions</h2></td></tr>
 <tr class="separator:a450576665db3511a8bffd8a3dbade73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab33fde0e75227f51c28053e2d8eae36f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8c.html#ab33fde0e75227f51c28053e2d8eae36f">RendezVous_existe</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
 <tr class="separator:ab33fde0e75227f51c28053e2d8eae36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb9e54644a74cbd36287ec5f172c394b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8c.html#adb9e54644a74cbd36287ec5f172c394b">RendezVousValable</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:adb9e54644a74cbd36287ec5f172c394b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a415ff7b2abfcdcd9aecc18d2a9897d2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8c.html#a415ff7b2abfcdcd9aecc18d2a9897d2e">Jour_existe</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l, <a class="el" href="struct_date.html">Date</a> *d)</td></tr>
 <tr class="separator:a415ff7b2abfcdcd9aecc18d2a9897d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c5790002b48d96f4057746e974d77e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8c.html#a1c5790002b48d96f4057746e974d77e5">Mois_existe</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l, int mois)</td></tr>
@@ -2101,13 +2103,48 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="adb9e54644a74cbd36287ec5f172c394b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RendezVousValable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>RendezVousValable : Teste si le rdv peut bien être ajouté sans chevaucher un autre ou être à sa place </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on teste </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv testé </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv peut être ajouté 0 sinon </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_32e188284d239da8bb14ec1dabb0c35f.html">Model</a></li><li class="navelem"><a class="el" href="calendrier_8c.html">calendrier.c</a></li>
-    <li class="footer">Généré le Dimanche 10 Mai 2020 16:00:47 pour GPCalendar par
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

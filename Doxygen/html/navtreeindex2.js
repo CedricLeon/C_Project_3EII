@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"patient_8c.html#a6e771e2869a7b73c4a31671c677c5d65":[1,0,1,1,6,11],
+"patient_8c.html#a70941926bd9e1bccd87d03f276bc19ef":[1,0,1,1,6,15],
 "patient_8c.html#a779a417552234e4058cb0ad96356825a":[1,0,1,1,6,4],
 "patient_8c.html#a8449a83c8157829d93cef6419dc16240":[1,0,1,1,6,0],
 "patient_8c.html#a8b5d4d5e5b2e0c3238f127c8310df4d9":[1,0,1,1,6,3],

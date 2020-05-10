@@ -426,6 +426,13 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
     return NULL;
 }
 
+/**
+ * RendezVousValable : Teste si le rdv peut bien être ajouté sans chevaucher un autre ou être à sa place
+ * @param l : la liste dans laquelle on teste
+ * @param rdv : le rdv testé
+ * @return 1 si le rdv peut être ajouté
+ *         0 sinon
+ */
 int RendezVousValable(ListRendezVous * l, RendezVous * rdv){
     if (l == NULL || rdv == NULL){
         printf("RendezVous_valable() : La liste de rdv ou le rdv est NULL.\n");

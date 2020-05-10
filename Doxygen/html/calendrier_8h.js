@@ -84,5 +84,6 @@ var calendrier_8h =
     [ "newNodeMois", "calendrier_8h.html#a9d1def1692e1773aced0df50e636a497", null ],
     [ "newNodeRendezVous", "calendrier_8h.html#a64191f7428e9d03b0042e91ba8daedda", null ],
     [ "printCalendrier", "calendrier_8h.html#ac2199296f615dbb3728385f855cc201e", null ],
-    [ "RendezVous_existe", "calendrier_8h.html#ab33fde0e75227f51c28053e2d8eae36f", null ]
+    [ "RendezVous_existe", "calendrier_8h.html#ab33fde0e75227f51c28053e2d8eae36f", null ],
+    [ "RendezVousValable", "calendrier_8h.html#adb9e54644a74cbd36287ec5f172c394b", null ]
 ];

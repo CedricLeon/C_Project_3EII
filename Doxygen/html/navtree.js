@@ -24,8 +24,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_g_p_calendar_shell_8c.html",
-"date_8h_source.html",
-"patient_8c.html#a779a417552234e4058cb0ad96356825a"
+"date_8h.html#ade26d803a4a5c87a43e1a7a7c00bb736",
+"patient_8c.html#a6e771e2869a7b73c4a31671c677c5d65"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';
