@@ -161,3 +161,32 @@ You'll have to do the same with the linker settings:
 `pkg-config --libs gtk+-3.0`
 ````
 Repeat these two lines for the Release and Projectname mode (usually at the top left of the window).
+
+
+
+## Terminal Window
+
+GPCalendar is an application which have a graphical interface (generate with GTK3+).
+
+But it can also work from a shell with some switch case to choose what action you want to do.
+
+```bash
+case 1 :
+	Create a Patient
+case 2 :
+	Create a Medecin
+case 3 :
+	Create a RendezVous beetween a Patient and a Physician
+case 4 : 
+	Check hospital data
+case 5 :
+	Cancel a RendezVous
+case 6 : 
+	Delete a Patient
+case 7 :
+	Delete a Medecin
+case 8 :
+	Save the Project (all Patients, all Medecins and the hospital calendar)
+
+```
+
