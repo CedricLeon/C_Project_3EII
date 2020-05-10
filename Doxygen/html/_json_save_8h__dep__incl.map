@@ -1,6 +1,6 @@
 <map id="include/GPCalendar/Model/JsonSave.h" name="include/GPCalendar/Model/JsonSave.h">
 <area shape="rect" id="node2" href="$_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="5,104,157,131"/>
-<area shape="rect" id="node3" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="182,104,332,131"/>
-<area shape="rect" id="node4" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="357,97,520,138"/>
-<area shape="rect" id="node5" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="347,187,529,213"/>
+<area shape="rect" id="node3" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="182,97,345,138"/>
+<area shape="rect" id="node5" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="370,104,520,131"/>
+<area shape="rect" id="node4" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="173,187,355,213"/>
 </map>

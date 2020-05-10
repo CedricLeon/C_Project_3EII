@@ -1,12 +1,12 @@
 <map id="include/GPCalendar/Model/calendrier.h" name="include/GPCalendar/Model/calendrier.h">
 <area shape="rect" id="node2" href="$main_8c.html" title="src/App/main.c" alt="" coords="1486,829,1596,856"/>
 <area shape="rect" id="node3" href="$calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="1883,104,2033,131"/>
-<area shape="rect" id="node4" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="1095,920,1245,947"/>
-<area shape="rect" id="node5" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="307,913,471,954"/>
-<area shape="rect" id="node7" href="$_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="893,822,1032,863"/>
+<area shape="rect" id="node4" href="$_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="1089,913,1252,954"/>
+<area shape="rect" id="node6" href="$_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="893,822,1032,863"/>
+<area shape="rect" id="node8" href="$tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="314,920,464,947"/>
 <area shape="rect" id="node9" href="$callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="980,97,1119,138"/>
-<area shape="rect" id="node6" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="298,1003,480,1029"/>
-<area shape="rect" id="node8" href="$_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="887,920,1039,947"/>
+<area shape="rect" id="node5" href="$_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="1079,1003,1261,1029"/>
+<area shape="rect" id="node7" href="$_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="887,920,1039,947"/>
 <area shape="rect" id="node10" href="$callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="843,285,985,312"/>
 <area shape="rect" id="node11" href="$fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="43,739,249,765"/>
 <area shape="rect" id="node12" href="$time_8c.html" title="src/View/time.c" alt="" coords="1018,376,1131,403"/>
