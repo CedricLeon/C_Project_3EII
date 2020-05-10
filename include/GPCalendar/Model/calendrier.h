@@ -1,7 +1,13 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
 
+//Header du projet
 #include "GPCalendar/Model/rendezvous.h"
+
+//Librairies Standarts
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * Pour le fonctionnement du calendrier je pense que pour que ça reste simple au maximum mais sans qu'il soit
