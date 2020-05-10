@@ -64,10 +64,15 @@ void printPatient(char* infos, Patient * p){
 
 
     getNomPatient(infos, p);
-    strcat(infos,"\n\tNuméro Sécu : ");
-    strcat(infos,getNumeroSecuSocialePatient(p));
+    strcat(infos,",\n\tNuméro Sécu : ");
+    strcat(infos, getNumeroSecuSocialePatient(p));
     strcat(infos, "\n\t@ : ");
     strcat(infos, getAdresseMailPatient(p));
+    strcat(infos, "\n\tNé le : ");
+    char* tmp = (char*) malloc(10);
+    getDateNaissancePatient(tmp,p);
+    strcat(infos, tmp);
+    free((void*) tmp);
     strcat(infos, "\n\tTel : ");
     strcat(infos, getNumeroTelephonePatient(p));
     strcat(infos, "\n\tMedecins consultés : ");
