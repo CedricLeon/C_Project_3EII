@@ -194,7 +194,7 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
         }*/
         //Là normalement on a tout ajouté à notre médecin on peut passer au suivant
     }
-    printf("ListMedecin_jsonSave() : Liste de mèdecins bien save.\n");
+    //printf("ListMedecin_jsonSave() : Liste de mèdecins bien save.\n");
     return 1;
 }
 
@@ -396,7 +396,7 @@ Project*  GPCalendar_loadProject(char* nomFichier){
     }
     else
     {
-        printf("\nGPCalendar_loadProject : Impossible d'ouvrir le fichier \"%s\".\nLe projet return est donc NULL.\n", nomFichier);
+        printf("\nGPCalendar_loadProject : Impossible d'ouvrir le fichier \"%s\".\n", nomFichier);
         return NULL;
     }
 }
@@ -531,8 +531,8 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
             printf("ListPatient_jsonLoad() : une des valeurs du Patient n'est pas au format attendu : return 0.\n");
             return 0;
         }
-        Patient * patient = CreerPatient(nomPatientJson->valuestring, prenomPatientJson->valuestring, jourDatePatientJson->valueint,
-                moisDatePatientJson->valueint, anneeDatePatientJson->valueint,
+        Patient * patient = CreerPatient(nomPatientJson->valuestring, prenomPatientJson->valuestring, anneeDatePatientJson->valueint,
+                moisDatePatientJson->valueint, jourDatePatientJson->valueint,
                 mailPatientJson->valuestring, telPatientJson->valuestring, secuPatientJson->valuestring);
 
         ordonnancesPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "ordonnances");
@@ -567,9 +567,9 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
                 return 0;
             }
 
-            Ordonnance* ordo = LoadOrdonnance(medecinOrdo, jourDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
-                    anneeDateEditionOrdonnanceJson->valueint, jourDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
-                    anneeDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
+            Ordonnance* ordo = LoadOrdonnance(medecinOrdo, anneeDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
+                    jourDateEditionOrdonnanceJson->valueint, anneeDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
+                    jourDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
 
             if(AddOrdonnanceDossierMedical(patient->dossierMedical, ordo) == -1)
             {
