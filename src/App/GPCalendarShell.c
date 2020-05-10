@@ -1,6 +1,8 @@
 #include "GPCalendarShell.h"
 
-
+/**********************************************************************************************************************/
+                                            /*Fonctions de print*/
+/**********************************************************************************************************************/
 
 void printPossibleAction(){
     printf("\t- 1 : Créer un Patient\n");
@@ -17,41 +19,68 @@ void printPossibleAction(){
                                             /*Fonctions d'actions*/
 /**********************************************************************************************************************/
 
-void Shell_creerPatient(){
+void Shell_creerPatient(Project* project){
+
+    char nomP[20];
+    char prenomP[20];
+    int jourP;
+    int moisP;
+    int anneeP;
+    char mail[30];
+    char tel[11];
+    char secu[30];
+
+    printf("Pour créer un patient vous avez besoin des informations suivantes :\n");
+    printf("\tNom \t Prénom \t Date de Naissance (au format XX/XX/XXXX)\tAdresse Mail\tNuméro de Téléphone\tNuméro de sécurité sociale\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du patient :\n");
+    scanf("%s %s %d/%d/%d %s %s %s", nomP, prenomP, &jourP, &moisP, &anneeP, mail, tel, secu);
+    Patient* p = CreerPatient(nomP, prenomP, anneeP, moisP, jourP, mail, tel, secu);
+
+    char* infos = (char*) malloc(200);
+    printPatient(infos, p);
+    printf("%s",infos);
+    free((void*) infos);
+
+    if(ListPatient_add(project->consultingPatient, p) != -1){
+        printf("Le patient\"%s %s\" a bien été ajouté à la liste des patients consultants de l'hôpital, vous "
+               "pourrez accéder à ses informations à partir de son numéro de sécurité sociale.\n", nomP, prenomP);
+    }
+}
+void Shell_creerMedecin(Project* project){
 
 }
-void Shell_creerMedecin(){
+void Shell_creerRendezVous(Project* project){
 
 }
-void Shell_creerRendezVous(){
+void Shell_consulterInformations(Project* project){
 
 }
-void Shell_consulterInformations(){
+void Shell_annulerRendezVous(Project* project){
 
 }
-void Shell_annulerRendezVous(){
+void Shell_supprimerPatient(Project* project){
 
 }
-void Shell_supprimerPatient(){
+void Shell_supprimerMedecin(Project* project){
 
 }
-void Shell_supprimerMedecin(){
+void Shell_saveProject(Project* project){
 
 }
-void Shell_saveProject(){
-
-}
-void Shell_loadProject(){
+void Shell_loadProject(Project* project){
 
 }
 
 int main(int argc, char *argv[]){
 
     /**
+     * Trucs qu'il faut changer :
+     *  - Les scanf pour demander des infos (on vérifié pas le format des données)
+     *
      * Idées d'amélioration :
-     *  - mettre de la couleur (pour les questions ou autres pour différencier les print de ce main ou les print des fonctions appellées)
+     *  - mettre de la couleur (pour les questions ou autres, pour différencier les print de ce main ou les print des fonctions appellées)
      *  - implémenter un "help"
-     *  -
+     *  - permettre de modifier les informations d'un mèdecin ou d'un patient
      */
 
     //Initialisation des variables
@@ -145,7 +174,7 @@ int main(int argc, char *argv[]){
         {
             case 1:
                 printf("Vous avez choisi de créer un Patient.\n");
-
+                Shell_creerPatient(current_project);
                 break;
             case 2:
                 printf("Vous avez choisi de créer un Médecin.\n");
@@ -179,7 +208,7 @@ int main(int argc, char *argv[]){
          *  - "yes" pour continuer
          *   - "no" pour arreter
          */
-        printf("Voulez-vous continuez ? Entrez '1' si oui, '0' si non : ");
+        printf("\nVoulez-vous continuez ? Entrez '1' si oui, '0' si non : ");
         while (fgets(GPCalendar_exit_ask, sizeof(GPCalendar_exit_ask), stdin)) {
             GPCalendar_exit = strtol(GPCalendar_exit_ask, &GPCalendar_exit_ask_tmp, 10);
             if (GPCalendar_exit_ask_tmp == GPCalendar_exit_ask || *GPCalendar_exit_ask_tmp != '\n')

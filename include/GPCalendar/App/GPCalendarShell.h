@@ -20,15 +20,15 @@
 void printPossibleAction();
 
 //Fonctions pour les actions choisies
-void Shell_creerPatient();
-void Shell_creerMedecin();
-void Shell_creerRendezVous();
-void Shell_consulterInformations();
-void Shell_annulerRendezVous();
-void Shell_supprimerPatient();
-void Shell_supprimerMedecin();
-void Shell_saveProject();
-void Shell_loadProject();
+void Shell_creerPatient(Project* project);
+void Shell_creerMedecin(Project* project);
+void Shell_creerRendezVous(Project* project);
+void Shell_consulterInformations(Project* project);
+void Shell_annulerRendezVous(Project* project);
+void Shell_supprimerPatient(Project* project);
+void Shell_supprimerMedecin(Project* project);
+void Shell_saveProject(Project* project);
+void Shell_loadProject(Project* project);
 
 
 #endif //GPCALENDAR_GPCALENDARSHELL_H
