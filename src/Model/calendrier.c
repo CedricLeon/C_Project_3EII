@@ -411,7 +411,7 @@ int AddAnnee_Calendrier(Calendrier c, Annee a){
  */
 RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
     if (l == NULL || rdv == NULL){
-        printf("RendezVous_existe() : La list de rdv ou le rdv est NULL.\n");
+        printf("RendezVous_existe() : La liste de rdv ou le rdv est NULL.\n");
         return NULL;
     }else if(ListRendezVous_isEmpty(l)){
         printf("RendezVous_existe() : La liste de rdv est vide, on ne peut donc pas trouver le rdv cherché.\n");
@@ -425,6 +425,29 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
     printf("RendezVous_existe() : Rdv non-trouvé.\n");
     return NULL;
 }
+
+int RendezVousValable(ListRendezVous * l, RendezVous * rdv){
+    if (l == NULL || rdv == NULL){
+        printf("RendezVous_valable() : La liste de rdv ou le rdv est NULL.\n");
+        return 0;
+    }else if(ListRendezVous_isEmpty(l)){
+        return 1;
+    }
+    for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)){
+        if((ListRendezVous_getCurrent(l)->date == rdv->date) //test même date
+        &&((ListRendezVous_getCurrent(l)->heure_debut==rdv->heure_debut) //test meme heure debut
+        ||(ListRendezVous_getCurrent(l)->heure_debut<=rdv->heure_debut<ListRendezVous_getCurrent(l)->heure_fin)) //test si heure de debut chevauche un autre rdv
+        ||(ListRendezVous_getCurrent(l)->heure_debut<=rdv->heure_fin<ListRendezVous_getCurrent(l)->heure_fin)) // test si heure de fin chevauche un autre rdv
+        {
+            return 1;
+        }else{
+            printf("RendezVous_Valable(): horaires déjà occupés à cette date, recommencez avec un autre rdv");
+            return 0;
+        }
+    }
+
+}
+
 /**
  * Jour_existe : Cherche un jour dans une liste de jours
  * @param l : la liste dans laquelle on cherche
