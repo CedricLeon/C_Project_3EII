@@ -48,6 +48,27 @@ void Shell_creerPatient(Project* project){
 }
 void Shell_creerMedecin(Project* project){
 
+    char nomM[20];
+    char prenomM[20];
+    char mail[30];
+    char tel[11];
+    char rps[30];
+
+    printf("Pour créer un médecin vous avez besoin des informations suivantes :\n");
+    printf("\tNom \t Prénom \tAdresse Mail\tNuméro de Téléphone\t Numéro RPS\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du médecin :\n");
+    scanf("%s %s %s %s %s", nomM, prenomM, mail, tel, rps);
+    Medecin* m = CreerMedecin(nomM, prenomM, mail, tel, rps);
+
+    char* infos = (char*) malloc(200);
+    getInfoMedecin(infos, m);
+    printf("%s\n",infos);
+    free((void*) infos);
+
+    if(ListMedecin_add(project->workingMedecins, m) != -1){
+        printf("Le medecin\"%s %s\" a bien été ajouté à la liste des médecins actifs de l'hôpital, vous "
+               "pourrez accéder à ses informations à partir de son numéro RPS.\n", nomM, prenomM);
+    }
 }
 void Shell_creerRendezVous(Project* project){
 
@@ -175,12 +196,17 @@ int main(int argc, char *argv[]){
             case 1:
                 printf("Vous avez choisi de créer un Patient.\n");
                 Shell_creerPatient(current_project);
+                /* nomP prenomP 01/02/1234 mailP telP secuP */
                 break;
             case 2:
                 printf("Vous avez choisi de créer un Médecin.\n");
+                Shell_creerMedecin(current_project);
+                /* nomM prenomM mailM telM RPS */
                 break;
             case 3:
                 printf("Vous avez choisi de créer un Rendez-vous.\n");
+                Shell_creerRendezVous(current_project);
+                /*  */
                 break;
             case 4:
                 printf("Vous avez choisi de consulter des informations.\n");
@@ -229,7 +255,7 @@ int main(int argc, char *argv[]){
     printf("Exemple : \"C:\\Documents\\NomDeMonFichierDeSauvegarde.json\".\n");
     printf("Et si vous ne souhaitez pas sauvegarder votre projet tapez simplement \"no\".\n");
     scanf("%s", project_save_file_name);
-    /* /home/cleonard/dev/C_Project/C_Project/CefichierEstUnTestdeSaveGPCalendarJson.json */
+    /* /home/cleonard/dev/C_Project/C_Project/Test_GPCalendar_Shell1.json */
     if(strcmp(project_save_file_name, "no") == 0)
     {
         freeProject(current_project);
