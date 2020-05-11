@@ -294,6 +294,19 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
             if (cJSON_AddStringToObject(ordonnance, "description", ordo->description) == NULL)  return 0;
             //Là normalement on a tout ajouté à notre ordonnance à notre liste d'ordonnances, on peut passer au suivant
         }
+
+        /**
+         * On gère la liste d'antécédents du dossier médical de notre patient
+         */
+        cJSON* listAntecedent = cJSON_AddArrayToObject(patient, "Antecedents");      //idem
+        ListAntecedent * antecedents = l->current->patient->dossierMedical->antecedents;
+        for(ListAntecedent_setOnFirst(antecedents); !ListAntecedent_isOutOfList(antecedents); ListAntecedent_setOnNext(antecedents)){
+
+            cJSON* antecedentJson = cJSON_CreateString(ListAntecedent_getCurrent(antecedents));
+            if(antecedentJson == NULL) return 0;
+            cJSON_AddItemToArray(listAntecedent, antecedentJson);
+        }
+
         //Là normalement on a tout ajouté à notre patient on peut passer au suivant
     }
     return 1;
@@ -508,6 +521,9 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
     const cJSON* ordonnancesPatientJson = NULL;
     const cJSON* ordonnanceJson = NULL;
 
+    const cJSON* antecedentsPatientJson = NULL;
+    cJSON* antecedentJson = NULL;
+
     consultingPatientsJson = cJSON_GetObjectItemCaseSensitive(projectJson, "Consulting Patients");
     cJSON_ArrayForEach(patientJson, consultingPatientsJson)
     {
@@ -578,6 +594,19 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
             }
             //printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
         }
+
+        antecedentsPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "Antecedents");
+        cJSON_ArrayForEach(antecedentJson, antecedentsPatientJson)
+        {
+            char* antecedent = cJSON_GetStringValue(antecedentJson);
+            if(antecedent == NULL)
+            {
+                printf("ListPatient_jsonLoad() : l'un des antécédents n'est pas au format attendu.\n");
+                return 0;
+            }
+            ListAntecedent_add(patient->dossierMedical->antecedents, antecedent);
+        }
+        //printf("ListPatient_jsonLoad() : Tous les antécédents du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
 
         if(!ListPatient_add(lP, patient))
         {
