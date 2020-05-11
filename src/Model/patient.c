@@ -100,7 +100,7 @@ void AccesDossierMedical(char* infos, Patient * p){
 
     strcat(infos, "\n\tOrdonnances :\n");
     PrintListOrdonnances(infos, p);
-    strcat(infos, "\tAntécédents :");
+    strcat(infos, "\tAntécédents :\n");
     PrintListAntecedents(infos, p);
 }
 
@@ -130,8 +130,11 @@ void PrintListAntecedents(char* infos, Patient* p){
     ListAntecedent * la = p->dossierMedical->antecedents;
 
     for(ListAntecedent_setOnFirst(la); !ListAntecedent_isOutOfList(la); ListAntecedent_setOnNext(la)){
+        strcat(infos, "\t -  ");
         char* ante = ListAntecedent_getCurrent(la);
+        strcpy(infos, "\"");
         printAntecedent(infos, ante);
+        strcpy(infos, "\"\n");
     }
 }
 /********************************************************************************************************************/
@@ -210,9 +213,11 @@ void SetNumeroSecuSocialePatient(Patient * p, char * secu){
  * @return une chaine de caractères avec le nom et le prénom du patient
  */
 void getNomPatient(char * nom, Patient *p){
-    strcpy(nom,p->nom);
+    strcpy(nom, "\"");
+    strcat(nom, p->nom);
     strcat(nom, " ");
     strcat(nom, p->prenom);
+    strcat(nom, "\"");
 }
 /**
  * getDateNaissancePatient : met la date de naissance du patient sous forme de char* (pour l'affichage) dans infos

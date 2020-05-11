@@ -115,9 +115,9 @@ void printOrdonnance(char* infos, Ordonnance * ordo){
     strcat(infos, tmp);
     free((void*) tmp);
 
-    strcat(infos, "\"\n\t\tPrescription : ");
+    strcat(infos, "\"\n\t\tPrescription : \"");
     strcat(infos, ordo->description);
-    strcat(infos, "\n");
+    strcat(infos, "\"\n");
 
     /*printf("Ordonnance faite le %d/%d/%d par le médecin \"%s %s\"\n", ordo->date_edition->jour, ordo->date_edition->mois, ordo->date_edition->annee, ordo->medecin->nom, ordo->medecin->prenom);
     printf("\t\t\tPrescription :  %s \n", ordo->description);

@@ -167,7 +167,31 @@ void ListAntecedent_free(ListAntecedent * l){
         free((void *) l);
     }
 }
-
+/**
+ * ListAntecedent_add : Ajoute un node antécédents à une liste d'ordonnance
+ * @param l : la liste
+ * @param ante : l'antécédent à ajouter
+ * @return 1 si tout s'est bien passé
+ *         -1 si la liste ou l'antécédent étaient NULL
+ */
+int ListAntecedent_add(ListAntecedent* l, char* ante){
+    if(l == NULL || ante == NULL){
+        printf("ListAntecedent ou Antecedent NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListAntecedent_isEmpty(l)){
+        NodeAntecedent * newNode = newNodeAntecedent(ante, &(l->sentinel_begin), &(l->sentinel_end));
+        l->sentinel_begin.next = newNode;
+        l->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on insère le patient à la fin
+    NodeAntecedent * newNode = newNodeAntecedent(ante, l->sentinel_end.previous, &(l->sentinel_end));
+    l->sentinel_end.previous->next = newNode;
+    l->sentinel_end.previous = newNode;
+    return 1;
+}
 
 /**
  * ListAntecedent_isEmpty : Vérifie si la liste de Antecedent est vide ou non

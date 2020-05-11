@@ -42,7 +42,7 @@ void Shell_creerPatient(Project* project){
     free((void*) infos);
 
     if(ListPatient_add(project->consultingPatient, p) != -1){
-        printf("Le patient\"%s %s\" a bien été ajouté à la liste des patients consultants de l'hôpital, vous "
+        printf("Le patient \"%s %s\" a bien été ajouté à la liste des patients consultants de l'hôpital, vous "
                "pourrez accéder à ses informations à partir de son numéro de sécurité sociale.\n", nomP, prenomP);
     }
 }
@@ -81,6 +81,10 @@ void Shell_creerRendezVous(Project* project){
     char secuP[30];
     char rpsM[30];
 
+    char addOrdonnance_ask[10];
+    char descripionOrdo[200];
+    char antecedent[200];
+
     printf("Pour créer un rendez-vous, vous avez besoin des informations suivantes :\n");
     printf("\t- Date (au format XX/XX/XXXX)\n\t- Heure de début (au format 16.5 pour 16h30 par exemple)\n\t- "
            "Durée (en min)\n\t- Lieu\n\t- Motif\n\t- Numéro de sécurité sociale du patient\n\t- Numéro RPS du mèdecin\n");
@@ -111,16 +115,91 @@ void Shell_creerRendezVous(Project* project){
         printf("Le rendez-vous a bien été ajouté au calendrier de l'hôpital, vous "
                "pourrez le voir en affichant le calendrier.\n");
     }else{
-        printf("Erreur lors de l'ajout du rendez-vous au calendrier de l'hopital. RendezVous Delete.\n");
+        fprintf(stderr, "Erreur lors de l'ajout du rendez-vous au calendrier de l'hopital. RendezVous deleted.\n");
         FreeRendezVous(rdv);
         return;
     }
 
     AddMedecinConsultePatient(p, m);    //pas de cas d'erreur (le return 0 est uniquement dans le cas ou le patient connaissait déjà le medecin)
     AddPatientRecuMedecin(m, p);
+
+    printf("Suite au rendez-vous, une ordonnance a pu être prescrite, souhaitez-vous l'ajouter, ainsi qu'un antécédent, au dossier médical du patient (\"yes\" ou \"no\")? :");
+    scanf("%s", addOrdonnance_ask);
+    if(strcmp(addOrdonnance_ask, "yes") == 0)
+    {
+        printf("Veuillez entrer la description de l'ordonnance : \n");
+        scanf("%s", descripionOrdo);
+        Ordonnance* ordo = CreerOrdonnance(m, descripionOrdo);
+        if(AddOrdonnanceDossierMedical(p->dossierMedical, ordo) == -1)
+        {
+            fprintf(stderr, "Erreur lors de l'ajout de l'ordonnance au dossier médical.\n");
+        }
+    }
+    else if(strcmp(addOrdonnance_ask, "no") == 0)
+    {
+        printf("Vous avez choisi de ne pas pas proscrire d'ordonnance après ce rendez-vous.\n");
+    }else{
+        fprintf(stderr, "Votre réponse ne fait pas partie de celles attendues, uune ordonnance ne sera pas proscrite.\n");
+    }
+    printf("Veuillez maintenant entrer un compte rendu de ce rendez-vous. Ce compte-rendu sera ajouté aux "
+           "antécédents du patient et permettra un suivi plus précis de sa santé lors de ses prochaines consultations :\n");
+    scanf("%s", antecedent);
+    if(ListAntecedent_add(p->dossierMedical->antecedents, antecedent) == -1)
+    {
+        fprintf(stderr, "Erreur lors de l'ajout de l'antécédent au dossier médical.\n");
+    }
+    printf("Félicitations, vous avez créé un rendez-vous.\n");
 }
 void Shell_consulterInformations(Project* project){
 
+    long infos_actions = -1;
+    char infos_ask[10];
+    char* infos_ask_tmp;
+
+    printf("Quelles informations voulez-vous consulter ?\n");
+    printf("\t- 1 : Liste des patients inscrits dans l'hôpital ;\n");
+    printf("\t- 2 : Liste des médecins travaillants dans l'hôpital ;\n");
+    printf("\t- 3 : Tout les rendez-vous de l'hôpital (calendrier) ;\n");
+    printf("\t- 4 : L'entièreté du projet (patients, médecins et calendrier).\n");
+
+    while (fgets(infos_ask, sizeof(infos_ask), stdin)) {
+        infos_actions = strtol(infos_ask, &infos_ask_tmp, 10);
+        if (infos_ask_tmp == infos_ask || *infos_ask_tmp != '\n')
+        {
+            printf("Veuillez entrer un chiffre : ");
+        }
+        else if (infos_actions < 1 || infos_actions > 4)
+        {
+            printf("Veuillez entrer un chiffre correspondant aux actions possibles : \n");
+            printf("\t- 1 : Liste des patients inscrits dans l'hôpital ;\n");
+            printf("\t- 2 : Liste des médecins travaillants dans l'hôpital ;\n");
+            printf("\t- 3 : Tout les rendez-vous de l'hôpital (calendrier) ;\n");
+            printf("\t- 4 : L'entièreté du projet (patients, médecins et calendrier).\n");
+        }
+        else break;
+    }
+    switch (infos_actions) {
+        case 1:
+            printf("********************Liste des patients inscrits dans l'hôpital**********************");
+            printListPatient(project->consultingPatient);
+            printf("************************************************************************************");
+            break;
+        case 2:
+            printf("*******************Liste des médecins travaillants dans l'hôpital********************");
+            printListMedecin(project->workingMedecins);
+            printf("************************************************************************************");
+            break;
+        case 3:
+            printCalendrier(project->calendrier);
+            break;
+        case 4:
+            printProject(project);
+            break;
+        default:
+            //Normalement on n'arrivera jamais ici puisque tout est déjà vérifier plus haut
+            printf("Le chiffre que vous avez tapé ne fait pas parti des choix, que voulez-vous faire ?\n");
+            break;
+    }
 }
 void Shell_annulerRendezVous(Project* project){
 
@@ -159,7 +238,7 @@ int main(int argc, char *argv[]){
 
     //Variables nécessaires au choix de l'action par l'utilisateur
     long GPCalendar_action = -1;
-    char GPCalendar_ask[100];
+    char GPCalendar_ask[10];
     char* GPCalendar_ask_tmp;
 
     //Variables nécessaires au choix de quitter ou non l'application par l'utilisateur
@@ -252,13 +331,16 @@ int main(int argc, char *argv[]){
             case 3:
                 printf("Vous avez choisi de créer un Rendez-vous.\n");
                 Shell_creerRendezVous(current_project);
-                /*  */
+                /* 11/11/1111 16.5 30 lieuRDV motifRDV secuP RPS */
+                /* descriptionOrdonnanceRDV */
+                /* compte-rendu du rdv (antécédent du patient) */
                 break;
             case 4:
                 printf("Vous avez choisi de consulter des informations.\n");
+                Shell_consulterInformations(current_project);
                 break;
             case 5:
-                printf("Vous avez choisi de annuler un Rendez-vous.\n");
+                printf("Vous avez choisi d'annuler un Rendez-vous.\n");
                 break;
             case 6:
                 printf("Vous avez choisi de supprimer un Patient.\n");

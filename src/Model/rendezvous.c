@@ -104,7 +104,7 @@ RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jo
  */
 void getInfosRendezVous(char* infos, RendezVous* rdv){
 
-    char* tmp = (char*) malloc(10);
+    char* tmp = (char*) malloc(30);
 
     strcpy(infos, "\tRendez-vous du : ");
     getInfosDate(tmp, rdv->date);
