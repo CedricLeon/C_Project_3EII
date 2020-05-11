@@ -13,11 +13,11 @@
  * @param motif : le motif du rdv
  * @return le rdv créé
  */
-RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
+RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, double duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
 
     RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
     rdv->heure_debut = heure_debut;
-    rdv->heure_fin = heure_debut + (double) (duree/60);
+    rdv->heure_fin = heure_debut + (duree/60);
     rdv->date = CreerDate(an, mois, jour);
 
     rdv->lieu = (char*) malloc(strlen(lieu)+1);
