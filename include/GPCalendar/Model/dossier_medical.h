@@ -24,7 +24,6 @@ typedef struct DossierMedical{
 
 DossierMedical * CreerDossierMedical();
 void FreeDossierMedical(DossierMedical * d);
-void AccesDossier(Patient * p);
 
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance);
 int AddAntecedentDossierMedical(DossierMedical * dm, char * ant);
