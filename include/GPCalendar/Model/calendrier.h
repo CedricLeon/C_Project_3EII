@@ -219,7 +219,7 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv);
 ListRendezVous * Jour_existe(ListJour * l, Date * d);
 ListJour *  Mois_existe(ListMois * l, int mois);
 ListMois * Annee_existe(ListAnnee * l, int annee);
-int RendezVousValable(ListRendezVous * l, RendezVous * rdv);
+int RendezVousValable(Calendrier c , RendezVous * rdv);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 void freeCalendrier(Calendrier c);

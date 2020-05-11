@@ -106,6 +106,8 @@ void Shell_creerRendezVous(Project* project){
 
     RendezVous* rdv = CreerRendezVous(anneeRdv, moisRdv, jourRdv, heure_debut, duree, lieu, p, m, motif);
 
+    //if(RendezVousValable())
+
     char* infos = (char*) malloc(200);
     getInfosRendezVous(infos, rdv);
     printf("%s",infos);

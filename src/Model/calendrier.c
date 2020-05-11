@@ -433,15 +433,15 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv){
  * - ou il ne chevauche aucun autre rdv
  * - ou il n'ait pas le meme médecin / patient / lieu que celui qu'il chevauche
  *
- * @param l : la liste dans laquelle on teste
+ * @param c : le calendrier dans lequel on teste
  * @param rdv : le rdv testé
  * @return 1 si le rdv peut être ajouté
  *         0 sinon
  *         -1 si la liste de rdv ou le rdv est NULL
  */
-int RendezVousValable(ListRendezVous * l, RendezVous * rdv){
-    if (l == NULL || rdv == NULL){
-        fprintf(stderr, "RendezVous_valable() : La liste de rdv ou le rdv est NULL.\n");
+int RendezVousValable(Calendrier c , RendezVous * rdv){
+    if (c == NULL || rdv == NULL){
+        fprintf(stderr, "RendezVous_valable() : Le calendrier ou le rdv est NULL.\n");
         return -1;
     }
 
@@ -451,47 +451,56 @@ int RendezVousValable(ListRendezVous * l, RendezVous * rdv){
         return 0;
     }
 
-    for (ListRendezVous_setOnFirst(l); !ListRendezVous_isOutOfList(l); ListRendezVous_setOnNext(l)){
-
-        RendezVous* current_rdv = ListRendezVous_getCurrent(l);
-
-        //test même date
-        if(current_rdv->date == rdv->date)
-        {
-            //test s'ils se chevauchent
-            if(( current_rdv->heure_debut == rdv->heure_debut)
-                || (rdv->heure_debut >= current_rdv->heure_debut && rdv->heure_debut <= current_rdv->heure_fin)
-                || (rdv->heure_fin >= current_rdv->heure_debut && rdv->heure_fin <= current_rdv->heure_fin))
-            {
-                //test si même médecin / patient / lieu
-                if(strcmp(rdv->medecin->numero_RPS, current_rdv->medecin->numero_RPS) == 0)
-                {
-                    char* tmp = malloc(50);
-                    getNomMedecin(tmp, rdv->medecin);
-                    printf("RendezVous_Valable(): Le médecin \"%s\" a déjà un rendez-vous à %2.1fh", tmp, current_rdv->heure_debut);
-                    getInfosDate(tmp, current_rdv->date);
-                    printf(" le %s. Prenez un autre rdv.\n",tmp);
-                    free((void*) tmp);
-                    return 0;
-                }
-                else if (strcmp(rdv->patient->numero_secu_social, current_rdv->patient->numero_secu_social) == 0)
-                {
-                    char* tmp = malloc(50);
-                    getNomPatient(tmp, rdv->patient);
-                    printf("RendezVous_Valable(): Le patient \"%s\" a déjà un rendez-vous à %2.1fh", tmp, current_rdv->heure_debut);
-                    getInfosDate(tmp, current_rdv->date);
-                    printf(" le %s. Prenez un autre rdv.\n",tmp);
-                    free((void*) tmp);
-                    return 0;
-                }
-                else if(strcmp(rdv->lieu, current_rdv->lieu) == 0)
-                {
-                    char* tmp = malloc(50);
-                    printf("RendezVous_Valable(): Un rendez-vous a déjà lieu dans \"%s\" à %2.1fh", rdv->lieu, current_rdv->heure_debut);
-                    getInfosDate(tmp, current_rdv->date);
-                    printf(" le %s. Prenez un autre rdv.\n",tmp);
-                    free((void*) tmp);
-                    return 0;
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        //On parcourt tous les mois présents dans l'année' et on "entre dedans"
+        for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a)) {
+            Mois m = ListMois_getCurrent(a);
+            //On parcourt tous les jours présents dans le mois et on "entre dedans"
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m)) {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)) {
+                    RendezVous *current_rdv = ListRendezVous_getCurrent(j);
+                    //test même date
+                    if (current_rdv->date == rdv->date) {
+                        //test s'ils se chevauchent
+                        if ((current_rdv->heure_debut == rdv->heure_debut)
+                            ||
+                            (rdv->heure_debut >= current_rdv->heure_debut && rdv->heure_debut <= current_rdv->heure_fin)
+                            ||
+                            (rdv->heure_fin >= current_rdv->heure_debut && rdv->heure_fin <= current_rdv->heure_fin)) {
+                            //test si même médecin / patient / lieu
+                            if (strcmp(rdv->medecin->numero_RPS, current_rdv->medecin->numero_RPS) == 0) {
+                                char *tmp = malloc(50);
+                                getNomMedecin(tmp, rdv->medecin);
+                                printf("RendezVous_Valable(): Le médecin \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
+                                       current_rdv->heure_debut);
+                                getInfosDate(tmp, current_rdv->date);
+                                printf(" le %s. Prenez un autre rdv.\n", tmp);
+                                free((void *) tmp);
+                                return 0;
+                            } else if (strcmp(rdv->patient->numero_secu_social,
+                                              current_rdv->patient->numero_secu_social) == 0) {
+                                char *tmp = malloc(50);
+                                getNomPatient(tmp, rdv->patient);
+                                printf("RendezVous_Valable(): Le patient \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
+                                       current_rdv->heure_debut);
+                                getInfosDate(tmp, current_rdv->date);
+                                printf(" le %s. Prenez un autre rdv.\n", tmp);
+                                free((void *) tmp);
+                                return 0;
+                            } else if (strcmp(rdv->lieu, current_rdv->lieu) == 0) {
+                                char *tmp = malloc(50);
+                                printf("RendezVous_Valable(): Un rendez-vous a déjà lieu dans \"%s\" à %2.1fh",
+                                       rdv->lieu, current_rdv->heure_debut);
+                                getInfosDate(tmp, current_rdv->date);
+                                printf(" le %s. Prenez un autre rdv.\n", tmp);
+                                free((void *) tmp);
+                                return 0;
+                            }
+                        }
+                    }
                 }
             }
         }
