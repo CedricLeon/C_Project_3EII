@@ -98,7 +98,7 @@ void getAnneeDate(char * infos, Date * d){
  */
 void getInfosDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(10);
+    char * tmp = (char*) malloc(20);
     getJourDate(tmp, d);
     strcpy(infos, tmp);
     strcat(infos, "/");
