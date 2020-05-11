@@ -2,6 +2,12 @@
 
 GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.
 
+## Trucs à faire
+
+- GPCalendar_Shell : gérer tout les cas où on tape des bêtises / "help" affiche les choix / "quit" pour quitter la fonction ou on est
+- RDV_Valable()  : à tester
+- Run code coverage et rajouter des tests pour atteindre 80% (demander Alexandre)
+
 ## Unit-Testing
 
 For the moment (01/05/2020) unit-tested are implemented for the patient, physician, calendar, date and order functions.
