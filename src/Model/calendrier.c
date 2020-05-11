@@ -446,10 +446,10 @@ int RendezVousValable(ListRendezVous * l, RendezVous * rdv){
         ||(ListRendezVous_getCurrent(l)->heure_debut<=rdv->heure_debut<ListRendezVous_getCurrent(l)->heure_fin)) //test si heure de debut chevauche un autre rdv
         ||(ListRendezVous_getCurrent(l)->heure_debut<=rdv->heure_fin<ListRendezVous_getCurrent(l)->heure_fin)) // test si heure de fin chevauche un autre rdv
         {
-            return 1;
-        }else{
             printf("RendezVous_Valable(): horaires déjà occupés à cette date, recommencez avec un autre rdv");
             return 0;
+        }else{
+            return 1;
         }
     }
 
