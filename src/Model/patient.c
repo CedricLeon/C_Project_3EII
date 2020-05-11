@@ -132,9 +132,9 @@ void PrintListAntecedents(char* infos, Patient* p){
     for(ListAntecedent_setOnFirst(la); !ListAntecedent_isOutOfList(la); ListAntecedent_setOnNext(la)){
         strcat(infos, "\t -  ");
         char* ante = ListAntecedent_getCurrent(la);
-        strcpy(infos, "\"");
+        strcat(infos, "\"");
         printAntecedent(infos, ante);
-        strcpy(infos, "\"\n");
+        strcat(infos, "\"\n");
     }
 }
 /********************************************************************************************************************/
@@ -425,7 +425,6 @@ void printListPatient(ListPatient* l){
         printPatient(infosPatient, ListPatient_getCurrent(l));
         printf("%s", infosPatient);
         free((void*) infosPatient);
-        printf("\n");
     }
 }
 

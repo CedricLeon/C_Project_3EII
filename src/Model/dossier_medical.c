@@ -126,7 +126,7 @@ NodeAntecedent * newNodeAntecedent(char * ante, NodeAntecedent * previous, NodeA
 void freeNodeAntecedent(ListAntecedent *l, NodeAntecedent * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
-    free((void*)n->ante);
+    free((void*) n->ante);
     free((void *) n);
     ListAntecedent_setOnFirst(l);
     ListAntecedent_setOnPrevious(l);

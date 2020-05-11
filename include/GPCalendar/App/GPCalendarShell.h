@@ -27,8 +27,6 @@ void Shell_consulterInformations(Project* project);
 void Shell_annulerRendezVous(Project* project);
 void Shell_supprimerPatient(Project* project);
 void Shell_supprimerMedecin(Project* project);
-void Shell_saveProject(Project* project);
-void Shell_loadProject(Project* project);
 
 
 #endif //GPCALENDAR_GPCALENDARSHELL_H

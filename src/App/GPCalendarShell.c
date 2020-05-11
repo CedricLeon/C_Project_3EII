@@ -212,12 +212,6 @@ void Shell_supprimerPatient(Project* project){
 void Shell_supprimerMedecin(Project* project){
 
 }
-void Shell_saveProject(Project* project){
-
-}
-void Shell_loadProject(Project* project){
-
-}
 
 int main(int argc, char *argv[]){
 
