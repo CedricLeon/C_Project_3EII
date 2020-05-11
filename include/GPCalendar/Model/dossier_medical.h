@@ -38,7 +38,7 @@ void printAntecedent(char* infos, char * ante);
  */
 typedef struct NodeAntecedent NodeAntecedent;
 struct NodeAntecedent{
-    char * ante;
+    char* ante;
     NodeAntecedent * previous;
     NodeAntecedent * next;
 };
@@ -54,6 +54,8 @@ void freeNodeAntecedent(ListAntecedent *l, NodeAntecedent * n);
 
 void ListAntecedent_init(ListAntecedent * l);
 void ListAntecedent_free(ListAntecedent * l);
+
+int ListAntecedent_add(ListAntecedent* l, char* ante);
 
 int ListAntecedent_isEmpty(ListAntecedent * l);
 int ListAntecedent_isFirst(ListAntecedent * l);
