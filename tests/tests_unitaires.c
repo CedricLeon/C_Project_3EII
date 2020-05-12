@@ -247,7 +247,7 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void *
 }
 
 /**********************************************************************************************************************/
-                                            /*Tests Calendrier*/
+                                            /*Tests Calendrier N°1*/
 /**********************************************************************************************************************/
 
 /**
@@ -368,6 +368,58 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant
     assert_string_equal("motif4", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
     DeleteMedecin(m4);
     DeletePatient(p4);
+}
+
+/**********************************************************************************************************************/
+                                            /*Tests Calendrier N°2*/
+/**********************************************************************************************************************/
+
+static int setup_Calendrier2(void ** state){
+    Calendrier  c = CreerCalendrier();
+    *state = c;
+    return *state == NULL;
+}
+static int teardown_Calendrier2(void ** state){
+    printCalendrier((Calendrier) *state);
+    freeCalendrier((Calendrier) *state);
+    return 0;
+}
+static void testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvAnnule_PasAutresRDVPatientMedecin(void ** state){
+    Patient* p1 = CreerPatient("nomP1", "prenomP1", 1111, 11, 11, "mailP1", "telP1", "secuP1");
+    Medecin* m1 = CreerMedecin("nomM1", "prenomM1", "mailM1", "telM1", "rpsM1");
+    RendezVous* rdv = CreerRendezVous(2021, 11, 11, 16, 30, "lieuRDV", p1, m1, "motifRDV");
+    assert_int_equal(AddRendezVous_Calendrier((Calendrier) *state, rdv), 1);
+    assert_int_equal( AnnulerRendezVous((Calendrier) *state, rdv), 1);
+    assert_int_equal(ListPatient_isEmpty(m1->patients_recus), 1);
+    assert_int_equal(ListMedecin_isEmpty(p1->dossierMedical->medecins_consultes), 1);
+    DeleteMedecin(m1);
+    DeletePatient(p1);
+}
+static void testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvAnnule_AutreRDVPatientMedecin(void ** state){
+    //Patient* p2 = CreerPatient("nomP2", "prenomP2", 1222, 12, 12, "mailP2", "telP2", "secuP2");
+    //Medecin* m2 = CreerMedecin("nomM2", "prenomM2", "mailM2", "telM2", "rpsM2");
+    Patient* p1 = CreerPatient("nomP1", "prenomP1", 1111, 11, 11, "mailP1", "telP1", "secuP1");
+    Medecin* m1 = CreerMedecin("nomM1", "prenomM1", "mailM1", "telM1", "rpsM1");
+    RendezVous* rdv1 = CreerRendezVous(2021, 11, 11, 11, 30, "lieuRDV1", p1, m1, "motifRDV1");
+    RendezVous* rdv2 = CreerRendezVous(2022, 22, 22, 22, 60, "lieuRDV2", p1, m1, "motifRDV2");
+    assert_int_equal(AddRendezVous_Calendrier((Calendrier) *state, rdv1), 1);
+    assert_int_equal(AddRendezVous_Calendrier((Calendrier) *state, rdv2), 1);
+    assert_int_equal( AnnulerRendezVous((Calendrier) *state, rdv2), 1);
+    assert_int_equal(ListPatient_isEmpty(m1->patients_recus), 0);
+    assert_int_equal(ListMedecin_isEmpty(p1->dossierMedical->medecins_consultes), 0);
+    DeleteMedecin(m1);
+    DeletePatient(p1);
+}
+static void testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvPasse(void ** state){
+    Patient* p3 = CreerPatient("nomP3", "prenomP3", 3333, 33, 33, "mailP3", "telP3", "secuP3");
+    Medecin* m3 = CreerMedecin("nomM3", "prenomM3", "mailM3", "telM3", "rpsM3");
+    RendezVous* rdv3 = CreerRendezVous(333, 03, 03, 03, 30, "lieuRDV1", p3, m3, "motifRDV1");
+    assert_int_equal(AddRendezVous_Calendrier((Calendrier) *state, rdv3), 1);
+    assert_int_equal( AnnulerRendezVous((Calendrier) *state, rdv3), 0);
+    assert_int_equal(ListPatient_isEmpty(m3->patients_recus), 0);
+    assert_int_equal(ListMedecin_isEmpty(p3->dossierMedical->medecins_consultes), 0);
+    DeleteMedecin(m3);
+    DeletePatient(p3);
 }
 
 /**********************************************************************************************************************/
@@ -543,9 +595,7 @@ static void testOrdonnance_creerOrdonnance(void ** state){
  * @param state
  */
 static void testOrdonnance_modifierOrdonnance(void ** state){
-    Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
-    DeleteMedecin(((Ordonnance *)*state)->medecin);
-    assert_int_equal((modifierOrdonnance((Ordonnance *)*state, m2, "description2")),1);
+    assert_int_equal((modifierOrdonnance((Ordonnance *)*state, ((Ordonnance *)*state)->medecin, "description2")),1);
 }
 
 /**********************************************************************************************************************/
@@ -563,31 +613,18 @@ static int teardown_DossierMedical(void ** state){
     return 0;
 }
 
-/**
- * On teste de créer un DossierMedical
- * @param state
- */
-static void testDossierMedical_creerDossierMedical(void ** state){
-    assert_int_equal(ListMedecin_isEmpty(((DossierMedical*) *state)->medecins_consultes), 1);
-    assert_int_equal(ListOrdonnance_isEmpty(((DossierMedical*) *state)->ordonnances), 1);
-}
-
 static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
-    Ordonnance * o = CreerOrdonnance(NULL, "test");
-    AddOrdonnanceDossierMedical((DossierMedical *) *state, o);
-    ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
-    assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
-
+    Ordonnance* o = CreerOrdonnance(NULL, "test");
+    assert_int_equal(AddOrdonnanceDossierMedical((DossierMedical *) *state, o), 1);
+    //ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
+    //assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
     // /!\ il ne faut pas delete l'ordonnance ici car on le fait déjà dans le teardown !
 }
 
 static void testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded(void ** state){
-    char * ant = (char*)malloc(50);
-    printf("ecrire : test si espaces marchent");
-    AddAntecedentDossierMedical((DossierMedical *) *state, ant); //!il faut ecrire "test si espaces marchent"
+    assert_int_equal(AddAntecedentDossierMedical((DossierMedical *) *state, "test si espaces marchent"), 1); //!il faut ecrire "test si espaces marchent"
     ListAntecedent_setOnFirst(((DossierMedical *) *state)->antecedents);
     assert_string_equal(ListAntecedent_getCurrent(((DossierMedical *) *state)->antecedents), "test si espaces marchent");
-    free((void*)ant);
 }
 
 
@@ -722,6 +759,11 @@ int main(void){
             cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant),
             cmocka_unit_test(testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant),
     };
+    const struct CMUnitTest tests_fonctionsCalendrier2[] = {
+            cmocka_unit_test(testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvAnnule_PasAutresRDVPatientMedecin),
+            cmocka_unit_test(testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvAnnule_AutreRDVPatientMedecin),
+            cmocka_unit_test(testCalendrier_AnnulerRendezVous_Calendrier_handlesRdvPasse),
+    };
 
     const struct CMUnitTest tests_fonctionsDate[] = {
             cmocka_unit_test(testDate_creerDate),
@@ -742,7 +784,6 @@ int main(void){
     };
 
     const struct CMUnitTest tests_fonctionsDossierMedical[]={
-        cmocka_unit_test(testDossierMedical_creerDossierMedical),
         cmocka_unit_test(testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded),
         cmocka_unit_test(testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded),
     };
@@ -756,8 +797,10 @@ int main(void){
     int return_cmocka_P = cmocka_run_group_tests(tests_fonctionsPatient, setup_Patient, teardown_Patient);
     printf("\033[34;01m\n****************************** Running Medecin Tests ******************************\n\n\033[00m");
     int return_cmocka_M = cmocka_run_group_tests(tests_fonctionsMedecin, setup_Medecin, teardown_Medecin);
-    printf("\033[34;01m\n***************************** Running Calendrier Tests *****************************\n\n\033[00m");
-    int return_cmocka_C = cmocka_run_group_tests(tests_fonctionsCalendrier, setup_Calendrier, teardown_Calendrier);
+    printf("\033[34;01m\n***************************** Running Calendrier Tests N°1 *****************************\n\n\033[00m");
+    int return_cmocka_C1 = cmocka_run_group_tests(tests_fonctionsCalendrier, setup_Calendrier, teardown_Calendrier);
+    //printf("\033[34;01m\n***************************** Running Calendrier Tests N°2 *****************************\n\n\033[00m");
+    //int return_cmocka_C2 = cmocka_run_group_tests(tests_fonctionsCalendrier2, setup_Calendrier2, teardown_Calendrier2);
     printf("\033[34;01m\n***************************** Running Date Tests *****************************\n\n\033[00m");
     int return_cmocka_D = cmocka_run_group_tests(tests_fonctionsDate, setup_Date, teardown_Date);
     printf("\033[34;01m\n***************************** Running Ordonnance Tests *****************************\n\n\033[00m");
@@ -768,6 +811,6 @@ int main(void){
     int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
+    return  return_cmocka_P && return_cmocka_M && return_cmocka_C1 && /*return_cmocka_C2 &&*/ return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
 
 }
