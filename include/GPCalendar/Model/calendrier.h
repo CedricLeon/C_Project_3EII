@@ -222,8 +222,8 @@ ListMois * Annee_existe(ListAnnee * l, int annee);
 int RendezVousValable(Calendrier c , RendezVous * rdv);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+int AnnulerRendezVous(Calendrier c, RendezVous * rdv);
 void freeCalendrier(Calendrier c);
-
 
 int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 void printCalendrier(Calendrier c);

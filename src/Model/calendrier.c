@@ -137,6 +137,94 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
 }
 
 /**
+ * AnnulerRendezVous : Permet d'annuler un RendezVous
+ *                     Seulement s'il n'a pas encore eu lieu et dasn ce cas , si le patient et le mèdecin ne se sont
+ *                     pas encore rencontrés on les supprime de leurs listes respectives
+ * @param c : le calendrier dans lequel on veut annuler un rdv
+ * @param rdv : le rdv qu'on veut annuler
+ * @return 1 si le rdv a bien été annulé
+ *         0 sinon (rdv passé ou autre)
+ *         -1 si le calednrier ou le rdv sont NULL
+ */
+int AnnulerRendezVous(Calendrier c, RendezVous * rdv){
+    if(c == NULL || rdv == NULL)
+    {
+        printf("AnnulerRendezVous() : Le calendrier ou le rdv sont NULL.\n");
+        return -1;
+    }
+    int patientMedecin_dejaConnus = 0;
+
+    //On teste si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on ne regarde pas l'heure pour
+    // cela : si le rdv est passé mais du jour même on peut l'annuler
+    Date* date_courante = CreerDateCourante();
+    if ((date_courante->annee - rdv->date->annee)>0)
+    {
+        FreeDate(date_courante);
+        printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
+        return 0;
+    }
+    if(((date_courante->annee == rdv->date->annee) && (date_courante->mois - rdv->date->mois)>0))
+    {
+        FreeDate(date_courante);
+        printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
+        return 0;
+    }
+    if(((date_courante->annee == rdv->date->annee) && (date_courante->mois == rdv->date->mois) && (date_courante->jour - rdv->date->jour)>0))
+    {
+        FreeDate(date_courante);
+        printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
+        return 0;
+    }
+
+    //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
+    //Pour cela on parcourt tous les rdv du patient dans le calendrier et on cherche le medecin
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for (ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous* current_rdv = ListRendezVous_getCurrent(j);
+                    //si c'est le même rdv alors on fait rien
+                    if(!EqualsRendezVous(current_rdv, rdv))
+                    {
+                        //Si même patient
+                        if(strcmp(current_rdv->patient->numero_secu_social, rdv->patient->numero_secu_social) == 0)
+                        {
+                            //et si meme patient alors ils se connaissent donc on ne doit pas les retirer de leur liste
+                            if(strcmp(current_rdv->medecin->numero_RPS, rdv->medecin->numero_RPS) == 0)
+                            {
+                                patientMedecin_dejaConnus = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //si ils ne se connaissent pas on les retirent de leurs listes respectives
+    if(!patientMedecin_dejaConnus)
+    {
+        if(!DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) || !DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
+            fprintf(stderr, "AnnulerRendezVous() : Apparement le patient et le médecin ne se connaissait pas encore ""mais impossible de les retirer de leurs liste respectives.\n");
+            return 0;
+        }
+    }
+    //Une fois ceci fait on peut free le RendezVous
+    printf("Le rendez-vous daté du %d/%d/%d a bien été annulé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
+    FreeRendezVous(rdv);
+    //On oublie pas de free les objets utilisés
+    FreeDate(date_courante);
+    return 1;
+
+}
+
+/**
  * freeCalendrier : Cette fonction va entièrement free le contenu d'un calendrier, notamment ses rdv. Dans les faits elle
  *                  sera appelée quand l'utilisateur fermera l'application, après avoir sauvegardé le calendrier en
  *                  question dans un fichier cJSON.
