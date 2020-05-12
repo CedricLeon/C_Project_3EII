@@ -202,10 +202,93 @@ void Shell_consulterInformations(Project* project){
     }
 }
 void Shell_annulerRendezVous(Project* project){
-
 }
 void Shell_supprimerPatient(Project* project){
+    char continue_ask[50];
+    char num_secu_patientDelete[100];
+    char* infos = (char*) malloc(1000);
+    printf("Supprimer un patient, supprimera toutes traces de lui de notre base de données, à savoir ses informations "
+           "personnelles, ses rendez-vous n'ayant pas encore eu lieu, ses rendez-vous passés et sa présence en tant "
+           "que patient reçu chez les médecins qu'il a déjà consulté.\n");
+    printf("Souhaitez-vous continuez ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("Vous avez choisi d'arrêtez, retour au menu principal.\n");
+        return;
+    }
+    printf("\nVeuillez entrer le numéro de sécurité sociale du patient que vous voulez supprimer : ");
+    scanf("%s", num_secu_patientDelete);
 
+    Patient* p = ListPatient_seek(project->consultingPatient, num_secu_patientDelete);
+    if(p == NULL){
+        printf("Le patient au numéro de sécurité sociale \"%s\" ne fait pas partie de notre base de données, "
+               "retour au menu principal.\n", num_secu_patientDelete);
+        return;
+    }
+    printf("\n");
+    printPatient(infos, p);
+    printf("%s\n",infos);
+    free((void*) infos);
+    printf("Ce patient est-il celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("\nLe numéro de sécurité sociale du patient que vous avez entré ne correspondait pas au bon patient : retour au menu principal.\n");
+        return;
+    }
+
+    printf("Suppression des rendez-vous du patient \"%s %s\".\n",p->nom, p->prenom);
+    Calendrier c = project->calendrier;
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for (ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous* current_rdv = ListRendezVous_getCurrent(j);
+                    if(strcmp(p->numero_secu_social, current_rdv->patient->numero_secu_social) == 0){
+                        freeNodeRendezVous(j, j->current);
+                    }
+                }
+                if(ListRendezVous_isEmpty(j))
+                {
+                    FreeDate(j->date);
+                    freeNodeJour(m, m->current);
+                }
+            }
+            if(ListJour_isEmpty(m))
+            {
+                freeNodeMois(a, a->current);
+            }
+        }
+        if(ListMois_isEmpty(a))
+        {
+            freeNodeAnnee(c, c->current);
+        }
+    }
+
+
+    ListMedecin* lM = p->dossierMedical->medecins_consultes;
+    for(ListMedecin_setOnFirst(lM); !ListMedecin_isOutOfList(lM); ListMedecin_setOnNext(lM))
+    {
+        Medecin* medecinConsulte = ListMedecin_getCurrent(lM);
+        printf("Suppression du patient \"%s %s\" des patients reçus par le médecin \"%s %s\".\n",p->nom, p->prenom, medecinConsulte->nom, medecinConsulte->prenom);
+        DeletePatientRecuMedecin(medecinConsulte, p);
+    }
+    printf("Suppression du patient \"%s %s\" de notre base de données.\n",p->nom, p->prenom);
+    ListPatient* consultingPatient = project->consultingPatient;
+    for(ListPatient_setOnFirst(consultingPatient); !ListPatient_isOutOfList(consultingPatient); ListPatient_setOnNext(consultingPatient))
+    {
+        if(strcmp(ListPatient_getCurrent(consultingPatient)->numero_secu_social, p->numero_secu_social) == 0)
+        {
+            freeNodePatient(consultingPatient, consultingPatient->current);
+            break;
+        }
+    }
 }
 void Shell_supprimerMedecin(Project* project){
 
@@ -248,7 +331,7 @@ int main(int argc, char *argv[]){
 
     printf("\nBienvenue dans la version console de GPCalendar, souhaitez vous travailler avec un projet déjà existant ou souhaitez vous en créer un nouveau ?\n");
     printf("Entrez \"new\" pour créer un nouveau projet ou entrez directement le chemin absolu du fichier JSON correspondant à un projet précédemment suavegardé.\n");
-    printf("Exemple : \"C:\\Documents\\YourProject.json\"\n");
+    printf("Exemple : \"/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json\"\n");
 
     do{
         scanf("%s", GPCalendar_project_path);
@@ -335,9 +418,11 @@ int main(int argc, char *argv[]){
                 break;
             case 5:
                 printf("Vous avez choisi d'annuler un Rendez-vous.\n");
+                printf("Désolé mais cette fonction n'est pas encore disponible : Data corrupted.\n");
                 break;
             case 6:
                 printf("Vous avez choisi de supprimer un Patient.\n");
+                Shell_supprimerPatient(current_project);
                 break;
             case 7:
                 printf("Vous avez choisi de supprimer un Médecin.\n");
