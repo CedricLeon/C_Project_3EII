@@ -48,38 +48,36 @@ void FreeRendezVous(RendezVous * rdv){
     free((void*) rdv->lieu);
     free((void *) rdv);
 }
-
 /**
- * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide
- * @param rdv : le rdv qu'on veut annuler
- * @return 1 si le rdv a bien été annulé
+ * EqualsRendezVous : fonction permettant de savoir si 12 rendez-vous sont les memes en comparant leurs dates et leurs horaires
+ * @param rdv1 }
+ *             } Les 2 rdv à comparer
+ * @param rdv2 }
+ * @return 1 si ils sont égaux
+ *         0 sinon
+ *         -1 si l'un des rdv est NULL
  */
-int AnnulerRendezVous(RendezVous * rdv){
-
-    //On teste si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on ne regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
-    Date * date_courante = CreerDateCourante();
-    if ((date_courante->annee - rdv->date->annee)>0 || (date_courante->mois - rdv->date->mois)>0 || (date_courante->jour - rdv->date->jour)>0){
-
-        //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
-
-        /*Pour cela on parcourt tous les rdv du patient dans le calendrier et on cherche le medecin*/
-
-        if(DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) && DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
-
-        }
-
-        //Une fois ceci fait on libère l'instance Date liée au rdv et on free le tout
-        FreeDate(rdv->date);
-        free((void *) rdv);
-        printf("Le rendez-vous daté du %d/%d/%d a bien été annulé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
-        return 1;
+int EqualsRendezVous(RendezVous * rdv1, RendezVous * rdv2){
+    if(rdv1 == NULL || rdv2 == NULL)
+    {
+        printf("EqualsRendezVous() : L'un des 2 rdv est NULL.\n");
+        return -1;
     }
-    //On oublie pas de free les objets utilisés
-    FreeDate(date_courante);
-    printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
-    return 1;
+    //test si mêmes dates
+    if(DateEgales(rdv1->date, rdv2->date))
+    {
+        //test mêmes horaires
+        if(rdv1->heure_debut == rdv2->heure_debut && rdv1->heure_fin == rdv2->heure_fin)
+        {
+            //test mêmes motifs et lieux
+            if(strcmp(rdv1->lieu, rdv2->lieu) == 0 && strcmp(rdv1->motif,  rdv2->motif) == 0)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
-
 /**
  * DeplacerRendezVous : Deplacer un RendezVous
  * @param rdv : le rdv qu'on veut deplacer
