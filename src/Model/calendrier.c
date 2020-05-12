@@ -893,10 +893,10 @@ void freeNodeJour(ListJour * l, NodeJour * n){
     n->next->previous = n->previous;
     //et enfin on supprime le noeud
 
-    char * tmp = (char*) malloc(10);
-    getInfosDate(tmp, l->current->jour->date);
+    //char * tmp = (char*) malloc(10);
+    //getInfosDate(tmp, l->current->jour->date);
     //printf("\t\t\tfreeNodeJour : Appel de ListRendezVous_free pourle jour : %s\n", tmp);
-    free((void*) tmp);
+    //free((void*) tmp);
 
     ListRendezVous_free(n->jour);   //On free le jour (donc la liste de RDV qui vient elle même free tous ses nodes) pointé par le Node
     free((void *) n);
@@ -1134,9 +1134,10 @@ void ListMois_free(ListMois * l){
             freeNodeMois(l, l->current);
             //printf("\t\tNodeMois free (fin boucle for).\n");
         }
+        free((void *) l);
     }
     //printf("\tLa liste de mois %d a bien été free.\n", l->annee);
-    free((void *) l);
+
 }
 
 /**
@@ -1335,9 +1336,9 @@ void ListAnnee_free(ListAnnee * l){
             freeNodeAnnee(l, l->current);
             //printf("\tNodeAnnee free (fin boucle for.\n");
         }
+        free((void *) l);
     }
     //printCalendrier(l); // On vérifie que le calendrier est vide
-    free((void *) l);
     //printf("La liste d'années a bien été free.\n");
 }
 
