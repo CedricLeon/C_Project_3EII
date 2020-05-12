@@ -2,11 +2,13 @@
 
 GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.
 
-## Trucs à faire
+## TODO List
 
-- GPCalendar_Shell : gérer tout les cas où on tape des bêtises / "help" affiche les choix / "quit" pour quitter la fonction ou on est
-- RDV_Valable()  : à tester
-- Run code coverage et rajouter des tests pour atteindre 80% (demander Alexandre)
+- GPCalendar_Shell : gérer tout les cas où on tape des bêtises / "help" affiche les choix / "quit" pour quitter la fonction où on est (**Cédric**)
+- RDV_Valable()  : à tester (et à implémenter dans GTK3+ pour éviter au patient de rentrer 2 fois ses données) (**Angéline**)
+- Run code coverage et rajouter des tests pour atteindre 80% (demander Alexandre) (**Angéline**)
+- Ajouter les antécédents un peu partout (jsonSave.c)  (**Cédric**)
+- Mettre plusieurs commit (V0 Model / V0 View / V1 Model / V2 Model +View) sur le master
 
 ## Unit-Testing
 
