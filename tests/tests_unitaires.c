@@ -799,7 +799,7 @@ int main(void){
     int return_cmocka_M = cmocka_run_group_tests(tests_fonctionsMedecin, setup_Medecin, teardown_Medecin);
     printf("\033[34;01m\n***************************** Running Calendrier Tests N°1 *****************************\n\n\033[00m");
     int return_cmocka_C1 = cmocka_run_group_tests(tests_fonctionsCalendrier, setup_Calendrier, teardown_Calendrier);
-    //printf("\033[34;01m\n***************************** Running Calendrier Tests N°2 *****************************\n\n\033[00m");
+    printf("\033[34;01m\n***************************** Running Calendrier Tests N°2 *****************************\n\n\033[00m");
     //int return_cmocka_C2 = cmocka_run_group_tests(tests_fonctionsCalendrier2, setup_Calendrier2, teardown_Calendrier2);
     printf("\033[34;01m\n***************************** Running Date Tests *****************************\n\n\033[00m");
     int return_cmocka_D = cmocka_run_group_tests(tests_fonctionsDate, setup_Date, teardown_Date);
@@ -811,6 +811,6 @@ int main(void){
     int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M && return_cmocka_C1 && /*return_cmocka_C2 &&*/ return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
+    return  return_cmocka_P && return_cmocka_M && return_cmocka_C1 &&/* return_cmocka_C2 && */return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
 
 }
