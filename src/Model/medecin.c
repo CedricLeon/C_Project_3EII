@@ -163,6 +163,15 @@ void getInfoMedecin(char * infos, Medecin * medecin){
     strcat(infos, getAdresseMailMedecin(medecin));
     strcat(infos, "\n\tTel : ");
     strcat(infos, getNumeroTelephoneMedecin(medecin));
+    strcat(infos, "\n\tPatients Recus :  ");
+
+    for(ListPatient_setOnFirst(medecin->patients_recus); !ListPatient_isOutOfList(medecin->patients_recus); ListPatient_setOnNext(medecin->patients_recus)) {
+        strcat(infos, "\"");
+        strcat(infos, ListPatient_getCurrent(medecin->patients_recus)->nom);
+        strcat(infos, " ");
+        strcat(infos, ListPatient_getCurrent(medecin->patients_recus)->prenom);
+        strcat(infos, "\" ; ");
+    }
 }
 
 /********************************************************************************************************************/

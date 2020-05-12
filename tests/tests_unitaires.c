@@ -616,8 +616,8 @@ static int teardown_DossierMedical(void ** state){
 static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
     Ordonnance* o = CreerOrdonnance(NULL, "test");
     assert_int_equal(AddOrdonnanceDossierMedical((DossierMedical *) *state, o), 1);
-    //ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
-    //assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
+    ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
+    assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
     // /!\ il ne faut pas delete l'ordonnance ici car on le fait déjà dans le teardown !
 }
 
