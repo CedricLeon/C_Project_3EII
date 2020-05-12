@@ -105,6 +105,7 @@ void Shell_creerRendezVous(Project* project){
     }
 
     RendezVous* rdv = CreerRendezVous(anneeRdv, moisRdv, jourRdv, heure_debut, duree, lieu, p, m, motif);
+    //La patient est ajouté à al liste des patients recus du médecin et récipoquement dans la fonction CreerRendezVous
 
     //if(RendezVousValable())
 
@@ -122,10 +123,7 @@ void Shell_creerRendezVous(Project* project){
         return;
     }
 
-    AddMedecinConsultePatient(p, m);    //pas de cas d'erreur (le return 0 est uniquement dans le cas ou le patient connaissait déjà le medecin)
-    AddPatientRecuMedecin(m, p);
-
-    printf("Suite au rendez-vous, une ordonnance a pu être prescrite, souhaitez-vous l'ajouter, ainsi qu'un antécédent, au dossier médical du patient (\"yes\" ou \"no\")? :");
+    printf("Suite au rendez-vous, une ordonnance a pu être prescrite, souhaitez-vous l'ajouter, au dossier médical du patient (\"yes\" ou \"no\")? :");
     scanf("%s", addOrdonnance_ask);
     if(strcmp(addOrdonnance_ask, "yes") == 0)
     {
@@ -141,7 +139,7 @@ void Shell_creerRendezVous(Project* project){
     {
         printf("Vous avez choisi de ne pas pas proscrire d'ordonnance après ce rendez-vous.\n");
     }else{
-        fprintf(stderr, "Votre réponse ne fait pas partie de celles attendues, uune ordonnance ne sera pas proscrite.\n");
+        fprintf(stderr, "Votre réponse ne fait pas partie de celles attendues, par conséquent aucune ordonnance ne sera proscrite.\n");
     }
     printf("Veuillez maintenant entrer un compte rendu de ce rendez-vous. Ce compte-rendu sera ajouté aux "
            "antécédents du patient et permettra un suivi plus précis de sa santé lors de ses prochaines consultations :\n");

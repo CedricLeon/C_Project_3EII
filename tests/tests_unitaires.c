@@ -279,9 +279,10 @@ static int teardown_Calendrier(void ** state){
  * @param state : le calendrier
  */
 static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void ** state){
-    //On va créer un rdv où le patient et le médecin sont des objets NULL par soucis de simplicité, on fera attention
-    //à ne pas y accéder
-    RendezVous * rdv = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", NULL, NULL, "motif1");
+    Patient* p1 = CreerPatient("nomP1", "prenomP1", 1111, 11, 11, "mailP1", "telP1", "secuP1");
+    Medecin* m1 = CreerMedecin("nomM1", "prenomM1", "mailM1", "telM1", "rpsM1");
+
+    RendezVous * rdv = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", p1, m1, "motif1");
     //On ajoute le rdv au calendrier
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
 
@@ -294,6 +295,10 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void
     assert_string_equal("motif1", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 
     //On ne free pas le rdv ajouté car ce sera fait dans le teardown de toutes ces fonctions tests
+    //par contre on free le patient et le médecin
+
+    DeleteMedecin(m1);
+    DeletePatient(p1);
 }
 /**
  * testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistante : Test l'ajout d'un 2eme rdv au calendrier,
@@ -301,8 +306,11 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void
  * @param state : le calendrier
  */
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistante(void ** state){
+    Patient* p2 = CreerPatient("nomP2", "prenomP2", 2222, 22, 22, "mailP2", "telP2", "secuP2");
+    Medecin* m2 = CreerMedecin("nomM2", "prenomM2", "mailM2", "telM2", "rpsM2");
+
     //On crée un rdv pour le 02/02/2001, année qui compte déjà un rdv le 01/01/2001
-    RendezVous * rdv = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", NULL, NULL, "motif2");
+    RendezVous * rdv = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", p2, m2, "motif2");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
     //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
@@ -312,6 +320,8 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistan
     assert_int_equal(02, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
     //On teste aussi le motif
     assert_string_equal("motif2", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
+    DeleteMedecin(m2);
+    DeletePatient(p2);
 }
 /**
  * testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant : Test l'ajout d'un 3eme rdv au calendrier,
@@ -319,8 +329,10 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistan
  * @param state : le calendrier
  */
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant(void ** state){
+    Patient* p3 = CreerPatient("nomP3", "prenomP3", 3333, 33, 33, "mailP3", "telP3", "secuP3");
+    Medecin* m3 = CreerMedecin("nomM3", "prenomM3", "mailM3", "telM3", "rpsM3");
     //On crée un rdv pour le 03/01/2001, mois qui compte déjà un rdv le 01/01/2001
-    RendezVous * rdv = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", NULL, NULL, "motif3");
+    RendezVous * rdv = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", p3, m3, "motif3");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
     //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
@@ -330,6 +342,8 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant
     assert_int_equal(03, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
     //On teste aussi le motif
     assert_string_equal("motif3", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
+    DeleteMedecin(m3);
+    DeletePatient(p3);
 }
 /**
  * testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant : Test l'ajout d'un 4eme rdv au calendrier,
@@ -337,8 +351,10 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant
  * @param state : le calendrier
  */
 static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant(void ** state){
+    Patient* p4 = CreerPatient("nomP4", "prenomP4", 4444, 44, 44, "mailP4", "telP4", "secuP4");
+    Medecin* m4 = CreerMedecin("nomM4", "prenomM4", "mailM4", "telM4", "rpsM4");
     //On crée un rdv pour le 01/01/2001, jour qui compte déjà un rdv le 01/01/2001 à 01h
-    RendezVous * rdv = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", NULL, NULL, "motif4");
+    RendezVous * rdv = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", p4, m4, "motif4");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
     //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
@@ -350,6 +366,8 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant
     assert_int_equal(04, ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->heure_debut);
     //On teste aussi le motif
     assert_string_equal("motif4", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
+    DeleteMedecin(m4);
+    DeletePatient(p4);
 }
 
 /**********************************************************************************************************************/
@@ -388,7 +406,7 @@ static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
     assert_int_equal(d->mois,5);   //! à changer !
-    assert_int_equal(d->jour,11);   //! à changer : si le test fail c'est car la date comparée ne
+    assert_int_equal(d->jour,12);   //! à changer : si le test fail c'est car la date comparée ne
                                            //! correspond plus à la date courante (On est peut etre plus le 23/4/2020)
     FreeDate(d);
 }
@@ -513,10 +531,10 @@ static void testOrdonnance_creerOrdonnance(void ** state){
 
     char* tmp = (char*) malloc(10);
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"11/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"12/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "11/8/2020"); //! à changer : idem
+    assert_string_equal(tmp, "12/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -597,15 +615,6 @@ static int setup_JsonSave(void ** state){
     RendezVous * rdv2 = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", p2, m2, "motif2");
     RendezVous * rdv3 = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", p2, m1, "motif3");
     RendezVous * rdv4 = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", p1, m2, "motif4");
-
-    AddMedecinConsultePatient(p1, m1);
-    AddMedecinConsultePatient(p1, m2);
-    AddMedecinConsultePatient(p2, m1);
-    AddMedecinConsultePatient(p2, m2);
-    AddPatientRecuMedecin(m1, p1);
-    AddPatientRecuMedecin(m1, p2);
-    AddPatientRecuMedecin(m2, p1);
-    AddPatientRecuMedecin(m2, p2);
 
     Calendrier c = CreerCalendrier();
 

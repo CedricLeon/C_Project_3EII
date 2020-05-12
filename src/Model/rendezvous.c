@@ -2,6 +2,7 @@
 
 /**
  * CreerRendezVous : Creer dynamiquement un objet RendezVous
+ *                   Et ajoute le patient et le médecin à leur liste respective de personnes rencontrées
  * @param an : l'annee
  * @param mois : le mois
  * @param jour : le jour
@@ -25,6 +26,9 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, dou
 
     rdv->patient = patient;
     rdv->medecin = medecin;
+
+    AddMedecinConsultePatient(patient, medecin);
+    AddPatientRecuMedecin(medecin, patient);
 
     rdv->motif = (char*) malloc(strlen(motif)+1);
     strcpy(rdv->motif, motif);
