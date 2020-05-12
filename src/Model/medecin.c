@@ -121,7 +121,7 @@ void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
  * @param nom : la chaine où on veut stocker le nom
  * @param medecin : le Medecin dont on veut le nom
  */
-void getNomMedecin(char * nom, Medecin *m){
+void getNomMedecin(char* nom, Medecin* m){
     strcpy(nom,m->prenom);
     strcat(nom, " ");
     strcat(nom, m->nom);
@@ -131,7 +131,7 @@ void getNomMedecin(char * nom, Medecin *m){
  * @param medecin : le Medecin dont on veut l'adresse mail
  * @return un char* avec l'adresse mail
  */
-char * getAdresseMailMedecin(Medecin * medecin){
+char * getAdresseMailMedecin(Medecin* medecin){
     return medecin->adresse_mail;
 }
 /**

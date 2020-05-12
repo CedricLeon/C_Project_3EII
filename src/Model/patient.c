@@ -84,19 +84,16 @@ void printPatient(char* infos, Patient * p){
 * @param p : le patient dont on veut acceder au dossier
 */
 void AccesDossierMedical(char* infos, Patient * p){
-
-    char* nom = (char*) malloc(100);
-    DossierMedical * d = p->dossierMedical;
+    DossierMedical* d = p->dossierMedical;
     strcat(infos, "  ");
 
     for(ListMedecin_setOnFirst(d->medecins_consultes); !ListMedecin_isOutOfList(d->medecins_consultes); ListMedecin_setOnNext(d->medecins_consultes)) {
-        getNomMedecin(nom, ListMedecin_getCurrent(d->medecins_consultes));
         strcat(infos, "\"");
-        strcat(infos, nom);
-        strcat(infos, "\"");
-        strcat(infos, " ; ");
+        strcat(infos, ListMedecin_getCurrent(d->medecins_consultes)->nom);
+        strcat(infos, " ");
+        strcat(infos, ListMedecin_getCurrent(d->medecins_consultes)->prenom);
+        strcat(infos, "\" ; ");
     }
-    free((void*) nom);
 
     strcat(infos, "\n\tOrdonnances :\n");
     PrintListOrdonnances(infos, p);
@@ -418,10 +415,9 @@ ListPatient * CreerListPatient(){
  * @param l : la liste à afficher
  */
 void printListPatient(ListPatient* l){
-    char* infosPatient;
     for (ListPatient_setOnFirst(l); !ListPatient_isOutOfList(l); ListPatient_setOnNext(l)) {
         printf("\n *  ");
-        infosPatient = (char*) malloc(1000);
+        char* infosPatient = (char*) malloc(sizeof(char) * 5000);
         printPatient(infosPatient, ListPatient_getCurrent(l));
         printf("%s", infosPatient);
         free((void*) infosPatient);

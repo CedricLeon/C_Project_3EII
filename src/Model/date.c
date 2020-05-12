@@ -98,16 +98,20 @@ void getAnneeDate(char * infos, Date * d){
  */
 void getInfosDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(30);
-    getJourDate(tmp, d);
-    strcpy(infos, tmp);
+    char* tmp1 = (char*) malloc(sizeof(char) * 5);
+    char* tmp2 = (char*) malloc(sizeof(char) * 5);
+    char* tmp3 = (char*) malloc(sizeof(char) * 5);
+    getJourDate(tmp1, d);
+    strcpy(infos, tmp1);
     strcat(infos, "/");
-    getMoisDate(tmp, d);
-    strcat(infos, tmp);
+    getMoisDate(tmp2, d);
+    strcat(infos, tmp2);
     strcat(infos, "/");
-    getAnneeDate(tmp, d);
-    strcat(infos, tmp);
-    free((void*) tmp);
+    getAnneeDate(tmp3, d);
+    strcat(infos, tmp3);
+    free((void*) tmp1);
+    free((void*) tmp2);
+    free((void*) tmp3);
 }
 /**
  * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leur année, leur mois et leur jours sont les mêmes
