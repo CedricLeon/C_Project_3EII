@@ -63,9 +63,7 @@ void DeleteOrdonnance(Ordonnance * o){
     //Il ne faut pas free le medecin !
     FreeDate(o->date_edition);
     FreeDate(o->date_expiration);
-
     free((void*)o->description);
-
     free((void *) o);
 }
 

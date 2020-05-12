@@ -211,7 +211,8 @@ int AnnulerRendezVous(Calendrier c, RendezVous * rdv){
     if(!patientMedecin_dejaConnus)
     {
         if(!DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) || !DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
-            fprintf(stderr, "AnnulerRendezVous() : Apparement le patient et le médecin ne se connaissait pas encore ""mais impossible de les retirer de leurs liste respectives.\n");
+            fprintf(stderr, "AnnulerRendezVous() : Apparement le patient et le médecin ne se connaissait pas encore "
+                            "mais impossible de les retirer de leurs liste respectives.\n");
             return 0;
         }
     }
