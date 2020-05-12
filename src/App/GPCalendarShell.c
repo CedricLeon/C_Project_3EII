@@ -229,7 +229,7 @@ void Shell_supprimerPatient(Project* project){
     printPatient(infos, p);
     printf("%s\n",infos);
     free((void*) infos);
-    printf("Ce patient est-il celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
+    printf("Ce patient est-il bien celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
     scanf("%s", continue_ask);
     if( strcmp(continue_ask, "yes") != 0 ){
         printf("\nLe numéro de sécurité sociale du patient que vous avez entré ne correspondait pas au bon patient : retour au menu principal.\n");
@@ -251,6 +251,10 @@ void Shell_supprimerPatient(Project* project){
                 {
                     RendezVous* current_rdv = ListRendezVous_getCurrent(j);
                     if(strcmp(p->numero_secu_social, current_rdv->patient->numero_secu_social) == 0){
+                        char date_rdv[20];
+                        getInfosDate(date_rdv, current_rdv->date);
+                        printf("\tAnnulation de la consultation du %s à %2.1f entre le patient \"%s %s\" et le médecin \"%s %s\""
+                               " \n", date_rdv, current_rdv->heure_debut, p->nom, p->prenom, current_rdv->medecin->nom, current_rdv->medecin->prenom);
                         freeNodeRendezVous(j, j->current);
                     }
                 }
@@ -291,7 +295,106 @@ void Shell_supprimerPatient(Project* project){
     }
 }
 void Shell_supprimerMedecin(Project* project){
+    char continue_ask[50];
+    char num_rps_medecinDelete[100];
+    char* infos = (char*) malloc(1000);
+    printf("Supprimer un médecin, supprimera toutes traces de lui de notre base de données. A savoir ses informations "
+           "personnelles, ses consultations n'ayant pas encore eu lieu, ses consultations passés, sa présence en tant "
+           "que médecin consulté chez les patients qu'il a déjà reçu et toutes les ordonnances qu'il a prescrites à ses patients !\n");
+    printf("Souhaitez-vous continuez ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("Vous avez choisi d'arrêtez, retour au menu principal.\n");
+        return;
+    }
+    printf("\nVeuillez entrer le numéro RPS du médecin que vous voulez supprimer : ");
+    scanf("%s", num_rps_medecinDelete);
 
+    Medecin* medecin = ListMedecin_seek(project->workingMedecins, num_rps_medecinDelete);
+    if(medecin == NULL){
+        printf("Le médecin au numéro RPS \"%s\" ne fait pas partie de notre base de données, "
+               "retour au menu principal.\n", num_rps_medecinDelete);
+        return;
+    }
+    printf("\n");
+    getInfoMedecin(infos, medecin);
+    printf("%s\n\n",infos);
+    free((void*) infos);
+    printf("Ce médecin est-il bien celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("\nLe numéro RPS du médecin que vous avez entré ne correspondait pas au bon médecin : retour au menu principal.\n");
+        return;
+    }
+
+    printf("Suppression des consultations du médecin \"%s %s\".\n", medecin->nom, medecin->prenom);
+    Calendrier c = project->calendrier;
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for (ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous* current_rdv = ListRendezVous_getCurrent(j);
+                    if(strcmp(medecin->numero_RPS, current_rdv->medecin->numero_RPS) == 0){
+                        char date_rdv[20];
+                        getInfosDate(date_rdv, current_rdv->date);
+                        printf("\tAnnulation de la consultation du %s à %2.1f entre le médecin \"%s %s\" et le patient \"%s %s\""
+                               " \n", date_rdv, current_rdv->heure_debut, medecin->nom, medecin->prenom, current_rdv->patient->nom, current_rdv->patient->prenom);
+                        freeNodeRendezVous(j, j->current);
+                    }
+                }
+                if(ListRendezVous_isEmpty(j))
+                {
+                    FreeDate(j->date);
+                    freeNodeJour(m, m->current);
+                }
+            }
+            if(ListJour_isEmpty(m))
+            {
+                freeNodeMois(a, a->current);
+            }
+        }
+        if(ListMois_isEmpty(a))
+        {
+            freeNodeAnnee(c, c->current);
+        }
+    }
+
+    ListPatient* lP = medecin->patients_recus;
+    for(ListPatient_setOnFirst(lP); !ListPatient_isOutOfList(lP); ListPatient_setOnNext(lP))
+    {
+        Patient* patientRecu = ListPatient_getCurrent(lP);
+        printf("Suppression du médecin \"%s %s\" de la liste des médecins consultés par le patient \"%s %s\".\n", medecin->nom, medecin->prenom, patientRecu->nom, patientRecu->prenom);
+        DeleteMedecinConsultePatient(patientRecu, medecin);
+        ListOrdonnance* lOrdo = patientRecu->dossierMedical->ordonnances;
+        for(ListOrdonnance_setOnFirst(lOrdo); !ListOrdonnance_isOutOfList(lOrdo); ListOrdonnance_setOnNext(lOrdo))
+        {
+            if(strcmp(ListOrdonnance_getCurrent(lOrdo)->medecin->numero_RPS, medecin->numero_RPS) == 0)
+            {
+                char date_ordo[20];
+                getInfosDate(date_ordo, ListOrdonnance_getCurrent(lOrdo)->date_edition);
+                printf("\tSuppression de l'ordonnance éditée le %s par le médecin \"%s %s\" pour le patient \"%s %s\".\n", date_ordo, medecin->nom, medecin->prenom, patientRecu->nom, patientRecu->prenom);
+                freeNodeOrdonnance(lOrdo, lOrdo->current);
+            }
+        }
+    }
+
+    printf("Suppression du médecin \"%s %s\" de notre base de données.\n", medecin->nom, medecin->prenom);
+    ListMedecin* workingMedecins = project->workingMedecins;
+    for(ListMedecin_setOnFirst(workingMedecins); !ListMedecin_isOutOfList(workingMedecins); ListMedecin_setOnNext(workingMedecins))
+    {
+        if(strcmp(ListMedecin_getCurrent(workingMedecins)->numero_RPS, medecin->numero_RPS) == 0)
+        {
+            freeNodeMedecin(workingMedecins, workingMedecins->current);
+            break;
+        }
+    }
 }
 
 int main(int argc, char *argv[]){
@@ -426,6 +529,7 @@ int main(int argc, char *argv[]){
                 break;
             case 7:
                 printf("Vous avez choisi de supprimer un Médecin.\n");
+                Shell_supprimerMedecin(current_project);
                 break;
             case 8:
                 printf("Vous avez choisi de sauvegarder le Projet actuel.\n");
