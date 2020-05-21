@@ -1,7 +1,13 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
 
+//Header du projet
 #include "GPCalendar/Model/rendezvous.h"
+
+//Librairies Standarts
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * Pour le fonctionnement du calendrier je pense que pour que ça reste simple au maximum mais sans qu'il soit
@@ -213,10 +219,11 @@ RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv);
 ListRendezVous * Jour_existe(ListJour * l, Date * d);
 ListJour *  Mois_existe(ListMois * l, int mois);
 ListMois * Annee_existe(ListAnnee * l, int annee);
+int RendezVousValable(Calendrier c , RendezVous * rdv);
 
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+int AnnulerRendezVous(Calendrier c, RendezVous * rdv);
 void freeCalendrier(Calendrier c);
-
 
 int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 void printCalendrier(Calendrier c);

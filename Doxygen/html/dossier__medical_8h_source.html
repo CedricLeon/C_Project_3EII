@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/Model/dossier_medical.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('dossier__medical_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">dossier_medical.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="dossier__medical_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DOSSIER_MEDICAL_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define DOSSIER_MEDICAL_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ordonnance_8h.html">GPCalendar/Model/ordonnance.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                                                <span class="comment">/*DossierMedical*/</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="dossier__medical_8h.html#ad590923d4faca35e5c8562d4d5bb4f9e">   14</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_list_antecedent.html">ListAntecedent</a> <a class="code" href="struct_list_antecedent.html">ListAntecedent</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_dossier_medical.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_dossier_medical.html">DossierMedical</a>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_dossier_medical.html#a7f90f000e882b02f6ce24bbef6ce32f0">   17</a></span>&#160;    <a class="code" href="struct_list_medecin.html">ListMedecin</a>* <a class="code" href="struct_dossier_medical.html#a7f90f000e882b02f6ce24bbef6ce32f0">medecins_consultes</a>; <span class="comment">//Liste des m�decins consult�s pour ce dossier</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_dossier_medical.html#ac4e1845527931ccc76c5ab1c1241d0e1">   18</a></span>&#160;    <a class="code" href="struct_list_ordonnance.html">ListOrdonnance</a>* <a class="code" href="struct_dossier_medical.html#ac4e1845527931ccc76c5ab1c1241d0e1">ordonnances</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_dossier_medical.html#a63a3ed7e25a889fb251e7de019a7d63c">   22</a></span>&#160;    <a class="code" href="struct_list_antecedent.html">ListAntecedent</a>* <a class="code" href="struct_dossier_medical.html#a63a3ed7e25a889fb251e7de019a7d63c">antecedents</a>;<span class="comment">//CR des précédents passages à l&#39;hopital pour les prochaines versions</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}<a class="code" href="dossier__medical_8h.html#a482d7a373d53af45b6a8db312bbda0e7">DossierMedical</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct_dossier_medical.html">DossierMedical</a> * <a class="code" href="dossier__medical_8h.html#a1db3210daf71ff58dc58d74d5a07bf62">CreerDossierMedical</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a44e63b91f9635db243b80de6b39e1d18">FreeDossierMedical</a>(<a class="code" href="struct_dossier_medical.html">DossierMedical</a> * d);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a9c215f91e9233e56eba1e278ee6ffb0d">AccesDossier</a>(<a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#a055a11ab5b446aff1ea072b18e0b0c80">AddOrdonnanceDossierMedical</a>(<a class="code" href="struct_dossier_medical.html">DossierMedical</a> * dm, <a class="code" href="struct_ordonnance.html">Ordonnance</a> * ordonnance);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#aca624d76847984c3ab23fb8f4087527c">AddAntecedentDossierMedical</a>(<a class="code" href="struct_dossier_medical.html">DossierMedical</a> * dm, <span class="keywordtype">char</span> * ant);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a8e4a0090325fda62a95dacf809982593">printAntecedent</a>(<span class="keywordtype">char</span>* infos, <span class="keywordtype">char</span> * ante);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                                <span class="comment">/*ListAntecedent*/</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="dossier__medical_8h.html#a95553c64bb16e0c3c92e5062729e8ca7">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="struct_node_antecedent.html">   41</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_node_antecedent.html">NodeAntecedent</a>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="struct_node_antecedent.html#a0c3929ebda710960d6b68a88c77f2254">   42</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_node_antecedent.html#a0c3929ebda710960d6b68a88c77f2254">ante</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="struct_node_antecedent.html#a92d57ada68813cf417c5471a1458927a">   43</a></span>&#160;    <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * <a class="code" href="struct_node_antecedent.html#a92d57ada68813cf417c5471a1458927a">previous</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="struct_node_antecedent.html#a8273a14f46fbc8204294f8db5e3ea9e6">   44</a></span>&#160;    <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * <a class="code" href="struct_node_antecedent.html#a8273a14f46fbc8204294f8db5e3ea9e6">next</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="struct_list_antecedent.html">   47</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_list_antecedent.html">ListAntecedent</a>{</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_list_antecedent.html#a2aa9bf6f515609f5be242be5c329e78b">   48</a></span>&#160;    <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> <a class="code" href="struct_list_antecedent.html#a2aa9bf6f515609f5be242be5c329e78b">sentinel_begin</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="struct_list_antecedent.html#a93d09acaf5d014c14988d6a2b03cb6c3">   49</a></span>&#160;    <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * <a class="code" href="struct_list_antecedent.html#a93d09acaf5d014c14988d6a2b03cb6c3">current</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_list_antecedent.html#a7f9cde4039bce42b1cdf76bb41731bb4">   50</a></span>&#160;    <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> <a class="code" href="struct_list_antecedent.html#a7f9cde4039bce42b1cdf76bb41731bb4">sentinel_end</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * <a class="code" href="dossier__medical_8h.html#ac8a65401429da15e4e5438c27f1d5bc7">newNodeAntecedent</a>(<span class="keywordtype">char</span> * ante, <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * previous, <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * next);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a0fca73fc369dd709c14e7de2682ec7da">freeNodeAntecedent</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> *l, <a class="code" href="struct_node_antecedent.html">NodeAntecedent</a> * n);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a85174cddd32f52cb915ce0dc1f67af77">ListAntecedent_init</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#aeb097f92ae54258f575ef3d1a548b4a2">ListAntecedent_free</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#a45c487156c6665f976e3bd236d33a20d">ListAntecedent_isEmpty</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#a31102bf36a7cb7b42f3e1dac1f6f941b">ListAntecedent_isFirst</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#a7266fb96edb1bc50da80ec5d82b17f70">ListAntecedent_isLast</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">int</span> <a class="code" href="dossier__medical_8h.html#af42338122c4597a30b844ca68996c1aa">ListAntecedent_isOutOfList</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a31fd0b56dd2cc3875a0fcb1313495f3c">ListAntecedent_setOnFirst</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a8a564a91ea100e308d68a53db7aee9fc">ListAntecedent_setOnLast</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a6905d735ace0ed3489d72c8fbd677238">ListAntecedent_setOnNext</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dossier__medical_8h.html#a4269123aeb4a2223826fd39e74cdf90f">ListAntecedent_setOnPrevious</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">char</span> * <a class="code" href="dossier__medical_8h.html#a7d4086d62ff250c2f21718b1fb690d03">ListAntecedent_getCurrent</a>(<a class="code" href="struct_list_antecedent.html">ListAntecedent</a> * l);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="struct_list_antecedent_html_a7f9cde4039bce42b1cdf76bb41731bb4"><div class="ttname"><a href="struct_list_antecedent.html#a7f9cde4039bce42b1cdf76bb41731bb4">ListAntecedent::sentinel_end</a></div><div class="ttdeci">NodeAntecedent sentinel_end</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:50</div></div>
+<div class="ttc" id="struct_dossier_medical_html_ac4e1845527931ccc76c5ab1c1241d0e1"><div class="ttname"><a href="struct_dossier_medical.html#ac4e1845527931ccc76c5ab1c1241d0e1">DossierMedical::ordonnances</a></div><div class="ttdeci">ListOrdonnance * ordonnances</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:18</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a7266fb96edb1bc50da80ec5d82b17f70"><div class="ttname"><a href="dossier__medical_8h.html#a7266fb96edb1bc50da80ec5d82b17f70">ListAntecedent_isLast</a></div><div class="ttdeci">int ListAntecedent_isLast(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:205</div></div>
+<div class="ttc" id="struct_node_antecedent_html"><div class="ttname"><a href="struct_node_antecedent.html">NodeAntecedent</a></div><div class="ttdef"><b>Definition:</b> dossier_medical.h:41</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a85174cddd32f52cb915ce0dc1f67af77"><div class="ttname"><a href="dossier__medical_8h.html#a85174cddd32f52cb915ce0dc1f67af77">ListAntecedent_init</a></div><div class="ttdeci">void ListAntecedent_init(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:141</div></div>
+<div class="ttc" id="dossier__medical_8h_html_aeb097f92ae54258f575ef3d1a548b4a2"><div class="ttname"><a href="dossier__medical_8h.html#aeb097f92ae54258f575ef3d1a548b4a2">ListAntecedent_free</a></div><div class="ttdeci">void ListAntecedent_free(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:156</div></div>
+<div class="ttc" id="ordonnance_8h_html"><div class="ttname"><a href="ordonnance_8h.html">ordonnance.h</a></div></div>
+<div class="ttc" id="dossier__medical_8h_html_a8a564a91ea100e308d68a53db7aee9fc"><div class="ttname"><a href="dossier__medical_8h.html#a8a564a91ea100e308d68a53db7aee9fc">ListAntecedent_setOnLast</a></div><div class="ttdeci">void ListAntecedent_setOnLast(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:239</div></div>
+<div class="ttc" id="struct_patient_html"><div class="ttname"><a href="struct_patient.html">Patient</a></div><div class="ttdef"><b>Definition:</b> patient.h:15</div></div>
+<div class="ttc" id="struct_dossier_medical_html_a7f90f000e882b02f6ce24bbef6ce32f0"><div class="ttname"><a href="struct_dossier_medical.html#a7f90f000e882b02f6ce24bbef6ce32f0">DossierMedical::medecins_consultes</a></div><div class="ttdeci">ListMedecin * medecins_consultes</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:17</div></div>
+<div class="ttc" id="struct_node_antecedent_html_a8273a14f46fbc8204294f8db5e3ea9e6"><div class="ttname"><a href="struct_node_antecedent.html#a8273a14f46fbc8204294f8db5e3ea9e6">NodeAntecedent::next</a></div><div class="ttdeci">NodeAntecedent * next</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:44</div></div>
+<div class="ttc" id="struct_ordonnance_html"><div class="ttname"><a href="struct_ordonnance.html">Ordonnance</a></div><div class="ttdef"><b>Definition:</b> ordonnance.h:11</div></div>
+<div class="ttc" id="struct_list_antecedent_html"><div class="ttname"><a href="struct_list_antecedent.html">ListAntecedent</a></div><div class="ttdef"><b>Definition:</b> dossier_medical.h:47</div></div>
+<div class="ttc" id="struct_list_ordonnance_html"><div class="ttname"><a href="struct_list_ordonnance.html">ListOrdonnance</a></div><div class="ttdef"><b>Definition:</b> ordonnance.h:41</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a7d4086d62ff250c2f21718b1fb690d03"><div class="ttname"><a href="dossier__medical_8h.html#a7d4086d62ff250c2f21718b1fb690d03">ListAntecedent_getCurrent</a></div><div class="ttdeci">char * ListAntecedent_getCurrent(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:267</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a1db3210daf71ff58dc58d74d5a07bf62"><div class="ttname"><a href="dossier__medical_8h.html#a1db3210daf71ff58dc58d74d5a07bf62">CreerDossierMedical</a></div><div class="ttdeci">DossierMedical * CreerDossierMedical()</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:8</div></div>
+<div class="ttc" id="dossier__medical_8h_html_aca624d76847984c3ab23fb8f4087527c"><div class="ttname"><a href="dossier__medical_8h.html#aca624d76847984c3ab23fb8f4087527c">AddAntecedentDossierMedical</a></div><div class="ttdeci">int AddAntecedentDossierMedical(DossierMedical *dm, char *ant)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:68</div></div>
+<div class="ttc" id="struct_list_medecin_html"><div class="ttname"><a href="struct_list_medecin.html">ListMedecin</a></div><div class="ttdef"><b>Definition:</b> medecin.h:64</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a4269123aeb4a2223826fd39e74cdf90f"><div class="ttname"><a href="dossier__medical_8h.html#a4269123aeb4a2223826fd39e74cdf90f">ListAntecedent_setOnPrevious</a></div><div class="ttdeci">void ListAntecedent_setOnPrevious(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:257</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a055a11ab5b446aff1ea072b18e0b0c80"><div class="ttname"><a href="dossier__medical_8h.html#a055a11ab5b446aff1ea072b18e0b0c80">AddOrdonnanceDossierMedical</a></div><div class="ttdeci">int AddOrdonnanceDossierMedical(DossierMedical *dm, Ordonnance *ordonnance)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:43</div></div>
+<div class="ttc" id="dossier__medical_8h_html_af42338122c4597a30b844ca68996c1aa"><div class="ttname"><a href="dossier__medical_8h.html#af42338122c4597a30b844ca68996c1aa">ListAntecedent_isOutOfList</a></div><div class="ttdeci">int ListAntecedent_isOutOfList(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:219</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a8e4a0090325fda62a95dacf809982593"><div class="ttname"><a href="dossier__medical_8h.html#a8e4a0090325fda62a95dacf809982593">printAntecedent</a></div><div class="ttdeci">void printAntecedent(char *infos, char *ante)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:96</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a44e63b91f9635db243b80de6b39e1d18"><div class="ttname"><a href="dossier__medical_8h.html#a44e63b91f9635db243b80de6b39e1d18">FreeDossierMedical</a></div><div class="ttdeci">void FreeDossierMedical(DossierMedical *d)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:27</div></div>
+<div class="ttc" id="struct_node_antecedent_html_a0c3929ebda710960d6b68a88c77f2254"><div class="ttname"><a href="struct_node_antecedent.html#a0c3929ebda710960d6b68a88c77f2254">NodeAntecedent::ante</a></div><div class="ttdeci">char * ante</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:42</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a9c215f91e9233e56eba1e278ee6ffb0d"><div class="ttname"><a href="dossier__medical_8h.html#a9c215f91e9233e56eba1e278ee6ffb0d">AccesDossier</a></div><div class="ttdeci">void AccesDossier(Patient *p)</div></div>
+<div class="ttc" id="struct_dossier_medical_html"><div class="ttname"><a href="struct_dossier_medical.html">DossierMedical</a></div><div class="ttdef"><b>Definition:</b> dossier_medical.h:16</div></div>
+<div class="ttc" id="struct_list_antecedent_html_a93d09acaf5d014c14988d6a2b03cb6c3"><div class="ttname"><a href="struct_list_antecedent.html#a93d09acaf5d014c14988d6a2b03cb6c3">ListAntecedent::current</a></div><div class="ttdeci">NodeAntecedent * current</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:49</div></div>
+<div class="ttc" id="struct_list_antecedent_html_a2aa9bf6f515609f5be242be5c329e78b"><div class="ttname"><a href="struct_list_antecedent.html#a2aa9bf6f515609f5be242be5c329e78b">ListAntecedent::sentinel_begin</a></div><div class="ttdeci">NodeAntecedent sentinel_begin</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:48</div></div>
+<div class="ttc" id="struct_dossier_medical_html_a63a3ed7e25a889fb251e7de019a7d63c"><div class="ttname"><a href="struct_dossier_medical.html#a63a3ed7e25a889fb251e7de019a7d63c">DossierMedical::antecedents</a></div><div class="ttdeci">ListAntecedent * antecedents</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:22</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a45c487156c6665f976e3bd236d33a20d"><div class="ttname"><a href="dossier__medical_8h.html#a45c487156c6665f976e3bd236d33a20d">ListAntecedent_isEmpty</a></div><div class="ttdeci">int ListAntecedent_isEmpty(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:179</div></div>
+<div class="ttc" id="struct_node_antecedent_html_a92d57ada68813cf417c5471a1458927a"><div class="ttname"><a href="struct_node_antecedent.html#a92d57ada68813cf417c5471a1458927a">NodeAntecedent::previous</a></div><div class="ttdeci">NodeAntecedent * previous</div><div class="ttdef"><b>Definition:</b> dossier_medical.h:43</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a482d7a373d53af45b6a8db312bbda0e7"><div class="ttname"><a href="dossier__medical_8h.html#a482d7a373d53af45b6a8db312bbda0e7">DossierMedical</a></div><div class="ttdeci">struct DossierMedical DossierMedical</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a31102bf36a7cb7b42f3e1dac1f6f941b"><div class="ttname"><a href="dossier__medical_8h.html#a31102bf36a7cb7b42f3e1dac1f6f941b">ListAntecedent_isFirst</a></div><div class="ttdeci">int ListAntecedent_isFirst(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:192</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a0fca73fc369dd709c14e7de2682ec7da"><div class="ttname"><a href="dossier__medical_8h.html#a0fca73fc369dd709c14e7de2682ec7da">freeNodeAntecedent</a></div><div class="ttdeci">void freeNodeAntecedent(ListAntecedent *l, NodeAntecedent *n)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:126</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a6905d735ace0ed3489d72c8fbd677238"><div class="ttname"><a href="dossier__medical_8h.html#a6905d735ace0ed3489d72c8fbd677238">ListAntecedent_setOnNext</a></div><div class="ttdeci">void ListAntecedent_setOnNext(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:248</div></div>
+<div class="ttc" id="dossier__medical_8h_html_ac8a65401429da15e4e5438c27f1d5bc7"><div class="ttname"><a href="dossier__medical_8h.html#ac8a65401429da15e4e5438c27f1d5bc7">newNodeAntecedent</a></div><div class="ttdeci">NodeAntecedent * newNodeAntecedent(char *ante, NodeAntecedent *previous, NodeAntecedent *next)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:112</div></div>
+<div class="ttc" id="dossier__medical_8h_html_a31fd0b56dd2cc3875a0fcb1313495f3c"><div class="ttname"><a href="dossier__medical_8h.html#a31fd0b56dd2cc3875a0fcb1313495f3c">ListAntecedent_setOnFirst</a></div><div class="ttdeci">void ListAntecedent_setOnFirst(ListAntecedent *l)</div><div class="ttdef"><b>Definition:</b> dossier_medical.c:230</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="dossier__medical_8h.html">dossier_medical.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

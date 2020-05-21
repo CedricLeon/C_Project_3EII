@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/View/fonctionsGraphiques.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('fonctions_graphiques_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">fonctionsGraphiques.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="fonctions_graphiques_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef FONCTIONSGRAPHIQUES_H_INC</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FONCTIONSGRAPHIQUES_H_INC</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="callbacks_8h.html">GPCalendar/View/callbacks.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;gtk/gtk.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">int</span> <a class="code" href="fonctions_graphiques_8h.html#a0503e871db78e3e885c9ecd7a5cfbbcf">create_window</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//void boutonRDV(GtkWidget *button, GtkGrid* grid, gchar* nomRendezVous, gint left, gint top,gint width,gint height);</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#a8ca01db52b3fbb75e9632ff6dc724a50">boutonRDV</a>(GtkWidget *wid, GtkGrid grid);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#a75501679d12a0842dbdc6194358f97d7">parcoursJour</a>(<a class="code" href="struct_list_rendez_vous.html">Jour</a> j);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#af9da0b3c4675cb9a0cbb0e09e154bb80">creerBoutonRDV</a>(GtkWidget * bouton, <a class="code" href="struct_rendez_vous.html">RendezVous</a> * rdv);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#a081c88af684f01079fb65d79a6d9ae87">fenetreRecherchePatient</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#aaa8afd3fb1c2eef8ad968bf26becc0b4">fenetreCreerRDV</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fonctions_graphiques_8h.html#a280d9560dd03e3e4dd7d11a0e7542b3e">fenetreCreerPatient</a>(GtkWidget * widget, gpointer data);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_a75501679d12a0842dbdc6194358f97d7"><div class="ttname"><a href="fonctions_graphiques_8h.html#a75501679d12a0842dbdc6194358f97d7">parcoursJour</a></div><div class="ttdeci">void parcoursJour(Jour j)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:520</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_a081c88af684f01079fb65d79a6d9ae87"><div class="ttname"><a href="fonctions_graphiques_8h.html#a081c88af684f01079fb65d79a6d9ae87">fenetreRecherchePatient</a></div><div class="ttdeci">void fenetreRecherchePatient(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:122</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_af9da0b3c4675cb9a0cbb0e09e154bb80"><div class="ttname"><a href="fonctions_graphiques_8h.html#af9da0b3c4675cb9a0cbb0e09e154bb80">creerBoutonRDV</a></div><div class="ttdeci">void creerBoutonRDV(GtkWidget *bouton, RendezVous *rdv)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:546</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_aaa8afd3fb1c2eef8ad968bf26becc0b4"><div class="ttname"><a href="fonctions_graphiques_8h.html#aaa8afd3fb1c2eef8ad968bf26becc0b4">fenetreCreerRDV</a></div><div class="ttdeci">void fenetreCreerRDV(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:190</div></div>
+<div class="ttc" id="struct_rendez_vous_html"><div class="ttname"><a href="struct_rendez_vous.html">RendezVous</a></div><div class="ttdef"><b>Definition:</b> rendezvous.h:13</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_a280d9560dd03e3e4dd7d11a0e7542b3e"><div class="ttname"><a href="fonctions_graphiques_8h.html#a280d9560dd03e3e4dd7d11a0e7542b3e">fenetreCreerPatient</a></div><div class="ttdeci">void fenetreCreerPatient(GtkWidget *widget, gpointer data)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:381</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_a0503e871db78e3e885c9ecd7a5cfbbcf"><div class="ttname"><a href="fonctions_graphiques_8h.html#a0503e871db78e3e885c9ecd7a5cfbbcf">create_window</a></div><div class="ttdeci">int create_window(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:29</div></div>
+<div class="ttc" id="callbacks_8h_html"><div class="ttname"><a href="callbacks_8h.html">callbacks.h</a></div><div class="ttdoc">Provides basic unit testing functions declaration. </div></div>
+<div class="ttc" id="struct_list_rendez_vous_html"><div class="ttname"><a href="struct_list_rendez_vous.html">ListRendezVous</a></div><div class="ttdef"><b>Definition:</b> calendrier.h:50</div></div>
+<div class="ttc" id="fonctions_graphiques_8h_html_a8ca01db52b3fbb75e9632ff6dc724a50"><div class="ttname"><a href="fonctions_graphiques_8h.html#a8ca01db52b3fbb75e9632ff6dc724a50">boutonRDV</a></div><div class="ttdeci">void boutonRDV(GtkWidget *wid, GtkGrid grid)</div><div class="ttdef"><b>Definition:</b> fonctionsGraphiques.c:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_bcfceead3b84f67cd3d92ab17b267287.html">View</a></li><li class="navelem"><a class="el" href="fonctions_graphiques_8h.html">fonctionsGraphiques.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

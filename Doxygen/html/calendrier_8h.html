@@ -1,0 +1,2308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier include/GPCalendar/Model/calendrier.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('calendrier_8h.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Structures de données</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier calendrier.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="rendezvous_8h_source.html">GPCalendar/Model/rendezvous.h</a>&quot;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;string.h&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de calendrier.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="calendrier_8h__incl.png" border="0" usemap="#include_2_g_p_calendar_2_model_2calendrier_8h" alt=""/></div>
+<map name="include_2_g_p_calendar_2_model_2calendrier_8h" id="include_2_g_p_calendar_2_model_2calendrier_8h">
+<area shape="rect" id="node2" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="457,96,671,123"/><area shape="rect" id="node3" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="478,171,649,197"/><area shape="rect" id="node10" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="428,485,615,512"/><area shape="rect" id="node14" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="550,725,745,752"/><area shape="rect" id="node7" href="time_8h.html" title="time.h" alt="" coords="861,245,919,272"/><area shape="rect" id="node8" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="855,321,1037,362"/><area shape="rect" id="node9" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="741,411,936,437"/><area shape="rect" id="node11" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="634,800,840,827"/><area shape="rect" id="node12" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="432,561,611,602"/><area shape="rect" id="node13" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="515,651,729,677"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><img src="calendrier_8h__dep__incl.png" border="0" usemap="#include_2_g_p_calendar_2_model_2calendrier_8hdep" alt=""/></div>
+<map name="include_2_g_p_calendar_2_model_2calendrier_8hdep" id="include_2_g_p_calendar_2_model_2calendrier_8hdep">
+<area shape="rect" id="node2" href="main_8c.html" title="src/App/main.c" alt="" coords="1486,829,1596,856"/><area shape="rect" id="node3" href="calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="1883,104,2033,131"/><area shape="rect" id="node4" href="_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="1089,913,1252,954"/><area shape="rect" id="node6" href="_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="893,822,1032,863"/><area shape="rect" id="node8" href="tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="314,920,464,947"/><area shape="rect" id="node9" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="980,97,1119,138"/><area shape="rect" id="node5" href="_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="1079,1003,1261,1029"/><area shape="rect" id="node7" href="_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="887,920,1039,947"/><area shape="rect" id="node10" href="callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="843,285,985,312"/><area shape="rect" id="node11" href="fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="43,739,249,765"/><area shape="rect" id="node12" href="time_8c.html" title="src/View/time.c" alt="" coords="1018,376,1131,403"/><area shape="rect" id="node13" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="955,187,1144,229"/><area shape="rect" id="node14" href="time_8h.html" title="include/GPCalendar\l/View/time.h" alt="" coords="1112,278,1251,319"/><area shape="rect" id="node15" href="date_8h.html" title="include/GPCalendar\l/Model/date.h" alt="" coords="1223,369,1361,410"/><area shape="rect" id="node16" href="date_8c.html" title="src/Model/date.c" alt="" coords="1233,467,1351,493"/><area shape="rect" id="node17" href="ordonnance_8h.html" title="include/GPCalendar\l/Model/ordonnance.h" alt="" coords="1066,459,1208,501"/><area shape="rect" id="node21" href="patient_8h.html" title="include/GPCalendar\l/Model/patient.h" alt="" coords="695,641,833,682"/><area shape="rect" id="node24" href="rendezvous_8h.html" title="include/GPCalendar\l/Model/rendezvous.h" alt="" coords="1209,731,1351,773"/><area shape="rect" id="node18" href="ordonnance_8c.html" title="src/Model/ordonnance.c" alt="" coords="1089,557,1249,584"/><area shape="rect" id="node19" href="dossier__medical_8h.html" title="include/GPCalendar\l/Model/dossier_medical.h" alt="" coords="893,550,1064,591"/><area shape="rect" id="node20" href="dossier__medical_8c.html" title="src/Model/dossier_medical.c" alt="" coords="959,648,1147,675"/><area shape="rect" id="node22" href="medecin_8c.html" title="src/Model/medecin.c" alt="" coords="529,739,671,765"/><area shape="rect" id="node23" href="patient_8c.html" title="src/Model/patient.c" alt="" coords="696,739,829,765"/><area shape="rect" id="node25" href="rendezvous_8c.html" title="src/Model/rendezvous.c" alt="" coords="1259,829,1420,856"/></map>
+</div>
+</div>
+<p><a href="calendrier_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Structures de données</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_jour.html">NodeJour</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_jour.html">ListJour</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_mois.html">NodeMois</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_mois.html">ListMois</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node_annee.html">NodeAnnee</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_list_annee.html">ListAnnee</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:ae2350ed09740cb8ba4a410d757556657"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ae2350ed09740cb8ba4a410d757556657">NodeRendezVous</a></td></tr>
+<tr class="separator:ae2350ed09740cb8ba4a410d757556657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e50633bb5c551d09693a390acd33d1"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a></td></tr>
+<tr class="separator:a99e50633bb5c551d09693a390acd33d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a693d46df06f5493742f8d70cf367db36"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node_jour.html">NodeJour</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a693d46df06f5493742f8d70cf367db36">NodeJour</a></td></tr>
+<tr class="separator:a693d46df06f5493742f8d70cf367db36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a97c3f15c38f94baef498c511b4258"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a></td></tr>
+<tr class="separator:ae3a97c3f15c38f94baef498c511b4258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13484b853abd153027c77ca7df77206"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node_mois.html">NodeMois</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad13484b853abd153027c77ca7df77206">NodeMois</a></td></tr>
+<tr class="separator:ad13484b853abd153027c77ca7df77206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e119d682702ebf078b3235b4c0fe464"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a></td></tr>
+<tr class="separator:a8e119d682702ebf078b3235b4c0fe464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe17f80f837ec5c181d144f872b2e320"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_node_annee.html">NodeAnnee</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#abe17f80f837ec5c181d144f872b2e320">NodeAnnee</a></td></tr>
+<tr class="separator:abe17f80f837ec5c181d144f872b2e320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8644d1026df84be3eb3190cf1ef29fa"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a></td></tr>
+<tr class="separator:ab8644d1026df84be3eb3190cf1ef29fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a64191f7428e9d03b0042e91ba8daedda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a64191f7428e9d03b0042e91ba8daedda">newNodeRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv, <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *previous, <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *next)</td></tr>
+<tr class="separator:a64191f7428e9d03b0042e91ba8daedda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fbcadf4b456c9bff151fe47f7dab17e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a1fbcadf4b456c9bff151fe47f7dab17e">freeNodeRendezVous</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *n)</td></tr>
+<tr class="separator:a1fbcadf4b456c9bff151fe47f7dab17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23e5ea4de8dba5e7782907621774c881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a23e5ea4de8dba5e7782907621774c881">ListRendezVous_init</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_date.html">Date</a> *date)</td></tr>
+<tr class="separator:a23e5ea4de8dba5e7782907621774c881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a3a8b4abb465a6f161ef09d1c7a7c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#aa4a3a8b4abb465a6f161ef09d1c7a7c8">ListRendezVous_free</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:aa4a3a8b4abb465a6f161ef09d1c7a7c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71f6dc0c84a3542f6079487b72d558fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a71f6dc0c84a3542f6079487b72d558fb">ListRendezVous_isEmpty</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a71f6dc0c84a3542f6079487b72d558fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8555690cee8bc78ce0e8d4bffedf06a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ab8555690cee8bc78ce0e8d4bffedf06a">ListRendezVous_isFirst</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:ab8555690cee8bc78ce0e8d4bffedf06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9463e60d5c1910777b37beb5928115f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a9463e60d5c1910777b37beb5928115f2">ListRendezVous_isLast</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a9463e60d5c1910777b37beb5928115f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd1dd22d5e4fe7c1c416e6c0f200b308"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#afd1dd22d5e4fe7c1c416e6c0f200b308">ListRendezVous_isOutOfList</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:afd1dd22d5e4fe7c1c416e6c0f200b308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164b598d8b392c7fdbc2cd2de8e43fae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a164b598d8b392c7fdbc2cd2de8e43fae">ListRendezVous_setOnFirst</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a164b598d8b392c7fdbc2cd2de8e43fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05b8f2671d1ddef046a1dc4585982fdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a05b8f2671d1ddef046a1dc4585982fdf">ListRendezVous_setOnLast</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a05b8f2671d1ddef046a1dc4585982fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b835cfb870b007a3b9cae580ca673a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad4b835cfb870b007a3b9cae580ca673a">ListRendezVous_setOnNext</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:ad4b835cfb870b007a3b9cae580ca673a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f7c91ca3b63a07b9d67aac2e4ae1a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a65f7c91ca3b63a07b9d67aac2e4ae1a2">ListRendezVous_setOnPrevious</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a65f7c91ca3b63a07b9d67aac2e4ae1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f0f57991d4199f6b115e9cfd4416f22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a3f0f57991d4199f6b115e9cfd4416f22">ListRendezVous_getCurrent</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a3f0f57991d4199f6b115e9cfd4416f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e59bdc8c647207f998467ef782ac3e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_date.html">Date</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a0e59bdc8c647207f998467ef782ac3e6">ListRendezVous_getDate</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l)</td></tr>
+<tr class="separator:a0e59bdc8c647207f998467ef782ac3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239864286dae5eb5fad8d4d1aec8dd61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_jour.html">NodeJour</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a239864286dae5eb5fad8d4d1aec8dd61">newNodeJour</a> (<a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> jour, <a class="el" href="struct_node_jour.html">NodeJour</a> *previous, <a class="el" href="struct_node_jour.html">NodeJour</a> *next)</td></tr>
+<tr class="separator:a239864286dae5eb5fad8d4d1aec8dd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa01efc6ea9dcc9c84cbf338eaf6edc0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#aa01efc6ea9dcc9c84cbf338eaf6edc0c">freeNodeJour</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l, <a class="el" href="struct_node_jour.html">NodeJour</a> *n)</td></tr>
+<tr class="separator:aa01efc6ea9dcc9c84cbf338eaf6edc0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad023df59ece4d1364fcd2ca60a324136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad023df59ece4d1364fcd2ca60a324136">ListJour_init</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l, int mois)</td></tr>
+<tr class="separator:ad023df59ece4d1364fcd2ca60a324136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ba8a2ee92a1f19beb9e50f81b0d3eeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a6ba8a2ee92a1f19beb9e50f81b0d3eeb">ListJour_free</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a6ba8a2ee92a1f19beb9e50f81b0d3eeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac741a3bf9a8d15974d16008c321b5ea1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac741a3bf9a8d15974d16008c321b5ea1">ListJour_isEmpty</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:ac741a3bf9a8d15974d16008c321b5ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b92599c29997802ffd9c443f0add8be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a4b92599c29997802ffd9c443f0add8be">ListJour_isFirst</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a4b92599c29997802ffd9c443f0add8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56bfd9c2ae8c423545862af4c98b0e53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a56bfd9c2ae8c423545862af4c98b0e53">ListJour_isLast</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a56bfd9c2ae8c423545862af4c98b0e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a128e2f52a208077d8f00584623959436"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a128e2f52a208077d8f00584623959436">ListJour_isOutOfList</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a128e2f52a208077d8f00584623959436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a141f34ddd47c285e4decf8a43f971edc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a141f34ddd47c285e4decf8a43f971edc">ListJour_setOnFirst</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a141f34ddd47c285e4decf8a43f971edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae898b127aa5450827d488b210abffef7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ae898b127aa5450827d488b210abffef7">ListJour_setOnLast</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:ae898b127aa5450827d488b210abffef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf20bcdd09cd93bce93c89683463761"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#abcf20bcdd09cd93bce93c89683463761">ListJour_setOnNext</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:abcf20bcdd09cd93bce93c89683463761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e61f6532a2ca6e9e0246319605e627"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a22e61f6532a2ca6e9e0246319605e627">ListJour_setOnPrevious</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a22e61f6532a2ca6e9e0246319605e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce754eccbdb2cd861def01a3ba31e46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a7ce754eccbdb2cd861def01a3ba31e46">ListJour_getCurrent</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:a7ce754eccbdb2cd861def01a3ba31e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e32f962738c27befaadd9682e85abd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad7e32f962738c27befaadd9682e85abd">ListJour_getMois</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l)</td></tr>
+<tr class="separator:ad7e32f962738c27befaadd9682e85abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1def1692e1773aced0df50e636a497"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_mois.html">NodeMois</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a9d1def1692e1773aced0df50e636a497">newNodeMois</a> (<a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a> mois, <a class="el" href="struct_node_mois.html">NodeMois</a> *previous, <a class="el" href="struct_node_mois.html">NodeMois</a> *next)</td></tr>
+<tr class="separator:a9d1def1692e1773aced0df50e636a497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9275b7c6125c062bca9e4b23e3647732"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a9275b7c6125c062bca9e4b23e3647732">freeNodeMois</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l, <a class="el" href="struct_node_mois.html">NodeMois</a> *n)</td></tr>
+<tr class="separator:a9275b7c6125c062bca9e4b23e3647732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03531e8fb084f00ce43bc3157c322364"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a03531e8fb084f00ce43bc3157c322364">ListMois_init</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l, int annee)</td></tr>
+<tr class="separator:a03531e8fb084f00ce43bc3157c322364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f01d6362f11e8014a1be51abdc5e2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#af7f01d6362f11e8014a1be51abdc5e2b">ListMois_free</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:af7f01d6362f11e8014a1be51abdc5e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556cd580fd93ff0d52fb2d0b3dfa69f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a556cd580fd93ff0d52fb2d0b3dfa69f0">ListMois_isEmpty</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:a556cd580fd93ff0d52fb2d0b3dfa69f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5efcafc5109ad9bbb7756929f4eafa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ada5efcafc5109ad9bbb7756929f4eafa">ListMois_isFirst</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:ada5efcafc5109ad9bbb7756929f4eafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80966080e6dad3a2db0609e5472c1ac0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a80966080e6dad3a2db0609e5472c1ac0">ListMois_isLast</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:a80966080e6dad3a2db0609e5472c1ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac816beeab1021e26e0412f67193ab59e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac816beeab1021e26e0412f67193ab59e">ListMois_isOutOfList</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:ac816beeab1021e26e0412f67193ab59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb7b85f4f6992f1185823ec8798c59c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#aeb7b85f4f6992f1185823ec8798c59c2">ListMois_setOnFirst</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:aeb7b85f4f6992f1185823ec8798c59c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a265871d4668be9afc26e10ad00459b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a265871d4668be9afc26e10ad00459b97">ListMois_setOnLast</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:a265871d4668be9afc26e10ad00459b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0bbe879e1e80d3f06efba0c0ee7ecf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#aa0bbe879e1e80d3f06efba0c0ee7ecf1">ListMois_setOnNext</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:aa0bbe879e1e80d3f06efba0c0ee7ecf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f38dd1d6aefd9d00ced220f3c8aae74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a9f38dd1d6aefd9d00ced220f3c8aae74">ListMois_setOnPrevious</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:a9f38dd1d6aefd9d00ced220f3c8aae74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2436ecb5b78458a0b1cc6195e2e667b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac2436ecb5b78458a0b1cc6195e2e667b">ListMois_getCurrent</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:ac2436ecb5b78458a0b1cc6195e2e667b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f73996fff5622b7812702ccf8203720"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a8f73996fff5622b7812702ccf8203720">ListMois_getAnnee</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l)</td></tr>
+<tr class="separator:a8f73996fff5622b7812702ccf8203720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82a2f152a703e9b51074c273b9698a72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node_annee.html">NodeAnnee</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a82a2f152a703e9b51074c273b9698a72">newNodeAnnee</a> (<a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a> annee, <a class="el" href="struct_node_annee.html">NodeAnnee</a> *previous, <a class="el" href="struct_node_annee.html">NodeAnnee</a> *next)</td></tr>
+<tr class="separator:a82a2f152a703e9b51074c273b9698a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8709c90ca5834559a74d4bceb207b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a7b8709c90ca5834559a74d4bceb207b7">freeNodeAnnee</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l, <a class="el" href="struct_node_annee.html">NodeAnnee</a> *n)</td></tr>
+<tr class="separator:a7b8709c90ca5834559a74d4bceb207b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad976743c8a754ce361d6c6af09b1419b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad976743c8a754ce361d6c6af09b1419b">ListAnnee_init</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:ad976743c8a754ce361d6c6af09b1419b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3584a784456e50c245925d0089a0ade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#af3584a784456e50c245925d0089a0ade">ListAnnee_free</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:af3584a784456e50c245925d0089a0ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6c088b0dfda1404ee0f739e4054f41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a0e6c088b0dfda1404ee0f739e4054f41">ListAnnee_isEmpty</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a0e6c088b0dfda1404ee0f739e4054f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addf3a57bfbf4a016312d7bf83d7c92f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#addf3a57bfbf4a016312d7bf83d7c92f9">ListAnnee_isFirst</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:addf3a57bfbf4a016312d7bf83d7c92f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6073cc43fe76f45014b714b8a2abc56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac6073cc43fe76f45014b714b8a2abc56">ListAnnee_isLast</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:ac6073cc43fe76f45014b714b8a2abc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9161fa1aeec9317c2556fdbf6bcb21d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a9161fa1aeec9317c2556fdbf6bcb21d3">ListAnnee_isOutOfList</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a9161fa1aeec9317c2556fdbf6bcb21d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d7f6bf4cd161b65324a13690ee2a82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a22d7f6bf4cd161b65324a13690ee2a82">ListAnnee_setOnFirst</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a22d7f6bf4cd161b65324a13690ee2a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068446161f20527888da16bbcba9a6fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a068446161f20527888da16bbcba9a6fb">ListAnnee_setOnLast</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a068446161f20527888da16bbcba9a6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e82033decd5e0aef5a6aeb7db73dc7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a8e82033decd5e0aef5a6aeb7db73dc7a">ListAnnee_setOnNext</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a8e82033decd5e0aef5a6aeb7db73dc7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a925a46709f31bbf04a9b5c06a0e7cfc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a925a46709f31bbf04a9b5c06a0e7cfc8">ListAnnee_setOnPrevious</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:a925a46709f31bbf04a9b5c06a0e7cfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8aee214c669b3cae0ad6cf1e04e2651"><td class="memItemLeft" align="right" valign="top"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ad8aee214c669b3cae0ad6cf1e04e2651">ListAnnee_getCurrent</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l)</td></tr>
+<tr class="separator:ad8aee214c669b3cae0ad6cf1e04e2651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80470fac61594e0fcb7a12d27422a9ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a80470fac61594e0fcb7a12d27422a9ab">CreerCalendrier</a> ()</td></tr>
+<tr class="separator:a80470fac61594e0fcb7a12d27422a9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b839047989693d1e760e0dd0fa6243"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a47b839047989693d1e760e0dd0fa6243">ChercherRendezVousSuivant</a> (<a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> j, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a47b839047989693d1e760e0dd0fa6243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0567b0b4423c3656ac5b969111936626"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a0567b0b4423c3656ac5b969111936626">AddRendezVous_Jour</a> (<a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> j, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a0567b0b4423c3656ac5b969111936626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b99489007274be2dc239cdf8be3c524"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a8b99489007274be2dc239cdf8be3c524">AddJour_Mois</a> (<a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a> m, <a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> j)</td></tr>
+<tr class="separator:a8b99489007274be2dc239cdf8be3c524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac38aff1a5ce7c90a443c2a8bda6eaad1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac38aff1a5ce7c90a443c2a8bda6eaad1">AddMois_Annee</a> (<a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a> a, <a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a> m)</td></tr>
+<tr class="separator:ac38aff1a5ce7c90a443c2a8bda6eaad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a450576665db3511a8bffd8a3dbade73b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a450576665db3511a8bffd8a3dbade73b">AddAnnee_Calendrier</a> (<a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c, <a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a> a)</td></tr>
+<tr class="separator:a450576665db3511a8bffd8a3dbade73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab33fde0e75227f51c28053e2d8eae36f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ab33fde0e75227f51c28053e2d8eae36f">RendezVous_existe</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:ab33fde0e75227f51c28053e2d8eae36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415ff7b2abfcdcd9aecc18d2a9897d2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a415ff7b2abfcdcd9aecc18d2a9897d2e">Jour_existe</a> (<a class="el" href="struct_list_jour.html">ListJour</a> *l, <a class="el" href="struct_date.html">Date</a> *d)</td></tr>
+<tr class="separator:a415ff7b2abfcdcd9aecc18d2a9897d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c5790002b48d96f4057746e974d77e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a1c5790002b48d96f4057746e974d77e5">Mois_existe</a> (<a class="el" href="struct_list_mois.html">ListMois</a> *l, int mois)</td></tr>
+<tr class="separator:a1c5790002b48d96f4057746e974d77e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b41af28922cc8adef5d829997b74e29"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a4b41af28922cc8adef5d829997b74e29">Annee_existe</a> (<a class="el" href="struct_list_annee.html">ListAnnee</a> *l, int annee)</td></tr>
+<tr class="separator:a4b41af28922cc8adef5d829997b74e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb9e54644a74cbd36287ec5f172c394b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#adb9e54644a74cbd36287ec5f172c394b">RendezVousValable</a> (<a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *l, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:adb9e54644a74cbd36287ec5f172c394b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5442fe73fe43e982dec5ae9b36bd0f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#af5442fe73fe43e982dec5ae9b36bd0f2">AddRendezVous_Calendrier</a> (<a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:af5442fe73fe43e982dec5ae9b36bd0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58b7e50ba3bf89beb9ad2b77cd83a425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a58b7e50ba3bf89beb9ad2b77cd83a425">freeCalendrier</a> (<a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c)</td></tr>
+<tr class="separator:a58b7e50ba3bf89beb9ad2b77cd83a425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5968c63f3b806d8f670fbfd965d755e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#a5968c63f3b806d8f670fbfd965d755e4">chercherRendezVous_Calendrier</a> (<a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a5968c63f3b806d8f670fbfd965d755e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2199296f615dbb3728385f855cc201e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="calendrier_8h.html#ac2199296f615dbb3728385f855cc201e">printCalendrier</a> (<a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c)</td></tr>
+<tr class="separator:ac2199296f615dbb3728385f855cc201e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des définitions de type</h2>
+<a class="anchor" id="a8e119d682702ebf078b3235b4c0fe464"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="struct_list_mois.html">ListMois</a>* <a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab8644d1026df84be3eb3190cf1ef29fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="struct_list_annee.html">ListAnnee</a>* <a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a99e50633bb5c551d09693a390acd33d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a>* <a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae3a97c3f15c38f94baef498c511b4258"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="struct_list_jour.html">ListJour</a>* <a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abe17f80f837ec5c181d144f872b2e320"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_node_annee.html">NodeAnnee</a> <a class="el" href="struct_node_annee.html">NodeAnnee</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a693d46df06f5493742f8d70cf367db36"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_node_jour.html">NodeJour</a> <a class="el" href="struct_node_jour.html">NodeJour</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad13484b853abd153027c77ca7df77206"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_node_mois.html">NodeMois</a> <a class="el" href="struct_node_mois.html">NodeMois</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae2350ed09740cb8ba4a410d757556657"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pour le fonctionnement du calendrier je pense que pour que ça reste simple au maximum mais sans qu'il soit quand même trop compliqué d'aller chercher un rdv en particulier, il faut fonctionner avec une liste de liste.</p>
+<p>On fait une liste de <a class="el" href="struct_rendez_vous.html">RendezVous</a>, que l'on appelle un Jour. Ensuite un fait une liste de Jour qui est donc dans les faits une liste de listes de <a class="el" href="struct_rendez_vous.html">RendezVous</a>) qu'on appelle un Mois. Puis une liste de Mois, ça s'appelle une année. Et enfin une liste d'année, notre Calendrier.</p>
+<p>Ainsi pour accéder à un rdv particulier de notre Calendrier, si on le cherche par la date, il suffit de faire quelque chose comme ça :</p>
+<p>for(Parcours du calendrier){ if(rdv-&gt;date-&gt;annee == ListAnnee_getCurrentAnnee(Calendrier)){ for(Parcours de l'année){ if(rdv-&gt;date-&gt;mois == ListMois_getCurrentMois(ListAnnee_getCurrentAnnee(Calendrier)){ etc....</p>
+<p>C'est long à écrire mais facile à lire et comprendre et rapide à calculer je pense</p>
+<p>Ce raisonnement a aussi l'avantage de pouvoir facilement créer plusieurs calendrier si plus tard on permet à l'application de gérer l'emploi du temps de plusieurs mèdecin etc... Si on veut faire ça on à juste à ajouter un paramètre <a class="el" href="struct_medecin.html">Medecin</a> * medecin à notre <a class="el" href="struct_list_annee.html">ListAnnee</a> Ou alors à créer différents type comme CalendrierMedecin qui contient comme attributs une <a class="el" href="struct_list_annee.html">ListAnnee</a> (pas un pointeur) et un medecin. et on peut faire CalendrierPatient, CalendrierSalle, CalendrierHopital etc... </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a450576665db3511a8bffd8a3dbade73b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddAnnee_Calendrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a>&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddAnnee_Calendrier : Ajoute une annee à une liste d'annee triée chrnologiquement (via leur attribut int annee) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: la liste d'annee, le calendrier </td></tr>
+    <tr><td class="paramname">a</td><td>: l'annee à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 Si l'annee a bien été ajoutée 0 Si elle ne l'a pas été -1 si le calendrier ou l'année étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b99489007274be2dc239cdf8be3c524"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddJour_Mois </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a>&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddJour_Mois : Ajoute un Jour à une liste de Jour triée chrnologiquement (via leur attribut <a class="el" href="struct_date.html">Date</a>) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>: la liste de jour, le mois </td></tr>
+    <tr><td class="paramname">j</td><td>: le jour a ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 Si le jour a bien été ajouté 0 Si il ne l'a pas été -1 si le mois ou le jour étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac38aff1a5ce7c90a443c2a8bda6eaad1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddMois_Annee </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a>&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a>&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddMois_Annee : Ajoute un Mois à une liste de Mois triée chrnologiquement (via leur attribut int mois) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>: la liste de mois, l'année </td></tr>
+    <tr><td class="paramname">m</td><td>: le mois à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 Si le mois a bien été ajouté 0 Si il ne l'a pas été -1 si le mois ou l'année étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af5442fe73fe43e982dec5ae9b36bd0f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddRendezVous_Calendrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddRendezVous_Calendrier : Fonction permettant d'ajouter un rendez-vous à notre calendrier. Pour cela il faut que le calendrier soit créé et initialisé avant l'appel et que le rdv ait été testé comme valable auparavant (y'a-t-il de la place pour ce créneau horaire, rentre-t-il dans les horaires du médecin etc...)</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: Le calendrier auquel on veut ajouter notre rendez-vous </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rendez-vous à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv a correctement été ajouté 0 si il n'a pas pu l'être (Cf printf pour plus de détails) -1 si le calendrier ou le rdv étaient NULL </dd></dl>
+<p>Dans un premier temps on teste si notre rdv est valable, ce serait d'ailleurs peut-être mieux de le faire dans une autre fonction, comme ça on pourrait l'appeller séparément de celle là. &ndash;&gt; je suis ok vaut mieux en faire une à part (Elisabeth) Et ensuite si le rdv peut être ajouté, bah on l'ajoute au calendrier.</p>
+<p>Et pour cela, la méthode va être toujours la même : On regarde si dans notre calendrier l'année correspondant à l'année où le rdv va être ajouté existe déjà, si ce n'est pas le cas on la crée, l'initialise (et du coup on crée aussi le mois et le jour correspondants à ceux du rdv) et on ajoute le rdv. Si l'année existaient déjà alors on cherche dans cette année le mois du rdv. Et là même charabia, si on ne le trouve pas on le crée avec le jour du rdv et on ajoute tout ce beau monde à l'année et donc au calendrier. Et s'il existait déjà on cherche le jour etc ... Au final cela ressemble à ça :</p>
+<p>if(anneeDuRdv existe pas dans le calendrier){ Creer l'année, le mois et le jour du rdv Ajoute tout ça au calendrier } else if(moisDuRdv existe pas){ Creer Mois jour, ajouter au calendrier }else if(jourDuRdv existe pas){ Creer Jour du rdv l'ajouter avec le rdv au calendrier }else{ //On considère pour l'instant que si on est arrivé dans cette fonction c'est que le rdv a déjà été considéré //comme valide, cad qu'on peut le placer dans le jour sans qu'il empiete sur un autre rdv Ajoute le rdv au jour }</p>
+
+</div>
+</div>
+<a class="anchor" id="a0567b0b4423c3656ac5b969111936626"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AddRendezVous_Jour </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AddRendezVous_Jour : Ajoute à une liste de rdv classée chronologiquement un rdv </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>: la liste de rdv </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv à ajouter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv a bien été ajouté, 0 si le jour ou le rdv étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4b41af28922cc8adef5d829997b74e29"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_list_mois.html">ListMois</a>* Annee_existe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>annee</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Annee_existe : Cherche une Annee dans une liste d'Annee </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">a</td><td>: l'Annee cherchée </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur l'Annee si elle est trouvée NULL si elle n'est pas trouvée ou si la liste était NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5968c63f3b806d8f670fbfd965d755e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int chercherRendezVous_Calendrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>chercherRendezVous_Calendrier : Fonction qui positionne tous les pointeurs courants des listes d'années, de mois, de jours et de rdv sur la liste contenant notre rendez-vous s'il appartient au calendrier. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: le calendrier dans lequel on cherche </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv cherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv a été trouvé, 0 si le rdv n'appartient pas au calendrier, -1 si l'un des objets est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a47b839047989693d1e760e0dd0fa6243"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ChercherRendezVousSuivant </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td>
+          <td class="paramname"><em>j</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ChercherRendezVousSuivant : Place Current sur le rdv dont l'heure de debut est juste apres l'heure de fin du rdv passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>: la liste de <a class="el" href="struct_rendez_vous.html">RendezVous</a> dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rendezVous dont on cherche le suivant </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si Current est bien placé sur le rdv suivant, 0 si current est placé sur sentinel_end et qu'il faut donc ajouter notre rdv à la fin de la <a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a>, -1 si erreur (ne devrait jamais arriver puisque testé avant) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a80470fac61594e0fcb7a12d27422a9ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> CreerCalendrier </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CreerCalendrier : Fonction qui Cree et intialise un objet calendrier </p>
+<dl class="section return"><dt>Renvoie</dt><dd>le calendrier initialisé. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a58b7e50ba3bf89beb9ad2b77cd83a425"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeCalendrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeCalendrier : Cette fonction va entièrement free le contenu d'un calendrier, notamment ses rdv. Dans les faits elle sera appelée quand l'utilisateur fermera l'application, après avoir sauvegardé le calendrier en question dans un fichier cJSON. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>: le calendrier à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7b8709c90ca5834559a74d4bceb207b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeAnnee </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_annee.html">NodeAnnee</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeAnnee : Fonction permettant de free un objet <a class="el" href="struct_node_annee.html">NodeAnnee</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node en question </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa01efc6ea9dcc9c84cbf338eaf6edc0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeJour </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_jour.html">NodeJour</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeJour : Fonction permettant de free un objet <a class="el" href="struct_node_jour.html">NodeJour</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node en question </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9275b7c6125c062bca9e4b23e3647732"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeMois </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_mois.html">NodeMois</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeMois : Fonction permettant de free un objet <a class="el" href="struct_node_mois.html">NodeMois</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node en question </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1fbcadf4b456c9bff151fe47f7dab17e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeNodeRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeNodeRendezVous : Fonction permettant de free un objet <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>: le node en question </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a415ff7b2abfcdcd9aecc18d2a9897d2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a>* Jour_existe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_date.html">Date</a> *&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Jour_existe : Cherche un jour dans une liste de jours </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">j</td><td>: le jour cherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le jour si il est trouvé NULL si il n'est pas trouvé ou si la liste ou le jour étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af3584a784456e50c245925d0089a0ade"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_free : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_annee.html">ListAnnee</a> passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de Annee à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad8aee214c669b3cae0ad6cf1e04e2651"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a> ListAnnee_getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_getCurrent : Permet d'acceder au Annee pointé par current </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne un pointeur sur l'Annee de l'élément courant de la liste </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad976743c8a754ce361d6c6af09b1419b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_init : Initialise correctement une liste de <a class="el" href="struct_node_annee.html">NodeAnnee</a> en reliant sentinel_begin et end entre eux et en mettant current à NULL (en dehors de la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à initialiser </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e6c088b0dfda1404ee0f739e4054f41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListAnnee_isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_isEmpty : Vérifie si la liste de Annee est vide ou non </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la liste est vide 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="addf3a57bfbf4a016312d7bf83d7c92f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListAnnee_isFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_isFirst : Vérifie si current est positionné sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le premier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac6073cc43fe76f45014b714b8a2abc56"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListAnnee_isLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_isLast : Vérifie si current est positionné sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le dernier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9161fa1aeec9317c2556fdbf6bcb21d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListAnnee_isOutOfList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_isOutOfList : Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current vaut NULL 0 sinon -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a22d7f6bf4cd161b65324a13690ee2a82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_setOnFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a068446161f20527888da16bbcba9a6fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_setOnLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8e82033decd5e0aef5a6aeb7db73dc7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_setOnNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a925a46709f31bbf04a9b5c06a0e7cfc8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListAnnee_setOnPrevious </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_annee.html">ListAnnee</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListAnnee_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6ba8a2ee92a1f19beb9e50f81b0d3eeb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_free : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_jour.html">ListJour</a> passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de Jour à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ce754eccbdb2cd861def01a3ba31e46"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> ListJour_getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_getCurrent : Permet d'acceder au Jour pointé par current </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne un pointeur sur le Jour de l'élément courant de la liste </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad7e32f962738c27befaadd9682e85abd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListJour_getMois </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Jour (donc au mois) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de jour </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le numéro du mois si la liste n'est pas vide 0 sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad023df59ece4d1364fcd2ca60a324136"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_init : Initialise correctement une liste de <a class="el" href="struct_node_jour.html">NodeJour</a> en reliant sentinel_begin et end entre eux et en mettant current à NULL (en dehors de la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à initialiser </td></tr>
+    <tr><td class="paramname">mois</td><td>: le numéro correspondant au mois (la liste de jours) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac741a3bf9a8d15974d16008c321b5ea1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListJour_isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_isEmpty : Vérifie si la liste de Jour est vide ou non </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la liste est vide 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4b92599c29997802ffd9c443f0add8be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListJour_isFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_isFirst : Vérifie si current est positionné sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le premier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a56bfd9c2ae8c423545862af4c98b0e53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListJour_isLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_isLast : Vérifie si current est positionné sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le dernier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a128e2f52a208077d8f00584623959436"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListJour_isOutOfList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_isOutOfList : Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current vaut NULL 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a141f34ddd47c285e4decf8a43f971edc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_setOnFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae898b127aa5450827d488b210abffef7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_setOnLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abcf20bcdd09cd93bce93c89683463761"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_setOnNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a22e61f6532a2ca6e9e0246319605e627"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListJour_setOnPrevious </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_jour.html">ListJour</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListJour_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af7f01d6362f11e8014a1be51abdc5e2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_free : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_mois.html">ListMois</a> passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de Mois à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f73996fff5622b7812702ccf8203720"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMois_getAnnee </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Mois (donc au mois) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de Mois </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le numéro de l'annéée si la liste n'est pas vide 0 sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac2436ecb5b78458a0b1cc6195e2e667b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a> ListMois_getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_getCurrent : Permet d'acceder au Mois pointé par current </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne un pointeur sur le Mois de l'élément courant de la liste </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a03531e8fb084f00ce43bc3157c322364"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>annee</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_init : Initialise correctement une liste de <a class="el" href="struct_node_mois.html">NodeMois</a> en reliant sentinel_begin et end entre eux et en mettant current à NULL (en dehors de la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à initialiser </td></tr>
+    <tr><td class="paramname">annee</td><td>: le numéro correspondant au mois (la liste de Mois) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a556cd580fd93ff0d52fb2d0b3dfa69f0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMois_isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_isEmpty : Vérifie si la liste de Mois est vide ou non </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la liste est vide 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ada5efcafc5109ad9bbb7756929f4eafa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMois_isFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_isFirst : Vérifie si current est positionné sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le premier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a80966080e6dad3a2db0609e5472c1ac0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMois_isLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_isLast : Vérifie si current est positionné sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le dernier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac816beeab1021e26e0412f67193ab59e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMois_isOutOfList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_isOutOfList : Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current vaut NULL 0 sinon -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aeb7b85f4f6992f1185823ec8798c59c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_setOnFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a265871d4668be9afc26e10ad00459b97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_setOnLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa0bbe879e1e80d3f06efba0c0ee7ecf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_setOnNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9f38dd1d6aefd9d00ced220f3c8aae74"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListMois_setOnPrevious </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMois_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa4a3a8b4abb465a6f161ef09d1c7a7c8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_free : Libère la mémoire occupée par l'objet <a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> passé en paramètre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste de rendezVous à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3f0f57991d4199f6b115e9cfd4416f22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_rendez_vous.html">RendezVous</a>* ListRendezVous_getCurrent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_getCurrent : Permet d'acceder au <a class="el" href="struct_rendez_vous.html">RendezVous</a> pointé par current </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Retourne un pointeur sur le <a class="el" href="struct_rendez_vous.html">RendezVous</a> de l'élément courant de la liste </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0e59bdc8c647207f998467ef782ac3e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_date.html">Date</a>* ListRendezVous_getDate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_getDate : Permet d'accéder à la date de cette liste de rdv (un jour) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>la date si la liste n'est pas NULL, NULL si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a23e5ea4de8dba5e7782907621774c881"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_date.html">Date</a> *&#160;</td>
+          <td class="paramname"><em>date</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_init : Initialise correctement une liste de <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> en reliant sentinel_begin et end entre eux et en mettant current à NULL (en dehors de la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste à initialiser </td></tr>
+    <tr><td class="paramname">date</td><td>: la date correspond au Mois (la liste de rdv) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a71f6dc0c84a3542f6079487b72d558fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListRendezVous_isEmpty </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_isEmpty : Vérifie si la liste de <a class="el" href="struct_rendez_vous.html">RendezVous</a> est vide ou non </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si la liste est vide 0 si elle ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab8555690cee8bc78ce0e8d4bffedf06a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListRendezVous_isFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_isFirst : Vérifie si current est positionné sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le premier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9463e60d5c1910777b37beb5928115f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListRendezVous_isLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_isLast : Vérifie si current est positionné sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current est bien sur le dernier élément 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afd1dd22d5e4fe7c1c416e6c0f200b308"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListRendezVous_isOutOfList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_isOutOfList : Vérifie si current est bien placé sur un élément de la liste (les sentinels ne sont pas considérées comme dans la liste) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si current vaut NULL 0 si il ne l'est pas -1 si la liste est NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a164b598d8b392c7fdbc2cd2de8e43fae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_setOnFirst </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_setOnFirst : Positionne le pointeur courant sur le premier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a05b8f2671d1ddef046a1dc4585982fdf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_setOnLast </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad4b835cfb870b007a3b9cae580ca673a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_setOnNext </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a65f7c91ca3b63a07b9d67aac2e4ae1a2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ListRendezVous_setOnPrevious </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListRendezVous_setOnPrevious : Positionne le pointeur courant sur l'élément le précédant dans la liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1c5790002b48d96f4057746e974d77e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_list_jour.html">ListJour</a>* Mois_existe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_mois.html">ListMois</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mois</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Mois_existe : Cherche un mois dans une liste de mois </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">m</td><td>: le mois cherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le mois si il est trouvé NULL si il n'est pas trouvé ou si la liste était NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a82a2f152a703e9b51074c273b9698a72"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node_annee.html">NodeAnnee</a>* newNodeAnnee </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a8e119d682702ebf078b3235b4c0fe464">Annee</a>&#160;</td>
+          <td class="paramname"><em>annee</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_annee.html">NodeAnnee</a> *&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_annee.html">NodeAnnee</a> *&#160;</td>
+          <td class="paramname"><em>next</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>newNodeAnnee : Fonction permettant de créer un nouvel objet <a class="el" href="struct_node_annee.html">NodeAnnee</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">annee</td><td>: l'annee (donc une liste de mois ou une liste de liste de liste de rdv) pointé par ce nouveau <a class="el" href="struct_node_annee.html">NodeAnnee</a> </td></tr>
+    <tr><td class="paramname">previous</td><td>: le <a class="el" href="struct_node_annee.html">NodeAnnee</a> précédant le nouveau node </td></tr>
+    <tr><td class="paramname">next</td><td>: le <a class="el" href="struct_node_annee.html">NodeAnnee</a> suivant le nouveau node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le noeud créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a239864286dae5eb5fad8d4d1aec8dd61"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node_jour.html">NodeJour</a>* newNodeJour </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td>
+          <td class="paramname"><em>jour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_jour.html">NodeJour</a> *&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_jour.html">NodeJour</a> *&#160;</td>
+          <td class="paramname"><em>next</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>newNodeJour : Fonction permettant de créer un nouvel objet <a class="el" href="struct_node_jour.html">NodeJour</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jour</td><td>: le jour (donc une liste de <a class="el" href="struct_rendez_vous.html">RendezVous</a>) pointé par ce nouveau <a class="el" href="struct_node_jour.html">NodeJour</a> </td></tr>
+    <tr><td class="paramname">previous</td><td>: le <a class="el" href="struct_node_jour.html">NodeJour</a> précédant le nouveau node </td></tr>
+    <tr><td class="paramname">next</td><td>: le <a class="el" href="struct_node_jour.html">NodeJour</a> suivant le nouveau node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le noeud créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9d1def1692e1773aced0df50e636a497"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node_mois.html">NodeMois</a>* newNodeMois </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ae3a97c3f15c38f94baef498c511b4258">Mois</a>&#160;</td>
+          <td class="paramname"><em>mois</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_mois.html">NodeMois</a> *&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_mois.html">NodeMois</a> *&#160;</td>
+          <td class="paramname"><em>next</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>newNodeMois : Fonction permettant de créer un nouvel objet <a class="el" href="struct_node_mois.html">NodeMois</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mois</td><td>: le mois (donc une liste de jour ou une liste de liste de rdv) pointé par ce nouveau <a class="el" href="struct_node_mois.html">NodeMois</a> </td></tr>
+    <tr><td class="paramname">previous</td><td>: le <a class="el" href="struct_node_mois.html">NodeMois</a> précédant le nouveau node </td></tr>
+    <tr><td class="paramname">next</td><td>: le <a class="el" href="struct_node_mois.html">NodeMois</a> suivant le nouveau node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le noeud créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a64191f7428e9d03b0042e91ba8daedda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a>* newNodeRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>previous</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>next</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>newNodeRendezVous : Fonction permettant de créer un nouvel objet <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdv</td><td>: le rendezvous pointé par ce nouveau Node </td></tr>
+    <tr><td class="paramname">previous</td><td>: le <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> précédant le nouveau node </td></tr>
+    <tr><td class="paramname">next</td><td>: le <a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a> suivant le nouveau node </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le noeud créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac2199296f615dbb3728385f855cc201e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printCalendrier </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab33fde0e75227f51c28053e2d8eae36f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_rendez_vous.html">RendezVous</a>* RendezVous_existe </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rdv_existe : Cherche un rdv dans une liste de rdv </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on cherche </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv cherché </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le rdv si il est trouvé NULL si il n'est pas trouvé ou si la liste ou le rdv étaient NULL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adb9e54644a74cbd36287ec5f172c394b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RendezVousValable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a> *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>RendezVousValable : Teste si le rdv peut bien être ajouté sans chevaucher un autre ou être à sa place </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>: la liste dans laquelle on teste </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv testé </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv peut être ajouté 0 sinon </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="calendrier_8h.html">calendrier.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

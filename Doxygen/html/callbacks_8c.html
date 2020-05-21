@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier src/View/callbacks.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('callbacks_8c.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier callbacks.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="fonctions_graphiques_8h_source.html">GPCalendar/View/fonctionsGraphiques.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="callbacks_8h_source.html">GPCalendar/View/callbacks.h</a>&quot;</code><br/>
+<code>#include &lt;gtk/gtk.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de callbacks.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="callbacks_8c__incl.png" border="0" usemap="#src_2_view_2callbacks_8c" alt=""/></div>
+<map name="src_2_view_2callbacks_8c" id="src_2_view_2callbacks_8c">
+<area shape="rect" id="node2" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="1338,81,1520,122"/><area shape="rect" id="node3" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="1185,171,1380,197"/><area shape="rect" id="node4" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="652,395,839,421"/><area shape="rect" id="node15" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="863,245,1065,272"/><area shape="rect" id="node5" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="94,709,300,736"/><area shape="rect" id="node6" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="953,635,1124,661"/><area shape="rect" id="node12" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="559,470,737,511"/><area shape="rect" id="node10" href="time_8h.html" title="time.h" alt="" coords="1249,709,1307,736"/><area shape="rect" id="node13" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="661,560,875,587"/><area shape="rect" id="node14" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="427,635,623,661"/><area shape="rect" id="node16" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="711,320,925,347"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a1c6426a0d3e99e004d82d19d6217c285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a1c6426a0d3e99e004d82d19d6217c285">cb_create_entry</a> (GtkWidget *p_widget, gpointer user_data)</td></tr>
+<tr class="separator:a1c6426a0d3e99e004d82d19d6217c285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d84262978bfceef5a73b41fcf73ab79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a2d84262978bfceef5a73b41fcf73ab79">cb_create_entry1</a> (GtkWidget *p_widget, gpointer user_data)</td></tr>
+<tr class="separator:a2d84262978bfceef5a73b41fcf73ab79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa57391a0ab9a2a118578182fe80dd44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#aaa57391a0ab9a2a118578182fe80dd44">cb_clicSurPlus</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:aaa57391a0ab9a2a118578182fe80dd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f53175f04259ff4ad1e805fc6aabe41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a4f53175f04259ff4ad1e805fc6aabe41">cb_recherchePatient</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:a4f53175f04259ff4ad1e805fc6aabe41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38edcb4bfb81adbb28c91e175520acee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a38edcb4bfb81adbb28c91e175520acee">enter_callback</a> (GtkWidget *widget, GtkWidget *entry)</td></tr>
+<tr class="separator:a38edcb4bfb81adbb28c91e175520acee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12248d7cb83a202f6b18f1cc8de967e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a12248d7cb83a202f6b18f1cc8de967e4">cb_creationPatient</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:a12248d7cb83a202f6b18f1cc8de967e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b94538ea8ac5b8a8eb2c1ac90edac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callbacks_8c.html#a92b94538ea8ac5b8a8eb2c1ac90edac8">cb_creationRDV</a> (GtkWidget *widget, gpointer datardv)</td></tr>
+<tr class="separator:a92b94538ea8ac5b8a8eb2c1ac90edac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="aaa57391a0ab9a2a118578182fe80dd44"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_clicSurPlus </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1c6426a0d3e99e004d82d19d6217c285"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_create_entry </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>p_widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2d84262978bfceef5a73b41fcf73ab79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_create_entry1 </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>p_widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a12248d7cb83a202f6b18f1cc8de967e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_creationPatient </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a92b94538ea8ac5b8a8eb2c1ac90edac8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_creationRDV </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>datardv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4f53175f04259ff4ad1e805fc6aabe41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cb_recherchePatient </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a38edcb4bfb81adbb28c91e175520acee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void enter_callback </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>entry</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7784d12364ef0ec21cd188ca9cb3a89c.html">View</a></li><li class="navelem"><a class="el" href="callbacks_8c.html">callbacks.c</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

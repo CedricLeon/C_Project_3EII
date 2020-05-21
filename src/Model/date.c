@@ -68,7 +68,8 @@ Date * AjoutMoisDate(Date * d, int nb_mois){
  */
 void getJourDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    sprintf(infos,"%d",d->jour);
+    sprintf(infos,"%02d",d->jour);
+
 }
 /**
  *  getMoisDate : Passe le mois de la date en paramètre sous forme de string dans infos
@@ -77,7 +78,7 @@ void getJourDate(char * infos, Date * d){
  */
 void getMoisDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    sprintf(infos,"%d", d->mois);
+    sprintf(infos,"%02d", d->mois);
 }
 /**
  *  getAnneeDate : Passe l'annee de la date en paramètre sous forme de string dans infos
@@ -98,16 +99,20 @@ void getAnneeDate(char * infos, Date * d){
  */
 void getInfosDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(10);
-    getJourDate(tmp, d);
-    strcpy(infos, tmp);
+    char* tmp1 = (char*) malloc(sizeof(char) * 5);
+    char* tmp2 = (char*) malloc(sizeof(char) * 5);
+    char* tmp3 = (char*) malloc(sizeof(char) * 5);
+    getJourDate(tmp1, d);
+    strcpy(infos, tmp1);
     strcat(infos, "/");
-    getMoisDate(tmp, d);
-    strcat(infos, tmp);
+    getMoisDate(tmp2, d);
+    strcat(infos, tmp2);
     strcat(infos, "/");
-    getAnneeDate(tmp, d);
-    strcat(infos, tmp);
-    free((void*) tmp);
+    getAnneeDate(tmp3, d);
+    strcat(infos, tmp3);
+    free((void*) tmp1);
+    free((void*) tmp2);
+    free((void*) tmp3);
 }
 /**
  * DateEgales : Fonction qui compare 2 dates, dit qu'elles sont égales si leur année, leur mois et leur jours sont les mêmes

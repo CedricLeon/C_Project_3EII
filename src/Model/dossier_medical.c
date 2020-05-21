@@ -25,8 +25,8 @@ DossierMedical * CreerDossierMedical(){
  * @param dm : le dossier à supprimer
  */
 void FreeDossierMedical(DossierMedical * dm){
-    printf("FreeDossierMedical() : \n");
-    ListOrdonnance_free(dm->ordonnances);     // Il faut delete les ordonnances
+    //printf("FreeDossierMedical() : \n");
+    ListOrdonnance_free(dm->ordonnances);                               // Il faut delete les ordonnances
     ListMedecin_free_withoutDeletingMedecin(dm->medecins_consultes);    // Il ne faut pas delete les mèdecins référencés
                                                                         // par cette liste puisqu'on les delete dèjà
     ListAntecedent_free(dm->antecedents);                               // depuis la liste workingMedecins
@@ -38,8 +38,9 @@ void FreeDossierMedical(DossierMedical * dm){
  * AddOrdonnanceDossierMedical : Ajoute une ordonnance dans le dossier medical
  * @param dm : le dossier dans lequel on veut ajouter
  * @param ordonnance : l'ordonnance à ajouter
+ * @return 1 si l'ordonnance a bien été ajouté au dossier medical
+ *         -1 si le DossierMedical ou l'Ordonnance NULL.
  */
-
 int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
     if(dm == NULL || ordonnance == NULL){
         printf("DossierMedical ou Ordonnance NULL.\n");
@@ -62,26 +63,24 @@ int AddOrdonnanceDossierMedical(DossierMedical * dm, Ordonnance * ordonnance){
 /**
  * AddAntecedentDossierMedical : Ajoute un antecedent dans le dossier medical
  * @param dm : le dossier dans lequel on veut ajouter
- * @param antecedent : l'antecedent à ajouter
+ * @param ant : l'antecedent à ajouter
+ * @return 1 si l'ordonnance a bien été ajouté au dossier medical
+ *         -1 si le DossierMedical ou l'antécédent sont NULL
  */
 
-int AddAntecedentDossierMedical(DossierMedical * dm, char * ant){
+int AddAntecedentDossierMedical(DossierMedical * dm, char* ant){
      if(dm == NULL){
         printf("DossierMedical NULL.\n");
         return -1;
     }
     //Si Liste vide on insère au début
     if(ListAntecedent_isEmpty(dm->antecedents)){
-        printf("\nCompte-rendu du rdv : \n");
-        scanf("%[^\n]",ant);
         NodeAntecedent * newNode = newNodeAntecedent(ant, &(dm->antecedents->sentinel_begin), &(dm->antecedents->sentinel_end));
         dm->antecedents->sentinel_begin.next = newNode;
         dm->antecedents->sentinel_end.previous = newNode;
         return 1;
     }
     //Si pas vide on insère l'antecedent à la fin
-    printf("\nCompte-rendu du rdv : \n");
-    scanf("%[^\n]",ant);
     NodeAntecedent * newNode = newNodeAntecedent(ant, dm->antecedents->sentinel_end.previous, &(dm->antecedents->sentinel_end));
     dm->antecedents->sentinel_end.previous->next = newNode;
     dm->antecedents->sentinel_end.previous = newNode;
@@ -111,10 +110,8 @@ void printAntecedent(char* infos, char * ante){
  */
 NodeAntecedent * newNodeAntecedent(char * ante, NodeAntecedent * previous, NodeAntecedent * next){
     NodeAntecedent * newNode = (NodeAntecedent *) malloc(sizeof(NodeAntecedent));
-
     newNode->ante = (char*) malloc(strlen(ante)+1);
     strcpy( newNode->ante, ante);
-
     newNode->next = next;
     newNode->previous = previous;
     return newNode;
@@ -126,7 +123,7 @@ NodeAntecedent * newNodeAntecedent(char * ante, NodeAntecedent * previous, NodeA
 void freeNodeAntecedent(ListAntecedent *l, NodeAntecedent * n){
     n->previous->next = n->next;
     n->next->previous = n->previous;
-    free((void*)n->ante);
+    free((void*) n->ante);
     free((void *) n);
     ListAntecedent_setOnFirst(l);
     ListAntecedent_setOnPrevious(l);
@@ -157,17 +154,41 @@ void ListAntecedent_free(ListAntecedent * l){
     if (l == NULL){
         printf("ListAntecedent_free : la liste d'antecedents est NULL !!!\n");
     }else if (ListAntecedent_isEmpty(l)){
-        printf("ListAntecedent_free : la liste est vide, on free donc uniquement la liste\n");
+        //printf("ListAntecedent_free : la liste est vide, on free donc uniquement la liste\n");
         free((void *) l);
     }else{
         for(ListAntecedent_setOnFirst(l); !ListAntecedent_isOutOfList(l); ListAntecedent_setOnNext(l)) {
-            printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent courant \n");
+            //printf("ListAntecedent_free : Appel de freeNodeAntecedent() pour l'antecedent courant \n");
             freeNodeAntecedent(l, l->current);
         }
         free((void *) l);
     }
 }
-
+/**
+ * ListAntecedent_add : Ajoute un node antécédents à une liste d'ordonnance
+ * @param l : la liste
+ * @param ante : l'antécédent à ajouter
+ * @return 1 si tout s'est bien passé
+ *         -1 si la liste ou l'antécédent étaient NULL
+ */
+int ListAntecedent_add(ListAntecedent* l, char* ante){
+    if(l == NULL || ante == NULL){
+        printf("ListAntecedent ou Antecedent NULL.\n");
+        return -1;
+    }
+    //Si Liste vide on insère au début
+    if(ListAntecedent_isEmpty(l)){
+        NodeAntecedent * newNode = newNodeAntecedent(ante, &(l->sentinel_begin), &(l->sentinel_end));
+        l->sentinel_begin.next = newNode;
+        l->sentinel_end.previous = newNode;
+        return 1;
+    }
+    //Si pas vide on insère le patient à la fin
+    NodeAntecedent * newNode = newNodeAntecedent(ante, l->sentinel_end.previous, &(l->sentinel_end));
+    l->sentinel_end.previous->next = newNode;
+    l->sentinel_end.previous = newNode;
+    return 1;
+}
 
 /**
  * ListAntecedent_isEmpty : Vérifie si la liste de Antecedent est vide ou non

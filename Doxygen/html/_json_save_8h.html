@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier include/GPCalendar/Model/JsonSave.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('_json_save_8h.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Structures de données</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier JsonSave.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="medecin_8h_source.html">GPCalendar/Model/medecin.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="patient_8h_source.html">GPCalendar/Model/patient.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="date_8h_source.html">GPCalendar/Model/date.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="calendrier_8h_source.html">GPCalendar/Model/calendrier.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="ordonnance_8h_source.html">GPCalendar/Model/ordonnance.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="dossier__medical_8h_source.html">GPCalendar/Model/dossier_medical.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="rendezvous_8h_source.html">GPCalendar/Model/rendezvous.h</a>&quot;</code><br/>
+<code>#include &lt;cJSON.h&gt;</code><br/>
+<code>#include &lt;stdlib.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de JsonSave.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="_json_save_8h__incl.png" border="0" usemap="#include_2_g_p_calendar_2_model_2_json_save_8h" alt=""/></div>
+<map name="include_2_g_p_calendar_2_model_2_json_save_8h" id="include_2_g_p_calendar_2_model_2_json_save_8h">
+<area shape="rect" id="node2" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="438,800,633,827"/><area shape="rect" id="node7" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="764,96,951,123"/><area shape="rect" id="node8" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="799,336,971,363"/><area shape="rect" id="node12" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="479,651,681,677"/><area shape="rect" id="node13" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="429,725,643,752"/><area shape="rect" id="node15" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="1076,171,1255,213"/><area shape="rect" id="node16" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="1058,261,1272,288"/><area shape="rect" id="node3" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="5,875,211,901"/><area shape="rect" id="node9" href="time_8h.html" title="time.h" alt="" coords="804,411,861,437"/><area shape="rect" id="node10" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="698,486,880,527"/><area shape="rect" id="node11" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="583,576,779,603"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><img src="_json_save_8h__dep__incl.png" border="0" usemap="#include_2_g_p_calendar_2_model_2_json_save_8hdep" alt=""/></div>
+<map name="include_2_g_p_calendar_2_model_2_json_save_8hdep" id="include_2_g_p_calendar_2_model_2_json_save_8hdep">
+<area shape="rect" id="node2" href="_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="5,104,157,131"/><area shape="rect" id="node3" href="_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="182,97,345,138"/><area shape="rect" id="node5" href="tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="370,104,520,131"/><area shape="rect" id="node4" href="_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="173,187,355,213"/></map>
+</div>
+</div>
+<p><a href="_json_save_8h_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Structures de données</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_project.html">Project</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a7a5fb57d9f83d9045fb81b7e6f470d38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_project.html">Project</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a7a5fb57d9f83d9045fb81b7e6f470d38">CreerProject</a> (char *nom, <a class="el" href="struct_list_medecin.html">ListMedecin</a> *workingMedecins, <a class="el" href="struct_list_patient.html">ListPatient</a> *consultingPatient, <a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> calendrier)</td></tr>
+<tr class="separator:a7a5fb57d9f83d9045fb81b7e6f470d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85ffed3ee8b72ca163b8d3fef2e9c33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#aa85ffed3ee8b72ca163b8d3fef2e9c33">freeProject</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
+<tr class="separator:aa85ffed3ee8b72ca163b8d3fef2e9c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4c4f44b2d76f6636292c34aa2d261c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#afe4c4f44b2d76f6636292c34aa2d261c">printProject</a> (<a class="el" href="struct_project.html">Project</a> *p)</td></tr>
+<tr class="separator:afe4c4f44b2d76f6636292c34aa2d261c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3a46e70eacecdc397b8b59c5329ed1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#afd3a46e70eacecdc397b8b59c5329ed1">GPCalendar_saveProject</a> (char *nomFichier, <a class="el" href="struct_project.html">Project</a> *project)</td></tr>
+<tr class="separator:afd3a46e70eacecdc397b8b59c5329ed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9abd67fb976652e135b7ede413cb3f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#aff9abd67fb976652e135b7ede413cb3f">Project_jsonSave</a> (<a class="el" href="struct_project.html">Project</a> *p)</td></tr>
+<tr class="separator:aff9abd67fb976652e135b7ede413cb3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c37b29882e21010d74cec620f423f85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a5c37b29882e21010d74cec620f423f85">ListMedecin_jsonSave</a> (cJSON *listMedecinJson, <a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
+<tr class="separator:a5c37b29882e21010d74cec620f423f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad49c020d48062643c39895ecc2d28e4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#ad49c020d48062643c39895ecc2d28e4f">ListPatient_jsonSave</a> (cJSON *listPatientJson, <a class="el" href="struct_list_patient.html">ListPatient</a> *l)</td></tr>
+<tr class="separator:ad49c020d48062643c39895ecc2d28e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21e1346bc98e5298a55c6ea50e3c94b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a21e1346bc98e5298a55c6ea50e3c94b5">Calendrier_jsonSave</a> (cJSON *calendrierJson, <a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c)</td></tr>
+<tr class="separator:a21e1346bc98e5298a55c6ea50e3c94b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac99dc1f99b61430d18c89660bfbdf961"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_project.html">Project</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#ac99dc1f99b61430d18c89660bfbdf961">GPCalendar_loadProject</a> (char *nomFichier)</td></tr>
+<tr class="separator:ac99dc1f99b61430d18c89660bfbdf961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591123cc4af0fc7f0b673fc3c73350e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_project.html">Project</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a591123cc4af0fc7f0b673fc3c73350e8">Project_jsonLoad</a> (const char *content)</td></tr>
+<tr class="separator:a591123cc4af0fc7f0b673fc3c73350e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac94075c9d7b1d6573cec905d025176"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a7ac94075c9d7b1d6573cec905d025176">ListMedecin_jsonLoad</a> (cJSON *projectJson, <a class="el" href="struct_list_medecin.html">ListMedecin</a> *lM)</td></tr>
+<tr class="separator:a7ac94075c9d7b1d6573cec905d025176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bea4ff78d8287423643ba3e76f155cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a3bea4ff78d8287423643ba3e76f155cd">ListPatient_jsonLoad</a> (cJSON *projectJson, <a class="el" href="struct_list_medecin.html">ListMedecin</a> *project_workingMedecins, <a class="el" href="struct_list_patient.html">ListPatient</a> *lP)</td></tr>
+<tr class="separator:a3bea4ff78d8287423643ba3e76f155cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e66b4e9f5568407bddd301964a9467"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_json_save_8h.html#a43e66b4e9f5568407bddd301964a9467">Calendrier_jsonLoad</a> (cJSON *projectJson, <a class="el" href="struct_list_medecin.html">ListMedecin</a> *lM, <a class="el" href="struct_list_patient.html">ListPatient</a> *lP, <a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a> c)</td></tr>
+<tr class="separator:a43e66b4e9f5568407bddd301964a9467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a43e66b4e9f5568407bddd301964a9467"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Calendrier_jsonLoad </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>projectJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>lM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_patient.html">ListPatient</a> *&#160;</td>
+          <td class="paramname"><em>lP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a21e1346bc98e5298a55c6ea50e3c94b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Calendrier_jsonSave </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>calendrierJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calendrier_jsonSave : fonction qui écrit dans un objet cJson une liste de Rendez-vous (triée chronologiquement) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">calendrierJson</td><td>: l'objet cJSON dans lequel on sauvegarde le calendrier </td></tr>
+    <tr><td class="paramname">c</td><td>: le calendrier à save </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé 0 sinon </dd></dl>
+<p>Avec les 4 boucles for qui suivent on vient chercher tous les rdv</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a5fb57d9f83d9045fb81b7e6f470d38"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_project.html">Project</a>* CreerProject </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>workingMedecins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_patient.html">ListPatient</a> *&#160;</td>
+          <td class="paramname"><em>consultingPatient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#ab8644d1026df84be3eb3190cf1ef29fa">Calendrier</a>&#160;</td>
+          <td class="paramname"><em>calendrier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa85ffed3ee8b72ca163b8d3fef2e9c33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void freeProject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>freeProject : Free entièrement un projet, à savoir :</p>
+<ul>
+<li>le calendrier de l'hopital (et donc tous les rdv qui le composent)</li>
+<li>les médecins de l'hopital qui ont été rentrés dans la liste workingMedecins</li>
+<li>les patients de l'hopital qui ont été rentrés dans la liste consultingPatients et donc leur dossier médical et leurs ordonnances <dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet à free </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ac99dc1f99b61430d18c89660bfbdf961"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_project.html">Project</a>* GPCalendar_loadProject </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nomFichier</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GPCalendar_loadProject : fonction récupérant les données d'un projet depuis un fichier au format JSON </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nomFichier</td><td>: le fichier depuis lequel on récupère les données </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le projet créé avec les données JSON </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afd3a46e70eacecdc397b8b59c5329ed1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GPCalendar_saveProject </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>nomFichier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>project</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pour l'instant On ne sauvegarde pas les diplomes et spécialités des médecins ainsi que les antécédents des DossierMédicaux GPCalendar_saveProject : Sauvegarde un projet (liste de médecins, patients et un calendrier) sous forme de fichier texte au format JSON </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nomFichier</td><td>: le nom du fichier qui contiendra les données au format JSON </td></tr>
+    <tr><td class="paramname">project</td><td>: le projet à sauvegarder </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé 0 sinon (erreur d'ouverture de fichier ou de parsing : Cf cJSON) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ac94075c9d7b1d6573cec905d025176"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_jsonLoad </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>projectJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>lM</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_jsonLoad : Load depuis un objet cJSON une liste de médecins </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">projectJson</td><td>: l'objet cJSON contenant les données pour la liste de médecins </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé 0 sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5c37b29882e21010d74cec620f423f85"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListMedecin_jsonSave </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>listMedecinJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>l</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListMedecin_jsonSave : fonction qui écrit dans un objet cJson une liste de médecins Chaque médecin possédant une liste de patients recus, on écrira uniquement l'ID de ces patients (= leur numéro de sécurité social) dans cette liste </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listMedecinJson</td><td>: l'objet cJson dans lequel on écrit la liste de médecins, c'est un tableau </td></tr>
+    <tr><td class="paramname">l</td><td>: la liste de médecins à écrire </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé 0 si une des étapes a échoué </dd></dl>
+<p>On gère la liste des patients recus : on crée un tableau, on parcourt la liste des patients recus et à chaque patient on crée un string avec son numéro de sécurité sociale puis on ajoute ce string au tableau que l'on vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son médecin</p>
+<p>EDIT : POUR LA V0 ON NE MET PAS LES PATIENTS RECUS : TROP GALERE, ON AJOUTERA LES COUPLES PATIENT / MEDECIN DEPUIS LES RDV</p>
+
+</div>
+</div>
+<a class="anchor" id="a3bea4ff78d8287423643ba3e76f155cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListPatient_jsonLoad </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>projectJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_medecin.html">ListMedecin</a> *&#160;</td>
+          <td class="paramname"><em>project_workingMedecins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_patient.html">ListPatient</a> *&#160;</td>
+          <td class="paramname"><em>lP</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad49c020d48062643c39895ecc2d28e4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ListPatient_jsonSave </td>
+          <td>(</td>
+          <td class="paramtype">cJSON *&#160;</td>
+          <td class="paramname"><em>listPatientJson</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_list_patient.html">ListPatient</a> *&#160;</td>
+          <td class="paramname"><em>l</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ListPatient_jsonSave : fonction qui écrit dans un objet cJson une liste de patient Chaque patient possédant un dossier médical possédant lui même une liste de medecins consultes et une liste d'ordonnances On écrira directement ces infos dans le patient (pour éviter la création d'une liste de dossier médicaux inutile) Et on écrira uniquement l'ID des medecins consultes (= leur numéro RPS) dans cette liste de medecin dans patient Puis un tableau d'ordonnances représentant la liste des ordonnaces du dossier médical du patient </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listPatientJson</td><td>: l'objet cJson dans lequel on écrit la liste de patient, c'est un tableau </td></tr>
+    <tr><td class="paramname">l</td><td>: la liste de patients à save </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si tout s'est bien passé 0 si une des étapes a échoué </dd></dl>
+<p>On gère la liste des medecins consultes : on crée un tableau, on parcourt la liste des medecins consultes et à chaque medecin on crée un string avec son numéro_RPS puis on ajoute ce string au tableau que l'on vient de créer et à la fin du parcours de la liste on ajoute notre tableau à son patient</p>
+<p>EDIT : POUR LA V0 ON NE MET PAS LES MEDECINS CONSULTES : TROP GALERE, ON AJOUTERA LES COUPLES PATIENT / MEDECIN DEPUIS LES RDV</p>
+<p>On gère la liste d'ordonnances du dossier médical de notre patient</p>
+
+</div>
+</div>
+<a class="anchor" id="afe4c4f44b2d76f6636292c34aa2d261c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printProject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>printProject : Affiche dans la console toutes les données d'un projet </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>: le projet à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a591123cc4af0fc7f0b673fc3c73350e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_project.html">Project</a>* Project_jsonLoad </td>
+          <td>(</td>
+          <td class="paramtype">const char *const&#160;</td>
+          <td class="paramname"><em>content</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Project_jsonLoad : Crée un objet project depuis un char* au format JSON </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">content</td><td>: le char* avec les données du projet </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un pointeur sur le projet créé si tout s'est bien passé NULL si un erreur a eu lieu (Cf cJSON) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aff9abd67fb976652e135b7ede413cb3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* Project_jsonSave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Project_jsonSave : Fonction permettant de sauvegarder un objet projet dans un fichier .json à l'aide de la librairie cjson </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>: l'instance de projet à save </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>un string qui sera écrit dans un fichier texte </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="_json_save_8h.html">JsonSave.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

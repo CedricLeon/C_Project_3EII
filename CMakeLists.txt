@@ -81,12 +81,26 @@ message(STATUS "GTK3_INCLUDE_DIRS : ${GTK3_INCLUDE_DIRS}")
 # │                       GPCalendar_Tests                           │
 # └──────────────────────────────────────────────────────────────────┘
 
+string(TIMESTAMP TODAY "%d/%m/%Y")
 add_executable(GPCalendar_Tests
     tests/tests_unitaires.c)
 target_compile_features(GPCalendar_Tests PUBLIC c_std_99)
 target_link_libraries(GPCalendar_Tests PUBLIC
     GPCalendarUtils
     cmocka-static)                                              #La librairie STATIC de CMocka
+message(STATUS "Today : ${TODAY}")
+target_compile_definitions(GPCalendar_Tests PRIVATE -DCMAKE_TODAY_TESTS="${TODAY}")
+
+# ┌──────────────────────────────────────────────────────────────────┐
+# │                       GPCalendar_Shell                           │
+# └──────────────────────────────────────────────────────────────────┘
+
+add_executable(GPCalendar_Shell                                 #Executable gérant l'application dans la console
+    src/App/GPCalendarShell.c                                       #Nécessite seulement le 3ème main : GPCalendarShell.c
+    include/GPCalendar/App/GPCalendarShell.h)
+target_compile_features(GPCalendar_Shell PUBLIC c_std_99)
+target_link_libraries(GPCalendar_Shell PUBLIC GPCalendarUtils)
+target_include_directories(GPCalendar_Shell PUBLIC include/GPCalendar/App)
 
 # ┌──────────────────────────────────────────────────────────────────┐
 # │                 Ctest : unused (Cf. CMocka)                      │

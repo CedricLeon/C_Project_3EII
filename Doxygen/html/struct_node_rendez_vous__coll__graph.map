@@ -1,0 +1,16 @@
+<map id="NodeRendezVous" name="NodeRendezVous">
+<area shape="rect" id="node2" href="$struct_rendez_vous.html" title="RendezVous" alt="" coords="370,625,467,652"/>
+<area shape="rect" id="node3" href="$struct_medecin.html" title="Medecin" alt="" coords="105,5,175,32"/>
+<area shape="rect" id="node12" href="$struct_ordonnance.html" title="Ordonnance" alt="" coords="525,109,616,136"/>
+<area shape="rect" id="node15" href="$struct_node_medecin.html" title="NodeMedecin" alt="" coords="135,161,237,188"/>
+<area shape="rect" id="node4" href="$struct_list_patient.html" title="ListPatient" alt="" coords="13,748,96,775"/>
+<area shape="rect" id="node5" href="$struct_node_patient.html" title="NodePatient" alt="" coords="109,625,203,652"/>
+<area shape="rect" id="node6" href="$struct_patient.html" title="Patient" alt="" coords="387,533,449,560"/>
+<area shape="rect" id="node7" href="$struct_dossier_medical.html" title="DossierMedical" alt="" coords="363,443,473,469"/>
+<area shape="rect" id="node8" href="$struct_list_antecedent.html" title="ListAntecedent" alt="" coords="364,352,473,379"/>
+<area shape="rect" id="node9" href="$struct_node_antecedent.html" title="NodeAntecedent" alt="" coords="289,223,407,249"/>
+<area shape="rect" id="node10" href="$struct_list_ordonnance.html" title="ListOrdonnance" alt="" coords="502,352,615,379"/>
+<area shape="rect" id="node11" href="$struct_node_ordonnance.html" title="NodeOrdonnance" alt="" coords="509,223,632,249"/>
+<area shape="rect" id="node13" href="$struct_date.html" title="Date" alt="" coords="721,5,772,32"/>
+<area shape="rect" id="node14" href="$struct_list_medecin.html" title="ListMedecin" alt="" coords="153,292,244,319"/>
+</map>

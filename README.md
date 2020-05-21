@@ -1,4 +1,14 @@
+# GPCalendar (Still developing)
 
+GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.
+
+## TODO List
+
+- GPCalendar_Shell : gérer tout les cas où on tape des bêtises / "help" affiche les choix / "quit" pour quitter la fonction où on est (**Cédric**)
+- RDV_Valable()  : à tester (et à implémenter dans GTK3+ pour éviter au patient de rentrer 2 fois ses données) (**Angéline**)
+- Run code coverage et rajouter des tests pour atteindre 80% (demander Alexandre) (**Angéline**)
+- Ajouter les antécédents un peu partout (jsonSave.c)  (**Cédric**)
+- Mettre plusieurs commit (V0 Model / V0 View / V1 Model / V2 Model +View) sur le master
 
 ## Unit-Testing
 
@@ -34,7 +44,13 @@ You can also run it with your IDE like **Valgrind-MemoryCheck** in CLion.
 
 ## cJSON
 
-cJSON is a GitHub Project which allow to easily use **JSON** format in C code. It is used to "save" the application. **CODE in development**
+cJSON is a GitHub Project which allow to easily use **JSON** format in C code. It is used to "save" the application. 
+
+If you want to save or load one of your project you have to type the absolute path with the name of the file you want to load or the name of the file you want to create to save your project.
+
+Example : - Load : ```C:\Documents\YourProject.json```
+
+​				  - Save : ```C:\Documents\NomDeMonFichierDeSauvegarde.json```
 
 ## Build
 
@@ -153,3 +169,32 @@ You'll have to do the same with the linker settings:
 `pkg-config --libs gtk+-3.0`
 ````
 Repeat these two lines for the Release and Projectname mode (usually at the top left of the window).
+
+
+
+## Terminal Window
+
+GPCalendar is an application which have a graphical interface (generate with GTK3+).
+
+But it can also work from a shell with some switch case to choose what action you want to do.
+
+```bash
+case 1 :
+	Create a Patient
+case 2 :
+	Create a Medecin
+case 3 :
+	Create a RendezVous beetween a Patient and a Physician
+case 4 : 
+	Check hospital data
+case 5 :
+	Cancel a RendezVous
+case 6 : 
+	Delete a Patient
+case 7 :
+	Delete a Medecin
+case 8 :
+	Save the Project (all Patients, all Medecins and the hospital calendar)
+
+```
+

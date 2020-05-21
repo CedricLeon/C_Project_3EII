@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar: Référence du fichier src/Model/rendezvous.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('rendezvous_8c.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier rendezvous.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="rendezvous_8h_source.html">GPCalendar/Model/rendezvous.h</a>&quot;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de rendezvous.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="rendezvous_8c__incl.png" border="0" usemap="#src_2_model_2rendezvous_8c" alt=""/></div>
+<map name="src_2_model_2rendezvous_8c" id="src_2_model_2rendezvous_8c">
+<area shape="rect" id="node2" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="487,80,701,107"/><area shape="rect" id="node3" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="571,155,743,181"/><area shape="rect" id="node10" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="440,469,627,496"/><area shape="rect" id="node14" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="398,709,593,736"/><area shape="rect" id="node7" href="time_8h.html" title="time.h" alt="" coords="308,229,365,256"/><area shape="rect" id="node8" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="195,305,377,346"/><area shape="rect" id="node9" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="246,395,441,421"/><area shape="rect" id="node15" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="923,709,1125,736"/><area shape="rect" id="node11" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="329,784,535,811"/><area shape="rect" id="node12" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="571,545,749,586"/><area shape="rect" id="node13" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="622,635,836,661"/></map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ae62501b5f409d83dc182560bbb97a276"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#ae62501b5f409d83dc182560bbb97a276">CreerRendezVous</a> (int an, int mois, int jour, double heure_debut, int duree, char *lieu, <a class="el" href="struct_patient.html">Patient</a> *patient, <a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *motif)</td></tr>
+<tr class="separator:ae62501b5f409d83dc182560bbb97a276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5659faf0a3498ce343e7d14015489d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a1d5659faf0a3498ce343e7d14015489d">FreeRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a1d5659faf0a3498ce343e7d14015489d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78731530177f360d1452c1dbe7c8bdef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a78731530177f360d1452c1dbe7c8bdef">AnnulerRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a78731530177f360d1452c1dbe7c8bdef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75dec28fc6cc82183dec57c710e87b0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a75dec28fc6cc82183dec57c710e87b0e">DeplacerRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree)</td></tr>
+<tr class="separator:a75dec28fc6cc82183dec57c710e87b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a78731530177f360d1452c1dbe7c8bdef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AnnulerRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AnnulerRendezVous : Annuler un <a class="el" href="struct_rendez_vous.html">RendezVous</a>, l'initialiser à vide </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdv</td><td>: le rdv qu'on veut annuler </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si le rdv a bien été annulé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae62501b5f409d83dc182560bbb97a276"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_rendez_vous.html">RendezVous</a>* CreerRendezVous </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>an</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mois</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>jour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>heure_debut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>lieu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_patient.html">Patient</a> *&#160;</td>
+          <td class="paramname"><em>patient</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_medecin.html">Medecin</a> *&#160;</td>
+          <td class="paramname"><em>medecin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>motif</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CreerRendezVous : Creer dynamiquement un objet <a class="el" href="struct_rendez_vous.html">RendezVous</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">an</td><td>: l'annee </td></tr>
+    <tr><td class="paramname">mois</td><td>: le mois </td></tr>
+    <tr><td class="paramname">jour</td><td>: le jour </td></tr>
+    <tr><td class="paramname">heure_debut</td><td>: l'heure ((sous forme de double : 16.5 &lt;=&gt; 16H30) du début du rdv </td></tr>
+    <tr><td class="paramname">duree</td><td>: la duree du rdv, avec on détermine heure_fin du rdv </td></tr>
+    <tr><td class="paramname">lieu</td><td>: le lieu du rdv </td></tr>
+    <tr><td class="paramname">patient</td><td>: le patient demandant le rdv </td></tr>
+    <tr><td class="paramname">médecin</td><td>: le medecin choisi pour le rdv </td></tr>
+    <tr><td class="paramname">motif</td><td>: le motif du rdv </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le rdv créé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a75dec28fc6cc82183dec57c710e87b0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_rendez_vous.html">RendezVous</a>* DeplacerRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_an</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_mois</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_jour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>n_heure_debut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n_duree</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DeplacerRendezVous : Deplacer un <a class="el" href="struct_rendez_vous.html">RendezVous</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdv</td><td>: le rdv qu'on veut deplacer </td></tr>
+    <tr><td class="paramname">n_an</td><td>: nouvelle année du rdv </td></tr>
+    <tr><td class="paramname">n_mois</td><td>: nouveau mois du rdv </td></tr>
+    <tr><td class="paramname">n_jour</td><td>: nouveau jour du rdv </td></tr>
+    <tr><td class="paramname">n_heure</td><td>: nouvelle heure du rdv </td></tr>
+    <tr><td class="paramname">n_minute</td><td>: nouvelle minute de l'horaire du rdv </td></tr>
+    <tr><td class="paramname">n_duree</td><td>: nouvelle duree du rdv </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le rdv deplacé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1d5659faf0a3498ce343e7d14015489d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FreeRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>FreeRendezVous : Free un objet rdv (seulement sa date et le rdv en lui-même), on ne touche pas au patient et au medecin car ils existent toujours dans d'autres rdv </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdv</td><td>: le rdv à free </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_32e188284d239da8bb14ec1dabb0c35f.html">Model</a></li><li class="navelem"><a class="el" href="rendezvous_8c.html">rendezvous.c</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

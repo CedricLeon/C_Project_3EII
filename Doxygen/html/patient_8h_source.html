@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/Model/patient.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('patient_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">patient.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="patient_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PATIENT_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PATIENT_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_structures_8h.html">GPCalendar/Model/Structures.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">GPCalendar/Model/date.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dossier__medical_8h.html">GPCalendar/Model/dossier_medical.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct_patient.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_patient.html">Patient</a>{</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_patient.html#abe308d273ff51ad86ff02ef3ba3b6f0e">   16</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_patient.html#abe308d273ff51ad86ff02ef3ba3b6f0e">nom</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_patient.html#aa7d0e9e8505d2ac627777c4168573ec9">   17</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_patient.html#aa7d0e9e8505d2ac627777c4168573ec9">prenom</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_patient.html#a1ce5c592705142193b097a1bed2794e6">   18</a></span>&#160;    <a class="code" href="struct_date.html">Date</a> * <a class="code" href="struct_patient.html#a1ce5c592705142193b097a1bed2794e6">date_naissance</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_patient.html#aefa944e4b78fb9e14c4f6e49605bba2c">   19</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_patient.html#aefa944e4b78fb9e14c4f6e49605bba2c">adresse_mail</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_patient.html#ac65f93b2b15c34c800c05832e346c98f">   20</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_patient.html#ac65f93b2b15c34c800c05832e346c98f">numero_telephone</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_patient.html#a49bbab73f86aafe9ee3ef4b862946698">   21</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_patient.html#a49bbab73f86aafe9ee3ef4b862946698">numero_secu_social</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_patient.html#a7b81f4ba7de896fa37673d677977cedf">   22</a></span>&#160;    <a class="code" href="struct_dossier_medical.html">DossierMedical</a> * <a class="code" href="struct_patient.html#a7b81f4ba7de896fa37673d677977cedf">dossierMedical</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<a class="code" href="struct_patient.html">Patient</a> * <a class="code" href="patient_8h.html#a8b5d4d5e5b2e0c3238f127c8310df4d9">CreerPatient</a>(<span class="keywordtype">char</span> * nom, <span class="keywordtype">char</span> * prenom, <span class="keywordtype">int</span> annee_naissance, <span class="keywordtype">int</span> mois_naissance, <span class="keywordtype">int</span> jour_naissance, <span class="keywordtype">char</span> * mail, <span class="keywordtype">char</span> * num_tel, <span class="keywordtype">char</span> * numero_secu_social);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a913e3a59114f7db7b7ad54f93237e7b8">DeletePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * patient);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a921d9b4c9ec1ea4c9db9ae6f1695041c">printPatient</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a> * p); <span class="comment">//Utilisée pour le debugging</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a8449a83c8157829d93cef6419dc16240">AccesDossierMedical</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a910c6ac221d062e73d9847a08ada7058">PrintListOrdonnances</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a>* p);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a043dbf27ffbc274d4c1cda46eb0bf979">PrintListAntecedents</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a>* p);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">/* Setteurs */</span> <span class="comment">/*en vrai ça sert à rien*/</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a107931c92b5db273a4ba8a7594813560">SetNomPatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">char</span> * nom);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a9b63616d2f9c0effeaa903dfb344ac51">SetPrenomPatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">char</span> * prenom);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a61d1c016d27141cb494c307e74b95d24">SetDateNaissancePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">int</span> an, <span class="keywordtype">int</span> mois, <span class="keywordtype">int</span> jour);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a2c27261c6607f0fcf2c53fc514319829">SetAdresseMailPatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">char</span> * mail);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a0d02d19fbbafc82e8b74ebced325d010">SetNumeroTelephonePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">char</span> * tel);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#aafe2bfc75e103b3e5435e0e375d8ec79">setNumeroSecuSocialePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <span class="keywordtype">char</span> * secu);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/* Getteurs */</span> <span class="comment">/*idem*/</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a6e771e2869a7b73c4a31671c677c5d65">getNomPatient</a>(<span class="keywordtype">char</span> * nom, <a class="code" href="struct_patient.html">Patient</a> *p);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#ac149e97afc2950df9d9a0103eb44e2ae">getDateNaissancePatient</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a>* p);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">char</span> * <a class="code" href="patient_8h.html#abe02d8f198bbb5c6f4298b70717c68e7">getAdresseMailPatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">char</span> * <a class="code" href="patient_8h.html#a309b0518aa23434a7f6d73b3d8f8040c">getNumeroTelephonePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">char</span> * <a class="code" href="patient_8h.html#a9f21fc94cc9c135c4d081949be7a65ab">getNumeroSecuSocialePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a43e60a3391b4f4e16b73e053f54ef723">getInfoPatient</a>(<span class="keywordtype">char</span>* infos, <a class="code" href="struct_patient.html">Patient</a>* p);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#ae44ee40bd899a1161e4c2d3e271418e5">AddMedecinConsultePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <a class="code" href="struct_medecin.html">Medecin</a> * medecin);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#a779a417552234e4058cb0ad96356825a">DeleteMedecinConsultePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * p, <a class="code" href="struct_medecin.html">Medecin</a> * medecin);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                                <span class="comment">/*ListPatient*/</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/**********************************************************************************************************************/</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="patient_8h.html#ab033628bfe7ba17e7160014e0b138eba">   60</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_node_patient.html">NodePatient</a> <a class="code" href="struct_node_patient.html">NodePatient</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="struct_node_patient.html">   61</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_node_patient.html">NodePatient</a>{</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="struct_node_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">   62</a></span>&#160;    <a class="code" href="struct_patient.html">Patient</a> * <a class="code" href="struct_node_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">patient</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_node_patient.html#ad96b030b2d205d958d0119a33cd84723">   63</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_node_patient.html">NodePatient</a> * <a class="code" href="struct_node_patient.html#ad96b030b2d205d958d0119a33cd84723">previous</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="struct_node_patient.html#aed83e2f44d9cd8414c6dceebd6e34f40">   64</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_node_patient.html">NodePatient</a> * <a class="code" href="struct_node_patient.html#aed83e2f44d9cd8414c6dceebd6e34f40">next</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="struct_list_patient.html">   67</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_list_patient.html">ListPatient</a>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="struct_list_patient.html#acacbc6137b28bb2b48b0a2cfe4305024">   68</a></span>&#160;    <a class="code" href="struct_node_patient.html">NodePatient</a> <a class="code" href="struct_list_patient.html#acacbc6137b28bb2b48b0a2cfe4305024">sentinel_begin</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="struct_list_patient.html#ae1c66e6952e3fd81efd6fe0f72a51826">   69</a></span>&#160;    <a class="code" href="struct_node_patient.html">NodePatient</a> * <a class="code" href="struct_list_patient.html#ae1c66e6952e3fd81efd6fe0f72a51826">current</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="struct_list_patient.html#ad2cb1194a61ed31c401c99218ff6dbb7">   70</a></span>&#160;    <a class="code" href="struct_node_patient.html">NodePatient</a> <a class="code" href="struct_list_patient.html#ad2cb1194a61ed31c401c99218ff6dbb7">sentinel_end</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<a class="code" href="struct_node_patient.html">NodePatient</a> * <a class="code" href="patient_8h.html#a90e466df64f56494bc1a8f2b9b3bad79">newNodePatient</a>(<a class="code" href="struct_patient.html">Patient</a> * patient, <a class="code" href="struct_node_patient.html">NodePatient</a> * previous, <a class="code" href="struct_node_patient.html">NodePatient</a> * next);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a9a09bf67c1092dbdfa73ff1ea76fdf4f">freeNodePatient</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> *l, <a class="code" href="struct_node_patient.html">NodePatient</a> * n);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a6d541623f574ba0350a99d58a5bd7233">freeNodePatient_withoutDeletingPatient</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> *l, <a class="code" href="struct_node_patient.html">NodePatient</a> * n);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<a class="code" href="struct_list_patient.html">ListPatient</a> * <a class="code" href="patient_8h.html#abc0bc3b9a71753ea5858655b57d08fdf">CreerListPatient</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#ae4b1fb7666f84cd621dfc7bd3d11bac2">printListPatient</a>(<a class="code" href="struct_list_patient.html">ListPatient</a>* l);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#aef369d7967f5efb44d2460bcc38f858f">ListPatient_init</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a70941926bd9e1bccd87d03f276bc19ef">ListPatient_free</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#ab8259a39f2e5f810b3b06579f66bcaff">ListPatient_free_withoutDeletingPatient</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#ad3df2db8b2f9aa4b687953750aa74575">ListPatient_add</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l, <a class="code" href="struct_patient.html">Patient</a> * p);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<a class="code" href="struct_patient.html">Patient</a>* <a class="code" href="patient_8h.html#a34684100f534f247f56b3690ec750840">ListPatient_seek</a>(<a class="code" href="struct_list_patient.html">ListPatient</a>* lP, <span class="keywordtype">char</span>* IDPatient);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#accdf4cb18ba0cc4d1001f3f4be49f2a2">ListPatient_isEmpty</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#af7422a8737c994810c07693b2fbc9e62">ListPatient_isFirst</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#a22eee7a20d99884fc52b91d9a229eb91">ListPatient_isLast</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">int</span> <a class="code" href="patient_8h.html#a03cd9855165013b548796ad7029fe464">ListPatient_isOutOfList</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#ad448b7ab4a5637b55d3ce8efaf1c0f08">ListPatient_setOnFirst</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a9c45a8273c719007d1904151c0e0b94d">ListPatient_setOnLast</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#a32ded12aa7f7b4110ed76530329c8293">ListPatient_setOnNext</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">void</span> <a class="code" href="patient_8h.html#aa695434fd4bc74a7190a12da0648af98">ListPatient_setOnPrevious</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="struct_patient.html">Patient</a>* <a class="code" href="patient_8h.html#aa3d3c99d20cac60062f3a9a2dd2ef68f">ListPatient_getCurrent</a>(<a class="code" href="struct_list_patient.html">ListPatient</a> * l);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//void ListPatient_printList(ListPatient * l);          A voir si c&#39;est nécessaire</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="patient_8h_html_aafe2bfc75e103b3e5435e0e375d8ec79"><div class="ttname"><a href="patient_8h.html#aafe2bfc75e103b3e5435e0e375d8ec79">setNumeroSecuSocialePatient</a></div><div class="ttdeci">void setNumeroSecuSocialePatient(Patient *p, char *secu)</div></div>
+<div class="ttc" id="patient_8h_html_ab8259a39f2e5f810b3b06579f66bcaff"><div class="ttname"><a href="patient_8h.html#ab8259a39f2e5f810b3b06579f66bcaff">ListPatient_free_withoutDeletingPatient</a></div><div class="ttdeci">void ListPatient_free_withoutDeletingPatient(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:467</div></div>
+<div class="ttc" id="patient_8h_html_ae44ee40bd899a1161e4c2d3e271418e5"><div class="ttname"><a href="patient_8h.html#ae44ee40bd899a1161e4c2d3e271418e5">AddMedecinConsultePatient</a></div><div class="ttdeci">int AddMedecinConsultePatient(Patient *p, Medecin *medecin)</div><div class="ttdef"><b>Definition:</b> patient.c:287</div></div>
+<div class="ttc" id="struct_patient_html_ac65f93b2b15c34c800c05832e346c98f"><div class="ttname"><a href="struct_patient.html#ac65f93b2b15c34c800c05832e346c98f">Patient::numero_telephone</a></div><div class="ttdeci">char * numero_telephone</div><div class="ttdef"><b>Definition:</b> patient.h:20</div></div>
+<div class="ttc" id="struct_list_patient_html"><div class="ttname"><a href="struct_list_patient.html">ListPatient</a></div><div class="ttdef"><b>Definition:</b> patient.h:67</div></div>
+<div class="ttc" id="struct_date_html"><div class="ttname"><a href="struct_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:9</div></div>
+<div class="ttc" id="patient_8h_html_a0d02d19fbbafc82e8b74ebced325d010"><div class="ttname"><a href="patient_8h.html#a0d02d19fbbafc82e8b74ebced325d010">SetNumeroTelephonePatient</a></div><div class="ttdeci">void SetNumeroTelephonePatient(Patient *p, char *tel)</div><div class="ttdef"><b>Definition:</b> patient.c:188</div></div>
+<div class="ttc" id="patient_8h_html_ae4b1fb7666f84cd621dfc7bd3d11bac2"><div class="ttname"><a href="patient_8h.html#ae4b1fb7666f84cd621dfc7bd3d11bac2">printListPatient</a></div><div class="ttdeci">void printListPatient(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:415</div></div>
+<div class="ttc" id="patient_8h_html_a913e3a59114f7db7b7ad54f93237e7b8"><div class="ttname"><a href="patient_8h.html#a913e3a59114f7db7b7ad54f93237e7b8">DeletePatient</a></div><div class="ttdeci">void DeletePatient(Patient *patient)</div><div class="ttdef"><b>Definition:</b> patient.c:39</div></div>
+<div class="ttc" id="patient_8h_html_a9c45a8273c719007d1904151c0e0b94d"><div class="ttname"><a href="patient_8h.html#a9c45a8273c719007d1904151c0e0b94d">ListPatient_setOnLast</a></div><div class="ttdeci">void ListPatient_setOnLast(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:590</div></div>
+<div class="ttc" id="struct_patient_html"><div class="ttname"><a href="struct_patient.html">Patient</a></div><div class="ttdef"><b>Definition:</b> patient.h:15</div></div>
+<div class="ttc" id="patient_8h_html_a6d541623f574ba0350a99d58a5bd7233"><div class="ttname"><a href="patient_8h.html#a6d541623f574ba0350a99d58a5bd7233">freeNodePatient_withoutDeletingPatient</a></div><div class="ttdeci">void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient *n)</div><div class="ttdef"><b>Definition:</b> patient.c:392</div></div>
+<div class="ttc" id="struct_patient_html_aa7d0e9e8505d2ac627777c4168573ec9"><div class="ttname"><a href="struct_patient.html#aa7d0e9e8505d2ac627777c4168573ec9">Patient::prenom</a></div><div class="ttdeci">char * prenom</div><div class="ttdef"><b>Definition:</b> patient.h:17</div></div>
+<div class="ttc" id="patient_8h_html_a6e771e2869a7b73c4a31671c677c5d65"><div class="ttname"><a href="patient_8h.html#a6e771e2869a7b73c4a31671c677c5d65">getNomPatient</a></div><div class="ttdeci">void getNomPatient(char *nom, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:212</div></div>
+<div class="ttc" id="patient_8h_html_a32ded12aa7f7b4110ed76530329c8293"><div class="ttname"><a href="patient_8h.html#a32ded12aa7f7b4110ed76530329c8293">ListPatient_setOnNext</a></div><div class="ttdeci">void ListPatient_setOnNext(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:599</div></div>
+<div class="ttc" id="patient_8h_html_accdf4cb18ba0cc4d1001f3f4be49f2a2"><div class="ttname"><a href="patient_8h.html#accdf4cb18ba0cc4d1001f3f4be49f2a2">ListPatient_isEmpty</a></div><div class="ttdeci">int ListPatient_isEmpty(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:531</div></div>
+<div class="ttc" id="struct_medecin_html"><div class="ttname"><a href="struct_medecin.html">Medecin</a></div><div class="ttdef"><b>Definition:</b> medecin.h:13</div></div>
+<div class="ttc" id="patient_8h_html_a70941926bd9e1bccd87d03f276bc19ef"><div class="ttname"><a href="patient_8h.html#a70941926bd9e1bccd87d03f276bc19ef">ListPatient_free</a></div><div class="ttdeci">void ListPatient_free(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:449</div></div>
+<div class="ttc" id="struct_patient_html_a49bbab73f86aafe9ee3ef4b862946698"><div class="ttname"><a href="struct_patient.html#a49bbab73f86aafe9ee3ef4b862946698">Patient::numero_secu_social</a></div><div class="ttdeci">char * numero_secu_social</div><div class="ttdef"><b>Definition:</b> patient.h:21</div></div>
+<div class="ttc" id="struct_node_patient_html"><div class="ttname"><a href="struct_node_patient.html">NodePatient</a></div><div class="ttdef"><b>Definition:</b> patient.h:61</div></div>
+<div class="ttc" id="patient_8h_html_a107931c92b5db273a4ba8a7594813560"><div class="ttname"><a href="patient_8h.html#a107931c92b5db273a4ba8a7594813560">SetNomPatient</a></div><div class="ttdeci">void SetNomPatient(Patient *p, char *nom)</div><div class="ttdef"><b>Definition:</b> patient.c:146</div></div>
+<div class="ttc" id="patient_8h_html_aa695434fd4bc74a7190a12da0648af98"><div class="ttname"><a href="patient_8h.html#aa695434fd4bc74a7190a12da0648af98">ListPatient_setOnPrevious</a></div><div class="ttdeci">void ListPatient_setOnPrevious(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:608</div></div>
+<div class="ttc" id="patient_8h_html_aef369d7967f5efb44d2460bcc38f858f"><div class="ttname"><a href="patient_8h.html#aef369d7967f5efb44d2460bcc38f858f">ListPatient_init</a></div><div class="ttdeci">void ListPatient_init(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:433</div></div>
+<div class="ttc" id="patient_8h_html_abc0bc3b9a71753ea5858655b57d08fdf"><div class="ttname"><a href="patient_8h.html#abc0bc3b9a71753ea5858655b57d08fdf">CreerListPatient</a></div><div class="ttdeci">ListPatient * CreerListPatient()</div><div class="ttdef"><b>Definition:</b> patient.c:404</div></div>
+<div class="ttc" id="patient_8h_html_a61d1c016d27141cb494c307e74b95d24"><div class="ttname"><a href="patient_8h.html#a61d1c016d27141cb494c307e74b95d24">SetDateNaissancePatient</a></div><div class="ttdeci">void SetDateNaissancePatient(Patient *p, int an, int mois, int jour)</div><div class="ttdef"><b>Definition:</b> patient.c:168</div></div>
+<div class="ttc" id="struct_patient_html_abe308d273ff51ad86ff02ef3ba3b6f0e"><div class="ttname"><a href="struct_patient.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Patient::nom</a></div><div class="ttdeci">char * nom</div><div class="ttdef"><b>Definition:</b> patient.h:16</div></div>
+<div class="ttc" id="patient_8h_html_a03cd9855165013b548796ad7029fe464"><div class="ttname"><a href="patient_8h.html#a03cd9855165013b548796ad7029fe464">ListPatient_isOutOfList</a></div><div class="ttdeci">int ListPatient_isOutOfList(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:570</div></div>
+<div class="ttc" id="struct_list_patient_html_ae1c66e6952e3fd81efd6fe0f72a51826"><div class="ttname"><a href="struct_list_patient.html#ae1c66e6952e3fd81efd6fe0f72a51826">ListPatient::current</a></div><div class="ttdeci">NodePatient * current</div><div class="ttdef"><b>Definition:</b> patient.h:69</div></div>
+<div class="ttc" id="struct_list_patient_html_ad2cb1194a61ed31c401c99218ff6dbb7"><div class="ttname"><a href="struct_list_patient.html#ad2cb1194a61ed31c401c99218ff6dbb7">ListPatient::sentinel_end</a></div><div class="ttdeci">NodePatient sentinel_end</div><div class="ttdef"><b>Definition:</b> patient.h:70</div></div>
+<div class="ttc" id="patient_8h_html_ad448b7ab4a5637b55d3ce8efaf1c0f08"><div class="ttname"><a href="patient_8h.html#ad448b7ab4a5637b55d3ce8efaf1c0f08">ListPatient_setOnFirst</a></div><div class="ttdeci">void ListPatient_setOnFirst(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:581</div></div>
+<div class="ttc" id="patient_8h_html_a2c27261c6607f0fcf2c53fc514319829"><div class="ttname"><a href="patient_8h.html#a2c27261c6607f0fcf2c53fc514319829">SetAdresseMailPatient</a></div><div class="ttdeci">void SetAdresseMailPatient(Patient *p, char *mail)</div><div class="ttdef"><b>Definition:</b> patient.c:178</div></div>
+<div class="ttc" id="patient_8h_html_a9b63616d2f9c0effeaa903dfb344ac51"><div class="ttname"><a href="patient_8h.html#a9b63616d2f9c0effeaa903dfb344ac51">SetPrenomPatient</a></div><div class="ttdeci">void SetPrenomPatient(Patient *p, char *prenom)</div><div class="ttdef"><b>Definition:</b> patient.c:156</div></div>
+<div class="ttc" id="struct_node_patient_html_aed83e2f44d9cd8414c6dceebd6e34f40"><div class="ttname"><a href="struct_node_patient.html#aed83e2f44d9cd8414c6dceebd6e34f40">NodePatient::next</a></div><div class="ttdeci">struct NodePatient * next</div><div class="ttdef"><b>Definition:</b> patient.h:64</div></div>
+<div class="ttc" id="patient_8h_html_a22eee7a20d99884fc52b91d9a229eb91"><div class="ttname"><a href="patient_8h.html#a22eee7a20d99884fc52b91d9a229eb91">ListPatient_isLast</a></div><div class="ttdeci">int ListPatient_isLast(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:557</div></div>
+<div class="ttc" id="patient_8h_html_a8449a83c8157829d93cef6419dc16240"><div class="ttname"><a href="patient_8h.html#a8449a83c8157829d93cef6419dc16240">AccesDossierMedical</a></div><div class="ttdeci">void AccesDossierMedical(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:86</div></div>
+<div class="ttc" id="struct_patient_html_a7b81f4ba7de896fa37673d677977cedf"><div class="ttname"><a href="struct_patient.html#a7b81f4ba7de896fa37673d677977cedf">Patient::dossierMedical</a></div><div class="ttdeci">DossierMedical * dossierMedical</div><div class="ttdef"><b>Definition:</b> patient.h:22</div></div>
+<div class="ttc" id="struct_dossier_medical_html"><div class="ttname"><a href="struct_dossier_medical.html">DossierMedical</a></div><div class="ttdef"><b>Definition:</b> dossier_medical.h:16</div></div>
+<div class="ttc" id="dossier__medical_8h_html"><div class="ttname"><a href="dossier__medical_8h.html">dossier_medical.h</a></div></div>
+<div class="ttc" id="patient_8h_html_a309b0518aa23434a7f6d73b3d8f8040c"><div class="ttname"><a href="patient_8h.html#a309b0518aa23434a7f6d73b3d8f8040c">getNumeroTelephonePatient</a></div><div class="ttdeci">char * getNumeroTelephonePatient(Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:239</div></div>
+<div class="ttc" id="patient_8h_html_a8b5d4d5e5b2e0c3238f127c8310df4d9"><div class="ttname"><a href="patient_8h.html#a8b5d4d5e5b2e0c3238f127c8310df4d9">CreerPatient</a></div><div class="ttdeci">Patient * CreerPatient(char *nom, char *prenom, int annee_naissance, int mois_naissance, int jour_naissance, char *mail, char *num_tel, char *numero_secu_social)</div><div class="ttdef"><b>Definition:</b> patient.c:15</div></div>
+<div class="ttc" id="patient_8h_html_abe02d8f198bbb5c6f4298b70717c68e7"><div class="ttname"><a href="patient_8h.html#abe02d8f198bbb5c6f4298b70717c68e7">getAdresseMailPatient</a></div><div class="ttdeci">char * getAdresseMailPatient(Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:231</div></div>
+<div class="ttc" id="patient_8h_html_a910c6ac221d062e73d9847a08ada7058"><div class="ttname"><a href="patient_8h.html#a910c6ac221d062e73d9847a08ada7058">PrintListOrdonnances</a></div><div class="ttdeci">void PrintListOrdonnances(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:112</div></div>
+<div class="ttc" id="patient_8h_html_ac149e97afc2950df9d9a0103eb44e2ae"><div class="ttname"><a href="patient_8h.html#ac149e97afc2950df9d9a0103eb44e2ae">getDateNaissancePatient</a></div><div class="ttdeci">void getDateNaissancePatient(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:222</div></div>
+<div class="ttc" id="struct_node_patient_html_ad96b030b2d205d958d0119a33cd84723"><div class="ttname"><a href="struct_node_patient.html#ad96b030b2d205d958d0119a33cd84723">NodePatient::previous</a></div><div class="ttdeci">struct NodePatient * previous</div><div class="ttdef"><b>Definition:</b> patient.h:63</div></div>
+<div class="ttc" id="struct_node_patient_html_a602d93e6dfbb9a54fc31419f2463ac2b"><div class="ttname"><a href="struct_node_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">NodePatient::patient</a></div><div class="ttdeci">Patient * patient</div><div class="ttdef"><b>Definition:</b> patient.h:62</div></div>
+<div class="ttc" id="struct_list_patient_html_acacbc6137b28bb2b48b0a2cfe4305024"><div class="ttname"><a href="struct_list_patient.html#acacbc6137b28bb2b48b0a2cfe4305024">ListPatient::sentinel_begin</a></div><div class="ttdeci">NodePatient sentinel_begin</div><div class="ttdef"><b>Definition:</b> patient.h:68</div></div>
+<div class="ttc" id="patient_8h_html_a90e466df64f56494bc1a8f2b9b3bad79"><div class="ttname"><a href="patient_8h.html#a90e466df64f56494bc1a8f2b9b3bad79">newNodePatient</a></div><div class="ttdeci">NodePatient * newNodePatient(Patient *patient, NodePatient *previous, NodePatient *next)</div><div class="ttdef"><b>Definition:</b> patient.c:362</div></div>
+<div class="ttc" id="_structures_8h_html"><div class="ttname"><a href="_structures_8h.html">Structures.h</a></div></div>
+<div class="ttc" id="patient_8h_html_a921d9b4c9ec1ea4c9db9ae6f1695041c"><div class="ttname"><a href="patient_8h.html#a921d9b4c9ec1ea4c9db9ae6f1695041c">printPatient</a></div><div class="ttdeci">void printPatient(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:59</div></div>
+<div class="ttc" id="patient_8h_html_a34684100f534f247f56b3690ec750840"><div class="ttname"><a href="patient_8h.html#a34684100f534f247f56b3690ec750840">ListPatient_seek</a></div><div class="ttdeci">Patient * ListPatient_seek(ListPatient *lP, char *IDPatient)</div><div class="ttdef"><b>Definition:</b> patient.c:512</div></div>
+<div class="ttc" id="patient_8h_html_a043dbf27ffbc274d4c1cda46eb0bf979"><div class="ttname"><a href="patient_8h.html#a043dbf27ffbc274d4c1cda46eb0bf979">PrintListAntecedents</a></div><div class="ttdeci">void PrintListAntecedents(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:128</div></div>
+<div class="ttc" id="patient_8h_html_af7422a8737c994810c07693b2fbc9e62"><div class="ttname"><a href="patient_8h.html#af7422a8737c994810c07693b2fbc9e62">ListPatient_isFirst</a></div><div class="ttdeci">int ListPatient_isFirst(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:544</div></div>
+<div class="ttc" id="date_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div></div>
+<div class="ttc" id="patient_8h_html_a9a09bf67c1092dbdfa73ff1ea76fdf4f"><div class="ttname"><a href="patient_8h.html#a9a09bf67c1092dbdfa73ff1ea76fdf4f">freeNodePatient</a></div><div class="ttdeci">void freeNodePatient(ListPatient *l, NodePatient *n)</div><div class="ttdef"><b>Definition:</b> patient.c:373</div></div>
+<div class="ttc" id="patient_8h_html_aa3d3c99d20cac60062f3a9a2dd2ef68f"><div class="ttname"><a href="patient_8h.html#aa3d3c99d20cac60062f3a9a2dd2ef68f">ListPatient_getCurrent</a></div><div class="ttdeci">Patient * ListPatient_getCurrent(ListPatient *l)</div><div class="ttdef"><b>Definition:</b> patient.c:618</div></div>
+<div class="ttc" id="patient_8h_html_ad3df2db8b2f9aa4b687953750aa74575"><div class="ttname"><a href="patient_8h.html#ad3df2db8b2f9aa4b687953750aa74575">ListPatient_add</a></div><div class="ttdeci">int ListPatient_add(ListPatient *l, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:487</div></div>
+<div class="ttc" id="struct_patient_html_aefa944e4b78fb9e14c4f6e49605bba2c"><div class="ttname"><a href="struct_patient.html#aefa944e4b78fb9e14c4f6e49605bba2c">Patient::adresse_mail</a></div><div class="ttdeci">char * adresse_mail</div><div class="ttdef"><b>Definition:</b> patient.h:19</div></div>
+<div class="ttc" id="patient_8h_html_a779a417552234e4058cb0ad96356825a"><div class="ttname"><a href="patient_8h.html#a779a417552234e4058cb0ad96356825a">DeleteMedecinConsultePatient</a></div><div class="ttdeci">int DeleteMedecinConsultePatient(Patient *p, Medecin *medecin)</div><div class="ttdef"><b>Definition:</b> patient.c:324</div></div>
+<div class="ttc" id="patient_8h_html_a43e60a3391b4f4e16b73e053f54ef723"><div class="ttname"><a href="patient_8h.html#a43e60a3391b4f4e16b73e053f54ef723">getInfoPatient</a></div><div class="ttdeci">void getInfoPatient(char *infos, Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:257</div></div>
+<div class="ttc" id="patient_8h_html_a9f21fc94cc9c135c4d081949be7a65ab"><div class="ttname"><a href="patient_8h.html#a9f21fc94cc9c135c4d081949be7a65ab">getNumeroSecuSocialePatient</a></div><div class="ttdeci">char * getNumeroSecuSocialePatient(Patient *p)</div><div class="ttdef"><b>Definition:</b> patient.c:247</div></div>
+<div class="ttc" id="struct_patient_html_a1ce5c592705142193b097a1bed2794e6"><div class="ttname"><a href="struct_patient.html#a1ce5c592705142193b097a1bed2794e6">Patient::date_naissance</a></div><div class="ttdeci">Date * date_naissance</div><div class="ttdef"><b>Definition:</b> patient.h:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="patient_8h.html">patient.h</a></li>
+    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

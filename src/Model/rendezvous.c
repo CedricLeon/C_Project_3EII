@@ -2,6 +2,7 @@
 
 /**
  * CreerRendezVous : Creer dynamiquement un objet RendezVous
+ *                   Et ajoute le patient et le médecin à leur liste respective de personnes rencontrées
  * @param an : l'annee
  * @param mois : le mois
  * @param jour : le jour
@@ -13,11 +14,11 @@
  * @param motif : le motif du rdv
  * @return le rdv créé
  */
-RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
+RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, double duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
 
     RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
     rdv->heure_debut = heure_debut;
-    rdv->heure_fin = heure_debut + (double) (duree/60);
+    rdv->heure_fin = heure_debut + (duree/60);
     rdv->date = CreerDate(an, mois, jour);
 
     rdv->lieu = (char*) malloc(strlen(lieu)+1);
@@ -25,6 +26,9 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
 
     rdv->patient = patient;
     rdv->medecin = medecin;
+
+    AddMedecinConsultePatient(patient, medecin);
+    AddPatientRecuMedecin(medecin, patient);
 
     rdv->motif = (char*) malloc(strlen(motif)+1);
     strcpy(rdv->motif, motif);
@@ -38,44 +42,42 @@ RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, int
  * @param rdv : le rdv à free
  */
 void FreeRendezVous(RendezVous * rdv){
-    printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
+    //printf("\t\t\t\t\tFreeRendezVous() : Le RendezVous du %d/%d/%d à %2.1f a bien été free.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee, rdv->heure_debut);
     FreeDate(rdv->date);
     free((void*) rdv->motif);
     free((void*) rdv->lieu);
-    free((void *) rdv);         //Apparement le rdv est déjà free mais je sais pas où ???
+    free((void *) rdv);
 }
-
 /**
- * AnnulerRendezVous : Annuler un RendezVous, l'initialiser à vide
- * @param rdv : le rdv qu'on veut annuler
- * @return 1 si le rdv a bien été annulé
+ * EqualsRendezVous : fonction permettant de savoir si 12 rendez-vous sont les memes en comparant leurs dates et leurs horaires
+ * @param rdv1 }
+ *             } Les 2 rdv à comparer
+ * @param rdv2 }
+ * @return 1 si ils sont égaux
+ *         0 sinon
+ *         -1 si l'un des rdv est NULL
  */
-int AnnulerRendezVous(RendezVous * rdv){
-
-    //On teste si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on ne regarde pas l'heure pour cela : si le rdv est passé mais du jour même on peut l'annuler
-    Date * date_courante = CreerDateCourante();
-    if ((date_courante->annee - rdv->date->annee)>0 || (date_courante->mois - rdv->date->mois)>0 || (date_courante->jour - rdv->date->jour)>0){
-
-        //Si c'était le premier rdv entre un medecin et un patient il faut les retirer de leurs listes medecins_consultes et patient_recus respectives
-
-        /*Pour cela on parcourt tous les rdv du patient dans le calendrier et on cherche le medecin*/
-
-        if(DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) && DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
-
-        }
-
-        //Une fois ceci fait on libère l'instance Date liée au rdv et on free le tout
-        FreeDate(rdv->date);
-        free((void *) rdv);
-        printf("Le rendez-vous daté du %d/%d/%d a bien été annulé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
-        return 1;
+int EqualsRendezVous(RendezVous * rdv1, RendezVous * rdv2){
+    if(rdv1 == NULL || rdv2 == NULL)
+    {
+        printf("EqualsRendezVous() : L'un des 2 rdv est NULL.\n");
+        return -1;
     }
-    //On oublie pas de free les objets utilisés
-    FreeDate(date_courante);
-    printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->jour);
-    return 1;
+    //test si mêmes dates
+    if(DateEgales(rdv1->date, rdv2->date))
+    {
+        //test mêmes horaires
+        if(rdv1->heure_debut == rdv2->heure_debut && rdv1->heure_fin == rdv2->heure_fin)
+        {
+            //test mêmes motifs et lieux
+            if(strcmp(rdv1->lieu, rdv2->lieu) == 0 && strcmp(rdv1->motif,  rdv2->motif) == 0)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
-
 /**
  * DeplacerRendezVous : Deplacer un RendezVous
  * @param rdv : le rdv qu'on veut deplacer
@@ -95,4 +97,43 @@ RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jo
     rdv->heure_debut = n_heure_debut;
     rdv->heure_fin = n_heure_debut + (double) (n_duree/60);
     return rdv;
+}
+
+/**
+ * getInfosRendezVous : Place dans une chaine de caractères passée en paramètre les informations d'un RendezVous
+ * @param infos : la chaîne qui va contenir les informations
+ * @param rdv : le rdv dont on veut les infos
+ */
+void getInfosRendezVous(char* infos, RendezVous* rdv){
+
+    char* tmp = (char*) malloc(30);
+
+    strcpy(infos, "\tRendez-vous du : ");
+    getInfosDate(tmp, rdv->date);
+    strcat(infos, tmp);
+
+    strcat(infos,"\n\tDe ");
+    sprintf(tmp, "%2.1f", rdv->heure_debut);
+    strcat(infos, tmp);
+    strcat(infos,"h à ");
+
+    sprintf(tmp, "%2.1f", rdv->heure_fin);
+    strcat(infos, tmp);
+    strcat(infos,"h.\n\tA l'endroit : ");
+    strcat(infos, rdv->lieu);
+
+    strcat(infos,"\n\tEntre le patient \"");
+    strcat(infos, rdv->patient->nom);
+    strcat(infos, " ");
+    strcat(infos, rdv->patient->prenom);
+    strcat(infos, "\" et le médecin \"");
+    strcat(infos, rdv->medecin->nom);
+    strcat(infos, " ");
+    strcat(infos, rdv->medecin->prenom);
+    strcat(infos, "\".\n\tPour le motif : ");
+
+    strcat(infos, rdv->motif);
+    strcat(infos, "\n\n");
+
+    free((void*) tmp);
 }

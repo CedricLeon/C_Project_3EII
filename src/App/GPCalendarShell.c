@@ -1,0 +1,585 @@
+#include "GPCalendarShell.h"
+
+/**********************************************************************************************************************/
+                                            /*Fonctions de print*/
+/**********************************************************************************************************************/
+
+void printPossibleAction(){
+    printf("\t- 1 : Créer un Patient\n");
+    printf("\t- 2 : Créer un Médecin\n");
+    printf("\t- 3 : Créer un Rendez-vous entre un Patient et un Médecin\n");
+    printf("\t- 4 : Consulter les informations de l'Hôpital\n");
+    printf("\t- 5 : Annuler un Rendez-vous\n");
+    printf("\t- 6 : Supprimer un Patient de la liste de l'Hôpital\n");
+    printf("\t- 7 : Supprimer un Médecin de la liste de l'Hôpital\n");
+    printf("\t- 8 : Sauvegarder un Projet (Liste des Patients consultants, des Médecins travaillants et le calendrier de l'hôpital\n");
+}
+
+/**********************************************************************************************************************/
+                                            /*Fonctions d'actions*/
+/**********************************************************************************************************************/
+
+void Shell_creerPatient(Project* project){
+
+    char nomP[20];
+    char prenomP[20];
+    int jourP;
+    int moisP;
+    int anneeP;
+    char mail[30];
+    char tel[11];
+    char secu[30];
+
+    printf("Pour créer un patient vous avez besoin des informations suivantes :\n");
+    printf("\tNom \t Prénom \t Date de Naissance (au format XX/XX/XXXX)\tAdresse Mail\tNuméro de Téléphone\tNuméro de sécurité sociale\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du patient :\n");
+    scanf("%s %s %d/%d/%d %s %s %s", nomP, prenomP, &jourP, &moisP, &anneeP, mail, tel, secu);
+    Patient* p = CreerPatient(nomP, prenomP, anneeP, moisP, jourP, mail, tel, secu);
+
+    char* infos = (char*) malloc(200);
+    printPatient(infos, p);
+    printf("%s",infos);
+    free((void*) infos);
+
+    if(ListPatient_add(project->consultingPatient, p) != -1){
+        printf("Le patient \"%s %s\" a bien été ajouté à la liste des patients consultants de l'hôpital, vous "
+               "pourrez accéder à ses informations à partir de son numéro de sécurité sociale.\n", nomP, prenomP);
+    }
+}
+void Shell_creerMedecin(Project* project){
+
+    char nomM[20];
+    char prenomM[20];
+    char mail[30];
+    char tel[11];
+    char rps[30];
+
+    printf("Pour créer un médecin vous avez besoin des informations suivantes :\n");
+    printf("\tNom \t Prénom \tAdresse Mail\tNuméro de Téléphone\t Numéro RPS\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du médecin :\n");
+    scanf("%s %s %s %s %s", nomM, prenomM, mail, tel, rps);
+    Medecin* m = CreerMedecin(nomM, prenomM, mail, tel, rps);
+
+    char* infos = (char*) malloc(200);
+    getInfoMedecin(infos, m);
+    printf("%s\n",infos);
+    free((void*) infos);
+
+    if(ListMedecin_add(project->workingMedecins, m) != -1){
+        printf("Le medecin\"%s %s\" a bien été ajouté à la liste des médecins actifs de l'hôpital, vous "
+               "pourrez accéder à ses informations à partir de son numéro RPS.\n", nomM, prenomM);
+    }
+}
+void Shell_creerRendezVous(Project* project){
+    int jourRdv;
+    int moisRdv;
+    int anneeRdv;
+    float heure_debut;
+    int duree;
+    char lieu[30];
+    char motif[100];
+    char secuP[30];
+    char rpsM[30];
+
+    char addOrdonnance_ask[10];
+    char descripionOrdo[200];
+    char antecedent[200];
+
+    printf("Pour créer un rendez-vous, vous avez besoin des informations suivantes :\n");
+    printf("\t- Date (au format XX/XX/XXXX)\n\t- Heure de début (au format 16.5 pour 16h30 par exemple)\n\t- "
+           "Durée (en min)\n\t- Lieu\n\t- Motif\n\t- Numéro de sécurité sociale du patient\n\t- Numéro RPS du mèdecin\n");
+    printf("Veuillez donc rentrez, dans l'ordre et séparées par un espace, les informations du rendez-vous :\n");
+    scanf("%d/%d/%d %f %d %s %s %s %s", &jourRdv, &moisRdv, &anneeRdv, &heure_debut, &duree, lieu, motif, secuP, rpsM);
+
+    Patient* p = ListPatient_seek(project->consultingPatient, secuP);
+    if(p == NULL){
+        printf("Le patient au numéro de sécurité sociale \"%s\" ne fait pas partie de notre base de données, "
+               "veuillez l'inscrire avant de mettre en place ce rendez-vous", secuP);
+        return;
+    }
+    Medecin* m = ListMedecin_seek(project->workingMedecins, rpsM);
+    if(m == NULL){
+        printf("Le médecin au numéro RPS \"%s\" ne fait pas partie de notre base de données, "
+               "veuillez l'inscrire avant de mettre en place ce rendez-vous", rpsM);
+        return;
+    }
+
+    RendezVous* rdv = CreerRendezVous(anneeRdv, moisRdv, jourRdv, heure_debut, duree, lieu, p, m, motif);
+    //La patient est ajouté à al liste des patients recus du médecin et récipoquement dans la fonction CreerRendezVous
+
+    //if(RendezVousValable())
+
+    char* infos = (char*) malloc(200);
+    getInfosRendezVous(infos, rdv);
+    printf("%s",infos);
+    free((void*) infos);
+
+    if(AddRendezVous_Calendrier(project->calendrier, rdv)){
+        printf("Le rendez-vous a bien été ajouté au calendrier de l'hôpital, vous "
+               "pourrez le voir en affichant le calendrier.\n");
+    }else{
+        fprintf(stderr, "Erreur lors de l'ajout du rendez-vous au calendrier de l'hopital. RendezVous deleted.\n");
+        FreeRendezVous(rdv);
+        return;
+    }
+
+    printf("Suite au rendez-vous, une ordonnance a pu être prescrite, souhaitez-vous l'ajouter, au dossier médical du patient (\"yes\" ou \"no\")? :");
+    scanf("%s", addOrdonnance_ask);
+    if(strcmp(addOrdonnance_ask, "yes") == 0)
+    {
+        printf("Veuillez entrer la description de l'ordonnance : \n");
+        scanf("%s", descripionOrdo);
+        Ordonnance* ordo = CreerOrdonnance(m, descripionOrdo);
+        if(AddOrdonnanceDossierMedical(p->dossierMedical, ordo) == -1)
+        {
+            fprintf(stderr, "Erreur lors de l'ajout de l'ordonnance au dossier médical.\n");
+        }
+    }
+    else if(strcmp(addOrdonnance_ask, "no") == 0)
+    {
+        printf("Vous avez choisi de ne pas pas proscrire d'ordonnance après ce rendez-vous.\n");
+    }else{
+        fprintf(stderr, "Votre réponse ne fait pas partie de celles attendues, par conséquent aucune ordonnance ne sera proscrite.\n");
+    }
+    printf("Veuillez maintenant entrer un compte rendu de ce rendez-vous. Ce compte-rendu sera ajouté aux "
+           "antécédents du patient et permettra un suivi plus précis de sa santé lors de ses prochaines consultations :\n");
+    scanf("%s", antecedent);
+    if(ListAntecedent_add(p->dossierMedical->antecedents, antecedent) == -1)
+    {
+        fprintf(stderr, "Erreur lors de l'ajout de l'antécédent au dossier médical.\n");
+    }
+    printf("Félicitations, vous avez créé un rendez-vous.\n");
+}
+void Shell_consulterInformations(Project* project){
+
+    long infos_actions = -1;
+    char infos_ask[10];
+    char* infos_ask_tmp;
+
+    printf("Quelles informations voulez-vous consulter ?\n");
+    printf("\t- 1 : Liste des patients inscrits dans l'hôpital ;\n");
+    printf("\t- 2 : Liste des médecins travaillants dans l'hôpital ;\n");
+    printf("\t- 3 : Tout les rendez-vous de l'hôpital (calendrier) ;\n");
+    printf("\t- 4 : L'entièreté du projet (patients, médecins et calendrier).\n");
+
+    while (fgets(infos_ask, sizeof(infos_ask), stdin)) {
+        infos_actions = strtol(infos_ask, &infos_ask_tmp, 10);
+        if (infos_ask_tmp == infos_ask || *infos_ask_tmp != '\n')
+        {
+            printf("Veuillez entrer un chiffre : ");
+        }
+        else if (infos_actions < 1 || infos_actions > 4)
+        {
+            printf("Veuillez entrer un chiffre correspondant aux actions possibles : \n");
+            printf("\t- 1 : Liste des patients inscrits dans l'hôpital ;\n");
+            printf("\t- 2 : Liste des médecins travaillants dans l'hôpital ;\n");
+            printf("\t- 3 : Tout les rendez-vous de l'hôpital (calendrier) ;\n");
+            printf("\t- 4 : L'entièreté du projet (patients, médecins et calendrier).\n");
+        }
+        else break;
+    }
+    switch (infos_actions) {
+        case 1:
+            printf("********************Liste des patients inscrits dans l'hôpital**********************");
+            printListPatient(project->consultingPatient);
+            printf("************************************************************************************");
+            break;
+        case 2:
+            printf("*******************Liste des médecins travaillants dans l'hôpital********************");
+            printListMedecin(project->workingMedecins);
+            printf("************************************************************************************");
+            break;
+        case 3:
+            printCalendrier(project->calendrier);
+            break;
+        case 4:
+            printProject(project);
+            break;
+        default:
+            //Normalement on n'arrivera jamais ici puisque tout est déjà vérifier plus haut
+            printf("Le chiffre que vous avez tapé ne fait pas parti des choix, que voulez-vous faire ?\n");
+            break;
+    }
+}
+void Shell_annulerRendezVous(Project* project){
+}
+void Shell_supprimerPatient(Project* project){
+    char continue_ask[50];
+    char num_secu_patientDelete[100];
+    char* infos = (char*) malloc(1000);
+    printf("Supprimer un patient, supprimera toutes traces de lui de notre base de données, à savoir ses informations "
+           "personnelles, ses rendez-vous n'ayant pas encore eu lieu, ses rendez-vous passés et sa présence en tant "
+           "que patient reçu chez les médecins qu'il a déjà consulté.\n");
+    printf("Souhaitez-vous continuez ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("Vous avez choisi d'arrêtez, retour au menu principal.\n");
+        return;
+    }
+    printf("\nVeuillez entrer le numéro de sécurité sociale du patient que vous voulez supprimer : ");
+    scanf("%s", num_secu_patientDelete);
+
+    Patient* p = ListPatient_seek(project->consultingPatient, num_secu_patientDelete);
+    if(p == NULL){
+        printf("Le patient au numéro de sécurité sociale \"%s\" ne fait pas partie de notre base de données, "
+               "retour au menu principal.\n", num_secu_patientDelete);
+        return;
+    }
+    printf("\n");
+    printPatient(infos, p);
+    printf("%s\n",infos);
+    free((void*) infos);
+    printf("Ce patient est-il bien celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("\nLe numéro de sécurité sociale du patient que vous avez entré ne correspondait pas au bon patient : retour au menu principal.\n");
+        return;
+    }
+
+    printf("Suppression des rendez-vous du patient \"%s %s\".\n",p->nom, p->prenom);
+    Calendrier c = project->calendrier;
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for (ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous* current_rdv = ListRendezVous_getCurrent(j);
+                    if(strcmp(p->numero_secu_social, current_rdv->patient->numero_secu_social) == 0){
+                        char date_rdv[20];
+                        getInfosDate(date_rdv, current_rdv->date);
+                        printf("\tAnnulation de la consultation du %s à %2.1f entre le patient \"%s %s\" et le médecin \"%s %s\""
+                               " \n", date_rdv, current_rdv->heure_debut, p->nom, p->prenom, current_rdv->medecin->nom, current_rdv->medecin->prenom);
+                        freeNodeRendezVous(j, j->current);
+                    }
+                }
+                if(ListRendezVous_isEmpty(j))
+                {
+                    FreeDate(j->date);
+                    freeNodeJour(m, m->current);
+                }
+            }
+            if(ListJour_isEmpty(m))
+            {
+                freeNodeMois(a, a->current);
+            }
+        }
+        if(ListMois_isEmpty(a))
+        {
+            freeNodeAnnee(c, c->current);
+        }
+    }
+
+
+    ListMedecin* lM = p->dossierMedical->medecins_consultes;
+    for(ListMedecin_setOnFirst(lM); !ListMedecin_isOutOfList(lM); ListMedecin_setOnNext(lM))
+    {
+        Medecin* medecinConsulte = ListMedecin_getCurrent(lM);
+        printf("Suppression du patient \"%s %s\" des patients reçus par le médecin \"%s %s\".\n",p->nom, p->prenom, medecinConsulte->nom, medecinConsulte->prenom);
+        DeletePatientRecuMedecin(medecinConsulte, p);
+    }
+    printf("Suppression du patient \"%s %s\" de notre base de données.\n",p->nom, p->prenom);
+    ListPatient* consultingPatient = project->consultingPatient;
+    for(ListPatient_setOnFirst(consultingPatient); !ListPatient_isOutOfList(consultingPatient); ListPatient_setOnNext(consultingPatient))
+    {
+        if(strcmp(ListPatient_getCurrent(consultingPatient)->numero_secu_social, p->numero_secu_social) == 0)
+        {
+            freeNodePatient(consultingPatient, consultingPatient->current);
+            break;
+        }
+    }
+}
+void Shell_supprimerMedecin(Project* project){
+    char continue_ask[50];
+    char num_rps_medecinDelete[100];
+    char* infos = (char*) malloc(1000);
+    printf("Supprimer un médecin, supprimera toutes traces de lui de notre base de données. A savoir ses informations "
+           "personnelles, ses consultations n'ayant pas encore eu lieu, ses consultations passés, sa présence en tant "
+           "que médecin consulté chez les patients qu'il a déjà reçu et toutes les ordonnances qu'il a prescrites à ses patients !\n");
+    printf("Souhaitez-vous continuez ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("Vous avez choisi d'arrêtez, retour au menu principal.\n");
+        return;
+    }
+    printf("\nVeuillez entrer le numéro RPS du médecin que vous voulez supprimer : ");
+    scanf("%s", num_rps_medecinDelete);
+
+    Medecin* medecin = ListMedecin_seek(project->workingMedecins, num_rps_medecinDelete);
+    if(medecin == NULL){
+        printf("Le médecin au numéro RPS \"%s\" ne fait pas partie de notre base de données, "
+               "retour au menu principal.\n", num_rps_medecinDelete);
+        return;
+    }
+    printf("\n");
+    getInfoMedecin(infos, medecin);
+    printf("%s\n\n",infos);
+    free((void*) infos);
+    printf("Ce médecin est-il bien celui que vous voulez supprimer ? (\"yes\" ou \"no\") : ");
+    scanf("%s", continue_ask);
+    if( strcmp(continue_ask, "yes") != 0 ){
+        printf("\nLe numéro RPS du médecin que vous avez entré ne correspondait pas au bon médecin : retour au menu principal.\n");
+        return;
+    }
+
+    printf("Suppression des consultations du médecin \"%s %s\".\n", medecin->nom, medecin->prenom);
+    Calendrier c = project->calendrier;
+    for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
+    {
+        Annee a = ListAnnee_getCurrent(c);
+        for (ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
+        {
+            Mois m = ListMois_getCurrent(a);
+            for (ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
+            {
+                Jour j = ListJour_getCurrent(m);
+                for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
+                {
+                    RendezVous* current_rdv = ListRendezVous_getCurrent(j);
+                    if(strcmp(medecin->numero_RPS, current_rdv->medecin->numero_RPS) == 0){
+                        char date_rdv[20];
+                        getInfosDate(date_rdv, current_rdv->date);
+                        printf("\tAnnulation de la consultation du %s à %2.1f entre le médecin \"%s %s\" et le patient \"%s %s\""
+                               " \n", date_rdv, current_rdv->heure_debut, medecin->nom, medecin->prenom, current_rdv->patient->nom, current_rdv->patient->prenom);
+                        freeNodeRendezVous(j, j->current);
+                    }
+                }
+                if(ListRendezVous_isEmpty(j))
+                {
+                    FreeDate(j->date);
+                    freeNodeJour(m, m->current);
+                }
+            }
+            if(ListJour_isEmpty(m))
+            {
+                freeNodeMois(a, a->current);
+            }
+        }
+        if(ListMois_isEmpty(a))
+        {
+            freeNodeAnnee(c, c->current);
+        }
+    }
+
+    ListPatient* lP = medecin->patients_recus;
+    for(ListPatient_setOnFirst(lP); !ListPatient_isOutOfList(lP); ListPatient_setOnNext(lP))
+    {
+        Patient* patientRecu = ListPatient_getCurrent(lP);
+        printf("Suppression du médecin \"%s %s\" de la liste des médecins consultés par le patient \"%s %s\".\n", medecin->nom, medecin->prenom, patientRecu->nom, patientRecu->prenom);
+        DeleteMedecinConsultePatient(patientRecu, medecin);
+        ListOrdonnance* lOrdo = patientRecu->dossierMedical->ordonnances;
+        for(ListOrdonnance_setOnFirst(lOrdo); !ListOrdonnance_isOutOfList(lOrdo); ListOrdonnance_setOnNext(lOrdo))
+        {
+            if(strcmp(ListOrdonnance_getCurrent(lOrdo)->medecin->numero_RPS, medecin->numero_RPS) == 0)
+            {
+                char date_ordo[20];
+                getInfosDate(date_ordo, ListOrdonnance_getCurrent(lOrdo)->date_edition);
+                printf("\tSuppression de l'ordonnance éditée le %s par le médecin \"%s %s\" pour le patient \"%s %s\".\n", date_ordo, medecin->nom, medecin->prenom, patientRecu->nom, patientRecu->prenom);
+                freeNodeOrdonnance(lOrdo, lOrdo->current);
+            }
+        }
+    }
+
+    printf("Suppression du médecin \"%s %s\" de notre base de données.\n", medecin->nom, medecin->prenom);
+    ListMedecin* workingMedecins = project->workingMedecins;
+    for(ListMedecin_setOnFirst(workingMedecins); !ListMedecin_isOutOfList(workingMedecins); ListMedecin_setOnNext(workingMedecins))
+    {
+        if(strcmp(ListMedecin_getCurrent(workingMedecins)->numero_RPS, medecin->numero_RPS) == 0)
+        {
+            freeNodeMedecin(workingMedecins, workingMedecins->current);
+            break;
+        }
+    }
+}
+
+int main(int argc, char *argv[]){
+
+    /**
+     * Trucs qu'il faut changer :
+     *  - Les scanf pour demander des infos (on vérifié pas le format des données)
+     *
+     * Idées d'amélioration :
+     *  - mettre de la couleur (pour les questions ou autres, pour différencier les print de ce main ou les print des fonctions appellées)
+     *  - implémenter un "help"
+     *  - permettre de modifier les informations d'un mèdecin ou d'un patient
+     */
+
+    //Initialisation des variables
+
+    //Variables nécessaires au load ou à la création d'un projet par l'utilisateur
+    char GPCalendar_project_path[200];
+    Project* current_project = NULL;
+    char project_name[200];
+
+    //Variables nécessaires au choix de l'action par l'utilisateur
+    long GPCalendar_action = -1;
+    char GPCalendar_ask[10];
+    char* GPCalendar_ask_tmp;
+
+    //Variables nécessaires au choix de quitter ou non l'application par l'utilisateur
+    long GPCalendar_exit = -1;
+    char GPCalendar_exit_ask[100];
+    char* GPCalendar_exit_ask_tmp;
+
+    char project_save_file_name[100];
+
+
+    //Ouverture de l'appli
+    printf("************************** GPCalendar_Shell ******************************\n");
+
+    printf("\nBienvenue dans la version console de GPCalendar, souhaitez vous travailler avec un projet déjà existant ou souhaitez vous en créer un nouveau ?\n");
+    printf("Entrez \"new\" pour créer un nouveau projet ou entrez directement le chemin absolu du fichier JSON correspondant à un projet précédemment suavegardé.\n");
+    printf("Exemple : \"/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json\"\n");
+
+    do{
+        scanf("%s", GPCalendar_project_path);
+        /* /home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json */
+
+        if(strcmp(GPCalendar_project_path, "new") == 0)
+        {
+
+            printf("Vous avez choisi de créer un nouveau projet, comment souhaitez vous l'appeller ? : ");
+            scanf("%s", project_name);
+
+            ListMedecin* project_workingMedecins = CreerListMedecin();
+            ListPatient* project_consultingPatients = CreerListPatient();
+            Calendrier project_calendrier = CreerCalendrier();
+
+            current_project = CreerProject(project_name, project_workingMedecins, project_consultingPatients, project_calendrier);
+            printf("Vous avez créé un nouveau projet \"%s\", vous allez maintenant pouvoir le manipuler.\n", project_name);
+            printf("Si vous souhaitez travailler sur un autre projet, vous devrez fermer l'application et la réouvrir avec un autre projet.\n");
+            break;
+        }
+        else
+        {
+            current_project = GPCalendar_loadProject(GPCalendar_project_path);
+            if (current_project != NULL){
+                printf("\nVous avez choisi de load le projet \"%s\", le voici :\n", current_project->nom);
+                printProject(current_project);
+            }else {
+                printf("Le fichier est introuvable, veuillez entrez un chemin valide ou \"new\" pour créer un nouveau projet.\n");
+            }
+        }
+    } while (current_project == NULL);
+
+    printf("\nPour utiliser l'application vous devrez entrer "
+           "des chiffres correspondants chacun à une action particulière :\n");
+    printPossibleAction();
+
+    //gestion de l'aide : [NOT IMPLEMENTED]
+    printf("\nSi vous avez besoin d'aide à propos des commandes vous pouvez taper \"help\" à n'importe quel moment.[NOT IMPLEMENTED]\n\n");
+
+    do
+    {
+        /**
+         * Demande de l'action à l'utilisateur (utilisation de fgets et strtol)
+         */
+        printf("Que voulez-vous faire ? ");
+        while (fgets(GPCalendar_ask, sizeof(GPCalendar_ask), stdin)) {
+            GPCalendar_action = strtol(GPCalendar_ask, &GPCalendar_ask_tmp, 10);
+            if (GPCalendar_ask_tmp == GPCalendar_ask || *GPCalendar_ask_tmp != '\n')
+            {
+                printf("Veuillez entrer un chiffre : ");
+            }
+            else if (GPCalendar_action < 1 || GPCalendar_action > 8)
+            {
+                printf("Veuillez entrer un chiffre correspondant aux actions possibles : \n");
+                printPossibleAction();
+            }
+            else break;
+        }
+        /**
+         * Switch case pour appeller la fonction correspondant à l'action demandée
+         */
+        switch (GPCalendar_action)
+        {
+            case 1:
+                printf("Vous avez choisi de créer un Patient.\n");
+                Shell_creerPatient(current_project);
+                /* nomP prenomP 01/02/1234 mailP telP secuP */
+                break;
+            case 2:
+                printf("Vous avez choisi de créer un Médecin.\n");
+                Shell_creerMedecin(current_project);
+                /* nomM prenomM mailM telM RPS */
+                break;
+            case 3:
+                printf("Vous avez choisi de créer un Rendez-vous.\n");
+                Shell_creerRendezVous(current_project);
+                /* 11/11/1111 16.5 30 lieuRDV motifRDV secuP RPS */
+                /* descriptionOrdonnanceRDV */
+                /* compte-rendu du rdv (antécédent du patient) */
+                break;
+            case 4:
+                printf("Vous avez choisi de consulter des informations.\n");
+                Shell_consulterInformations(current_project);
+                break;
+            case 5:
+                printf("Vous avez choisi d'annuler un Rendez-vous.\n");
+                printf("Désolé mais cette fonction n'est pas encore disponible : Data corrupted.\n");
+                break;
+            case 6:
+                printf("Vous avez choisi de supprimer un Patient.\n");
+                Shell_supprimerPatient(current_project);
+                break;
+            case 7:
+                printf("Vous avez choisi de supprimer un Médecin.\n");
+                Shell_supprimerMedecin(current_project);
+                break;
+            case 8:
+                printf("Vous avez choisi de sauvegarder le Projet actuel.\n");
+                break;
+            default :
+                //Normalement on n'arrivera jamais ici puisque tout est déjà vérifier plus haut
+                printf("Le chiffre que vous avez tapé ne fait pas parti des choix, que voulez-vous faire ?\n");
+                break;
+        }
+
+        /**
+         * On demande à l'utilisateur si il veut continuer à utiliser l'appli :
+         *  - "yes" pour continuer
+         *   - "no" pour arreter
+         */
+        printf("\nVoulez-vous continuez ? Entrez '1' si oui, '0' si non : ");
+        while (fgets(GPCalendar_exit_ask, sizeof(GPCalendar_exit_ask), stdin)) {
+            GPCalendar_exit = strtol(GPCalendar_exit_ask, &GPCalendar_exit_ask_tmp, 10);
+            if (GPCalendar_exit_ask_tmp == GPCalendar_exit_ask || *GPCalendar_exit_ask_tmp != '\n')
+            {
+                printf("Veuillez entrer un chiffre : ");
+            }
+            else if (GPCalendar_exit < 0 || GPCalendar_exit > 1)
+            {
+                printf("Veuillez entrer un chiffre correspondant aux actions possibles : \n");
+                printf("Entrez '1' si vous voulez continuer, '0' si vous souhaitez quitter l'application : ");
+            }
+            else
+                break;
+        }
+    } while (GPCalendar_exit);
+
+    printf("\nAvant de partir, souhaitez-vous enregistrer votre projet ? Si oui, entrez directement le chemin absolu avec le nom du fichier de sauvegarde JSON que vous souhaitez créer.\n");
+    printf("Exemple : \"C:\\Documents\\NomDeMonFichierDeSauvegarde.json\".\n");
+    printf("Et si vous ne souhaitez pas sauvegarder votre projet tapez simplement \"no\".\n");
+    scanf("%s", project_save_file_name);
+    /* /home/cleonard/dev/C_Project/C_Project/Test_GPCalendar_Shell1.json */
+    if(strcmp(project_save_file_name, "no") == 0)
+    {
+        freeProject(current_project);
+    }
+    else{
+        if(GPCalendar_saveProject(project_save_file_name, current_project) == 1){
+            printf("Votre projet \"%s\" a bien été sauvegardé ici : \"%s\".\n", current_project->nom, project_save_file_name);
+            freeProject(current_project);
+        }else{
+            printf("La sauvegarde du projet a échouée, le projet est tout de même supprimé pour des raisons de fuites mémoire.\n");
+            freeProject(current_project);
+        }
+    }
+    printf("Merci d'avoir utilisé notre application ;).\n");
+    printf("\n************************** GPCalendar_Shell ******************************\n");
+}

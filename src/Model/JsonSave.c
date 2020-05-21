@@ -70,7 +70,7 @@ int GPCalendar_saveProject(char* nomFichier, Project* project){
     {
         char* toPrint = Project_jsonSave(project);
         if(toPrint == NULL){
-            printf("\n MDR go debugger.\n");
+            printf("\n GPCalendar_saveProject() : char* toPrint is NULL.\n");
             return 0;
         }
         fprintf(savingFile, "%s", toPrint);
@@ -194,7 +194,7 @@ int ListMedecin_jsonSave(cJSON* listMedecinJson, ListMedecin* l){
         }*/
         //Là normalement on a tout ajouté à notre médecin on peut passer au suivant
     }
-    printf("ListMedecin_jsonSave() : Liste de mèdecins bien save.\n");
+    //printf("ListMedecin_jsonSave() : Liste de mèdecins bien save.\n");
     return 1;
 }
 
@@ -294,6 +294,19 @@ int ListPatient_jsonSave(cJSON* listPatientJson, ListPatient* l){
             if (cJSON_AddStringToObject(ordonnance, "description", ordo->description) == NULL)  return 0;
             //Là normalement on a tout ajouté à notre ordonnance à notre liste d'ordonnances, on peut passer au suivant
         }
+
+        /**
+         * On gère la liste d'antécédents du dossier médical de notre patient
+         */
+        cJSON* listAntecedent = cJSON_AddArrayToObject(patient, "Antecedents");      //idem
+        ListAntecedent * antecedents = l->current->patient->dossierMedical->antecedents;
+        for(ListAntecedent_setOnFirst(antecedents); !ListAntecedent_isOutOfList(antecedents); ListAntecedent_setOnNext(antecedents)){
+
+            cJSON* antecedentJson = cJSON_CreateString(ListAntecedent_getCurrent(antecedents));
+            if(antecedentJson == NULL) return 0;
+            cJSON_AddItemToArray(listAntecedent, antecedentJson);
+        }
+
         //Là normalement on a tout ajouté à notre patient on peut passer au suivant
     }
     return 1;
@@ -396,7 +409,7 @@ Project*  GPCalendar_loadProject(char* nomFichier){
     }
     else
     {
-        printf("\nGPCalendar_loadProject : Impossible d'ouvrir le fichier \"%s\".\nLe projet return est donc NULL.\n", nomFichier);
+        printf("\nGPCalendar_loadProject : Impossible d'ouvrir le fichier \"%s\".\n", nomFichier);
         return NULL;
     }
 }
@@ -433,7 +446,7 @@ Project* Project_jsonLoad(const char* const content){
     if (cJSON_IsString(nameJson) && (nameJson->valuestring != NULL))
     {
         project_name = nameJson->valuestring;
-        printf("Name of project loaded : \"%s\"\n", project_name);
+        //printf("Name of project loaded : \"%s\"\n", project_name);
     }
 
     if(!ListMedecin_jsonLoad(projectJson, project_workingMedecins))
@@ -497,7 +510,7 @@ int ListMedecin_jsonLoad(cJSON* projectJson, ListMedecin* lM){
         }
 
     }
-    printf("ListMedecin_jsonLoad() : Tous les mèdecins ont été add à la liste workingMedecins.\n");
+    //printf("ListMedecin_jsonLoad() : Tous les mèdecins ont été add à la liste workingMedecins.\n");
     return 1;
 }
 int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecins, ListPatient * lP){
@@ -507,6 +520,9 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
 
     const cJSON* ordonnancesPatientJson = NULL;
     const cJSON* ordonnanceJson = NULL;
+
+    const cJSON* antecedentsPatientJson = NULL;
+    cJSON* antecedentJson = NULL;
 
     consultingPatientsJson = cJSON_GetObjectItemCaseSensitive(projectJson, "Consulting Patients");
     cJSON_ArrayForEach(patientJson, consultingPatientsJson)
@@ -532,8 +548,8 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
             return 0;
         }
         Patient * patient = CreerPatient(nomPatientJson->valuestring, prenomPatientJson->valuestring, anneeDatePatientJson->valueint,
-                                         moisDatePatientJson->valueint, jourDatePatientJson->valueint,
-                                         mailPatientJson->valuestring, telPatientJson->valuestring, secuPatientJson->valuestring);
+                moisDatePatientJson->valueint, jourDatePatientJson->valueint,
+                mailPatientJson->valuestring, telPatientJson->valuestring, secuPatientJson->valuestring);
 
         ordonnancesPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "ordonnances");
         cJSON_ArrayForEach(ordonnanceJson, ordonnancesPatientJson)
@@ -568,16 +584,29 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
             }
 
             Ordonnance* ordo = LoadOrdonnance(medecinOrdo, anneeDateEditionOrdonnanceJson->valueint, moisDateEditionOrdonnanceJson->valueint,
-                                              jourDateEditionOrdonnanceJson->valueint, anneeDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
-                                              jourDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
+                    jourDateEditionOrdonnanceJson->valueint, anneeDateExpirationOrdonnanceJson->valueint, moisDateExpirationOrdonnanceJson->valueint,
+                    jourDateExpirationOrdonnanceJson->valueint, descriptionOrdonnanceJson->valuestring);
 
             if(AddOrdonnanceDossierMedical(patient->dossierMedical, ordo) == -1)
             {
                 printf("ListPatient_jsonLoad() : Echec (ordo NULL ou litsOrdo NULL) de l'ajout d'une ordonnance au dossier médical du patient %s %s.\n", patient->nom, patient->prenom);
                 return 0;
             }
-            printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
+            //printf("ListPatient_jsonLoad() : Toutes leurs ordonnances du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
         }
+
+        antecedentsPatientJson = cJSON_GetObjectItemCaseSensitive(patientJson, "Antecedents");
+        cJSON_ArrayForEach(antecedentJson, antecedentsPatientJson)
+        {
+            char* antecedent = cJSON_GetStringValue(antecedentJson);
+            if(antecedent == NULL)
+            {
+                printf("ListPatient_jsonLoad() : l'un des antécédents n'est pas au format attendu.\n");
+                return 0;
+            }
+            ListAntecedent_add(patient->dossierMedical->antecedents, antecedent);
+        }
+        //printf("ListPatient_jsonLoad() : Tous les antécédents du patient : \"%s\" \"%s\" ont bien été load.\n", patient->nom, patient->prenom);
 
         if(!ListPatient_add(lP, patient))
         {
@@ -586,7 +615,7 @@ int ListPatient_jsonLoad(cJSON* projectJson, ListMedecin* project_workingMedecin
         }
 
     }
-    printf("ListPatient_jsonLoad() : Tous les patients et toutes leurs ordonnances ont bien été load.\n");
+    //printf("ListPatient_jsonLoad() : Tous les patients et toutes leurs ordonnances ont bien été load.\n");
     return 1;
 }
 int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Calendrier c){
@@ -638,56 +667,6 @@ int Calendrier_jsonLoad(cJSON* projectJson, ListMedecin* lM, ListPatient* lP, Ca
         AddMedecinConsultePatient(patientRDV, medecinRDV);
         AddPatientRecuMedecin(medecinRDV, patientRDV);
     }
-    printf("Calendrier_jsonLoad() : Tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
+    //printf("Calendrier_jsonLoad() : Tous les rdv et tous leurs patients/mèdecins ont bien été load.\n");
     return 1;
-}
-/**
- * Exemple de cJSON sur leur git
- */
-int supports_full_hd(const char * const monitor)
-{
-    const cJSON *resolution = NULL;
-    const cJSON *resolutions = NULL;
-    const cJSON *name = NULL;
-    int status = 0;
-    cJSON *monitor_json = cJSON_Parse(monitor);
-    if (monitor_json == NULL)
-    {
-        const char *error_ptr = cJSON_GetErrorPtr();
-        if (error_ptr != NULL)
-        {
-            fprintf(stderr, "Error before: %s\n", error_ptr);
-        }
-        status = 0;
-        goto end;
-    }
-
-    name = cJSON_GetObjectItemCaseSensitive(monitor_json, "name");
-    if (cJSON_IsString(name) && (name->valuestring != NULL))
-    {
-        printf("Checking monitor \"%s\"\n", name->valuestring);
-    }
-
-    resolutions = cJSON_GetObjectItemCaseSensitive(monitor_json, "resolutions");
-    cJSON_ArrayForEach(resolution, resolutions)
-    {
-        cJSON *width = cJSON_GetObjectItemCaseSensitive(resolution, "width");
-        cJSON *height = cJSON_GetObjectItemCaseSensitive(resolution, "height");
-
-        if (!cJSON_IsNumber(width) || !cJSON_IsNumber(height))
-        {
-            status = 0;
-            goto end;
-        }
-
-        if ((width->valuedouble == 1920) && (height->valuedouble == 1080))
-        {
-            status = 1;
-            goto end;
-        }
-    }
-
-    end:
-    cJSON_Delete(monitor_json);
-    return status;
 }

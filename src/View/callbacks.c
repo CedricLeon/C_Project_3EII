@@ -95,10 +95,7 @@ void cb_creationPatient(GtkWidget * widget, gpointer data){
 
     Patient *p = CreerPatient(nom, prenom,jour,mois,annee, mail, tel, secu);         //Il faudra exporter la donnée au format Json
     printf("\n\n\n");
-    char* infos = (char*) malloc(1000);
-    printPatient(infos, p); //  pour tester par affichage sur console
-    printf("%s", infos);
-    free((void*) infos);
+    //printPatient(p); //  pour tester par affichage sur console
     fenetreCreerRDV(widget,data);
 
 }
