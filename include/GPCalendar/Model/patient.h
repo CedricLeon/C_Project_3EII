@@ -26,9 +26,10 @@ struct Patient{
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char * numero_secu_social);
 void DeletePatient(Patient * patient);
 
-void AffichePatient(Patient * p); //Utilisée pour le debugging
-void AccesDossierMedical(Patient * p);
-void PrintListOrdonnances(Patient* p);
+void printPatient(char* infos, Patient * p); //Utilisée pour le debugging
+void AccesDossierMedical(char* infos, Patient * p);
+void PrintListOrdonnances(char* infos, Patient* p);
+void PrintListAntecedents(char* infos, Patient* p);
 
 /* Setteurs */ /*en vrai ça sert à rien*/
 void SetNomPatient(Patient * p, char * nom);
@@ -56,11 +57,12 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
 /**
  * Structure NodePatient permettant de créer une Doubly linked list avec des sentinels pour la liste des Medecins consultés par un patient
  */
-typedef struct NodePatient{
+typedef struct NodePatient NodePatient;
+struct NodePatient{
     Patient * patient;
     struct NodePatient * previous;
     struct NodePatient * next;
-}NodePatient;
+};
 
 struct ListPatient{
     NodePatient sentinel_begin;
@@ -70,9 +72,19 @@ struct ListPatient{
 
 NodePatient * newNodePatient(Patient * patient, NodePatient * previous, NodePatient * next);
 void freeNodePatient(ListPatient *l, NodePatient * n);
+void freeNodePatient_withoutDeletingPatient(ListPatient *l, NodePatient * n);
+
+ListPatient * CreerListPatient();
+
+void printListPatient(ListPatient* l);
 
 void ListPatient_init(ListPatient * l);
 void ListPatient_free(ListPatient * l);
+void ListPatient_free_withoutDeletingPatient(ListPatient * l);
+
+int ListPatient_add(ListPatient * l, Patient * p);
+
+Patient* ListPatient_seek(ListPatient* lP, char* IDPatient);
 
 int ListPatient_isEmpty(ListPatient * l);
 int ListPatient_isFirst(ListPatient * l);
@@ -83,7 +95,7 @@ void ListPatient_setOnFirst(ListPatient * l);
 void ListPatient_setOnLast(ListPatient * l);
 void ListPatient_setOnNext(ListPatient * l);
 void ListPatient_setOnPrevious(ListPatient * l);
-Patient * ListPatient_getCurrent(ListPatient * l);
+Patient* ListPatient_getCurrent(ListPatient * l);
 
 //void ListPatient_printList(ListPatient * l);          A voir si c'est nécessaire
 

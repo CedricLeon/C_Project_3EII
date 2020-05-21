@@ -13,8 +13,8 @@
 struct Medecin{
     char * nom;
     char * prenom;
-    char ** specialites;            //medecin->specialites = (char **) malloc(NB_MAX_SPECIALITES * sizeof(char*));
-    char ** diplomes;               //medecin->diplomes = (char **) malloc(NB_MAX_DIPLOMES * sizeof(char*));        Pour une V1 ou V2 je pense
+    char ** specialites;            //malloc premieer tableau puis boucle malloc gros tableau
+    char ** diplomes;               //Pour une V1 ou V2 je pense
     char * adresse_mail;
     char * numero_telephone;
     char * numero_RPS;
@@ -53,11 +53,13 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient);
 /**
  * Structure NodeMedecin permettant de créer une Doubly linked list pour la liste des medecins consultés par un patient
  */
-typedef struct NodeMedecin{
+typedef struct NodeMedecin NodeMedecin;
+
+struct NodeMedecin{
     Medecin * medecin;
     struct NodeMedecin * previous;
     struct NodeMedecin * next;
-}NodeMedecin;
+};
 
 struct ListMedecin{
     NodeMedecin sentinel_begin;
@@ -67,9 +69,19 @@ struct ListMedecin{
 
 NodeMedecin * newNodeMedecin(Medecin * medecin, NodeMedecin * previous, NodeMedecin * next);
 void freeNodeMedecin(ListMedecin *l, NodeMedecin * n);
+void freeNodeMedecin_withoutDeletingMedecin(ListMedecin *l, NodeMedecin * n);
+
+ListMedecin * CreerListMedecin();
+
+void printListMedecin(ListMedecin* l);
 
 void ListMedecin_init(ListMedecin * l);
 void ListMedecin_free(ListMedecin * l);
+void ListMedecin_free_withoutDeletingMedecin(ListMedecin * l);
+
+int ListMedecin_add(ListMedecin * l, Medecin * m);
+
+Medecin* ListMedecin_seek(ListMedecin* lP, char* IDMedecin);
 
 int ListMedecin_isEmpty(ListMedecin * l);
 int ListMedecin_isFirst(ListMedecin * l);

@@ -198,7 +198,7 @@ Annee ListAnnee_getCurrent(ListAnnee * l);
 
 typedef ListAnnee * Calendrier;
 
-Calendrier creerCalendrier();
+Calendrier CreerCalendrier();
 
 /**********************************************************************************************************************/
                                 /*Fonction d'ajout aux calendriers*/

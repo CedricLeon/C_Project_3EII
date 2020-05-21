@@ -12,53 +12,36 @@
 #define TM_YEAR_BASE 1900
 
 typedef struct _CalendarData {
-  GtkWidget *flag_checkboxes[5];
-  gboolean  settings[5];
-  GtkWidget *font_dialog;
   GtkWidget *window;
-  GtkWidget *prev2_sig;
   GtkWidget *prev_sig;
   GtkWidget *last_sig;
   GtkWidget *month;
 } CalendarData;
 
-enum {
-  calendar_show_header,
-  calendar_show_days,
-  calendar_month_change,
-  calendar_show_week,
-  calendar_monday_first
-};
+/** Calendrier médecin **/
 
-/*
- * GtkCalendar
- */
 
-static void calendar_date_to_string( CalendarData *data, char *buffer, gint buff_len )
+
+static void calendar_date_to_string( CalendarData *data, char *buffer, gint bufferSize )
 {
   GDate date;
   guint year, month, day;
 
-  gtk_calendar_get_date (GTK_CALENDAR (data->window),&year, &month, &day);
-  g_date_set_dmy (&date, day, month + 1, year);
-  g_date_strftime (buffer, buff_len - 1, "%x", &date);
+  gtk_calendar_get_date (GTK_CALENDAR (data->window),&year, &month, &day);             //Obtains the selected date from a GtkCalendar
+  g_date_set_dmy (&date, day, month + 1, year);                                        //Sets the value of a GDate (here &date) from a day, month, and year
+  g_date_strftime (buffer, bufferSize - 1, "%x", &date);                               //Generates a printed representation of the date, in a locale-specific way: %x for 00/00/0000 format
 
 }
 
-static void calendar_set_signal_strings( char *sig_str,CalendarData *data )
+static void calendar_set_signal_strings( char *signalString,CalendarData *data )
 {
-  const gchar *prev_sig;
+  const gchar *previousSignal;
 
-  /*prev_sig = gtk_label_get_text (GTK_LABEL (data->prev_sig));
-  gtk_label_set_text (GTK_LABEL (data->prev2_sig), prev_sig);*/
-
-  prev_sig = gtk_label_get_text (GTK_LABEL (data->last_sig));
-  //gtk_label_set_text (GTK_LABEL (data->prev_sig), prev_sig);
-  gtk_label_set_text (GTK_LABEL (data->last_sig), sig_str);
+  previousSignal = gtk_label_get_text (GTK_LABEL (data->last_sig));                           //Fetches the text from a label widget
+  gtk_label_set_text (GTK_LABEL (data->last_sig), signalString);                             //Sets the text within the GtkLabel widget
 }
 
-static void calendar_month_changed( GtkWidget    *widget,
-                                    CalendarData *data )
+static void calendar_month_changed( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "month_changed: ";
 
@@ -66,8 +49,7 @@ static void calendar_month_changed( GtkWidget    *widget,
   calendar_set_signal_strings (buffer, data);
 }
 
-static void calendar_day_selected( GtkWidget    *widget,
-                                   CalendarData *data )
+static void calendar_day_selected( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "day_selected: ";
 
@@ -76,8 +58,7 @@ static void calendar_day_selected( GtkWidget    *widget,
 }
 
 
-static void calendar_prev_month( GtkWidget    *widget,
-                                 CalendarData *data )
+static void calendar_prev_month( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "prev_month: ";
 
@@ -85,8 +66,7 @@ static void calendar_prev_month( GtkWidget    *widget,
   calendar_set_signal_strings (buffer, data);
 }
 
-static void calendar_next_month( GtkWidget    *widget,
-                                 CalendarData *data )
+static void calendar_next_month( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "next_month: ";
 
@@ -94,8 +74,7 @@ static void calendar_next_month( GtkWidget    *widget,
   calendar_set_signal_strings (buffer, data);
 }
 
-static void calendar_prev_year( GtkWidget    *widget,
-                                CalendarData *data )
+static void calendar_prev_year( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "prev_year: ";
 
@@ -103,8 +82,7 @@ static void calendar_prev_year( GtkWidget    *widget,
   calendar_set_signal_strings (buffer, data);
 }
 
-static void calendar_next_year( GtkWidget    *widget,
-                                CalendarData *data )
+static void calendar_next_year( GtkWidget *widget, CalendarData *data )
 {
   char buffer[256] = "next_year: ";
 
@@ -112,6 +90,7 @@ static void calendar_next_year( GtkWidget    *widget,
   calendar_set_signal_strings (buffer, data);
 }
 
+/**create Calendar function**/
 
 void create_calendar()
 {
@@ -120,7 +99,6 @@ void create_calendar()
   GtkWidget *hbox;
   GtkWidget *hbbox;
   GtkWidget *calendar;
-  GtkWidget *toggle;
   GtkWidget *button;
   GtkWidget *frame;
   GtkWidget *separator;
@@ -134,113 +112,100 @@ void create_calendar()
   calendar_data.window = NULL;
 
 
-  for (i = 0; i < 5; i++) {
-    calendar_data.settings[i] = 0;
-  }
+  /*generates calendar window */
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Calendrier médecin n°1");
-  gtk_container_set_border_width (GTK_CONTAINER (window), 5);
+  gtk_container_set_border_width (GTK_CONTAINER (window), 10);
+
+
   g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit),NULL);
   g_signal_connect (window, "delete-event", G_CALLBACK (gtk_false), NULL);
-  gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
+  gtk_window_set_resizable (GTK_WINDOW (window), FALSE);                        //so that the user can not resize this window
 
-  vbox = gtk_vbox_new (FALSE, DEF_PAD);
+    /*generates the box to place the window*/
+
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
   gtk_container_add (GTK_CONTAINER (window), vbox);
 
-  /*
-   * The top part of the window, Calendar, flags and fontsel.
-   */
+  /* generates the part of the window, Calendar, and plus button */
 
-  hbox = gtk_hbox_new (FALSE, DEF_PAD);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, DEF_PAD);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, DEF_PAD);
-  hbbox = gtk_hbutton_box_new ();
+  hbbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
   gtk_box_pack_start (GTK_BOX (hbox), hbbox, FALSE, FALSE, DEF_PAD);
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (hbbox), GTK_BUTTONBOX_SPREAD);
-  gtk_box_set_spacing (GTK_BOX (hbbox), 5);
+  gtk_box_set_spacing (GTK_BOX (hbbox), 2);
 
-  /* Calendar widget */
+  /* Calendar widgets , day selected and plus button */
+
   frame = gtk_frame_new ("Calendrier");
   gtk_box_pack_start(GTK_BOX (hbbox), frame, FALSE, TRUE, DEF_PAD);
   calendar=gtk_calendar_new ();
   calendar_data.window = calendar;
-  gtk_calendar_set_detail_height_rows (calendar,127);
-  gtk_calendar_set_detail_width_chars (calendar,127);
 
-//  calendar_set_flags (&calendar_data);
-  gtk_calendar_mark_day (GTK_CALENDAR (calendar), 19);
+  gtk_calendar_mark_day (GTK_CALENDAR (calendar), 1);                  //Places a visual marker on a particular day here show where the month start
   gtk_container_add (GTK_CONTAINER (frame), calendar);
-  g_signal_connect (calendar, "month_changed",
-		    G_CALLBACK (calendar_month_changed),
-		    &calendar_data);
-  g_signal_connect (calendar, "day_selected",
-		    G_CALLBACK (calendar_day_selected),
-		    &calendar_data);
 
-  g_signal_connect (calendar, "prev_month",
-		    G_CALLBACK (calendar_prev_month),
-		    &calendar_data);
-  g_signal_connect (calendar, "next_month",
-		    G_CALLBACK (calendar_next_month),
-		    &calendar_data);
-  g_signal_connect (calendar, "prev_year",
-		    G_CALLBACK (calendar_prev_year),
-		    &calendar_data);
+  /*connects the changing days,months, years to the calendar*/
+
+  g_signal_connect (calendar, "month_changed", G_CALLBACK (calendar_month_changed), &calendar_data);
+  g_signal_connect (calendar, "day_selected", G_CALLBACK (calendar_day_selected), &calendar_data);
+  g_signal_connect (calendar, "prev_month", G_CALLBACK (calendar_prev_month), &calendar_data);
+  g_signal_connect (calendar, "next_month", G_CALLBACK (calendar_next_month), &calendar_data);
+  g_signal_connect (calendar, "prev_year", G_CALLBACK (calendar_prev_year), &calendar_data);
   g_signal_connect (calendar, "next_year",G_CALLBACK (calendar_next_year),&calendar_data);
+  g_signal_connect(calendar, "day_selected", G_CALLBACK(cb_create_entry1), NULL);               //opens a new window when the day is selected
 
-  g_signal_connect(calendar, "day_selected", G_CALLBACK(cb_create_entry1), NULL);
-
-  separator = gtk_vseparator_new ();
+  separator = gtk_separator_new (GTK_ORIENTATION_VERTICAL);
   gtk_box_pack_start (GTK_BOX (hbox), separator, FALSE, TRUE, 0);
 
-  vbox2 = gtk_vbox_new (FALSE, DEF_PAD);
-  gtk_box_pack_start (GTK_BOX (hbox), vbox2, FALSE, FALSE, DEF_PAD);
 
   /* Build the Right frame with the flags in */
 
-  frame = gtk_frame_new ("Recherche Rendez-vous");
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD);
+  vbox3 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 100);
+  gtk_box_pack_start (GTK_BOX (hbox), vbox2, FALSE, FALSE, DEF_PAD);
+
+  frame = gtk_frame_new ("Recherche Rendez-vous\n");
+
   gtk_box_pack_start (GTK_BOX (vbox2), frame, TRUE, TRUE, DEF_PAD);
-  vbox3 = gtk_vbox_new (TRUE, DEF_PAD);
   gtk_container_add (GTK_CONTAINER (frame), vbox3);
 
 
-  /* Build the right font-button */
- // button = gtk_button_new_with_label ("Font...");
- /* g_signal_connect (button,
-		    "clicked",
-		    G_CALLBACK (calendar_select_font),
-		    &calendar_data);*/
-  gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, FALSE, 0);
+  /* Build the plus button */
 
-  /*
-   *  Build the Signal-event part.
-   */
+    GtkWidget * plusRDV = gtk_button_new_with_label("+");
+    gtk_box_pack_start(GTK_BOX(vbox3), plusRDV, FALSE, FALSE, 0);
+    gtk_widget_set_size_request(plusRDV, 50, 50);
+
+    g_signal_connect(G_OBJECT(plusRDV), "clicked", G_CALLBACK(cb_clicSurPlus), NULL);       //opens a new window when the button is pressed
+    gtk_box_pack_start (GTK_BOX (vbox2), plusRDV, FALSE, FALSE, 0);
+
+  /*Show the day selected signals*/
 
   frame = gtk_frame_new ("Affichage");
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, DEF_PAD);
 
-  vbox2 = gtk_vbox_new (TRUE, DEF_PAD_SMALL);
+  vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, DEF_PAD_SMALL);
   gtk_container_add (GTK_CONTAINER (frame), vbox2);
 
-  hbox = gtk_hbox_new (FALSE, 3);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
   gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, TRUE, 0);
+
   label = gtk_label_new ("-->");
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, TRUE, 0);
   calendar_data.last_sig = gtk_label_new ("");
   gtk_box_pack_start (GTK_BOX (hbox), calendar_data.last_sig, FALSE, TRUE, 0);
 
+  /*close button*/
 
-  bbox = gtk_hbutton_box_new ();
+  bbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
   gtk_box_pack_start (GTK_BOX (vbox), bbox, FALSE, FALSE, 0);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
-
-  /*button = gtk_button_new_with_label ("Close");
-  g_signal_connect (button, "clicked",
-		    G_CALLBACK (gtk_main_quit),
-		    NULL);
+  button = gtk_button_new_with_label ("Fermer");
+  g_signal_connect (button, "clicked", G_CALLBACK (gtk_main_quit),NULL);
   gtk_container_add (GTK_CONTAINER (bbox), button);
-  gtk_widget_set_can_default (button, TRUE);
-  gtk_widget_grab_default (button);*/
+
 
   gtk_widget_show_all (window);}
 

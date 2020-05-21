@@ -8,12 +8,12 @@
 #define HAUTEUR_PREMIERE_LIGNE 50
 
 /*fonction bouton rdv en cours*/
-/*void boutonRDV(GtkWidget *button, GtkGrid* grid, gchar* nomRendezVous, gint left, gint top,gint width,gint height)
-{
-   button = gtk_button_new_with_label(nomRendezVous);
-   gtk_grid_attach(grid, button,left,top,width,height);
-   g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_create_entry), NULL);
-}*/
+//void boutonRDV(GtkWidget *button, GtkGrid* grid, gchar* nomRendezVous, gint left, gint top,gint width,gint height)
+//{
+//   button = gtk_button_new_with_label(nomRendezVous);
+//   gtk_grid_attach(grid, button,left,top,width,height);
+//   g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_create_entry), NULL);
+//}
 
 
 void boutonRDV(GtkWidget *wid, GtkGrid grid)
@@ -224,9 +224,22 @@ void fenetreCreerRDV(GtkWidget * widget, gpointer data){
     GtkWidget * labelDuree = gtk_label_new("\t\t Durée du RDV : ");
     GtkWidget * labelDuree2 = gtk_label_new("minutes");
     GtkWidget * labelMotif = gtk_label_new("\t Motif du RDV : ");
-    GtkEntryBuffer * motif = gtk_entry_buffer_new(NULL, 300);
-    GtkWidget * saisirMotif = gtk_entry_new_with_buffer(motif);
+    char* motif=malloc(300);
+    GtkWidget * saisirMotif = gtk_entry_new();
     GtkWidget * valider = gtk_button_new_with_label("VALIDER");
+    GtkWidget * nom = gtk_label_new( gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Enom)));
+    GtkWidget * prenom = gtk_label_new( gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Eprenom)));
+    GtkWidget * mail = gtk_label_new( gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->Email)));
+    GtkWidget * tel = gtk_label_new( gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->EnumTel)));
+    GtkWidget * secu = gtk_label_new( gtk_entry_get_text(GTK_ENTRY(((struct Data*)data)->EnumSecu)));
+    char* chardate =gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->jour));
+    strcat(chardate, " / ");
+    strcat(chardate,gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->mois)));
+    strcat(chardate, " / ");
+    strcat(chardate,gtk_combo_box_get_active_id(GTK_COMBO_BOX(((struct Data*)data)->annee)));
+    GtkWidget * date = gtk_label_new(chardate);
+
+
 
 //    char* nom = malloc(50);
 //    getNomPatient(nom, data);
@@ -317,9 +330,13 @@ void fenetreCreerRDV(GtkWidget * widget, gpointer data){
     gtk_container_add (GTK_CONTAINER (box0), box11);
     gtk_container_add (GTK_CONTAINER (box1), labelHaut);
     gtk_container_add (GTK_CONTAINER (box2), labelNom);
+    gtk_container_add (GTK_CONTAINER (box2), nom);
     gtk_container_add (GTK_CONTAINER (box3), labelPrenom);
+    gtk_container_add (GTK_CONTAINER (box3), prenom);
     gtk_container_add (GTK_CONTAINER (box4), labelDdN);
+    gtk_container_add (GTK_CONTAINER (box4), date);
     gtk_container_add (GTK_CONTAINER (box5), labelNumSS);
+    gtk_container_add (GTK_CONTAINER (box5), secu);
     gtk_container_add (GTK_CONTAINER (box6), ligne);
     gtk_container_add (GTK_CONTAINER (box7), labelRDV);
     gtk_container_add (GTK_CONTAINER (box8), labelDate);
@@ -337,11 +354,29 @@ void fenetreCreerRDV(GtkWidget * widget, gpointer data){
     gtk_container_add (GTK_CONTAINER (box10), saisirMotif);
     gtk_container_add (GTK_CONTAINER (box11), valider);
 
-
     gtk_widget_show_all(window);
 
+    /* Recuperation des donnees */
+
+    struct DataRDV * datardv;
+
+    datardv->jour=choixJour;
+    datardv->mois=choixMois;
+    datardv->annee=choixAnnee;
+    datardv->heure=choixHeure;
+    datardv->minutes=choixMinutes;
+    datardv->duree=choixDuree;
+    datardv->motif=saisirMotif;
+    datardv->p=data;
+
+    /* callbacks */
+
+     g_signal_connect(G_OBJECT(valider), "clicked", G_CALLBACK(cb_creationRDV), datardv);
 
 }
+
+
+
 
 void fenetreCreerPatient(GtkWidget * widget, gpointer data){
 
@@ -365,16 +400,16 @@ void fenetreCreerPatient(GtkWidget * widget, gpointer data){
     GtkWidget * labelNumSS = gtk_label_new("\tNuméro de Sécurité Sociale : ");
     GtkWidget * labelMail = gtk_label_new("\tAdresse e-mail : ");
     GtkWidget * labelTel = gtk_label_new("\tNuméro de téléphone : ");
-    GtkEntryBuffer * nom = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisieNom = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(nom));
-    GtkEntryBuffer * prenom = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisiePrenom = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(prenom));
-    GtkEntryBuffer * numSecu = gtk_entry_buffer_new (NULL, 13);
-    GtkWidget * saisieNumSecu = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(numSecu));
-    GtkEntryBuffer * mail = gtk_entry_buffer_new (NULL, 50);
-    GtkWidget * saisieMail = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(mail));
-    GtkEntryBuffer * numTel = gtk_entry_buffer_new (NULL, 15);
-    GtkWidget * saisieTel = gtk_entry_new_with_buffer(GTK_ENTRY_BUFFER(numTel));
+    char * nom = malloc(50);
+    GtkWidget * saisieNom = gtk_entry_new();
+    char * prenom = malloc(50);
+    GtkWidget * saisiePrenom = gtk_entry_new();
+    char * numSecu = malloc(14);
+    GtkWidget * saisieNumSecu = gtk_entry_new();
+    char * mail = malloc(50);
+    GtkWidget * saisieMail = gtk_entry_new();
+    char * numTel = malloc(16);
+    GtkWidget * saisieTel = gtk_entry_new();
     GtkWidget * choixJour = gtk_combo_box_text_new();
     GtkWidget * choixMois = gtk_combo_box_text_new();
     GtkWidget * choixAnnee = gtk_combo_box_text_new();
@@ -457,10 +492,22 @@ void fenetreCreerPatient(GtkWidget * widget, gpointer data){
 
     gtk_widget_show_all(window);
 
+    /* Récupération des entrées patient */
+
+   struct Data *dataPatient;
+
+   dataPatient->Enom =saisieNom;
+   dataPatient->Eprenom=saisiePrenom;
+   dataPatient->EnumSecu=saisieNumSecu;
+   dataPatient->EnumTel=saisieTel;
+   dataPatient->Email=saisieMail;
+   dataPatient->jour=choixJour;
+   dataPatient->mois=choixMois;
+   dataPatient->annee=choixAnnee;
 
     /* callbacks */
 
-     g_signal_connect(G_OBJECT(valider), "clicked", G_CALLBACK(cb_creationPatient), data);
+     g_signal_connect(G_OBJECT(valider), "clicked", G_CALLBACK(cb_creationPatient), dataPatient);
 
 }
 

@@ -1,4 +1,5 @@
 /*Header Files du Projet*/
+#include "GPCalendar/Model/JsonSave.h"
 #include "GPCalendar/Model/medecin.h"
 #include "GPCalendar/Model/patient.h"
 #include "GPCalendar/Model/date.h"
@@ -6,16 +7,15 @@
 #include "GPCalendar/Model/ordonnance.h"
 #include "GPCalendar/Model/dossier_medical.h"
 #include "GPCalendar/Model/rendezvous.h"
-#include "GPCalendar/Model/calendrier.h"
+
 
 /*Librairies nécessaire à CMocka*/
 #include <stdarg.h>
 #include <stddef.h>
-#include <setjmp.h>
-#include <cmocka.h>
+#include <setjmp.h> //Ne pas enlever même si l'IDE dit qu'elle n'est pas utilisée (Cf type ‘jmp_buf’)
+#include <cmocka.h> //bien mettre ce include après <setjmp.h>
 
 /*Librairies standards de C*/
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -68,7 +68,7 @@ static void testPatient_setNumeroTelephonePatient(void ** state){
     assert_string_equal(((Patient *) *state)->numero_telephone,"NewTel");
 }
 /**
- * On test si le mèdecin est bien ajouté
+ * On teste si le médecin est bien ajouté
  * @param state
  */
 static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state){
@@ -84,7 +84,7 @@ static void testPatient_AddMedecinPatient_handlesMedecinAdded(void ** state){
     printf("\n");
 }
 /**
- * On test si il ne se passe rien car le mèdecin a déjà été ajouté
+ * On teste si il ne se passe rien car le médecin a déjà été ajouté
  * @param state
  */
 static void testPatient_AddMedecinPatient_handlesMedecinDejaConsulte(void ** state){
@@ -93,14 +93,14 @@ static void testPatient_AddMedecinPatient_handlesMedecinDejaConsulte(void ** sta
 
     assert_int_equal(AddMedecinConsultePatient((Patient *) *state, m), 1);                  //Should print "medecin add au debut de la liste"
     assert_int_equal(AddMedecinConsultePatient((Patient *) *state, m), 0);                  //Should print "cant add, deja consulté"
-    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);     //test par principe mais pas très utile
+    assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);
 
     DeleteMedecinConsultePatient((Patient *) *state, m);
     DeleteMedecin(m);
     printf("\n");
 }
 /**
- * On test si le delete de medecin est bien enlevé de la liste
+ * On teste si le delete de medecin est bien enlevé de la liste
  * @param state
  */
 static void testPatient_DeleteMedecinPatient_handlesMedecinsEnleve(void ** state){
@@ -115,7 +115,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinsEnleve(void ** state
     printf("\n");
 }
 /**
- * On test si on essaye d'enlever un medecin d'une liste vide
+ * On teste si on essaye d'enlever un medecin d'une liste vide
  * @param state
  */
 static void testPatient_DeleteMedecinPatient_handlesPasDeMedecin(void ** state){
@@ -129,7 +129,7 @@ static void testPatient_DeleteMedecinPatient_handlesPasDeMedecin(void ** state){
     printf("\n");
 }
 /**
- * On test d'enlever un medecin non présent dans la liste
+ * On teste d'enlever un medecin non présent dans la liste
  * @param state
  */
 static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** state){
@@ -142,6 +142,7 @@ static void testPatient_DeleteMedecinPatient_handlesMedecinNonPresent(void ** st
 
     assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m2),0);
     assert_int_equal(ListMedecin_isEmpty(((Patient *) *state)->dossierMedical->medecins_consultes), 0);
+    assert_int_equal(DeleteMedecinConsultePatient((Patient *) *state, m1),1);
 
     DeleteMedecin(m1);
     DeleteMedecin(m2);
@@ -166,10 +167,10 @@ static int teardown_Medecin(void ** state){
 }
 
 /**
- * On test de créer un Mèdecin
+ * On teste de créer un Medecin
  * @param state
  */
-static void testMedecin_creerMedecin(void ** state){                            //Pour le principe car ne peut pas fail
+static void testMedecin_creerMedecin(void ** state){
     assert_string_equal(((Medecin *) *state)->nom,"NomTestM");
     assert_string_equal(((Medecin *) *state)->prenom,"PrenomTestM");
     assert_string_equal(((Medecin *) *state)->adresse_mail, "test@adresseMailM");
@@ -177,7 +178,7 @@ static void testMedecin_creerMedecin(void ** state){                            
     assert_string_equal(((Medecin *) *state)->numero_RPS, "NumRPSM");
 }
 /**
- * On test
+ * On teste si le patient recu est bien ajouté à la liste
  * @param state
  */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state){
@@ -193,7 +194,7 @@ static void testMedecin_AddPatientRecuMedecin_handlesPatientAdded(void ** state)
     printf("\n");
 }
 /**
- * On test si il ne se passe rien car le mèdecin a déjà été ajouté
+ * On teste si il ne se passe rien car le patient a déjà été ajouté
  * @param state
  */
 static void testMedecin_AddPatientRecuMedecin_handlesPatientDejaRecu(void ** state){
@@ -209,8 +210,6 @@ static void testMedecin_AddPatientRecuMedecin_handlesPatientDejaRecu(void ** sta
     printf("\n");
 }
 static void testMedecin_DeletePatientRecuMedecint_handlesPatientEnleve(void ** state){
-    //ce test est aussi là pour le principe puique dans les faits on est obligé
-    // d'enlever le patient de la liste déjà dans le 1er test car les tests sont appellés à la suite
     printf("\n");
     Patient * p = CreerPatient("NomTestP", "PrenomTestP", 2020, 03, 29, "test@adresseMailP", "testNumeroTelephoneP", "testNumSecuP");
 
@@ -253,12 +252,12 @@ static void testMedecin_DeletePatientRecuMedecin_handlesPatientNonPresent(void *
 
 /**
  * Première rédaction de la fonction test : 15/04/20
- * Ici je vais testé la grosse fonction AddRendezVous_Calendrier() en testant tout les cas que j'ai dissocié en écrivant
+ * Ici je vais tester la grosse fonction AddRendezVous_Calendrier() en testant tous les cas que j'ai dissocié en écrivant
  * la fonction.
  * Cette fonction de test changera certainement plus tard (après l'implémentation de rdv_valable() par exemple) car pour
  * l'instant AddRendezVous_Calendrier() ne return que 1, donc pas de cas d'erreur, on viendra vérifier manuellement
  * qu'on trouve bien le rdv au bon endroit
- * On verra en dessous si onn peut tester freeCalendrier() aussi
+ * On verra en dessous si on peut tester freeCalendrier() aussi
  */
 
 //On fera le test de Rdv_valable après
@@ -280,18 +279,18 @@ static int teardown_Calendrier(void ** state){
  * @param state : le calendrier
  */
 static void testCalendrier_AddRendezVous_Calendrier_handlesPremierRdvAjoute(void ** state){
-    //On va créer un rdv où le patient et le mèdecin sont des objets NULL par soucis de simplicité, on fera attention
+    //On va créer un rdv où le patient et le médecin sont des objets NULL par soucis de simplicité, on fera attention
     //à ne pas y accéder
     RendezVous * rdv = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", NULL, NULL, "motif1");
     //On ajoute le rdv au calendrier
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
 
-    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
     assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
     assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
     assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->mois);
     assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
-    //On test aussi le motif pcq pk pas
+    //On teste aussi le motif pcq pk pas
     assert_string_equal("motif1", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 
     //On ne free pas le rdv ajouté car ce sera fait dans le teardown de toutes ces fonctions tests
@@ -306,12 +305,12 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteAnneeExistan
     RendezVous * rdv = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", NULL, NULL, "motif2");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
-    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
     assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
     assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
     assert_int_equal(02, ((Calendrier) *state)->current->annee->current->mois->mois);
     assert_int_equal(02, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
-    //On test aussi le motif pcq pk pas
+    //On teste aussi le motif
     assert_string_equal("motif2", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 }
 /**
@@ -324,12 +323,12 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjouteMoisExistant
     RendezVous * rdv = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", NULL, NULL, "motif3");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
-    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
     assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
     assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
     assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->mois);
     assert_int_equal(03, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
-    //On test aussi le motif pcq pk pas
+    //On teste aussi le motif
     assert_string_equal("motif3", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 }
 /**
@@ -342,23 +341,21 @@ static void testCalendrier_AddRendezVous_Calendrier_handlesRdvAjoutejourExistant
     RendezVous * rdv = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", NULL, NULL, "motif4");
 
     assert_int_equal(1, AddRendezVous_Calendrier((Calendrier) *state, rdv));
-    //On test qu'on trouve bien le rdv dans le calendrier et que ce rdv et bien placé au bon endroit (test de l'année, du mois et du jour)
+    //On teste qu'on trouve bien le rdv dans le calendrier et que ce rdv est bien placé au bon endroit (test de l'année, du mois et du jour)
     assert_int_equal(1, chercherRendezVous_Calendrier((Calendrier) *state,rdv));
     assert_int_equal(2001, ((Calendrier) *state)->current->annee->annee);
     assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->mois);
     assert_int_equal(01, ((Calendrier) *state)->current->annee->current->mois->current->jour->date->jour);
     //Comme il y a 2 rdv dans ce jour on test aussi l'heure du début, ici 4h
     assert_int_equal(04, ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->heure_debut);
-    //On test aussi le motif pcq pk pas
+    //On teste aussi le motif
     assert_string_equal("motif4", ((Calendrier) *state)->current->annee->current->mois->current->jour->current->rdv->motif);
 }
 
 /**********************************************************************************************************************/
                                             /*Tests Date*/
 /**********************************************************************************************************************/
-/**
- * Première rédaction de la fonction test : 21/04/20
- */
+
 
 static int setup_Date(void ** state){
     Date * d = CreerDate(2920, 02, 01);     //date test lambda
@@ -390,9 +387,9 @@ static void testDate_creerDate(void ** state){
 static void testDate_creerDateCourante(void ** state){
     Date * d = CreerDateCourante();
     assert_int_equal(d->annee,2020);//! à changer !
-    assert_int_equal(d->mois,04);   //! à changer !
-    assert_int_equal(d->jour,30);   //! à changer : si le test fail c'est car la date comparée ne
-                                           //! correspond plus à la date courante (On est peut etre plus le 23/4/2020
+    assert_int_equal(d->mois,5);   //! à changer !
+    assert_int_equal(d->jour,07);   //! à changer : si le test fail c'est car la date comparée ne
+                                           //! correspond plus à la date courante (On est peut etre plus le 23/4/2020)
     FreeDate(d);
 }
 
@@ -402,10 +399,10 @@ static void testDate_creerDateCourante(void ** state){
  * même problème qu'au dessus il faut changer le test à la main
  * @param state
  */
-static void testDate_AjoutMoisDateCourante(void ** state){
+static void testDate_AjoutMoisDate(void ** state){
     Date * d = AjoutMoisDate((Date*) *state, 3); //test ajout de 3 mois = 90 jours
     assert_int_equal(d->annee,2920); //! à changer !
-    assert_int_equal(d->mois,05);   //! à changer !
+    assert_int_equal(d->mois,5);   //! à changer !
     assert_int_equal(d->jour,01);   //! à changer !
     FreeDate(d);
 }
@@ -416,7 +413,7 @@ static void testDate_AjoutMoisDateCourante(void ** state){
  * @param state
  */
 static void testDate_getJourDate(void ** state){
-    char* tmp = (char*) malloc(10); //large
+    char* tmp = (char*) malloc(10);
     getJourDate(tmp, (Date *) *state);
     assert_string_equal("1",tmp);
     free((void*) tmp);
@@ -428,7 +425,7 @@ static void testDate_getJourDate(void ** state){
  * @param state
  */
 static void testDate_getMoisDate(void ** state){
-    char* tmp = (char*) malloc(10); //large
+    char* tmp = (char*) malloc(10);
     getMoisDate(tmp, (Date *) *state);
     assert_string_equal("2",tmp);
     free((void*) tmp);
@@ -511,15 +508,15 @@ static void testOrdonnance_creerOrdonnance(void ** state){
     assert_string_equal(((Ordonnance *) *state)->medecin->nom,"NomTestM");
     assert_string_equal(((Ordonnance *) *state)->description,"TestDescription");
 
-    //Si il y a un MemoryLeak sur tmp c'est pcq le test CMocka n'est pas passé et CMocka a donc quitter la fonction avant de free tmp
+    //Si il y a un MemoryLeak sur tmp c'est pcq le test CMocka n'est pas passé et CMocka a donc quitté la fonction avant de free tmp
     //Cela N'arrivera pas dans Normal_Exec
 
-    char* tmp = (char*) malloc(10); //large
+    char* tmp = (char*) malloc(10);
     getInfosDate(tmp, ((Ordonnance *) *state)->date_edition);
-    assert_string_equal(tmp,"30/4/2020"); //! à changer : si le test fail c'est car la date comparée ne
+    assert_string_equal(tmp,"7/5/2020"); //! à changer : si le test fail c'est car la date comparée ne
                                              //! correspond plus à la date courante (On est peut etre plus le 26/4/2020)
     getInfosDate(tmp, ((Ordonnance *) *state)->date_expiration);
-    assert_string_equal(tmp, "30/7/2020"); //! à changer : idem
+    assert_string_equal(tmp, "7/8/2020"); //! à changer : idem
     free((void*) tmp);
 }
 
@@ -534,6 +531,119 @@ static void testOrdonnance_modifierOrdonnance(void ** state){
 }
 
 /**********************************************************************************************************************/
+                                                /*Tests DossierMedical*/
+/**********************************************************************************************************************/
+
+static int setup_DossierMedical(void ** state){
+    DossierMedical* doss = CreerDossierMedical();
+    *state = doss;
+    return *state == NULL;
+
+}
+static int teardown_DossierMedical(void ** state){
+    FreeDossierMedical((DossierMedical*) *state);
+    return 0;
+}
+
+/**
+ * On teste de créer un DossierMedical
+ * @param state
+ */
+static void testDossierMedical_creerDossierMedical(void ** state){
+    assert_int_equal(ListMedecin_isEmpty(((DossierMedical*) *state)->medecins_consultes), 1);
+    assert_int_equal(ListOrdonnance_isEmpty(((DossierMedical*) *state)->ordonnances), 1);
+}
+
+static void testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded(void ** state){
+    Ordonnance * o = CreerOrdonnance(NULL, "test");
+    AddOrdonnanceDossierMedical((DossierMedical *) *state, o);
+    ListOrdonnance_setOnFirst(((DossierMedical *) *state)->ordonnances);
+    assert_ptr_equal(ListOrdonnance_getCurrent(((DossierMedical *) *state)->ordonnances), o);
+
+    // /!\ il ne faut pas delete l'ordonnance ici car on le fait déjà dans le teardown !
+}
+
+static void testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded(void ** state){
+    char * ant = (char*)malloc(50);
+    printf("ecrire : test si espaces marchent");
+    AddAntecedentDossierMedical((DossierMedical *) *state, ant); //!il faut ecrire "test si espaces marchent"
+    ListAntecedent_setOnFirst(((DossierMedical *) *state)->antecedents);
+    assert_string_equal(ListAntecedent_getCurrent(((DossierMedical *) *state)->antecedents), "test si espaces marchent");
+    free((void*)ant);
+}
+
+
+/**********************************************************************************************************************/
+                                                /*Tests jsonSave*/
+/**********************************************************************************************************************/
+
+static int setup_JsonSave(void ** state){
+    //On crée un projet
+    Medecin * m1 = CreerMedecin("NomTestM1", "PrenomTestM1", "test@adresseMailM1", "testNumeroTelephoneM1", "NumRPSM1");
+    Medecin * m2 = CreerMedecin("NomTestM2", "PrenomTestM2", "test@adresseMailM2", "testNumeroTelephoneM2", "NumRPSM2");
+
+    ListMedecin * workingMedecins = CreerListMedecin();
+    ListMedecin_add(workingMedecins, m1);
+    ListMedecin_add(workingMedecins, m2);
+
+    Patient * p1 = CreerPatient("NomTestP1", "PrenomTestP1", 1111, 01, 01, "test@adresseMailP1", "testNumeroTelephoneP1", "testNumSecuP1");
+    Patient * p2 = CreerPatient("NomTestP2", "PrenomTestP2", 2222, 02, 02, "test@adresseMailP2", "testNumeroTelephoneP2", "testNumSecuP2");
+
+    ListPatient * consultingPatients = CreerListPatient();
+    ListPatient_add(consultingPatients, p1);
+    ListPatient_add(consultingPatients, p2);
+
+    RendezVous * rdv1 = CreerRendezVous(2001, 01, 01, 01, 60, "lieu1", p1, m1, "motif1");
+    RendezVous * rdv2 = CreerRendezVous(2001, 02, 02, 02, 120, "lieu2", p2, m2, "motif2");
+    RendezVous * rdv3 = CreerRendezVous(2001, 01, 03, 03, 180, "lieu3", p2, m1, "motif3");
+    RendezVous * rdv4 = CreerRendezVous(2001, 01, 01, 04, 240, "lieu4", p1, m2, "motif4");
+
+    AddMedecinConsultePatient(p1, m1);
+    AddMedecinConsultePatient(p1, m2);
+    AddMedecinConsultePatient(p2, m1);
+    AddMedecinConsultePatient(p2, m2);
+    AddPatientRecuMedecin(m1, p1);
+    AddPatientRecuMedecin(m1, p2);
+    AddPatientRecuMedecin(m2, p1);
+    AddPatientRecuMedecin(m2, p2);
+
+    Calendrier c = CreerCalendrier();
+
+    AddRendezVous_Calendrier(c, rdv1);
+    AddRendezVous_Calendrier(c, rdv2);
+    AddRendezVous_Calendrier(c, rdv3);
+    AddRendezVous_Calendrier(c, rdv4);
+
+    Ordonnance * o1 = CreerOrdonnance(m1, "descriptionOrdonnance1");
+    Ordonnance * o2 = CreerOrdonnance(m2, "descriptionOrdonnance2");
+    Ordonnance * o3 = CreerOrdonnance(m1, "descriptionOrdonnance3");
+
+    AddOrdonnanceDossierMedical(p1->dossierMedical, o1);
+    AddOrdonnanceDossierMedical(p1->dossierMedical, o2);
+    AddOrdonnanceDossierMedical(p2->dossierMedical, o3);
+
+    Project* p = CreerProject("nomProjetTest", workingMedecins, consultingPatients, c);
+
+    *state = p;
+    return *state == NULL;
+}
+static int teardown_JsonSave(void ** state){
+    freeProject((Project*) *state);
+    return 0;
+}
+static void testJsonSave_GPCalendar_saveProject(void ** state){
+    printProject((Project*) *state);
+    assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeSaveGPCalendarJson.json", (Project*) *state), 1);
+}
+
+static void testJsonSave_GPCalendar_loadProject(void ** state){
+    Project* p = GPCalendar_loadProject("CefichierEstUnTestdeSaveGPCalendarJson.json");
+    printProject(p);
+    assert_int_equal(GPCalendar_saveProject("CefichierEstUnTestdeLoadGPCalendarJson.json", p), 1);
+    freeProject(p);
+}
+
+/**********************************************************************************************************************/
                                             /*Main : Appel des Tests*/
 /**********************************************************************************************************************/
 
@@ -541,7 +651,10 @@ int main(void){
 
     //tests à la main//
 
-    Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
+    //test pour mon Pc : Cédric
+    //GPCalendar_loadProject("/home/cleonard/dev/C_Project/C_Project/cmake-build-debug/CefichierEstUnTestdeSaveGPCalendarJson.json");
+
+    /*Patient * p1 = CreerPatient("NomPatient","PrenomPatient",2000,01,01,"adresseMailPatient","telPatient","numSecuSocialPatient");
     Medecin * m1 = CreerMedecin("NomMedecin", "PrenomMedecin", "mailMedecin", "telMedecin", "NumRPSMedecin");
 
     RendezVous * rdv1 = CreerRendezVous(2001,01,01,01,60,"lieu1",p1,m1,"motif1");
@@ -558,7 +671,7 @@ int main(void){
     printCalendrier(c);
     freeCalendrier(c);
     DeletePatient(p1);
-    DeleteMedecin(m1);
+    DeleteMedecin(m1);*/
 
     const struct CMUnitTest tests_fonctionsPatient[] = {
 
@@ -572,7 +685,7 @@ int main(void){
             cmocka_unit_test(testPatient_setAdresseMailPatient),
             cmocka_unit_test(testPatient_setNumeroTelephonePatient),
 
-            //Tests des fonctions d'ajout et de delete de medecins à la liste de mèdecins consultés par le patient
+            //Tests des fonctions d'ajout et de delete de medecins à la liste de médecins consultés par le patient
             cmocka_unit_test(testPatient_AddMedecinPatient_handlesMedecinAdded),
             cmocka_unit_test(testPatient_AddMedecinPatient_handlesMedecinDejaConsulte),
             cmocka_unit_test(testPatient_DeleteMedecinPatient_handlesMedecinsEnleve),
@@ -598,8 +711,8 @@ int main(void){
 
     const struct CMUnitTest tests_fonctionsDate[] = {
             cmocka_unit_test(testDate_creerDate),
-            //cmocka_unit_test(testDate_creerDateCourante),
-            cmocka_unit_test(testDate_AjoutMoisDateCourante),
+            cmocka_unit_test(testDate_creerDateCourante),
+            cmocka_unit_test(testDate_AjoutMoisDate),
             cmocka_unit_test(testDate_getJourDate),
             cmocka_unit_test(testDate_getMoisDate),
             cmocka_unit_test(testDate_getAnneeDate),
@@ -610,8 +723,19 @@ int main(void){
     };
 
     const struct CMUnitTest tests_fonctionsOrdonnance[] = {
-            //cmocka_unit_test(testOrdonnance_creerOrdonnance),
-            //cmocka_unit_test(testOrdonnance_modifierOrdonnance),
+            cmocka_unit_test(testOrdonnance_creerOrdonnance),
+            cmocka_unit_test(testOrdonnance_modifierOrdonnance),
+    };
+
+    const struct CMUnitTest tests_fonctionsDossierMedical[]={
+        cmocka_unit_test(testDossierMedical_creerDossierMedical),
+        cmocka_unit_test(testDossierMedical_AddOrdonnanceDossierMedical_handlesOrdonnanceAdded),
+        cmocka_unit_test(testDossierMedical_AddAntecedentsDossierMedical_handlesAntecedentAdded),
+    };
+
+    const struct CMUnitTest tests_fonctionsJsonSave[] = {
+            cmocka_unit_test(testJsonSave_GPCalendar_saveProject),
+            cmocka_unit_test(testJsonSave_GPCalendar_loadProject)
     };
 
     printf("\033[34;01m\n****************************** Running Patient Tests ******************************\n\n\033[00m");
@@ -624,8 +748,12 @@ int main(void){
     int return_cmocka_D = cmocka_run_group_tests(tests_fonctionsDate, setup_Date, teardown_Date);
     printf("\033[34;01m\n***************************** Running Ordonnance Tests *****************************\n\n\033[00m");
     int return_cmocka_O = cmocka_run_group_tests(tests_fonctionsOrdonnance, setup_Ordonnance, teardown_Ordonnance);
+    printf("\033[34;01m\n***************************** Running DossierMedical Tests *****************************\n\n\033[00m");
+    int return_cmocka_DM = cmocka_run_group_tests(tests_fonctionsDossierMedical, setup_DossierMedical, teardown_DossierMedical);
+    printf("\033[34;01m\n***************************** Running JsonSave Tests *****************************\n\n\033[00m");
+    int return_cmocka_J = cmocka_run_group_tests(tests_fonctionsJsonSave, setup_JsonSave, teardown_JsonSave);
 
     //Appeler plusieurs cmocka_run_group_tests() dans le return ne marche pas, il execute seulement le premier donc je passe par des int temporaires
-    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O;
+    return  return_cmocka_P && return_cmocka_M &&return_cmocka_C && return_cmocka_D && return_cmocka_O && return_cmocka_DM && return_cmocka_J;
 
 }
