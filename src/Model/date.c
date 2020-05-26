@@ -8,7 +8,7 @@
  * @return la date créée
  */
 Date * CreerDate(int annee, int mois, int jour){
-    Date * d = (Date *) malloc(sizeof(Date));
+    Date* d = (Date *) malloc(sizeof(Date));
     d->annee = annee;
     d->mois = mois;
     d->jour = jour;
@@ -88,9 +88,7 @@ void getMoisDate(char * infos, Date * d){
 void getAnneeDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
     sprintf(infos,"%d",d->annee);
-    if(strlen(infos) != 4){
-        printf("Vous êtes bizarre à mettre des années à 3 chiffre.\n");
-    }
+    if(strlen(infos) != 4) printf("Vous êtes bizarre à mettre des années à 3 chiffre.\n");
 }
 /**
  *  getInfosDate : Passe la date en paramètre sous forme de string XX/XX/XXXX dans infos
@@ -99,9 +97,9 @@ void getAnneeDate(char * infos, Date * d){
  */
 void getInfosDate(char * infos, Date * d){
     // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char* tmp1 = (char*) malloc(sizeof(char) * 5);
-    char* tmp2 = (char*) malloc(sizeof(char) * 5);
-    char* tmp3 = (char*) malloc(sizeof(char) * 5);
+    char* tmp1 = (char*) malloc(sizeof(char) * 6);
+    char* tmp2 = (char*) malloc(sizeof(char) * 6);
+    char* tmp3 = (char*) malloc(sizeof(char) * 6);
     getJourDate(tmp1, d);
     strcpy(infos, tmp1);
     strcat(infos, "/");

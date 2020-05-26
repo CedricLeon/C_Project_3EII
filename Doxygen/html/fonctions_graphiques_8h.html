@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +95,23 @@
 $(document).ready(function(){initNavTree('fonctions_graphiques_8h.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="header">
   <div class="summary">
 <a href="#func-members">Fonctions</a>  </div>
@@ -75,6 +125,7 @@ $(document).ready(function(){initNavTree('fonctions_graphiques_8h.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="callbacks_8h_source.html">GPCalendar/View/callbacks.h</a>&quot;</code><br/>
 <code>#include &lt;gtk/gtk.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
+<<<<<<< HEAD
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de fonctionsGraphiques.h:</div>
 <div class="dyncontent">
@@ -89,15 +140,26 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <map name="include_2_g_p_calendar_2_view_2fonctions_graphiques_8hdep" id="include_2_g_p_calendar_2_view_2fonctions_graphiques_8hdep">
 <area shape="rect" id="node2" href="main_8c.html" title="src/App/main.c" alt="" coords="1354,829,1464,856"/><area shape="rect" id="node3" href="callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="119,195,261,221"/><area shape="rect" id="node4" href="fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="5,648,211,675"/><area shape="rect" id="node5" href="time_8c.html" title="src/View/time.c" alt="" coords="634,285,747,312"/><area shape="rect" id="node6" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="492,97,631,138"/><area shape="rect" id="node7" href="time_8h.html" title="include/GPCalendar\l/View/time.h" alt="" coords="728,187,867,229"/><area shape="rect" id="node8" href="date_8h.html" title="include/GPCalendar\l/Model/date.h" alt="" coords="857,278,996,319"/><area shape="rect" id="node9" href="date_8c.html" title="src/Model/date.c" alt="" coords="1455,376,1573,403"/><area shape="rect" id="node10" href="_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="1125,913,1288,954"/><area shape="rect" id="node12" href="_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="817,822,956,863"/><area shape="rect" id="node14" href="tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="377,920,527,947"/><area shape="rect" id="node15" href="ordonnance_8h.html" title="include/GPCalendar\l/Model/ordonnance.h" alt="" coords="1130,369,1272,410"/><area shape="rect" id="node19" href="patient_8h.html" title="include/GPCalendar\l/Model/patient.h" alt="" coords="700,550,839,591"/><area shape="rect" id="node22" href="rendezvous_8h.html" title="include/GPCalendar\l/Model/rendezvous.h" alt="" coords="917,641,1059,682"/><area shape="rect" id="node11" href="_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="1115,1003,1297,1029"/><area shape="rect" id="node13" href="_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="811,920,963,947"/><area shape="rect" id="node16" href="ordonnance_8c.html" title="src/Model/ordonnance.c" alt="" coords="1362,467,1523,493"/><area shape="rect" id="node17" href="dossier__medical_8h.html" title="include/GPCalendar\l/Model/dossier_medical.h" alt="" coords="1116,459,1287,501"/><area shape="rect" id="node18" href="dossier__medical_8c.html" title="src/Model/dossier_medical.c" alt="" coords="1183,557,1371,584"/><area shape="rect" id="node20" href="medecin_8c.html" title="src/Model/medecin.c" alt="" coords="647,648,789,675"/><area shape="rect" id="node21" href="patient_8c.html" title="src/Model/patient.c" alt="" coords="489,648,623,675"/><area shape="rect" id="node23" href="rendezvous_8c.html" title="src/Model/rendezvous.c" alt="" coords="855,739,1016,765"/><area shape="rect" id="node24" href="calendrier_8h.html" title="include/GPCalendar\l/Model/calendrier.h" alt="" coords="540,731,679,773"/><area shape="rect" id="node25" href="calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="591,829,741,856"/></map>
 </div>
+=======
+>>>>>>> V3_branch
 </div>
 <p><a href="fonctions_graphiques_8h_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<<<<<<< HEAD
 <tr class="memitem:a0503e871db78e3e885c9ecd7a5cfbbcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a0503e871db78e3e885c9ecd7a5cfbbcf">create_window</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0503e871db78e3e885c9ecd7a5cfbbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ca01db52b3fbb75e9632ff6dc724a50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a8ca01db52b3fbb75e9632ff6dc724a50">boutonRDV</a> (GtkWidget *wid, GtkGrid grid)</td></tr>
 <tr class="separator:a8ca01db52b3fbb75e9632ff6dc724a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+<tr class="memitem:a7ccde7300763b5a4d35173de9177f899"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a7ccde7300763b5a4d35173de9177f899">fenetreOuverture</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:a7ccde7300763b5a4d35173de9177f899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994043f5a92e5511a38579cbf9497fd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a994043f5a92e5511a38579cbf9497fd7">fenetreNouveauProjet</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:a994043f5a92e5511a38579cbf9497fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0503e871db78e3e885c9ecd7a5cfbbcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a0503e871db78e3e885c9ecd7a5cfbbcf">create_window</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0503e871db78e3e885c9ecd7a5cfbbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+>>>>>>> V3_branch
 <tr class="memitem:a75501679d12a0842dbdc6194358f97d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a75501679d12a0842dbdc6194358f97d7">parcoursJour</a> (<a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a> j)</td></tr>
 <tr class="separator:a75501679d12a0842dbdc6194358f97d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9da0b3c4675cb9a0cbb0e09e154bb80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#af9da0b3c4675cb9a0cbb0e09e154bb80">creerBoutonRDV</a> (GtkWidget *bouton, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
@@ -108,41 +170,30 @@ Fonctions</h2></td></tr>
 <tr class="separator:aaa8afd3fb1c2eef8ad968bf26becc0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a280d9560dd03e3e4dd7d11a0e7542b3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#a280d9560dd03e3e4dd7d11a0e7542b3e">fenetreCreerPatient</a> (GtkWidget *widget, gpointer data)</td></tr>
 <tr class="separator:a280d9560dd03e3e4dd7d11a0e7542b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
+=======
+<tr class="memitem:aa07cfd9e6619080628a3d7d300e8d87d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions_graphiques_8h.html#aa07cfd9e6619080628a3d7d300e8d87d">fenetreSauvegarde</a> (GtkWidget *widget, gpointer data)</td></tr>
+<tr class="separator:aa07cfd9e6619080628a3d7d300e8d87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+>>>>>>> V3_branch
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Provides basic unit testing functions declaration. </p>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
+<<<<<<< HEAD
 <a class="anchor" id="a8ca01db52b3fbb75e9632ff6dc724a50"></a>
+=======
+<a class="anchor" id="a0503e871db78e3e885c9ecd7a5cfbbcf"></a>
+>>>>>>> V3_branch
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
+<<<<<<< HEAD
           <td class="memname">void boutonRDV </td>
           <td>(</td>
           <td class="paramtype">GtkWidget *&#160;</td>
           <td class="paramname"><em>wid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GtkGrid&#160;</td>
-          <td class="paramname"><em>grid</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0503e871db78e3e885c9ecd7a5cfbbcf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
+=======
           <td class="memname">int create_window </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
@@ -173,12 +224,18 @@ Fonctions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">GtkWidget *&#160;</td>
           <td class="paramname"><em>bouton</em>, </td>
+>>>>>>> V3_branch
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+<<<<<<< HEAD
+          <td class="paramtype">GtkGrid&#160;</td>
+          <td class="paramname"><em>grid</em>&#160;</td>
+=======
           <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
           <td class="paramname"><em>rdv</em>&#160;</td>
+>>>>>>> V3_branch
         </tr>
         <tr>
           <td></td>
@@ -187,52 +244,137 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>creerBoutonRDV : associe un bouton du calendrier au patient reçu lors du rendez-vous </p>
+
+</div>
+</div>
+<<<<<<< HEAD
+<a class="anchor" id="a0503e871db78e3e885c9ecd7a5cfbbcf"></a>
+=======
+<a class="anchor" id="a280d9560dd03e3e4dd7d11a0e7542b3e"></a>
+>>>>>>> V3_branch
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+<<<<<<< HEAD
+          <td class="memname">int create_window </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+=======
+          <td class="memname">void fenetreCreerPatient </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+>>>>>>> V3_branch
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+<<<<<<< HEAD
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+=======
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+>>>>>>> V3_branch
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<<<<<<< HEAD
+
+</div>
+</div>
+<a class="anchor" id="af9da0b3c4675cb9a0cbb0e09e154bb80"></a>
+=======
+<p>fenetreCreerPatient : fenêtre permettant à l'utilisateur de saisir les coordonnées du patient à créer </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bouton</td><td>: le bouton affiché </td></tr>
-    <tr><td class="paramname">rdv</td><td>: le rendez-vous dont on veut associer le patient </td></tr>
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a280d9560dd03e3e4dd7d11a0e7542b3e"></a>
+<a class="anchor" id="aaa8afd3fb1c2eef8ad968bf26becc0b4"></a>
+>>>>>>> V3_branch
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void fenetreCreerPatient </td>
+<<<<<<< HEAD
+          <td class="memname">void creerBoutonRDV </td>
           <td>(</td>
           <td class="paramtype">GtkWidget *&#160;</td>
-          <td class="paramname"><em>widget</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">gpointer&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aaa8afd3fb1c2eef8ad968bf26becc0b4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
+          <td class="paramname"><em>bouton</em>, </td>
+=======
           <td class="memname">void fenetreCreerRDV </td>
           <td>(</td>
           <td class="paramtype">GtkWidget *&#160;</td>
           <td class="paramname"><em>widget</em>, </td>
+>>>>>>> V3_branch
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+<<<<<<< HEAD
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+=======
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+>>>>>>> V3_branch
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<<<<<<< HEAD
+<p>creerBoutonRDV : associe un bouton du calendrier au patient reçu lors du rendez-vous </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bouton</td><td>: le bouton affiché </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rendez-vous dont on veut associer le patient </td></tr>
+=======
+<p>fenetreCreerRDV : fenêtre permettant à l'utilisateur de saisir les données du RDV à créer </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
+>>>>>>> V3_branch
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<<<<<<< HEAD
+<a class="anchor" id="a280d9560dd03e3e4dd7d11a0e7542b3e"></a>
+=======
+<a class="anchor" id="a994043f5a92e5511a38579cbf9497fd7"></a>
+>>>>>>> V3_branch
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+<<<<<<< HEAD
+          <td class="memname">void fenetreCreerPatient </td>
+=======
+          <td class="memname">void fenetreNouveauProjet </td>
+>>>>>>> V3_branch
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -247,6 +389,62 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<<<<<<< HEAD
+
+</div>
+</div>
+<a class="anchor" id="aaa8afd3fb1c2eef8ad968bf26becc0b4"></a>
+=======
+<p>fenetreNouveauProjet : fenêtre permettant à l'utilisateur de créer un nouveau projet </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ccde7300763b5a4d35173de9177f899"></a>
+>>>>>>> V3_branch
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+<<<<<<< HEAD
+          <td class="memname">void fenetreCreerRDV </td>
+=======
+          <td class="memname">void fenetreOuverture </td>
+>>>>>>> V3_branch
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<<<<<<< HEAD
+=======
+<p>fenetreOuverture : fenetre permettant à l'utilisateur de choisir entre l'ouverture et la création d'un projet </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
+  </table>
+  </dd>
+</dl>
+>>>>>>> V3_branch
 
 </div>
 </div>
@@ -273,9 +471,75 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<<<<<<< HEAD
 
 </div>
 </div>
+<a class="anchor" id="a75501679d12a0842dbdc6194358f97d7"></a>
+=======
+<p>fenetreRecherchePatient : fenêtre permettant à l'utilisateur de saisir le patient à rechercher parmi ceux consultés par le médecin sélectionné </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa07cfd9e6619080628a3d7d300e8d87d"></a>
+>>>>>>> V3_branch
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+<<<<<<< HEAD
+          <td class="memname">void parcoursJour </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="calendrier_8h.html#a99e50633bb5c551d09693a390acd33d1">Jour</a>&#160;</td>
+          <td class="paramname"><em>j</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>parcoursJour : Parcourir le jour en paramètre et créer un bouton associé à chaque rendez-vous </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">j</td><td>: le jour (liste de rendez-vous) parcouru </td></tr>
+=======
+          <td class="memname">void fenetreSauvegarde </td>
+          <td>(</td>
+          <td class="paramtype">GtkWidget *&#160;</td>
+          <td class="paramname"><em>widget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">gpointer&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fenetreSauvegarde : fenetre permettant à l'utilisateur de choisir s'il veut sauvegarder ou non son projet et sous quel nom à la fermeture du programme </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>: le widget associé à l'ouverture </td></tr>
+    <tr><td class="paramname">data</td><td>: les informations transmises par le widget au callback </td></tr>
+>>>>>>> V3_branch
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<<<<<<< HEAD
+=======
 <a class="anchor" id="a75501679d12a0842dbdc6194358f97d7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -289,23 +553,21 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>parcoursJour : Parcourir le jour en paramètre et créer un bouton associé à chaque rendez-vous </p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">j</td><td>: le jour (liste de rendez-vous) parcouru </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
+>>>>>>> V3_branch
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_bcfceead3b84f67cd3d92ab17b267287.html">View</a></li><li class="navelem"><a class="el" href="fonctions_graphiques_8h.html">fonctionsGraphiques.h</a></li>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

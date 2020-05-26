@@ -204,32 +204,6 @@ int ListAntecedent_isEmpty(ListAntecedent * l){
     return -1; //La liste est NULL
 }
 /**
- * ListAntecedent_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListAntecedent_isFirst(ListAntecedent * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListAntecedent_isLast : Vérifie si current est positionné sur le dernier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le dernier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListAntecedent_isLast(ListAntecedent * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_end.previous;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListAntecedent_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
@@ -251,15 +225,6 @@ int ListAntecedent_isOutOfList(ListAntecedent * l){
 void ListAntecedent_setOnFirst(ListAntecedent * l){
     if(l != NULL){
         l->current = l->sentinel_begin.next;
-    }
-}
-/**
- * ListAntecedent_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListAntecedent_setOnLast(ListAntecedent * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
     }
 }
 /**

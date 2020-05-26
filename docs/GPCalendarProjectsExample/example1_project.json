@@ -1,0 +1,145 @@
+{
+	"nom":	"Cabinet Exemple 1",
+	"Working Medecins":	[{
+			"nom":	"Kervella",
+			"prenom":	"Fred",
+			"mail":	"kervella.fred@gmail.com",
+			"tel":	"0164591508",
+			"rps":	"numeroRPPSFred"
+		}, {
+			"nom":	"Le Blevenec",
+			"prenom":	"Albert",
+			"mail":	"le_blevenec.albert@gmail.com",
+			"tel":	"0676167650",
+			"rps":	"numeroRPPSFAlbert"
+		}],
+	"Consulting Patients":	[{
+			"nom":	"Parisse",
+			"prenom":	"Amélie",
+			"date_naissance_jour":	5,
+			"date_naissance_mois":	3,
+			"date_naissance_annee":	1999,
+			"mail":	"parisse.amelie@gmail.com",
+			"tel":	"0659845623",
+			"numeroSecuriteSociale":	"numeroSecuAmelie",
+			"ordonnances":	[{
+					"IDmedecin":	"numeroRPPSFred",
+					"date_edition_jour":	15,
+					"date_edition_mois":	6,
+					"date_edition_annee":	2015,
+					"date_expiration_jour":	15,
+					"date_expiration_mois":	9,
+					"date_expiration_annee":	2015,
+					"description":	"1 paracétamol le matin pendant 15 jours"
+				}, {
+					"IDmedecin":	"numeroRPPSFAlbert",
+					"date_edition_jour":	7,
+					"date_edition_mois":	1,
+					"date_edition_annee":	2019,
+					"date_expiration_jour":	7,
+					"date_expiration_mois":	4,
+					"date_expiration_annee":	2019,
+					"description":	"1 bonne douche froide avant de dormir"
+				}, {
+					"IDmedecin":	"numeroRPPSFAlbert",
+					"date_edition_jour":	22,
+					"date_edition_mois":	5,
+					"date_edition_annee":	2020,
+					"date_expiration_jour":	22,
+					"date_expiration_mois":	8,
+					"date_expiration_annee":	2020,
+					"description":	"séjour d'un mois à l'hôpital"
+				}],
+			"Antecedents":	["mal de gorge irritant", "difficultés à dormir", "brulures sévères"]
+		}, {
+			"nom":	"Dufour",
+			"prenom":	"Elona",
+			"date_naissance_jour":	7,
+			"date_naissance_mois":	2,
+			"date_naissance_annee":	2002,
+			"mail":	"dufour.elona@sfr.fr",
+			"tel":	"0712568935",
+			"numeroSecuriteSociale":	"numeroSecuElona",
+			"ordonnances":	[{
+					"IDmedecin":	"numeroRPPSFred",
+					"date_edition_jour":	12,
+					"date_edition_mois":	5,
+					"date_edition_annee":	2020,
+					"date_expiration_jour":	12,
+					"date_expiration_mois":	8,
+					"date_expiration_annee":	2020,
+					"description":	"1 boite de pansements et du désinfectant"
+				}, {
+					"IDmedecin":	"numeroRPPSFAlbert",
+					"date_edition_jour":	22,
+					"date_edition_mois":	5,
+					"date_edition_annee":	2020,
+					"date_expiration_jour":	22,
+					"date_expiration_mois":	8,
+					"date_expiration_annee":	2020,
+					"description":	"beaucoup de repos"
+				}],
+			"Antecedents":	["RAS", "1 plaie au coude après une mauvaise chute", "RAS"]
+		}],
+	"Hospital Calendar":	[{
+			"date_jour":	15,
+			"date_mois":	6,
+			"date_annee":	2015,
+			"heure_debut":	10,
+			"heure_fin":	10,
+			"lieu":	"salle 115",
+			"patient":	"numeroSecuAmelie",
+			"medecin":	"numeroRPPSFred",
+			"motif":	"Mal de gorge"
+		}, {
+			"date_jour":	7,
+			"date_mois":	1,
+			"date_annee":	2019,
+			"heure_debut":	14,
+			"heure_fin":	14,
+			"lieu":	"infirmerie2",
+			"patient":	"numeroSecuAmelie",
+			"medecin":	"numeroRPPSFAlbert",
+			"motif":	"Insomnies"
+		}, {
+			"date_jour":	8,
+			"date_mois":	6,
+			"date_annee":	2017,
+			"heure_debut":	15,
+			"heure_fin":	15,
+			"lieu":	"domicile du patient",
+			"patient":	"numeroSecuElona",
+			"medecin":	"numeroRPPSFred",
+			"motif":	"mal de tête"
+		}, {
+			"date_jour":	12,
+			"date_mois":	5,
+			"date_annee":	2020,
+			"heure_debut":	9,
+			"heure_fin":	10,
+			"lieu":	"salle de réanimation",
+			"patient":	"numeroSecuElona",
+			"medecin":	"numeroRPPSFred",
+			"motif":	"plaie au bras"
+		}, {
+			"date_jour":	1,
+			"date_mois":	8,
+			"date_annee":	2020,
+			"heure_debut":	16,
+			"heure_fin":	18,
+			"lieu":	"chez moi",
+			"patient":	"numeroSecuElona",
+			"medecin":	"numeroRPPSFAlbert",
+			"motif":	"insolation"
+		}, {
+			"date_jour":	1,
+			"date_mois":	8,
+			"date_annee":	2020,
+			"heure_debut":	10,
+			"heure_fin":	10.5,
+			"lieu":	"salle 118",
+			"patient":	"numeroSecuAmelie",
+			"medecin":	"numeroRPPSFAlbert",
+			"motif":	"brulure au 4eme degré"
+		}]
+}

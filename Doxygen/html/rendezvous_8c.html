@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +95,23 @@
 $(document).ready(function(){initNavTree('rendezvous_8c.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="header">
   <div class="summary">
 <a href="#func-members">Fonctions</a>  </div>
@@ -70,6 +120,7 @@ $(document).ready(function(){initNavTree('rendezvous_8c.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="rendezvous_8h_source.html">GPCalendar/Model/rendezvous.h</a>&quot;</code><br/>
+<<<<<<< HEAD
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de rendezvous.c:</div>
 <div class="dyncontent">
@@ -115,6 +166,24 @@ Fonctions</h2></td></tr>
 </div>
 </div>
 <a class="anchor" id="ae62501b5f409d83dc182560bbb97a276"></a>
+=======
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ac6df70f13111c9043e4c4a29a5ffad95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#ac6df70f13111c9043e4c4a29a5ffad95">CreerRendezVous</a> (int an, int mois, int jour, double heure_debut, double duree, char *lieu, <a class="el" href="struct_patient.html">Patient</a> *patient, <a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *motif)</td></tr>
+<tr class="separator:ac6df70f13111c9043e4c4a29a5ffad95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d5659faf0a3498ce343e7d14015489d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a1d5659faf0a3498ce343e7d14015489d">FreeRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a1d5659faf0a3498ce343e7d14015489d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c450f9eb36ddaec37adf75c5f3d514b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a2c450f9eb36ddaec37adf75c5f3d514b">EqualsRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv1, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv2)</td></tr>
+<tr class="separator:a2c450f9eb36ddaec37adf75c5f3d514b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af47070d6bae3fc4fcf9a29d8179af67b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#af47070d6bae3fc4fcf9a29d8179af67b">DeplacerRendezVous</a> (<a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, double n_duree)</td></tr>
+<tr class="separator:af47070d6bae3fc4fcf9a29d8179af67b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d53c596383cf8ccbbdb51d0e0984a99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rendezvous_8c.html#a0d53c596383cf8ccbbdb51d0e0984a99">getInfosRendezVous</a> (char *infos, <a class="el" href="struct_rendez_vous.html">RendezVous</a> *rdv)</td></tr>
+<tr class="separator:a0d53c596383cf8ccbbdb51d0e0984a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="ac6df70f13111c9043e4c4a29a5ffad95"></a>
+>>>>>>> V3_branch
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -145,7 +214,11 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+<<<<<<< HEAD
           <td class="paramtype">int&#160;</td>
+=======
+          <td class="paramtype">double&#160;</td>
+>>>>>>> V3_branch
           <td class="paramname"><em>duree</em>, </td>
         </tr>
         <tr>
@@ -179,7 +252,11 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<<<<<<< HEAD
 <p>CreerRendezVous : Creer dynamiquement un objet <a class="el" href="struct_rendez_vous.html">RendezVous</a> </p>
+=======
+<p>CreerRendezVous : Creer dynamiquement un objet <a class="el" href="struct_rendez_vous.html">RendezVous</a> Et ajoute le patient et le médecin à leur liste respective de personnes rencontrées </p>
+>>>>>>> V3_branch
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">an</td><td>: l'annee </td></tr>
@@ -198,7 +275,11 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="a75dec28fc6cc82183dec57c710e87b0e"></a>
+=======
+<a class="anchor" id="af47070d6bae3fc4fcf9a29d8179af67b"></a>
+>>>>>>> V3_branch
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -235,7 +316,11 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+<<<<<<< HEAD
           <td class="paramtype">int&#160;</td>
+=======
+          <td class="paramtype">double&#160;</td>
+>>>>>>> V3_branch
           <td class="paramname"><em>n_duree</em>&#160;</td>
         </tr>
         <tr>
@@ -252,8 +337,12 @@ Fonctions</h2></td></tr>
     <tr><td class="paramname">n_an</td><td>: nouvelle année du rdv </td></tr>
     <tr><td class="paramname">n_mois</td><td>: nouveau mois du rdv </td></tr>
     <tr><td class="paramname">n_jour</td><td>: nouveau jour du rdv </td></tr>
+<<<<<<< HEAD
     <tr><td class="paramname">n_heure</td><td>: nouvelle heure du rdv </td></tr>
     <tr><td class="paramname">n_minute</td><td>: nouvelle minute de l'horaire du rdv </td></tr>
+=======
+    <tr><td class="paramname">n_heure_debut</td><td>: nouvelle heure du rdv </td></tr>
+>>>>>>> V3_branch
     <tr><td class="paramname">n_duree</td><td>: nouvelle duree du rdv </td></tr>
   </table>
   </dd>
@@ -262,6 +351,44 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
+=======
+<a class="anchor" id="a2c450f9eb36ddaec37adf75c5f3d514b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EqualsRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>EqualsRendezVous : fonction permettant de savoir si 12 rendez-vous sont les memes en comparant leurs dates et leurs horaires </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdv1</td><td>} } Les 2 rdv à comparer </td></tr>
+    <tr><td class="paramname">rdv2</td><td>} </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si ils sont égaux 0 sinon -1 si l'un des rdv est NULL </dd></dl>
+
+</div>
+</div>
+>>>>>>> V3_branch
 <a class="anchor" id="a1d5659faf0a3498ce343e7d14015489d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -285,13 +412,54 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
+=======
+<a class="anchor" id="a0d53c596383cf8ccbbdb51d0e0984a99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void getInfosRendezVous </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>infos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td>
+          <td class="paramname"><em>rdv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getInfosRendezVous : Place dans une chaine de caractères passée en paramètre les informations d'un <a class="el" href="struct_rendez_vous.html">RendezVous</a> </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">infos</td><td>: la chaîne qui va contenir les informations </td></tr>
+    <tr><td class="paramname">rdv</td><td>: le rdv dont on veut les infos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+>>>>>>> V3_branch
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_32e188284d239da8bb14ec1dabb0c35f.html">Model</a></li><li class="navelem"><a class="el" href="rendezvous_8c.html">rendezvous.c</a></li>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

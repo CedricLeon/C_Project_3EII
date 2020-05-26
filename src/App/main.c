@@ -11,7 +11,7 @@
 //View
 #include "GPCalendar/View/fonctionsGraphiques.h"
 #include "GPCalendar/View/callbacks.h"
-#include "GPCalendar/View/time.h"
+#include "GPCalendar/View/time_GPCalendar.h"
 
 #include <gtk/gtk.h>
 
@@ -25,7 +25,8 @@ int main(int argc, char *argv[]){
      //L'appli se lancera d'ici, je vais donc commenter ce qui devrait chrnologiquement se lancer
 
     /***********************************Lancement de GTK / Affichage du menu d'accueil*********************************/
-
+    GtkWidget* widget;
+    gpointer data;
     gtk_init (&argc, &argv);
 
 
@@ -40,9 +41,12 @@ int main(int argc, char *argv[]){
     // printf("Day in int %d\n",atoi(result1));
 
     // free((void*)result);
-    create_window(argc, argv);
 
-    create_calendar ();
+    fenetreOuverture(widget, data);
+
+    //create_window(argc, argv);
+
+    //create_calendar(widget, data);
     gtk_main ();
     return EXIT_SUCCESS;
     /******************************Si voulu par l'utilisateur : Chargement des fichiers ISC****************************/

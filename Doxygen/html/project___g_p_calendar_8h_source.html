@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>GPCalendar:  Fichier source de include/GPCalendar/Model/project_GPCalendar.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">GPCalendar
+   </div>
+   <div id="projectbrief">GPCalendar is an application allowing physician in a structure like an hospital to manage easier their timetable. It is still under development. It also allowed better communication between patient and physician with easy access to personal data, easy to use historical of consultations, etc.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('project___g_p_calendar_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">project_GPCalendar.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="project___g_p_calendar_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PROJECT_GPCALENDAR_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PROJECT_GPCALENDAR_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//Header Files du Projet</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="medecin_8h.html">GPCalendar/Model/medecin.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="patient_8h.html">GPCalendar/Model/patient.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="date_8h.html">GPCalendar/Model/date.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="calendrier_8h.html">GPCalendar/Model/calendrier.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ordonnance_8h.html">GPCalendar/Model/ordonnance.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dossier__medical_8h.html">GPCalendar/Model/dossier_medical.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rendezvous_8h.html">GPCalendar/Model/rendezvous.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//Librairie nécessaire à cJSON</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;cJSON.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//Librairie Standart</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_project___g_p_calendar.html">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">//Nom du projet, pas vraiment d&#39;utilité pour l&#39;instant mais c&#39;est pour comment marche cJSON</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct_project___g_p_calendar.html#abe308d273ff51ad86ff02ef3ba3b6f0e">   23</a></span>&#160;    <span class="keywordtype">char</span>* <a class="code" href="struct_project___g_p_calendar.html#abe308d273ff51ad86ff02ef3ba3b6f0e">nom</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">//Liste de Medecins inscrits dans l&#39;hopital</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_project___g_p_calendar.html#ad698f4218c3645e84ec3b943db9ea06d">   25</a></span>&#160;    <a class="code" href="struct_list_medecin.html">ListMedecin</a> * <a class="code" href="struct_project___g_p_calendar.html#ad698f4218c3645e84ec3b943db9ea06d">workingMedecins</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//Liste des patients ayant déjà consulté dans cet hopital</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct_project___g_p_calendar.html#a5a3570c43d186ae075a0d893438ce8b4">   27</a></span>&#160;    <a class="code" href="struct_list_patient.html">ListPatient</a> * <a class="code" href="struct_project___g_p_calendar.html#a5a3570c43d186ae075a0d893438ce8b4">consultingPatient</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">//Calendrier global de l&#39;hopitail (pour la V0)</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_project___g_p_calendar.html#ac1c68d1c7eeee118cba12c3efab5fd3f">   29</a></span>&#160;    <a class="code" href="struct_list_annee.html">Calendrier</a> <a class="code" href="struct_project___g_p_calendar.html#ac1c68d1c7eeee118cba12c3efab5fd3f">calendrier</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> * <a class="code" href="project___g_p_calendar_8h.html#a81f398531f161d975ffabb53d66daf5b">CreerProject</a>(<span class="keywordtype">char</span>* nom, <a class="code" href="struct_list_medecin.html">ListMedecin</a> * workingMedecins, <a class="code" href="struct_list_patient.html">ListPatient</a> * consultingPatient, <a class="code" href="struct_list_annee.html">Calendrier</a> calendrier);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="project___g_p_calendar_8h.html#a43e0f7d48014a7495be1baa671abed32">freeProject</a>(<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* project);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="project___g_p_calendar_8h.html#a0088004d54f408f403785d218a330ce3">printProject</a>(<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* p);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a9904b2b6d361577d9bc867416fb6f2e5">GPCalendar_saveProject</a>(<span class="keywordtype">char</span>* <a class="code" href="time_8c.html#ab4d0c12cb214f0f4e818a284b86d2816">nomFichier</a>, <a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* project);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="project___g_p_calendar_8h.html#a1c6f2b49e9c2f1fb671ea1f9cb702d04">Project_jsonSave</a>(<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* p);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a5c37b29882e21010d74cec620f423f85">ListMedecin_jsonSave</a>(cJSON* listMedecinJson, <a class="code" href="struct_list_medecin.html">ListMedecin</a>* l);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#ad49c020d48062643c39895ecc2d28e4f">ListPatient_jsonSave</a>(cJSON* listPatientJson, <a class="code" href="struct_list_patient.html">ListPatient</a>* l);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a21e1346bc98e5298a55c6ea50e3c94b5">Calendrier_jsonSave</a>(cJSON* calendrierJson, <a class="code" href="struct_list_annee.html">Calendrier</a> c);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* <a class="code" href="project___g_p_calendar_8h.html#a75b6bd4b0b7b0241fad7cc55abf9d2bb">GPCalendar_loadProject</a>(<span class="keywordtype">char</span>* <a class="code" href="time_8c.html#ab4d0c12cb214f0f4e818a284b86d2816">nomFichier</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>* <a class="code" href="project___g_p_calendar_8h.html#a7a6d2f1fca00acc464694f5414258538">Project_jsonLoad</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* content);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a7ac94075c9d7b1d6573cec905d025176">ListMedecin_jsonLoad</a>(cJSON* projectJson, <a class="code" href="struct_list_medecin.html">ListMedecin</a>* lM);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a3bea4ff78d8287423643ba3e76f155cd">ListPatient_jsonLoad</a>(cJSON* projectJson, <a class="code" href="struct_list_medecin.html">ListMedecin</a>* project_workingMedecins, <a class="code" href="struct_list_patient.html">ListPatient</a> * lP);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> <a class="code" href="project___g_p_calendar_8h.html#a43e66b4e9f5568407bddd301964a9467">Calendrier_jsonLoad</a>(cJSON* projectJson, <a class="code" href="struct_list_medecin.html">ListMedecin</a>* lM, <a class="code" href="struct_list_patient.html">ListPatient</a>* lP, <a class="code" href="struct_list_annee.html">Calendrier</a> c);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif //PROJECT_GPCALENDAR_H</span></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a9904b2b6d361577d9bc867416fb6f2e5"><div class="ttname"><a href="project___g_p_calendar_8h.html#a9904b2b6d361577d9bc867416fb6f2e5">GPCalendar_saveProject</a></div><div class="ttdeci">int GPCalendar_saveProject(char *nomFichier, Project_GPCalendar *project)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:64</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a7a6d2f1fca00acc464694f5414258538"><div class="ttname"><a href="project___g_p_calendar_8h.html#a7a6d2f1fca00acc464694f5414258538">Project_jsonLoad</a></div><div class="ttdeci">Project_GPCalendar * Project_jsonLoad(const char *content)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:423</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a5c37b29882e21010d74cec620f423f85"><div class="ttname"><a href="project___g_p_calendar_8h.html#a5c37b29882e21010d74cec620f423f85">ListMedecin_jsonSave</a></div><div class="ttdeci">int ListMedecin_jsonSave(cJSON *listMedecinJson, ListMedecin *l)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:165</div></div>
+<div class="ttc" id="medecin_8h_html"><div class="ttname"><a href="medecin_8h.html">medecin.h</a></div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a0088004d54f408f403785d218a330ce3"><div class="ttname"><a href="project___g_p_calendar_8h.html#a0088004d54f408f403785d218a330ce3">printProject</a></div><div class="ttdeci">void printProject(Project_GPCalendar *p)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:36</div></div>
+<div class="ttc" id="struct_list_patient_html"><div class="ttname"><a href="struct_list_patient.html">ListPatient</a></div><div class="ttdef"><b>Definition:</b> patient.h:58</div></div>
+<div class="ttc" id="struct_project___g_p_calendar_html"><div class="ttname"><a href="struct_project___g_p_calendar.html">Project_GPCalendar</a></div><div class="ttdef"><b>Definition:</b> project_GPCalendar.h:20</div></div>
+<div class="ttc" id="ordonnance_8h_html"><div class="ttname"><a href="ordonnance_8h.html">ordonnance.h</a></div></div>
+<div class="ttc" id="time_8c_html_ab4d0c12cb214f0f4e818a284b86d2816"><div class="ttname"><a href="time_8c.html#ab4d0c12cb214f0f4e818a284b86d2816">nomFichier</a></div><div class="ttdeci">char * nomFichier</div><div class="ttdef"><b>Definition:</b> time.c:16</div></div>
+<div class="ttc" id="struct_list_annee_html"><div class="ttname"><a href="struct_list_annee.html">ListAnnee</a></div><div class="ttdef"><b>Definition:</b> calendrier.h:165</div></div>
+<div class="ttc" id="struct_list_medecin_html"><div class="ttname"><a href="struct_list_medecin.html">ListMedecin</a></div><div class="ttdef"><b>Definition:</b> medecin.h:49</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a81f398531f161d975ffabb53d66daf5b"><div class="ttname"><a href="project___g_p_calendar_8h.html#a81f398531f161d975ffabb53d66daf5b">CreerProject</a></div><div class="ttdeci">Project_GPCalendar * CreerProject(char *nom, ListMedecin *workingMedecins, ListPatient *consultingPatient, Calendrier calendrier)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:3</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a75b6bd4b0b7b0241fad7cc55abf9d2bb"><div class="ttname"><a href="project___g_p_calendar_8h.html#a75b6bd4b0b7b0241fad7cc55abf9d2bb">GPCalendar_loadProject</a></div><div class="ttdeci">Project_GPCalendar * GPCalendar_loadProject(char *nomFichier)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:379</div></div>
+<div class="ttc" id="calendrier_8h_html"><div class="ttname"><a href="calendrier_8h.html">calendrier.h</a></div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a7ac94075c9d7b1d6573cec905d025176"><div class="ttname"><a href="project___g_p_calendar_8h.html#a7ac94075c9d7b1d6573cec905d025176">ListMedecin_jsonLoad</a></div><div class="ttdeci">int ListMedecin_jsonLoad(cJSON *projectJson, ListMedecin *lM)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:484</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a43e66b4e9f5568407bddd301964a9467"><div class="ttname"><a href="project___g_p_calendar_8h.html#a43e66b4e9f5568407bddd301964a9467">Calendrier_jsonLoad</a></div><div class="ttdeci">int Calendrier_jsonLoad(cJSON *projectJson, ListMedecin *lM, ListPatient *lP, Calendrier c)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:622</div></div>
+<div class="ttc" id="struct_project___g_p_calendar_html_abe308d273ff51ad86ff02ef3ba3b6f0e"><div class="ttname"><a href="struct_project___g_p_calendar.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Project_GPCalendar::nom</a></div><div class="ttdeci">char * nom</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.h:23</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a1c6f2b49e9c2f1fb671ea1f9cb702d04"><div class="ttname"><a href="project___g_p_calendar_8h.html#a1c6f2b49e9c2f1fb671ea1f9cb702d04">Project_jsonSave</a></div><div class="ttdeci">char * Project_jsonSave(Project_GPCalendar *p)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:95</div></div>
+<div class="ttc" id="struct_project___g_p_calendar_html_a5a3570c43d186ae075a0d893438ce8b4"><div class="ttname"><a href="struct_project___g_p_calendar.html#a5a3570c43d186ae075a0d893438ce8b4">Project_GPCalendar::consultingPatient</a></div><div class="ttdeci">ListPatient * consultingPatient</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.h:27</div></div>
+<div class="ttc" id="dossier__medical_8h_html"><div class="ttname"><a href="dossier__medical_8h.html">dossier_medical.h</a></div></div>
+<div class="ttc" id="patient_8h_html"><div class="ttname"><a href="patient_8h.html">patient.h</a></div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_ad49c020d48062643c39895ecc2d28e4f"><div class="ttname"><a href="project___g_p_calendar_8h.html#ad49c020d48062643c39895ecc2d28e4f">ListPatient_jsonSave</a></div><div class="ttdeci">int ListPatient_jsonSave(cJSON *listPatientJson, ListPatient *l)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:212</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a43e0f7d48014a7495be1baa671abed32"><div class="ttname"><a href="project___g_p_calendar_8h.html#a43e0f7d48014a7495be1baa671abed32">freeProject</a></div><div class="ttdeci">void freeProject(Project_GPCalendar *project)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:22</div></div>
+<div class="ttc" id="rendezvous_8h_html"><div class="ttname"><a href="rendezvous_8h.html">rendezvous.h</a></div></div>
+<div class="ttc" id="date_8h_html"><div class="ttname"><a href="date_8h.html">date.h</a></div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a3bea4ff78d8287423643ba3e76f155cd"><div class="ttname"><a href="project___g_p_calendar_8h.html#a3bea4ff78d8287423643ba3e76f155cd">ListPatient_jsonLoad</a></div><div class="ttdeci">int ListPatient_jsonLoad(cJSON *projectJson, ListMedecin *project_workingMedecins, ListPatient *lP)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:517</div></div>
+<div class="ttc" id="struct_project___g_p_calendar_html_ac1c68d1c7eeee118cba12c3efab5fd3f"><div class="ttname"><a href="struct_project___g_p_calendar.html#ac1c68d1c7eeee118cba12c3efab5fd3f">Project_GPCalendar::calendrier</a></div><div class="ttdeci">Calendrier calendrier</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.h:29</div></div>
+<div class="ttc" id="project___g_p_calendar_8h_html_a21e1346bc98e5298a55c6ea50e3c94b5"><div class="ttname"><a href="project___g_p_calendar_8h.html#a21e1346bc98e5298a55c6ea50e3c94b5">Calendrier_jsonSave</a></div><div class="ttdeci">int Calendrier_jsonSave(cJSON *calendrierJson, Calendrier c)</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.c:321</div></div>
+<div class="ttc" id="struct_project___g_p_calendar_html_ad698f4218c3645e84ec3b943db9ea06d"><div class="ttname"><a href="struct_project___g_p_calendar.html#ad698f4218c3645e84ec3b943db9ea06d">Project_GPCalendar::workingMedecins</a></div><div class="ttdeci">ListMedecin * workingMedecins</div><div class="ttdef"><b>Definition:</b> project_GPCalendar.h:25</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="project___g_p_calendar_8h.html">project_GPCalendar.h</a></li>
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:33 pour GPCalendar par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
+</body>
+</html>

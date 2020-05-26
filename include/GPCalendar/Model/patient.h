@@ -26,18 +26,10 @@ struct Patient{
 Patient * CreerPatient(char * nom, char * prenom, int annee_naissance, int mois_naissance, int jour_naissance, char * mail, char * num_tel, char * numero_secu_social);
 void DeletePatient(Patient * patient);
 
-void printPatient(char* infos, Patient * p); //Utilisée pour le debugging
+void printPatient(char* infos, Patient * p);
 void AccesDossierMedical(char* infos, Patient * p);
 void PrintListOrdonnances(char* infos, Patient* p);
 void PrintListAntecedents(char* infos, Patient* p);
-
-/* Setteurs */ /*en vrai ça sert à rien*/
-void SetNomPatient(Patient * p, char * nom);
-void SetPrenomPatient(Patient * p, char * prenom);
-void SetDateNaissancePatient(Patient * p, int an, int mois, int jour);
-void SetAdresseMailPatient(Patient * p, char * mail);
-void SetNumeroTelephonePatient(Patient * p, char * tel);
-void setNumeroSecuSocialePatient(Patient * p, char * secu);
 
 /* Getteurs */ /*idem*/
 void getNomPatient(char * nom, Patient *p);
@@ -45,7 +37,6 @@ void getDateNaissancePatient(char* infos, Patient* p);
 char * getAdresseMailPatient(Patient * p);
 char * getNumeroTelephonePatient(Patient * p);
 char * getNumeroSecuSocialePatient(Patient * p);
-void getInfoPatient(char* infos, Patient* p);
 
 int AddMedecinConsultePatient(Patient * p, Medecin * medecin);
 int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin);
@@ -87,16 +78,11 @@ int ListPatient_add(ListPatient * l, Patient * p);
 Patient* ListPatient_seek(ListPatient* lP, char* IDPatient);
 
 int ListPatient_isEmpty(ListPatient * l);
-int ListPatient_isFirst(ListPatient * l);
-int ListPatient_isLast(ListPatient * l);
 int ListPatient_isOutOfList(ListPatient * l);
 
 void ListPatient_setOnFirst(ListPatient * l);
-void ListPatient_setOnLast(ListPatient * l);
 void ListPatient_setOnNext(ListPatient * l);
 void ListPatient_setOnPrevious(ListPatient * l);
 Patient* ListPatient_getCurrent(ListPatient * l);
-
-//void ListPatient_printList(ListPatient * l);          A voir si c'est nécessaire
 
 #endif

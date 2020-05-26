@@ -63,17 +63,13 @@ void ListRendezVous_init(ListRendezVous * l, Date * date);
 void ListRendezVous_free(ListRendezVous * l);
 
 int ListRendezVous_isEmpty(ListRendezVous * l);
-int ListRendezVous_isFirst(ListRendezVous * l);
 int ListRendezVous_isLast(ListRendezVous * l);
 int ListRendezVous_isOutOfList(ListRendezVous * l);
 
 void ListRendezVous_setOnFirst(ListRendezVous * l);
-void ListRendezVous_setOnLast(ListRendezVous * l);
 void ListRendezVous_setOnNext(ListRendezVous * l);
 void ListRendezVous_setOnPrevious(ListRendezVous * l);
 RendezVous * ListRendezVous_getCurrent(ListRendezVous * l);
-Date * ListRendezVous_getDate(ListRendezVous * l);
-
 
 typedef ListRendezVous * Jour;      //On redéfinis une liste de rdv comme étant un jour, c'est juste pour la lisibilité
                                     //(Cf Cours sur les liste chainées)
@@ -106,17 +102,13 @@ void ListJour_init(ListJour * l, int mois);
 void ListJour_free(ListJour * l);
 
 int ListJour_isEmpty(ListJour * l);
-int ListJour_isFirst(ListJour * l);
 int ListJour_isLast(ListJour * l);
 int ListJour_isOutOfList(ListJour * l);
 
 void ListJour_setOnFirst(ListJour * l);
-void ListJour_setOnLast(ListJour * l);
 void ListJour_setOnNext(ListJour * l);
 void ListJour_setOnPrevious(ListJour * l);
 Jour ListJour_getCurrent(ListJour * l);
-int ListJour_getMois(ListJour * l);
-
 
 typedef ListJour * Mois;            //Idem mais pour les mois
 
@@ -148,17 +140,13 @@ void ListMois_init(ListMois * l, int annee);
 void ListMois_free(ListMois * l);
 
 int ListMois_isEmpty(ListMois * l);
-int ListMois_isFirst(ListMois * l);
 int ListMois_isLast(ListMois * l);
 int ListMois_isOutOfList(ListMois * l);
 
 void ListMois_setOnFirst(ListMois * l);
-void ListMois_setOnLast(ListMois * l);
 void ListMois_setOnNext(ListMois * l);
 void ListMois_setOnPrevious(ListMois * l);
 Mois ListMois_getCurrent(ListMois * l);
-int ListMois_getAnnee(ListMois * l);
-
 
 typedef ListMois * Annee;           //encore une fois une Liste de mois est une année
 
@@ -192,40 +180,40 @@ void ListAnnee_init(ListAnnee * l);
 void ListAnnee_free(ListAnnee * l);
 
 int ListAnnee_isEmpty(ListAnnee * l);
-int ListAnnee_isFirst(ListAnnee * l);
 int ListAnnee_isLast(ListAnnee * l);
 int ListAnnee_isOutOfList(ListAnnee * l);
 
 void ListAnnee_setOnFirst(ListAnnee * l);
-void ListAnnee_setOnLast(ListAnnee * l);
 void ListAnnee_setOnNext(ListAnnee * l);
 void ListAnnee_setOnPrevious(ListAnnee * l);
 Annee ListAnnee_getCurrent(ListAnnee * l);
 
 typedef ListAnnee * Calendrier;
 
-Calendrier CreerCalendrier();
-
 /**********************************************************************************************************************/
                                 /*Fonction d'ajout aux calendriers*/
 /**********************************************************************************************************************/
+
+Calendrier CreerCalendrier();
+void freeCalendrier(Calendrier c);
+
+int RendezVousValable(Calendrier c , RendezVous * rdv);
+
+int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
+int AnnulerRendezVous(Calendrier c, RendezVous * rdv);
+
+void printCalendrier(Calendrier c);
+
+/* Sous Fonctions */
+int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
 int ChercherRendezVousSuivant(Jour j, RendezVous * rdv);
 int AddRendezVous_Jour(Jour j, RendezVous * rdv);
 int AddJour_Mois(Mois m, Jour j);
 int AddMois_Annee(Annee a, Mois m);
 int AddAnnee_Calendrier(Calendrier c, Annee a);
-
 RendezVous * RendezVous_existe(ListRendezVous * l, RendezVous * rdv);
 ListRendezVous * Jour_existe(ListJour * l, Date * d);
 ListJour *  Mois_existe(ListMois * l, int mois);
 ListMois * Annee_existe(ListAnnee * l, int annee);
-int RendezVousValable(Calendrier c , RendezVous * rdv);
-
-int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
-int AnnulerRendezVous(Calendrier c, RendezVous * rdv);
-void freeCalendrier(Calendrier c);
-
-int chercherRendezVous_Calendrier(Calendrier c, RendezVous * rdv);
-void printCalendrier(Calendrier c);
 
 #endif

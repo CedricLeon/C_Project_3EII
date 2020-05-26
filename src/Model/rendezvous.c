@@ -16,7 +16,7 @@
  */
 RendezVous * CreerRendezVous(int an, int mois, int jour, double heure_debut, double duree, char * lieu, Patient * patient, Medecin * medecin, char * motif){
 
-    RendezVous * rdv = (RendezVous *) malloc(sizeof(RendezVous));
+    RendezVous* rdv = (RendezVous*) malloc(sizeof(RendezVous));
     rdv->heure_debut = heure_debut;
     rdv->heure_fin = heure_debut + (duree/60);
     rdv->date = CreerDate(an, mois, jour);
@@ -64,13 +64,13 @@ int EqualsRendezVous(RendezVous * rdv1, RendezVous * rdv2){
         return -1;
     }
     //test si mêmes dates
-    if(DateEgales(rdv1->date, rdv2->date))
+    if(DateEgales(rdv1->date, rdv2->date) /*strcmp(rdv1->patient->numero_secu_social, rdv2->patient->numero_secu_social) == 0 && strcmp(rdv1->medecin->numero_RPS, rdv2->medecin->numero_RPS) == 0*/)
     {
         //test mêmes horaires
-        if(rdv1->heure_debut == rdv2->heure_debut && rdv1->heure_fin == rdv2->heure_fin)
+        if((rdv1->heure_debut == rdv2->heure_debut) && (rdv1->heure_fin == rdv2->heure_fin))
         {
             //test mêmes motifs et lieux
-            if(strcmp(rdv1->lieu, rdv2->lieu) == 0 && strcmp(rdv1->motif,  rdv2->motif) == 0)
+            if((strcmp(rdv1->lieu, rdv2->lieu) == 0) && (strcmp(rdv1->motif,  rdv2->motif) == 0))
             {
                 return 1;
             }
@@ -84,18 +84,17 @@ int EqualsRendezVous(RendezVous * rdv1, RendezVous * rdv2){
  * @param n_an : nouvelle année du rdv
  * @param n_mois : nouveau mois du rdv
  * @param n_jour : nouveau jour du rdv
- * @param n_heure : nouvelle heure du rdv
- * @param n_minute : nouvelle minute de l'horaire du rdv
+ * @param n_heure_debut : nouvelle heure du rdv
  * @param n_duree : nouvelle duree du rdv
  * @return le rdv deplacé
  */
-RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, int n_duree){
+RendezVous * DeplacerRendezVous(RendezVous * rdv, int n_an, int n_mois, int n_jour, double n_heure_debut, double n_duree){
     rdv->date->annee=n_an;
     rdv->date->mois=n_mois;
     rdv->date->jour=n_jour;
 
     rdv->heure_debut = n_heure_debut;
-    rdv->heure_fin = n_heure_debut + (double) (n_duree/60);
+    rdv->heure_fin = n_heure_debut + (n_duree/60);
     return rdv;
 }
 

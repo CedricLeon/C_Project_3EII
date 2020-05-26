@@ -2,8 +2,10 @@ var annotated =
 [
     [ "_CalendarData", "struct___calendar_data.html", "struct___calendar_data" ],
     [ "Data", "struct_data.html", "struct_data" ],
+    [ "DataMedecin", "struct_data_medecin.html", "struct_data_medecin" ],
     [ "DataRDV", "struct_data_r_d_v.html", "struct_data_r_d_v" ],
     [ "Date", "struct_date.html", "struct_date" ],
+    [ "DateCalendrier", "struct_date_calendrier.html", "struct_date_calendrier" ],
     [ "DossierMedical", "struct_dossier_medical.html", "struct_dossier_medical" ],
     [ "ListAnnee", "struct_list_annee.html", "struct_list_annee" ],
     [ "ListAntecedent", "struct_list_antecedent.html", "struct_list_antecedent" ],
@@ -24,6 +26,8 @@ var annotated =
     [ "NodeRendezVous", "struct_node_rendez_vous.html", "struct_node_rendez_vous" ],
     [ "Ordonnance", "struct_ordonnance.html", "struct_ordonnance" ],
     [ "Patient", "struct_patient.html", "struct_patient" ],
-    [ "Project", "struct_project.html", "struct_project" ],
+    [ "Project_GPCalendar", "struct_project___g_p_calendar.html", "struct_project___g_p_calendar" ],
+    [ "RecherchePatient", "struct_recherche_patient.html", "struct_recherche_patient" ],
+    [ "RechercheProjet", "struct_recherche_projet.html", "struct_recherche_projet" ],
     [ "RendezVous", "struct_rendez_vous.html", "struct_rendez_vous" ]
 ];

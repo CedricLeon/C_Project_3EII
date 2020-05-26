@@ -46,19 +46,14 @@ typedef struct{
 
 NodeOrdonnance * newNodeOrdonnance(Ordonnance * o, NodeOrdonnance * previous, NodeOrdonnance * next);
 void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n);
-void freeNodeOrdonnance_withoutDeletingOrdonnance(ListOrdonnance *l, NodeOrdonnance * n);
 
 void ListOrdonnance_init(ListOrdonnance * l);
 void ListOrdonnance_free(ListOrdonnance * l);
-void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l);
 
 int ListOrdonnance_isEmpty(ListOrdonnance * l);
-int ListOrdonnance_isFirst(ListOrdonnance * l);
-int ListOrdonnance_isLast(ListOrdonnance * l);
 int ListOrdonnance_isOutOfList(ListOrdonnance * l);
 
 void ListOrdonnance_setOnFirst(ListOrdonnance * l);
-void ListOrdonnance_setOnLast(ListOrdonnance * l);
 void ListOrdonnance_setOnNext(ListOrdonnance * l);
 void ListOrdonnance_setOnPrevious(ListOrdonnance * l);
 Ordonnance * ListOrdonnance_getCurrent(ListOrdonnance * l);

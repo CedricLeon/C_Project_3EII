@@ -69,7 +69,7 @@ void printPatient(char* infos, Patient * p){
     strcat(infos, "\n\t@ : ");
     strcat(infos, getAdresseMailPatient(p));
     strcat(infos, "\n\tNé le : ");
-    char* tmp = (char*) malloc(10);
+    char* tmp = (char*) malloc(20);
     getDateNaissancePatient(tmp,p);
     strcat(infos, tmp);
     free((void*) tmp);
@@ -134,72 +134,7 @@ void PrintListAntecedents(char* infos, Patient* p){
         strcat(infos, "\"\n");
     }
 }
-/********************************************************************************************************************/
-                                            /*Setteurs de Patient*/
-/*******************************************************************************************************************/
 
-/**
- * SetNomPatient : Setteur du nom d'un patient
- * @param p : le patient
- * @param nom : le nouveau nom
- */
-void SetNomPatient(Patient * p, char * nom){
-    free((void*) p->nom);
-    p->nom = (char*) malloc(strlen(nom)+1);
-    strcpy(p->nom, nom);
-}
-/**
- * SetPrenomPatient : Setteur du prénom d'un patient
- * @param p : le patient
- * @param prenom : le nouveau prénom
- */
-void SetPrenomPatient(Patient * p, char * prenom){
-    free((void*) p->prenom);
-    p->prenom = (char*) malloc(strlen(prenom)+1);
-    strcpy(p->prenom, prenom);
-}
-/**
- * SetDateNaissancePatient : Setteur de la date de naissance d'un patient
- * @param p : le patient
- * @param an : la nouvelle date de naissance
- * @param mois
- * @param jour
- */
-void SetDateNaissancePatient(Patient * p, int an, int mois, int jour){
-    p->date_naissance->annee = an;
-    p->date_naissance->mois = mois;
-    p->date_naissance->jour = jour;
-}
-/**
- * SetAdresseMailPatient : Setteur de l'adresse mail d'un patient
- * @param p : le patient
- * @param mail : la nouvelle adresse mail
- */
-void SetAdresseMailPatient(Patient * p, char * mail){
-    free((void*) p->adresse_mail);
-    p->adresse_mail = (char*) malloc(strlen(mail)+1);
-    strcpy(p->adresse_mail, mail);
-}
-/**
- * SetNumeroTelephonePatient : Setteur du numero de telephone d'un patient
- * @param p : le patient
- * @param tel : le nouveau numero de telephone
- */
-void SetNumeroTelephonePatient(Patient * p, char * tel){
-    free((void*) p->numero_telephone);
-    p->numero_telephone = (char*) malloc(strlen(tel)+1);
-    strcpy(p->numero_telephone, tel);
-}
-/**
- * SetNumeroSecuSocialePatient : Setteur du numero de sécurité sociale d'un patient
- * @param p : le patient
- * @param tel : le nouveau numero de sécurité sociale
- */
-void SetNumeroSecuSocialePatient(Patient * p, char * secu){
-    free((void*) p->numero_secu_social);
-    p->numero_secu_social = (char*) malloc(strlen(secu)+1);
-    strcpy(p->numero_secu_social, secu);
-}
 /********************************************************************************************************************/
                                              /*Getteurs de Patient*/
 /*******************************************************************************************************************/
@@ -248,31 +183,6 @@ char * getNumeroTelephonePatient(Patient * p){
  */
 char * getNumeroSecuSocialePatient(Patient * p){
     return  p->numero_secu_social;
-}
-
-
-/**
- * getInfoPatient : Place les infos du patient dans infos
- * @param infos : le char* dans lequel on met les infos
- * @param p : le patient dont on veut les informations
- */
-void getInfoPatient(char* infos, Patient* p){
-    // !!!!!!!!!! il faut malloc infos avant la fonction et le free après son utilisation !!!!!!!!!
-    char * tmp = (char*) malloc(50);
-    getNomPatient(tmp, p);
-    strcpy(infos,tmp);
-    strcat(infos,"\nNé(e) le : ");
-
-    getDateNaissancePatient(tmp, p);
-    strcat(infos, tmp);
-    free((void*) tmp);
-
-    strcat(infos, "\n@ : ");
-    strcat(infos, getAdresseMailPatient(p));
-    strcat(infos, "\nTel : ");
-    strcat(infos, getNumeroTelephonePatient(p));
-    strcat(infos, "\nN° sécu : ");
-    strcat(infos, getNumeroSecuSocialePatient(p));
 }
 
 /********************************************************************************************************************/
@@ -336,7 +246,7 @@ int DeleteMedecinConsultePatient(Patient * p, Medecin * medecin){
             p->dossierMedical->medecins_consultes); ListMedecin_setOnNext(p->dossierMedical->medecins_consultes)) {
 
         //Si on le trouve on le retire et on quitte la fonction
-        if (ListMedecin_getCurrent(p->dossierMedical->medecins_consultes) == medecin) {
+        if (strcmp(ListMedecin_getCurrent(p->dossierMedical->medecins_consultes)->numero_RPS, medecin->numero_RPS) == 0) {
             p->dossierMedical->medecins_consultes->current->previous->next = p->dossierMedical->medecins_consultes->current->next;
             p->dossierMedical->medecins_consultes->current->next->previous = p->dossierMedical->medecins_consultes->current->previous;
             freeNodeMedecin_withoutDeletingMedecin(p->dossierMedical->medecins_consultes, p->dossierMedical->medecins_consultes->current);
@@ -535,32 +445,6 @@ int ListPatient_isEmpty(ListPatient * l){
     return -1; //La liste est NULL
 }
 /**
- * ListPatient_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListPatient_isFirst(ListPatient * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListPatient_isLast : Vérifie si current est positionné sur le dernier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le dernier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListPatient_isLast(ListPatient * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_end.previous;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListPatient_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * @param l : la liste
  * @return 1 si current vaut NULL
@@ -581,15 +465,6 @@ int ListPatient_isOutOfList(ListPatient * l){
 void ListPatient_setOnFirst(ListPatient * l){
     if(l != NULL){
         l->current = l->sentinel_begin.next;
-    }
-}
-/**
- * ListPatient_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListPatient_setOnLast(ListPatient * l){
-    if(l != NULL && !ListPatient_isOutOfList(l)){
-        l->current = l->sentinel_end.previous;
     }
 }
 /**

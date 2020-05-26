@@ -1,7 +1,10 @@
 var medecin_8c =
 [
     [ "AddPatientRecuMedecin", "medecin_8c.html#ae523afbd8be2ec7cbf04c5990e22e5f6", null ],
+<<<<<<< HEAD
     [ "AfficheMedecin", "medecin_8c.html#a05bcf828900177b22789cd327fc16c34", null ],
+=======
+>>>>>>> V3_branch
     [ "CreerListMedecin", "medecin_8c.html#ae1cfbfa2117c0a7b5a7218017f2a7f75", null ],
     [ "CreerMedecin", "medecin_8c.html#a0afe5fb66e0cb635d1ab76b51a6b1758", null ],
     [ "DeleteMedecin", "medecin_8c.html#a71bcd5e35819a7252983451b7a6397d8", null ],
@@ -19,6 +22,7 @@ var medecin_8c =
     [ "ListMedecin_getCurrent", "medecin_8c.html#a97a3982adfbf8b1deb4abdb091dee173", null ],
     [ "ListMedecin_init", "medecin_8c.html#abf8a93013bb8621ea73405a9b741a26d", null ],
     [ "ListMedecin_isEmpty", "medecin_8c.html#a7b1b4efabf71bc3ee7195ad73f953189", null ],
+<<<<<<< HEAD
     [ "ListMedecin_isFirst", "medecin_8c.html#a3ad08529d7153844dfdb4121e95cfcd9", null ],
     [ "ListMedecin_isLast", "medecin_8c.html#a54b718985c956faf4a6b917c55c3b934", null ],
     [ "ListMedecin_isOutOfList", "medecin_8c.html#a6b57e943628fac1c5739ac370f06d983", null ],
@@ -34,4 +38,13 @@ var medecin_8c =
     [ "SetNumeroRPSMedecin", "medecin_8c.html#a9176e649f75181c288b50f1abae82759", null ],
     [ "SetNumeroTelephoneMedecin", "medecin_8c.html#aa1bcc618408c8c672056f01110a4f41d", null ],
     [ "SetPrenomMedecin", "medecin_8c.html#ab0ea71bb483a62977a39b3cefc018783", null ]
+=======
+    [ "ListMedecin_isOutOfList", "medecin_8c.html#a6b57e943628fac1c5739ac370f06d983", null ],
+    [ "ListMedecin_seek", "medecin_8c.html#acdf3f272f044ddfcc66e2d0118ae89b5", null ],
+    [ "ListMedecin_setOnFirst", "medecin_8c.html#ae1511c4a3885355a88a6b87040298168", null ],
+    [ "ListMedecin_setOnNext", "medecin_8c.html#af977ed01cae64e1d77011a3c6555d88e", null ],
+    [ "ListMedecin_setOnPrevious", "medecin_8c.html#a7e65abd3210688fdb92699ef2e2ade15", null ],
+    [ "newNodeMedecin", "medecin_8c.html#ae44be774cac54154a80da40db3bcc6a6", null ],
+    [ "printListMedecin", "medecin_8c.html#acac056ba7705fe9857a63dc2df920e0d", null ]
+>>>>>>> V3_branch
 ];

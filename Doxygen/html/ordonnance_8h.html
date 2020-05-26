@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +95,23 @@
 $(document).ready(function(){initNavTree('ordonnance_8h.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Structures de données</a> &#124;
@@ -76,6 +126,7 @@ $(document).ready(function(){initNavTree('ordonnance_8h.html','');});
 <code>#include &lt;string.h&gt;</code><br/>
 <code>#include &lt;stdlib.h&gt;</code><br/>
 <code>#include &lt;stdio.h&gt;</code><br/>
+<<<<<<< HEAD
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de ordonnance.h:</div>
 <div class="dyncontent">
@@ -90,6 +141,8 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <map name="include_2_g_p_calendar_2_model_2ordonnance_8hdep" id="include_2_g_p_calendar_2_model_2ordonnance_8hdep">
 <area shape="rect" id="node2" href="main_8c.html" title="src/App/main.c" alt="" coords="825,829,935,856"/><area shape="rect" id="node3" href="ordonnance_8c.html" title="src/Model/ordonnance.c" alt="" coords="1947,104,2108,131"/><area shape="rect" id="node4" href="_g_p_calendar_shell_8h.html" title="include/GPCalendar\l/App/GPCalendarShell.h" alt="" coords="75,913,239,954"/><area shape="rect" id="node6" href="dossier__medical_8h.html" title="include/GPCalendar\l/Model/dossier_medical.h" alt="" coords="581,97,752,138"/><area shape="rect" id="node8" href="_json_save_8h.html" title="include/GPCalendar\l/Model/JsonSave.h" alt="" coords="1491,822,1629,863"/><area shape="rect" id="node10" href="tests__unitaires_8c.html" title="tests/tests_unitaires.c" alt="" coords="1646,920,1796,947"/><area shape="rect" id="node5" href="_g_p_calendar_shell_8c.html" title="src/App/GPCalendarShell.c" alt="" coords="66,1003,248,1029"/><area shape="rect" id="node7" href="dossier__medical_8c.html" title="src/Model/dossier_medical.c" alt="" coords="479,195,667,221"/><area shape="rect" id="node11" href="patient_8h.html" title="include/GPCalendar\l/Model/patient.h" alt="" coords="692,187,831,229"/><area shape="rect" id="node9" href="_json_save_8c.html" title="src/Model/JsonSave.c" alt="" coords="1469,920,1621,947"/><area shape="rect" id="node12" href="medecin_8c.html" title="src/Model/medecin.c" alt="" coords="398,285,540,312"/><area shape="rect" id="node13" href="patient_8c.html" title="src/Model/patient.c" alt="" coords="565,285,699,312"/><area shape="rect" id="node14" href="fonctions_graphiques_8c.html" title="src/View/fonctionsGraphiques.c" alt="" coords="449,648,655,675"/><area shape="rect" id="node15" href="rendezvous_8h.html" title="include/GPCalendar\l/Model/rendezvous.h" alt="" coords="1057,278,1199,319"/><area shape="rect" id="node19" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="861,459,1000,501"/><area shape="rect" id="node16" href="rendezvous_8c.html" title="src/Model/rendezvous.c" alt="" coords="1275,376,1436,403"/><area shape="rect" id="node17" href="calendrier_8h.html" title="include/GPCalendar\l/Model/calendrier.h" alt="" coords="1112,369,1251,410"/><area shape="rect" id="node18" href="calendrier_8c.html" title="src/Model/calendrier.c" alt="" coords="1214,467,1364,493"/><area shape="rect" id="node20" href="callbacks_8c.html" title="src/View/callbacks.c" alt="" coords="969,648,1111,675"/><area shape="rect" id="node21" href="time_8c.html" title="src/View/time.c" alt="" coords="918,739,1031,765"/><area shape="rect" id="node22" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="836,550,1025,591"/><area shape="rect" id="node23" href="time_8h.html" title="include/GPCalendar\l/View/time.h" alt="" coords="680,641,819,682"/><area shape="rect" id="node24" href="date_8h.html" title="include/GPCalendar\l/Model/date.h" alt="" coords="573,731,712,773"/><area shape="rect" id="node25" href="date_8c.html" title="src/Model/date.c" alt="" coords="583,829,701,856"/></map>
 </div>
+=======
+>>>>>>> V3_branch
 </div>
 <p><a href="ordonnance_8h_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
@@ -123,12 +176,16 @@ Fonctions</h2></td></tr>
 <tr class="separator:a8f765b7edc568e61ef4f6a8f9acc5da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a870956eab1e669be1956d4da5a75c51c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#a870956eab1e669be1956d4da5a75c51c">freeNodeOrdonnance</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l, <a class="el" href="struct_node_ordonnance.html">NodeOrdonnance</a> *n)</td></tr>
 <tr class="separator:a870956eab1e669be1956d4da5a75c51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:ad40e3d193cdc208b3bf052457c2557db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ad40e3d193cdc208b3bf052457c2557db">freeNodeOrdonnance_withoutDeletingOrdonnance</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l, <a class="el" href="struct_node_ordonnance.html">NodeOrdonnance</a> *n)</td></tr>
 <tr class="separator:ad40e3d193cdc208b3bf052457c2557db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+>>>>>>> V3_branch
 <tr class="memitem:ae41a4766285c1bf190f73beda51b26b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ae41a4766285c1bf190f73beda51b26b1">ListOrdonnance_init</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:ae41a4766285c1bf190f73beda51b26b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2374a904522f810e38a96ab2b70a96b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ab2374a904522f810e38a96ab2b70a96b">ListOrdonnance_free</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:ab2374a904522f810e38a96ab2b70a96b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:ada3306a875d73fdbc4c597335cb8648a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ada3306a875d73fdbc4c597335cb8648a">ListOrdonnance_free_withoutDeletingOrdonnance</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:ada3306a875d73fdbc4c597335cb8648a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad36331d7ecda656771d1560d3015ca08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ad36331d7ecda656771d1560d3015ca08">ListOrdonnance_isEmpty</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
@@ -137,12 +194,19 @@ Fonctions</h2></td></tr>
 <tr class="separator:ad16d6389aa9f75d7a4642fdd0f47ce75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a274c3a2b9f3497657df33212a41cece7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#a274c3a2b9f3497657df33212a41cece7">ListOrdonnance_isLast</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:a274c3a2b9f3497657df33212a41cece7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+<tr class="memitem:ad36331d7ecda656771d1560d3015ca08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#ad36331d7ecda656771d1560d3015ca08">ListOrdonnance_isEmpty</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
+<tr class="separator:ad36331d7ecda656771d1560d3015ca08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+>>>>>>> V3_branch
 <tr class="memitem:a1467b36f1510a920d26c7f47934c732d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#a1467b36f1510a920d26c7f47934c732d">ListOrdonnance_isOutOfList</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:a1467b36f1510a920d26c7f47934c732d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add110561a476b06a4666aca1e1873518"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#add110561a476b06a4666aca1e1873518">ListOrdonnance_setOnFirst</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:add110561a476b06a4666aca1e1873518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:acd59abef86cb57ef0c75847488ce817d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#acd59abef86cb57ef0c75847488ce817d">ListOrdonnance_setOnLast</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:acd59abef86cb57ef0c75847488ce817d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+>>>>>>> V3_branch
 <tr class="memitem:a6eac0d9f4066e9f674590a8b85a02bc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#a6eac0d9f4066e9f674590a8b85a02bc8">ListOrdonnance_setOnNext</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
 <tr class="separator:a6eac0d9f4066e9f674590a8b85a02bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05fb637a10a8c2cea759faedde76d0fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ordonnance_8h.html#a05fb637a10a8c2cea759faedde76d0fd">ListOrdonnance_setOnPrevious</a> (<a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a> *l)</td></tr>
@@ -257,6 +321,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="ad40e3d193cdc208b3bf052457c2557db"></a>
 <div class="memitem">
 <div class="memproto">
@@ -290,6 +355,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="ab2374a904522f810e38a96ab2b70a96b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -313,6 +380,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="ada3306a875d73fdbc4c597335cb8648a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -336,6 +404,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="a4a12cc83df7aa0debd28203bde798721"></a>
 <div class="memitem">
 <div class="memproto">
@@ -407,6 +477,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="ad16d6389aa9f75d7a4642fdd0f47ce75"></a>
 <div class="memitem">
 <div class="memproto">
@@ -455,6 +526,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="a1467b36f1510a920d26c7f47934c732d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -502,6 +575,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="acd59abef86cb57ef0c75847488ce817d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -525,6 +599,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="a6eac0d9f4066e9f674590a8b85a02bc8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -772,7 +848,11 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="ordonnance_8h.html">ordonnance.h</a></li>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:33 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

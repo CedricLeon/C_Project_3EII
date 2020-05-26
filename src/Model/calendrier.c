@@ -11,7 +11,6 @@
  * @param c : Le calendrier auquel on veut ajouter notre rendez-vous
  * @param rdv : le rendez-vous à ajouter
  * @return 1 si le rdv a correctement été ajouté
- *         0 si il n'a pas pu l'être (Cf printf pour plus de détails)
  *         -1 si le calendrier ou le rdv étaient NULL
 */
 int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
@@ -47,10 +46,6 @@ int AddRendezVous_Calendrier(Calendrier c, RendezVous * rdv){
      *      Ajoute le rdv au jour
      * }
      */
-    /*if(RDV pas valable){
-        return 0;
-    }*/
-
     // Est-ce que notre calendrier est complétement vide ou est-ce que l'année du Rdv n'existe pas encore?
     // Si oui : On crée le jour, le mois et l'année qui correspondent au rdv et on ajoute le tout
     Annee anneeDuRdv = Annee_existe(c, rdv->date->annee);
@@ -157,24 +152,27 @@ int AnnulerRendezVous(Calendrier c, RendezVous * rdv){
     //On teste si le rendez-vous est passé, si c'est le cas on ne peut pas l'annuler, on ne regarde pas l'heure pour
     // cela : si le rdv est passé mais du jour même on peut l'annuler
     Date* date_courante = CreerDateCourante();
-    if ((date_courante->annee - rdv->date->annee)>0)
+    if (date_courante->annee > rdv->date->annee)
     {
         FreeDate(date_courante);
         printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
         return 0;
     }
-    if(((date_courante->annee == rdv->date->annee) && (date_courante->mois - rdv->date->mois)>0))
+    if((date_courante->annee == rdv->date->annee) && (date_courante->mois > rdv->date->mois))
     {
         FreeDate(date_courante);
         printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
         return 0;
     }
-    if(((date_courante->annee == rdv->date->annee) && (date_courante->mois == rdv->date->mois) && (date_courante->jour - rdv->date->jour)>0))
+    if((date_courante->annee == rdv->date->annee) && (date_courante->mois == rdv->date->mois) && (date_courante->jour > rdv->date->jour))
     {
         FreeDate(date_courante);
         printf("Impossible d'annuler ce rendez-vous, il est daté du %d/%d/%d et est déjà passé.\n", rdv->date->jour, rdv->date->mois, rdv->date->annee);
         return 0;
     }
+    FreeDate(date_courante);
+
+    int rdv_free = 0;
 
     Patient* patientRdv = rdv->patient;
     Medecin* medecinRdv = rdv->medecin;
@@ -193,21 +191,24 @@ int AnnulerRendezVous(Calendrier c, RendezVous * rdv){
                 for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
                 {
                     RendezVous* current_rdv = ListRendezVous_getCurrent(j);
-                    //On cherche notre rdv, uand on le trouve on le supprime
-                    if(EqualsRendezVous(current_rdv, rdv))
+
+                    //On cherche notre rdv, quand on le trouve on le supprime
+                    if(!rdv_free && EqualsRendezVous(current_rdv, rdv))
                     {
                         char date_rdv[20];
                         getInfosDate(date_rdv, current_rdv->date);
-                        printf("AnnulerRendezVous() : Annulation de la consultation du %s à %2.1f entre le patient \"%s %s\" et le médecin \"%s %s\""
-                               " \n", date_rdv, current_rdv->heure_debut, patientRdv->nom, patientRdv->prenom, medecinRdv->nom, medecinRdv->prenom);
+                        //printf("AnnulerRendezVous() : Annulation de la consultation du %s à %2.1f entre le patient \"%s %s\" et le médecin \"%s %s\""
+                        //     " \n", date_rdv, current_rdv->heure_debut, patientRdv->nom, patientRdv->prenom, medecinRdv->nom, medecinRdv->prenom);
                         freeNodeRendezVous(j, j->current);
+                        rdv_free = 1;
                     }
                     //si se ne sont pas les mêmes on regarde si le patient et le médecin s'étaient déjà vu, si oui il
                     // ne faudra pas les supprimer de leurs listes respectives
                     else
                     {
-                        if( strcmp(current_rdv->patient->numero_secu_social, rdv->patient->numero_secu_social) == 0 &&
-                            strcmp(current_rdv->medecin->numero_RPS, rdv->medecin->numero_RPS) == 0)
+                        //Si c'est pas le meme rdv mais que le medecin et el patient sont les mêmes alors ils se sont deja rencontrés
+                        if( strcmp(current_rdv->patient->numero_secu_social, patientRdv->numero_secu_social) == 0 &&
+                            strcmp(current_rdv->medecin->numero_RPS, medecinRdv->numero_RPS) == 0)
                         {
                             patientMedecin_dejaConnus = 1;
                         }
@@ -232,16 +233,13 @@ int AnnulerRendezVous(Calendrier c, RendezVous * rdv){
     //si ils ne se connaissent pas on les retirent de leurs listes respectives
     if(!patientMedecin_dejaConnus)
     {
-        if(!DeleteMedecinConsultePatient(rdv->patient, rdv->medecin) || !DeletePatientRecuMedecin(rdv->medecin, rdv->patient)) {
+        if(!DeleteMedecinConsultePatient(patientRdv, medecinRdv) || !DeletePatientRecuMedecin(medecinRdv, patientRdv)) {
             fprintf(stderr, "AnnulerRendezVous() : Apparement le patient et le médecin ne se connaissait pas encore "
                             "mais impossible de les retirer de leurs liste respectives.\n");
-            FreeDate(date_courante);
             return 0;
         }
     }
-    FreeDate(date_courante);
     return 1;
-
 }
 
 /**
@@ -303,12 +301,12 @@ void printCalendrier(Calendrier c)
         for(ListMois_setOnFirst(a); !ListMois_isOutOfList(a); ListMois_setOnNext(a))
         {
             Mois m = ListMois_getCurrent(a);
-            printf("\t - %d :\n",m->mois);
+            printf("\t - %.2d :\n",m->mois);
             //On parcourt tous les jours présents dans le mois et on "entre dedans"
             for(ListJour_setOnFirst(m); !ListJour_isOutOfList(m); ListJour_setOnNext(m))
             {
                 Jour j = ListJour_getCurrent(m);
-                printf("\t\t-- %d/%d/%d :", j->date->jour, j->date->mois, j->date->annee);
+                printf("\t\t-- %.2d/%.2d/%d :", j->date->jour, j->date->mois, j->date->annee);
                 for(ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j))
                 {
                     if(ListRendezVous_isLast(j)){
@@ -322,7 +320,7 @@ void printCalendrier(Calendrier c)
         }
         printf("\n");
     }
-    printf("***************Fin du calendrier*************\n");
+    printf("****************Fin du calendrier****************\n");
 
 }
 
@@ -559,6 +557,32 @@ int RendezVousValable(Calendrier c , RendezVous * rdv){
         return 0;
     }
 
+    //On test si la date du rendezVous n'est pas passé
+    Date* date_courante = CreerDateCourante();
+    if (date_courante->annee > rdv->date->annee)
+    {
+        FreeDate(date_courante);
+        printf("RendezVous_Valable() : Le rendez-vous que vous souhaitez créer possède une date antérieure à la date courante.\n");
+        return 0;
+    }
+    if((date_courante->annee == rdv->date->annee) && (date_courante->mois > rdv->date->mois))
+    {
+        FreeDate(date_courante);
+        printf("RendezVous_Valable() : Le rendez-vous que vous souhaitez créer possède une date antérieure à la date courante.\n");
+        return 0;
+    }
+    if((date_courante->annee == rdv->date->annee) && (date_courante->mois == rdv->date->mois) && (date_courante->jour > rdv->date->jour))
+    {
+        FreeDate(date_courante);
+        printf("RendezVous_Valable() : Le rendez-vous que vous souhaitez créer possède une date antérieure à la date courante.\n");
+        return 0;
+    }
+    FreeDate(date_courante);
+
+    if(ListAnnee_isEmpty(c)) return 1;
+    //Ici on vient tester si le rdv testé ne "chevauche" pas un autre rdv de la journée
+
+    //On parcourt d'abord la liste d'années jusqu'à ce que l'année courante corresponde à l'année de notre rdv, là on break
     for(ListAnnee_setOnFirst(c); !ListAnnee_isOutOfList(c); ListAnnee_setOnNext(c))
     {
         Annee a = ListAnnee_getCurrent(c);
@@ -571,7 +595,7 @@ int RendezVousValable(Calendrier c , RendezVous * rdv){
                 for (ListRendezVous_setOnFirst(j); !ListRendezVous_isOutOfList(j); ListRendezVous_setOnNext(j)) {
                     RendezVous *current_rdv = ListRendezVous_getCurrent(j);
                     //test même date
-                    if (current_rdv->date == rdv->date) {
+                    if (DateEgales(current_rdv->date, rdv->date)) {
                         //test s'ils se chevauchent
                         if ((current_rdv->heure_debut == rdv->heure_debut)
                             ||
@@ -582,7 +606,7 @@ int RendezVousValable(Calendrier c , RendezVous * rdv){
                             if (strcmp(rdv->medecin->numero_RPS, current_rdv->medecin->numero_RPS) == 0) {
                                 char *tmp = malloc(50);
                                 getNomMedecin(tmp, rdv->medecin);
-                                printf("RendezVous_Valable(): Le médecin \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
+                                printf("Le médecin \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
                                        current_rdv->heure_debut);
                                 getInfosDate(tmp, current_rdv->date);
                                 printf(" le %s. Prenez un autre rdv.\n", tmp);
@@ -592,7 +616,7 @@ int RendezVousValable(Calendrier c , RendezVous * rdv){
                                               current_rdv->patient->numero_secu_social) == 0) {
                                 char *tmp = malloc(50);
                                 getNomPatient(tmp, rdv->patient);
-                                printf("RendezVous_Valable(): Le patient \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
+                                printf("Le patient \"%s\" a déjà un rendez-vous à %2.1fh", tmp,
                                        current_rdv->heure_debut);
                                 getInfosDate(tmp, current_rdv->date);
                                 printf(" le %s. Prenez un autre rdv.\n", tmp);
@@ -600,7 +624,7 @@ int RendezVousValable(Calendrier c , RendezVous * rdv){
                                 return 0;
                             } else if (strcmp(rdv->lieu, current_rdv->lieu) == 0) {
                                 char *tmp = malloc(50);
-                                printf("RendezVous_Valable(): Un rendez-vous a déjà lieu dans \"%s\" à %2.1fh",
+                                printf("Un rendez-vous a déjà lieu dans \"%s\" à %2.1fh",
                                        rdv->lieu, current_rdv->heure_debut);
                                 getInfosDate(tmp, current_rdv->date);
                                 printf(" le %s. Prenez un autre rdv.\n", tmp);
@@ -633,8 +657,9 @@ ListRendezVous * Jour_existe(ListJour * l, Date * d){
         return NULL;
     }
     for (ListJour_setOnFirst(l); !ListJour_isOutOfList(l); ListJour_setOnNext(l)){
-        if(DateEgales(ListRendezVous_getDate(ListJour_getCurrent(l)), d)){   // On compare la date des jours puisqu'ils sont uniques
-            return ListJour_getCurrent(l);
+        Jour jour = ListJour_getCurrent(l);
+        if(DateEgales(jour->date, d)){   // On compare la date des jours puisqu'ils sont uniques
+            return jour;
         }
     }
     //printf("Jour_existe() : Jour non-trouvé.\n");
@@ -781,19 +806,6 @@ int ListRendezVous_isEmpty(ListRendezVous * l){
     return -1; //La liste est NULL
 }
 /**
- * ListRendezVous_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListRendezVous_isFirst(ListRendezVous * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListRendezVous_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
  * @return 1 si current est bien sur le dernier élément
@@ -831,15 +843,6 @@ void ListRendezVous_setOnFirst(ListRendezVous * l){
     }
 }
 /**
- * ListRendezVous_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListRendezVous_setOnLast(ListRendezVous * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
-    }
-}
-/**
  * ListRendezVous_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
  * @param l : la liste
  */
@@ -866,19 +869,6 @@ RendezVous * ListRendezVous_getCurrent(ListRendezVous * l){
     if(l != NULL && l->current != NULL){
         return l->current->rdv;
     }
-    return NULL;
-}
-/**
- * ListRendezVous_getDate : Permet d'accéder à la date de cette liste de rdv (un jour)
- * @param l : la liste
- * @return la date si la liste n'est pas NULL,
- *         NULL si la liste est NULL
- */
-Date * ListRendezVous_getDate(ListRendezVous * l){
-    if(l != NULL){
-        return l->date;
-    }
-    printf("La liste de RendezVous (Donc un Jour) est NULL, on ne peut donc pas accéder à sa date.\n ");
     return NULL;
 }
 
@@ -980,19 +970,6 @@ int ListJour_isEmpty(ListJour * l){
     return -1; //La liste est NULL
 }
 /**
- * ListJour_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
-            0 si il ne l'est pas
-            -1 si la liste est NULL
- */
-int ListJour_isFirst(ListJour * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListJour_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
  * @return 1 si current est bien sur le dernier élément
@@ -1030,15 +1007,6 @@ void ListJour_setOnFirst(ListJour * l){
     }
 }
 /**
- * ListJour_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListJour_setOnLast(ListJour * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
-    }
-}
-/**
  * ListJour_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
  * @param l : la liste
  */
@@ -1067,19 +1035,7 @@ Jour ListJour_getCurrent(ListJour * l){
     }
     return NULL;
 }
-/**
- * ListJour_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Jour (donc au mois)
- * @param l : la liste de jour
- * @return le numéro du mois si la liste n'est pas vide
- *         0 sinon
- */
-int ListJour_getMois(ListJour * l){
-    if(l != NULL){
-        return l->mois;
-    }
-    printf("La liste de Jours (Donc un Mois) est NULL, on ne peut donc pas accéder au numéro de son mois.\n ");
-    return 0;
-}
+
 /**********************************************************************************************************************/
                                     /*List de Mois pour une Annee*/
 /**********************************************************************************************************************/
@@ -1173,19 +1129,6 @@ int ListMois_isEmpty(ListMois * l){
     return -1; //La liste est NULL
 }
 /**
- * ListMois_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListMois_isFirst(ListMois * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListMois_isLast : Vérifie si current est positionné sur le dernier élément de la liste
  * @param l : la liste
  * @return 1 si current est bien sur le dernier élément
@@ -1223,15 +1166,6 @@ void ListMois_setOnFirst(ListMois * l){
     }
 }
 /**
- * ListMois_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListMois_setOnLast(ListMois * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
-    }
-}
-/**
  * ListMois_setOnNext : Positionne le pointeur courant sur le prochain élément de la liste
  * @param l : la liste
  */
@@ -1259,19 +1193,6 @@ Mois ListMois_getCurrent(ListMois * l){
         return l->current->mois;
     }
     return NULL;
-}
-/**
- * ListMois_getMois : Permet d'accéder au numéro correspondant au mois de la liste de Mois (donc au mois)
- * @param l : la liste de Mois
- * @return le numéro de l'annéée si la liste n'est pas vide
- *         0 sinon
- */
-int ListMois_getAnnee(ListMois * l){
-    if(l != NULL){
-        return l->annee;
-    }
-    printf("La liste de Mois (Donc une année) est NULL, on ne peut donc pas accéder au numéro de son année.\n ");
-    return 0;
 }
 
 /**********************************************************************************************************************/
@@ -1370,19 +1291,8 @@ void ListAnnee_free(ListAnnee * l){
  */
 int ListAnnee_isEmpty(ListAnnee * l){
     if (l != NULL){
+        //printf("ListAnnee_isEmpty() : je suis : %d.\n", (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin)));
         return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListAnnee_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL */
-int ListAnnee_isFirst(ListAnnee * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
     }
     return -1; //La liste est NULL
 }
@@ -1407,8 +1317,10 @@ int ListAnnee_isLast(ListAnnee * l){
  *         -1 si la liste est NULL */
 int ListAnnee_isOutOfList(ListAnnee * l){
     if (l != NULL){
+        //printf("ListAnnee_isOutOfList() : return : %d\n", (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end)));
         return  (l->current == NULL) || (l->current == &(l->sentinel_begin)) || (l->current == &(l->sentinel_end));
     }
+    //printf("ListAnnee_isOutOfList() : la liste est NULL.\n");
     return -1; //La liste est NULL
 }
 
@@ -1418,16 +1330,8 @@ int ListAnnee_isOutOfList(ListAnnee * l){
  */
 void ListAnnee_setOnFirst(ListAnnee * l){
     if(l != NULL){
+        //printf("ListAnnee_setOnFirst() : current mis en premier.\n");
         l->current = l->sentinel_begin.next;
-    }
-}
-/**
- * ListAnnee_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListAnnee_setOnLast(ListAnnee * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
     }
 }
 /**
@@ -1436,6 +1340,7 @@ void ListAnnee_setOnLast(ListAnnee * l){
  */
 void ListAnnee_setOnNext(ListAnnee * l){
     if(l != NULL && l->current->next != NULL){
+        //printf("ListAnnee_setOnNext() : current sur le next.\n");
         l->current = l->current->next;
     }
 }

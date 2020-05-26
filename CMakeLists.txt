@@ -15,7 +15,6 @@ project(GPCalendar C)
 include(cmake/FetchCMocka.cmake)
 # ─────────────────────────────── CJson ──────────────────────────────
 include(cmake/FetchCJson.cmake)
-
 # ─────────────────────────────── GTK3+ ──────────────────────────────
 #Pour l'installation de GTK3+ c'est beaucoup plus difficile de réaliser un fetch_content comme avec CMocka ou cjson car gtk n'utilise pa cmake pour se build mais meson. De plus meson ne gère pas certaines double inclusion de librairies => le build fail
 #Donc pour gérer GTK3+ dans ce cmake il faut que vous l'ayez installé (Cf README.md) il faut également avoir installé PkgConfig dont on se sert pour vérifier que c'est la bonne version de GTK qui est installée :
@@ -48,8 +47,8 @@ set(SOURCE_FILES
     src/Model/rendezvous.c
     include/GPCalendar/Model/rendezvous.h
     src/Model/calendrier.c
-    src/Model/JsonSave.c
-    include/GPCalendar/Model/JsonSave.h)
+    src/Model/project_GPCalendar.c
+    include/GPCalendar/Model/project_GPCalendar.h)
 
 add_library(GPCalendarUtils STATIC ${SOURCE_FILES})
 target_include_directories(GPCalendarUtils PUBLIC include)       #target_include_directories permet de faire #include "GPCalendar/Model/date.c"
@@ -66,8 +65,8 @@ add_executable(GPCalendar
     src/View/callbacks.c
     include/GPCalendar/View/fonctionsGraphiques.h
     src/View/fonctionsGraphiques.c
-    include/GPCalendar/View/time.h
-    src/View/time.c)
+    include/GPCalendar/View/time_GPCalendar.h
+    src/View/time_GPCalendar.c)
 
 target_compile_features(GPCalendar PUBLIC c_std_99)              #Précise que le projet est réalisé dans la norme du C_99
 target_link_libraries(GPCalendar PUBLIC                          #Link à cet executable la librairie du projet et GTK3+
@@ -90,6 +89,14 @@ target_link_libraries(GPCalendar_Tests PUBLIC
     cmocka-static)                                              #La librairie STATIC de CMocka
 message(STATUS "Today : ${TODAY}")
 target_compile_definitions(GPCalendar_Tests PRIVATE -DCMAKE_TODAY_TESTS="${TODAY}")
+
+# ─────────────────────────────── CodeCoverage ───────────────────────
+
+if (CMAKE_BUILD_TYPE STREQUAL "Coverage")
+    include(cmake/CodeCoverage.cmake)
+    setup_target_for_coverage(GPCalendar_coverage GPCalendar_Tests coverage)
+    SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+endif() #CMAKE_BUILD_TYPE STREQUAL "Coverage"
 
 # ┌──────────────────────────────────────────────────────────────────┐
 # │                       GPCalendar_Shell                           │

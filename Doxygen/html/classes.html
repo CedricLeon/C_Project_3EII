@@ -15,6 +15,11 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +39,30 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li class="current"><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -63,6 +87,20 @@
 $(document).ready(function(){initNavTree('classes.html','');});
 </script>
 <div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="header">
   <div class="headertitle">
 <div class="title">Index des structures de données</div>  </div>
@@ -72,23 +110,23 @@ $(document).ready(function(){initNavTree('classes.html','');});
 <table style="margin: 10px; white-space: nowrap;" align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
 <tr><td rowspan="2" valign="bottom"><a name="letter_D"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;D&#160;&#160;</div></td></tr></table>
 </td><td valign="top"><a class="el" href="struct_list_antecedent.html">ListAntecedent</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_N"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;N&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter__"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;_&#160;&#160;</div></td></tr></table>
+</td><td rowspan="2" valign="bottom"><a name="letter_O"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;O&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="struct_recherche_projet.html">RechercheProjet</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_list_jour.html">ListJour</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_data.html">Data</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_medecin.html">ListMedecin</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_annee.html">NodeAnnee</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_ordonnance.html">Ordonnance</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter__"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;_&#160;&#160;</div></td></tr></table>
 </td></tr>
-<tr><td valign="top"><a class="el" href="struct_list_jour.html">ListJour</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_O"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;O&#160;&#160;</div></td></tr></table>
+<tr><td valign="top"><a class="el" href="struct_data_medecin.html">DataMedecin</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_mois.html">ListMois</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_antecedent.html">NodeAntecedent</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_P"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;P&#160;&#160;</div></td></tr></table>
 </td></tr>
-<tr><td valign="top"><a class="el" href="struct_data.html">Data</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_medecin.html">ListMedecin</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_annee.html">NodeAnnee</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct___calendar_data.html">_CalendarData</a>&#160;&#160;&#160;</td></tr>
-<tr><td valign="top"><a class="el" href="struct_data_r_d_v.html">DataRDV</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_mois.html">ListMois</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_antecedent.html">NodeAntecedent</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_ordonnance.html">Ordonnance</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td valign="top"><a class="el" href="struct_date.html">Date</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_jour.html">NodeJour</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_P"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;P&#160;&#160;</div></td></tr></table>
+<tr><td valign="top"><a class="el" href="struct_data_r_d_v.html">DataRDV</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_ordonnance.html">ListOrdonnance</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_jour.html">NodeJour</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct___calendar_data.html">_CalendarData</a>&#160;&#160;&#160;</td></tr>
+<tr><td valign="top"><a class="el" href="struct_date.html">Date</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_patient.html">ListPatient</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_medecin.html">NodeMedecin</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_patient.html">Patient</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td valign="top"><a class="el" href="struct_date_calendrier.html">DateCalendrier</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_mois.html">NodeMois</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td valign="top"><a class="el" href="struct_dossier_medical.html">DossierMedical</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_M"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;M&#160;&#160;</div></td></tr></table>
+</td><td valign="top"><a class="el" href="struct_node_ordonnance.html">NodeOrdonnance</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_R"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;R&#160;&#160;</div></td></tr></table>
 </td><td></td></tr>
-<tr><td valign="top"><a class="el" href="struct_dossier_medical.html">DossierMedical</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_list_patient.html">ListPatient</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_medecin.html">NodeMedecin</a>&#160;&#160;&#160;</td><td></td></tr>
 <tr><td rowspan="2" valign="bottom"><a name="letter_L"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;L&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_list_rendez_vous.html">ListRendezVous</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_mois.html">NodeMois</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_patient.html">Patient</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td rowspan="2" valign="bottom"><a name="letter_M"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;M&#160;&#160;</div></td></tr></table>
-</td><td valign="top"><a class="el" href="struct_node_ordonnance.html">NodeOrdonnance</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_project.html">Project</a>&#160;&#160;&#160;</td><td></td></tr>
-<tr><td valign="top"><a class="el" href="struct_list_annee.html">ListAnnee</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_patient.html">NodePatient</a>&#160;&#160;&#160;</td><td rowspan="2" valign="bottom"><a name="letter_R"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;R&#160;&#160;</div></td></tr></table>
-</td><td></td></tr>
-<tr><td></td><td valign="top"><a class="el" href="struct_medecin.html">Medecin</a>&#160;&#160;&#160;</td><td></td><td></td></tr>
-<tr><td></td><td></td><td></td><td valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a>&#160;&#160;&#160;</td><td></td></tr>
+</td><td valign="top"><a class="el" href="struct_node_patient.html">NodePatient</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td valign="top"><a class="el" href="struct_medecin.html">Medecin</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_node_rendez_vous.html">NodeRendezVous</a>&#160;&#160;&#160;</td><td valign="top"><a class="el" href="struct_recherche_patient.html">RecherchePatient</a>&#160;&#160;&#160;</td><td></td></tr>
+<tr><td valign="top"><a class="el" href="struct_list_annee.html">ListAnnee</a>&#160;&#160;&#160;</td><td></td><td></td><td></td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
 <div class="qindex"><a class="qindex" href="#letter_D">D</a>&#160;|&#160;<a class="qindex" href="#letter_L">L</a>&#160;|&#160;<a class="qindex" href="#letter_M">M</a>&#160;|&#160;<a class="qindex" href="#letter_N">N</a>&#160;|&#160;<a class="qindex" href="#letter_O">O</a>&#160;|&#160;<a class="qindex" href="#letter_P">P</a>&#160;|&#160;<a class="qindex" href="#letter_R">R</a>&#160;|&#160;<a class="qindex" href="#letter__">_</a></div>
@@ -97,7 +135,7 @@ $(document).ready(function(){initNavTree('classes.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

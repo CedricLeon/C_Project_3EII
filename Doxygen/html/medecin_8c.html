@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +95,23 @@
 $(document).ready(function(){initNavTree('medecin_8c.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="header">
   <div class="summary">
 <a href="#func-members">Fonctions</a>  </div>
@@ -71,6 +121,7 @@ $(document).ready(function(){initNavTree('medecin_8c.html','');});
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="medecin_8h_source.html">GPCalendar/Model/medecin.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="patient_8h_source.html">GPCalendar/Model/patient.h</a>&quot;</code><br/>
+<<<<<<< HEAD
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de medecin.c:</div>
 <div class="dyncontent">
@@ -78,6 +129,8 @@ Graphe des dépendances par inclusion de medecin.c:</div>
 <map name="src_2_model_2medecin_8c" id="src_2_model_2medecin_8c">
 <area shape="rect" id="node2" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="958,784,1153,811"/><area shape="rect" id="node7" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="1048,80,1235,107"/><area shape="rect" id="node3" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="1281,859,1487,885"/><area shape="rect" id="node8" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="654,320,825,347"/><area shape="rect" id="node15" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="651,155,829,197"/><area shape="rect" id="node9" href="time_8h.html" title="time.h" alt="" coords="649,395,707,421"/><area shape="rect" id="node10" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="651,470,833,511"/><area shape="rect" id="node11" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="702,560,897,587"/><area shape="rect" id="node12" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="749,635,952,661"/><area shape="rect" id="node13" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="838,709,1052,736"/><area shape="rect" id="node16" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="633,245,847,272"/></map>
 </div>
+=======
+>>>>>>> V3_branch
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
@@ -85,6 +138,7 @@ Fonctions</h2></td></tr>
 <tr class="separator:a0afe5fb66e0cb635d1ab76b51a6b1758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71bcd5e35819a7252983451b7a6397d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a71bcd5e35819a7252983451b7a6397d8">DeleteMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
 <tr class="separator:a71bcd5e35819a7252983451b7a6397d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:a05bcf828900177b22789cd327fc16c34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a05bcf828900177b22789cd327fc16c34">AfficheMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *m)</td></tr>
 <tr class="separator:a05bcf828900177b22789cd327fc16c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a351b689795ff9543c5ed4236f3934d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a351b689795ff9543c5ed4236f3934d04">SetNomMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *nom)</td></tr>
@@ -97,6 +151,8 @@ Fonctions</h2></td></tr>
 <tr class="separator:aa1bcc618408c8c672056f01110a4f41d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9176e649f75181c288b50f1abae82759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a9176e649f75181c288b50f1abae82759">SetNumeroRPSMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin, char *num_RPS)</td></tr>
 <tr class="separator:a9176e649f75181c288b50f1abae82759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+>>>>>>> V3_branch
 <tr class="memitem:a59bd5d29002e8d49f09775294999b57f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a59bd5d29002e8d49f09775294999b57f">getNomMedecin</a> (char *nom, <a class="el" href="struct_medecin.html">Medecin</a> *m)</td></tr>
 <tr class="separator:a59bd5d29002e8d49f09775294999b57f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e4bf2ef1e173182f36ff76165acb777"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a4e4bf2ef1e173182f36ff76165acb777">getAdresseMailMedecin</a> (<a class="el" href="struct_medecin.html">Medecin</a> *medecin)</td></tr>
@@ -133,16 +189,22 @@ Fonctions</h2></td></tr>
 <tr class="separator:acdf3f272f044ddfcc66e2d0118ae89b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b1b4efabf71bc3ee7195ad73f953189"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a7b1b4efabf71bc3ee7195ad73f953189">ListMedecin_isEmpty</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:a7b1b4efabf71bc3ee7195ad73f953189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:a3ad08529d7153844dfdb4121e95cfcd9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a3ad08529d7153844dfdb4121e95cfcd9">ListMedecin_isFirst</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:a3ad08529d7153844dfdb4121e95cfcd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54b718985c956faf4a6b917c55c3b934"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a54b718985c956faf4a6b917c55c3b934">ListMedecin_isLast</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:a54b718985c956faf4a6b917c55c3b934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+>>>>>>> V3_branch
 <tr class="memitem:a6b57e943628fac1c5739ac370f06d983"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6b57e943628fac1c5739ac370f06d983">ListMedecin_isOutOfList</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:a6b57e943628fac1c5739ac370f06d983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1511c4a3885355a88a6b87040298168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#ae1511c4a3885355a88a6b87040298168">ListMedecin_setOnFirst</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:ae1511c4a3885355a88a6b87040298168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
 <tr class="memitem:a6a33d1d7aeec168b9db04680114bbb2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a6a33d1d7aeec168b9db04680114bbb2d">ListMedecin_setOnLast</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:a6a33d1d7aeec168b9db04680114bbb2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+=======
+>>>>>>> V3_branch
 <tr class="memitem:af977ed01cae64e1d77011a3c6555d88e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#af977ed01cae64e1d77011a3c6555d88e">ListMedecin_setOnNext</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
 <tr class="separator:af977ed01cae64e1d77011a3c6555d88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e65abd3210688fdb92699ef2e2ade15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="medecin_8c.html#a7e65abd3210688fdb92699ef2e2ade15">ListMedecin_setOnPrevious</a> (<a class="el" href="struct_list_medecin.html">ListMedecin</a> *l)</td></tr>
@@ -186,6 +248,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="a05bcf828900177b22789cd327fc16c34"></a>
 <div class="memitem">
 <div class="memproto">
@@ -209,6 +272,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="ae1cfbfa2117c0a7b5a7218017f2a7f75"></a>
 <div class="memitem">
 <div class="memproto">
@@ -698,6 +763,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="a3ad08529d7153844dfdb4121e95cfcd9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -746,6 +812,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="a6b57e943628fac1c5739ac370f06d983"></a>
 <div class="memitem">
 <div class="memproto">
@@ -828,6 +896,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="a6a33d1d7aeec168b9db04680114bbb2d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -851,6 +920,8 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 <a class="anchor" id="af977ed01cae64e1d77011a3c6555d88e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -962,6 +1033,7 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+<<<<<<< HEAD
 <a class="anchor" id="a6f15cb667271234dd0f0e6433be5d060"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1132,13 +1204,19 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
+=======
+>>>>>>> V3_branch
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_32e188284d239da8bb14ec1dabb0c35f.html">Model</a></li><li class="navelem"><a class="el" href="medecin_8c.html">medecin.c</a></li>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

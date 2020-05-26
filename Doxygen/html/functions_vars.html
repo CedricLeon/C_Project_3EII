@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li class="current"><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -87,6 +120,23 @@
 $(document).ready(function(){initNavTree('functions_vars.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="contents">
 &#160;
 
@@ -95,6 +145,12 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="struct_medecin.html#aefa944e4b78fb9e14c4f6e49605bba2c">Medecin</a>
 , <a class="el" href="struct_patient.html#aefa944e4b78fb9e14c4f6e49605bba2c">Patient</a>
 </li>
+<<<<<<< HEAD
+=======
+<li>an
+: <a class="el" href="struct_date_calendrier.html#a165f9b9282571ce69febc30449aa805a">DateCalendrier</a>
+</li>
+>>>>>>> V3_branch
 <li>annee
 : <a class="el" href="struct_data.html#a123c0853fe0470eb0a0f0af055eecc9f">Data</a>
 , <a class="el" href="struct_data_r_d_v.html#a123c0853fe0470eb0a0f0af055eecc9f">DataRDV</a>
@@ -112,11 +168,25 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<<<<<<< HEAD
 <li>calendrier
 : <a class="el" href="struct_project.html#ac1c68d1c7eeee118cba12c3efab5fd3f">Project</a>
 </li>
 <li>consultingPatient
 : <a class="el" href="struct_project.html#a5a3570c43d186ae075a0d893438ce8b4">Project</a>
+=======
+<li>calendar
+: <a class="el" href="struct_date_calendrier.html#aa03d826e56a4ad6809de27d6300c7cfe">DateCalendrier</a>
+</li>
+<li>calendrier
+: <a class="el" href="struct_project___g_p_calendar.html#ac1c68d1c7eeee118cba12c3efab5fd3f">Project_GPCalendar</a>
+</li>
+<li>chemin
+: <a class="el" href="struct_recherche_projet.html#ae77494cff1c3ee714711adf9f870633f">RechercheProjet</a>
+</li>
+<li>consultingPatient
+: <a class="el" href="struct_project___g_p_calendar.html#a5a3570c43d186ae075a0d893438ce8b4">Project_GPCalendar</a>
+>>>>>>> V3_branch
 </li>
 <li>current
 : <a class="el" href="struct_list_annee.html#a5f39192750953f444d3b63dea208efb4">ListAnnee</a>
@@ -148,9 +218,12 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>description
 : <a class="el" href="struct_ordonnance.html#a8444d6e0dfe2bbab0b5e7b24308f1559">Ordonnance</a>
 </li>
+<<<<<<< HEAD
 <li>diplomes
 : <a class="el" href="struct_medecin.html#a30acb0c2b918d1f2a3bac4b758474832">Medecin</a>
 </li>
+=======
+>>>>>>> V3_branch
 <li>dossierMedical
 : <a class="el" href="struct_patient.html#a7b81f4ba7de896fa37673d677977cedf">Patient</a>
 </li>
@@ -163,6 +236,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
 <li>Email
 : <a class="el" href="struct_data.html#a1003606a7c4d6a289a7de796987f6efc">Data</a>
+<<<<<<< HEAD
 </li>
 <li>Enom
 : <a class="el" href="struct_data.html#ad897fb7c962d60832bc766fa99da9db9">Data</a>
@@ -175,6 +249,28 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 </li>
 <li>Eprenom
 : <a class="el" href="struct_data.html#a7004a9a326ad19f493ca2f6f3cc4577c">Data</a>
+=======
+, <a class="el" href="struct_data_medecin.html#a1003606a7c4d6a289a7de796987f6efc">DataMedecin</a>
+</li>
+<li>Enom
+: <a class="el" href="struct_data.html#ad897fb7c962d60832bc766fa99da9db9">Data</a>
+, <a class="el" href="struct_data_medecin.html#ad897fb7c962d60832bc766fa99da9db9">DataMedecin</a>
+</li>
+<li>EnumRPPS
+: <a class="el" href="struct_data_medecin.html#a34809e214d74b7f00d8d266493d71328">DataMedecin</a>
+</li>
+<li>EnumSecu
+: <a class="el" href="struct_data.html#abd6fcac327f5f3b0629a93916e3c29da">Data</a>
+, <a class="el" href="struct_recherche_patient.html#abd6fcac327f5f3b0629a93916e3c29da">RecherchePatient</a>
+</li>
+<li>EnumTel
+: <a class="el" href="struct_data.html#ae300afceb0206bd32dc11312abd38df6">Data</a>
+, <a class="el" href="struct_data_medecin.html#ae300afceb0206bd32dc11312abd38df6">DataMedecin</a>
+</li>
+<li>Eprenom
+: <a class="el" href="struct_data.html#a7004a9a326ad19f493ca2f6f3cc4577c">Data</a>
+, <a class="el" href="struct_data_medecin.html#a7004a9a326ad19f493ca2f6f3cc4577c">DataMedecin</a>
+>>>>>>> V3_branch
 </li>
 </ul>
 
@@ -197,6 +293,10 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="struct_data.html#a366c31a9b090d9870030fe2ac52d6e46">Data</a>
 , <a class="el" href="struct_data_r_d_v.html#a366c31a9b090d9870030fe2ac52d6e46">DataRDV</a>
 , <a class="el" href="struct_date.html#aec8e61b4e27d935e47eba0485425da38">Date</a>
+<<<<<<< HEAD
+=======
+, <a class="el" href="struct_date_calendrier.html#a98e6270e2c75db324dace1c11e94d304">DateCalendrier</a>
+>>>>>>> V3_branch
 , <a class="el" href="struct_node_jour.html#a6b700af15ea48800affa955a00734b02">NodeJour</a>
 </li>
 </ul>
@@ -204,18 +304,41 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>last_sig
+<<<<<<< HEAD
 : <a class="el" href="struct___calendar_data.html#a622d485dedd866926880ea6f497ab0d0">_CalendarData</a>
 </li>
 <li>lieu
 : <a class="el" href="struct_rendez_vous.html#a4e5bf777d1128fd5e62442afa61ea3c9">RendezVous</a>
+=======
+: <a class="el" href="struct___calendar_data.html#a7de9c00087908877b71f04021ff121f1">_CalendarData</a>
+</li>
+<li>lieu
+: <a class="el" href="struct_data_r_d_v.html#a339e01f8021a703bc0993cc80b225a06">DataRDV</a>
+, <a class="el" href="struct_rendez_vous.html#a4e5bf777d1128fd5e62442afa61ea3c9">RendezVous</a>
+>>>>>>> V3_branch
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<<<<<<< HEAD
 <li>medecin
 : <a class="el" href="struct_node_medecin.html#a59131973441fcf6250df021bcf96d17c">NodeMedecin</a>
 , <a class="el" href="struct_ordonnance.html#a59131973441fcf6250df021bcf96d17c">Ordonnance</a>
+=======
+<li>m
+: <a class="el" href="struct_data_r_d_v.html#a8b972af514b4fcd99820b51f73fe1e4a">DataRDV</a>
+</li>
+<li>med
+: <a class="el" href="struct_recherche_patient.html#a48f7ceadb241f51a26b799d67dcd1336">RecherchePatient</a>
+</li>
+<li>medecin
+: <a class="el" href="struct_data.html#a59131973441fcf6250df021bcf96d17c">Data</a>
+, <a class="el" href="struct_data_medecin.html#a59131973441fcf6250df021bcf96d17c">DataMedecin</a>
+, <a class="el" href="struct_node_medecin.html#a59131973441fcf6250df021bcf96d17c">NodeMedecin</a>
+, <a class="el" href="struct_ordonnance.html#a59131973441fcf6250df021bcf96d17c">Ordonnance</a>
+, <a class="el" href="struct_recherche_patient.html#a59131973441fcf6250df021bcf96d17c">RecherchePatient</a>
+>>>>>>> V3_branch
 , <a class="el" href="struct_rendez_vous.html#a59131973441fcf6250df021bcf96d17c">RendezVous</a>
 </li>
 <li>medecins_consultes
@@ -228,11 +351,19 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="struct_data.html#a430ab7341bb11cda80f096a2ec12d8d7">Data</a>
 , <a class="el" href="struct_data_r_d_v.html#a430ab7341bb11cda80f096a2ec12d8d7">DataRDV</a>
 , <a class="el" href="struct_date.html#af4d47133f30c1a134b6cecf5cedd7db9">Date</a>
+<<<<<<< HEAD
+=======
+, <a class="el" href="struct_date_calendrier.html#a2cde2049ecfe5cac6e5adab537a0c09f">DateCalendrier</a>
+>>>>>>> V3_branch
 , <a class="el" href="struct_list_jour.html#af4d47133f30c1a134b6cecf5cedd7db9">ListJour</a>
 , <a class="el" href="struct_node_mois.html#ab849c15d22d8cdd9c32d94bfc37033eb">NodeMois</a>
 </li>
 <li>month
+<<<<<<< HEAD
 : <a class="el" href="struct___calendar_data.html#aaf4edd0a3a5d01ee0e044403180a66e0">_CalendarData</a>
+=======
+: <a class="el" href="struct___calendar_data.html#ad42b4adbbeba6bc1705b6a82236935fe">_CalendarData</a>
+>>>>>>> V3_branch
 </li>
 <li>motif
 : <a class="el" href="struct_data_r_d_v.html#ae22ca5875ee8b6bdccaa89afda5779a4">DataRDV</a>
@@ -255,7 +386,12 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>nom
 : <a class="el" href="struct_medecin.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Medecin</a>
 , <a class="el" href="struct_patient.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Patient</a>
+<<<<<<< HEAD
 , <a class="el" href="struct_project.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Project</a>
+=======
+, <a class="el" href="struct_project___g_p_calendar.html#abe308d273ff51ad86ff02ef3ba3b6f0e">Project_GPCalendar</a>
+, <a class="el" href="struct_recherche_projet.html#a5002e8319edfccb091ae0bfc18da6642">RechercheProjet</a>
+>>>>>>> V3_branch
 </li>
 <li>numero_RPS
 : <a class="el" href="struct_medecin.html#aef3cdf238a67d175fecba3f7df4e6828">Medecin</a>
@@ -282,11 +418,20 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>p
+<<<<<<< HEAD
 : <a class="el" href="struct_data.html#ab6da0510b3f88800fe3d3ee7e9cd9d7b">Data</a>
 , <a class="el" href="struct_data_r_d_v.html#a537ec1a4e0cf2f81d81bf4da1a0a3f2f">DataRDV</a>
 </li>
 <li>patient
 : <a class="el" href="struct_node_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">NodePatient</a>
+=======
+: <a class="el" href="struct_data_r_d_v.html#ab6da0510b3f88800fe3d3ee7e9cd9d7b">DataRDV</a>
+</li>
+<li>patient
+: <a class="el" href="struct_data.html#a602d93e6dfbb9a54fc31419f2463ac2b">Data</a>
+, <a class="el" href="struct_node_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">NodePatient</a>
+, <a class="el" href="struct_recherche_patient.html#a602d93e6dfbb9a54fc31419f2463ac2b">RecherchePatient</a>
+>>>>>>> V3_branch
 , <a class="el" href="struct_rendez_vous.html#a602d93e6dfbb9a54fc31419f2463ac2b">RendezVous</a>
 </li>
 <li>patients_recus
@@ -297,7 +442,11 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 , <a class="el" href="struct_patient.html#aa7d0e9e8505d2ac627777c4168573ec9">Patient</a>
 </li>
 <li>prev_sig
+<<<<<<< HEAD
 : <a class="el" href="struct___calendar_data.html#aa524f6742b14404edf6891773daae7dd">_CalendarData</a>
+=======
+: <a class="el" href="struct___calendar_data.html#ace1ea16ca2630d22676ce9a610e49597">_CalendarData</a>
+>>>>>>> V3_branch
 </li>
 <li>previous
 : <a class="el" href="struct_node_annee.html#aebffe5024c759df4300746c6b1034ed3">NodeAnnee</a>
@@ -309,6 +458,19 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 , <a class="el" href="struct_node_patient.html#ad96b030b2d205d958d0119a33cd84723">NodePatient</a>
 , <a class="el" href="struct_node_rendez_vous.html#ab9f2e3f151f5b84ed16f14e554374470">NodeRendezVous</a>
 </li>
+<<<<<<< HEAD
+=======
+<li>project
+: <a class="el" href="struct_recherche_projet.html#a1b6b8901b112d694870f4b539e95466d">RechercheProjet</a>
+</li>
+<li>projet
+: <a class="el" href="struct_data.html#aae7c84ca423aaaa37b2b883970279920">Data</a>
+, <a class="el" href="struct_data_medecin.html#aae7c84ca423aaaa37b2b883970279920">DataMedecin</a>
+, <a class="el" href="struct_data_r_d_v.html#aae7c84ca423aaaa37b2b883970279920">DataRDV</a>
+, <a class="el" href="struct_date_calendrier.html#aae7c84ca423aaaa37b2b883970279920">DateCalendrier</a>
+, <a class="el" href="struct_recherche_patient.html#aae7c84ca423aaaa37b2b883970279920">RecherchePatient</a>
+</li>
+>>>>>>> V3_branch
 </ul>
 
 
@@ -343,18 +505,33 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 , <a class="el" href="struct_list_patient.html#ad2cb1194a61ed31c401c99218ff6dbb7">ListPatient</a>
 , <a class="el" href="struct_list_rendez_vous.html#a23ecc58b8762108d2cdf8d71b1848178">ListRendezVous</a>
 </li>
+<<<<<<< HEAD
 <li>specialites
 : <a class="el" href="struct_medecin.html#a65fe6337893c03f2e41cba9f4fe45dd0">Medecin</a>
 </li>
+=======
+>>>>>>> V3_branch
 </ul>
 
 
 <h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>window
+<<<<<<< HEAD
 : <a class="el" href="struct___calendar_data.html#a3d346c08cf2d67c388caabffb412b293">_CalendarData</a>
 </li>
 <li>workingMedecins
 : <a class="el" href="struct_project.html#ad698f4218c3645e84ec3b943db9ea06d">Project</a>
+=======
+: <a class="el" href="struct___calendar_data.html#a2bbc76ecb7276a30b267b4058860caa8">_CalendarData</a>
+, <a class="el" href="struct_data.html#a3d346c08cf2d67c388caabffb412b293">Data</a>
+, <a class="el" href="struct_data_medecin.html#a3d346c08cf2d67c388caabffb412b293">DataMedecin</a>
+, <a class="el" href="struct_data_r_d_v.html#a3d346c08cf2d67c388caabffb412b293">DataRDV</a>
+, <a class="el" href="struct_recherche_patient.html#a3d346c08cf2d67c388caabffb412b293">RecherchePatient</a>
+, <a class="el" href="struct_recherche_projet.html#a3d346c08cf2d67c388caabffb412b293">RechercheProjet</a>
+</li>
+<li>workingMedecins
+: <a class="el" href="struct_project___g_p_calendar.html#ad698f4218c3645e84ec3b943db9ea06d">Project_GPCalendar</a>
+>>>>>>> V3_branch
 </li>
 </ul>
 </div><!-- contents -->
@@ -362,7 +539,11 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:59 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

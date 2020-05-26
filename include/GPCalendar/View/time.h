@@ -6,6 +6,7 @@
 #ifndef TIME_H_INC
 #define TIME_H_INC
 
+#include "GPCalendar/Model/project_GPCalendar.h"
 #include "GPCalendar/View/fonctionsGraphiques.h"
 #include "GPCalendar/View/callbacks.h"
 #include <gtk/gtk.h>

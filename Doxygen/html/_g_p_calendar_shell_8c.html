@@ -15,6 +15,11 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +39,30 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +86,20 @@
 $(document).ready(function(){initNavTree('_g_p_calendar_shell_8c.html','');});
 </script>
 <div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
 <div class="header">
   <div class="summary">
 <a href="#func-members">Fonctions</a>  </div>
@@ -70,40 +108,85 @@ $(document).ready(function(){initNavTree('_g_p_calendar_shell_8c.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_g_p_calendar_shell_8h_source.html">GPCalendarShell.h</a>&quot;</code><br/>
-</div><div class="textblock"><div class="dynheader">
-Graphe des dépendances par inclusion de GPCalendarShell.c:</div>
-<div class="dyncontent">
-<div class="center"><img src="_g_p_calendar_shell_8c__incl.png" border="0" usemap="#src_2_app_2_g_p_calendar_shell_8c" alt=""/></div>
-<map name="src_2_app_2_g_p_calendar_shell_8c" id="src_2_app_2_g_p_calendar_shell_8c">
-<area shape="rect" id="node2" href="_g_p_calendar_shell_8h.html" title="GPCalendarShell.h" alt="" coords="1024,80,1157,107"/><area shape="rect" id="node3" href="_json_save_8h.html" title="GPCalendar/Model/JsonSave.h" alt="" coords="848,155,1053,181"/><area shape="rect" id="node4" href="medecin_8h.html" title="GPCalendar/Model/medecin.h" alt="" coords="454,933,649,960"/><area shape="rect" id="node9" href="patient_8h.html" title="GPCalendar/Model/patient.h" alt="" coords="928,229,1115,256"/><area shape="rect" id="node10" href="date_8h.html" title="GPCalendar/Model/date.h" alt="" coords="606,469,777,496"/><area shape="rect" id="node14" href="calendrier_8h.html" title="GPCalendar/Model/calendrier.h" alt="" coords="1053,784,1256,811"/><area shape="rect" id="node15" href="rendezvous_8h.html" title="GPCalendar/Model/rendezvous.h" alt="" coords="499,859,713,885"/><area shape="rect" id="node17" href="dossier__medical_8h.html" title="GPCalendar/Model/dossier\l_medical.h" alt="" coords="1240,305,1419,346"/><area shape="rect" id="node18" href="ordonnance_8h.html" title="GPCalendar/Model/ordonnance.h" alt="" coords="1190,395,1404,421"/><area shape="rect" id="node5" href="_structures_8h.html" title="GPCalendar/Model/Structures.h" alt="" coords="357,1008,563,1035"/><area shape="rect" id="node11" href="time_8h.html" title="time.h" alt="" coords="885,544,943,571"/><area shape="rect" id="node12" href="fonctions_graphiques_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="854,619,1036,661"/><area shape="rect" id="node13" href="callbacks_8h.html" title="Provides basic unit testing functions declaration. " alt="" coords="955,709,1151,736"/></map>
-</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:aeb5ca1f06d1f2130fd3df595b9099d3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#aeb5ca1f06d1f2130fd3df595b9099d3e">printPossibleAction</a> ()</td></tr>
 <tr class="separator:aeb5ca1f06d1f2130fd3df595b9099d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81ced304200923dfc6badd972e48ad66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a81ced304200923dfc6badd972e48ad66">Shell_creerPatient</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a81ced304200923dfc6badd972e48ad66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa679c3a49759c66dff5a488e43d6c43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#aaa679c3a49759c66dff5a488e43d6c43">Shell_creerMedecin</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:aaa679c3a49759c66dff5a488e43d6c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae96037b4533fe7f6a27b212679eba28b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#ae96037b4533fe7f6a27b212679eba28b">Shell_creerRendezVous</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:ae96037b4533fe7f6a27b212679eba28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e28eb1f072b6373bcc67b2bd7208413"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a9e28eb1f072b6373bcc67b2bd7208413">Shell_consulterInformations</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a9e28eb1f072b6373bcc67b2bd7208413"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c031360b80867a5cfc91c43e1379eb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a8c031360b80867a5cfc91c43e1379eb5">Shell_annulerRendezVous</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a8c031360b80867a5cfc91c43e1379eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f0bfd83e3a38349874af4ee6e1b164"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a73f0bfd83e3a38349874af4ee6e1b164">Shell_supprimerPatient</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a73f0bfd83e3a38349874af4ee6e1b164"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a9c773bb045887c610949cd34b03268"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a5a9c773bb045887c610949cd34b03268">Shell_supprimerMedecin</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a5a9c773bb045887c610949cd34b03268"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31f66500a42498ac28e1cc26f953115a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a31f66500a42498ac28e1cc26f953115a">Shell_saveProject</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a31f66500a42498ac28e1cc26f953115a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49ceb64484bb9edba5c4b4ed0f119666"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a49ceb64484bb9edba5c4b4ed0f119666">Shell_loadProject</a> (<a class="el" href="struct_project.html">Project</a> *project)</td></tr>
-<tr class="separator:a49ceb64484bb9edba5c4b4ed0f119666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62076ad72e115d925d72bc101c62bc28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a62076ad72e115d925d72bc101c62bc28">checkHelpDisplayAction</a> (char *ask)</td></tr>
+<tr class="separator:a62076ad72e115d925d72bc101c62bc28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817296535b62917fed8c5339b842a535"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a817296535b62917fed8c5339b842a535">checkQuit</a> (char *ask)</td></tr>
+<tr class="separator:a817296535b62917fed8c5339b842a535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a879279438c62cf06c8da0fc50fd50527"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a879279438c62cf06c8da0fc50fd50527">Shell_creerPatient</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a879279438c62cf06c8da0fc50fd50527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c4bb1b064158d3a46a75fd3bc64938"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a11c4bb1b064158d3a46a75fd3bc64938">Shell_creerMedecin</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a11c4bb1b064158d3a46a75fd3bc64938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff5e33c22837d0f75b81a218214b492"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a6ff5e33c22837d0f75b81a218214b492">Shell_creerRendezVous</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a6ff5e33c22837d0f75b81a218214b492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddd51aa70b9a2ebd14a0a8f65efaf45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#abddd51aa70b9a2ebd14a0a8f65efaf45">Shell_consulterInformations</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:abddd51aa70b9a2ebd14a0a8f65efaf45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad318177b185f3d44d9450581017fdc92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#ad318177b185f3d44d9450581017fdc92">Shell_modifierInformations</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:ad318177b185f3d44d9450581017fdc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9d051aa2040f3625e029af4bb0ae9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#aea9d051aa2040f3625e029af4bb0ae9d">Shell_modifierPatient</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:aea9d051aa2040f3625e029af4bb0ae9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a570b77868f17af54a3159cdaf70a97cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a570b77868f17af54a3159cdaf70a97cd">Shell_modifierMedecin</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a570b77868f17af54a3159cdaf70a97cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d68e30abde7222cca9e08819e9dfc1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_rendez_vous.html">RendezVous</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a7d68e30abde7222cca9e08819e9dfc1d">Shell_chercherRendezVous</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a7d68e30abde7222cca9e08819e9dfc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d20f776133afae9a027466afcd6ade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a33d20f776133afae9a027466afcd6ade">Shell_modifierRendezVous</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a33d20f776133afae9a027466afcd6ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a035d0ee5d79b0eb27886b93bc1203058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a035d0ee5d79b0eb27886b93bc1203058">Shell_modifierOrdonnance</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a035d0ee5d79b0eb27886b93bc1203058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58cc658d9680233e82d788fcde881cc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a58cc658d9680233e82d788fcde881cc8">Shell_annulerRendezVous</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a58cc658d9680233e82d788fcde881cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9fea51446560f89dbb239ff5e628ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a3d9fea51446560f89dbb239ff5e628ea">Shell_supprimerPatient</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:a3d9fea51446560f89dbb239ff5e628ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab638db57625449f127107dbed353e1f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#ab638db57625449f127107dbed353e1f2">Shell_supprimerMedecin</a> (<a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *project)</td></tr>
+<tr class="separator:ab638db57625449f127107dbed353e1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_g_p_calendar_shell_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a62076ad72e115d925d72bc101c62bc28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checkHelpDisplayAction </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a817296535b62917fed8c5339b842a535"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int checkQuit </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ask</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>checkQuit : check si l'utilisateur a rentré "quit" </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ask</td><td>: la chaîne de caractères checkées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si l'utilisateur veut vraiment quitter 0 sinon </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <div class="memitem">
 <div class="memproto">
@@ -161,17 +244,41 @@ Fonctions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>printPossibleAction :Affiche les actions disponibles dans le menu principal </p>
 
 </div>
 </div>
-<a class="anchor" id="a8c031360b80867a5cfc91c43e1379eb5"></a>
+<a class="anchor" id="a58cc658d9680233e82d788fcde881cc8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_annulerRendezVous </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Shell_annulerRendezVous : Permet d'annuler un Rendez-Vous </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel on annule le rdv </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d68e30abde7222cca9e08819e9dfc1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_rendez_vous.html">RendezVous</a>* Shell_chercherRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
@@ -180,94 +287,136 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9e28eb1f072b6373bcc67b2bd7208413"></a>
+<a class="anchor" id="abddd51aa70b9a2ebd14a0a8f65efaf45"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_consulterInformations </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_consulterInformations : permet à l'utilisateur de consulter les informations du projet sur lequel il travaille </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet en question </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="aaa679c3a49759c66dff5a488e43d6c43"></a>
+<a class="anchor" id="a11c4bb1b064158d3a46a75fd3bc64938"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_creerMedecin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_creerMedecin : Crée un médecin en demandant ses informations à l'utilisateur </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel est inscrit le médecin </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="a81ced304200923dfc6badd972e48ad66"></a>
+<a class="anchor" id="a879279438c62cf06c8da0fc50fd50527"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_creerPatient </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_creerPatient : Crée un patient en demandant ses informations à l'utilisateur </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel est inscrit le patient </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="ae96037b4533fe7f6a27b212679eba28b"></a>
+<a class="anchor" id="a6ff5e33c22837d0f75b81a218214b492"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_creerRendezVous </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_creerRendezVous : Crée un rendez-Vous entre un patient et un médecin en demandant les informations à l'utilisateur </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel sera inscrit le rdv </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="a49ceb64484bb9edba5c4b4ed0f119666"></a>
+<a class="anchor" id="ad318177b185f3d44d9450581017fdc92"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Shell_loadProject </td>
+          <td class="memname">void Shell_modifierInformations </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_modifierInformations : permet à l'utilisateur de venir modifier certaines informations des composants de son projet </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet en question </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Modifier :</p>
+<ul>
+<li>Un paramètre d'un patient</li>
+<li>Un paramètre d'un médecin</li>
+<li>Un rendezVous (motif, heure, date)</li>
+<li>Une ordonnance (Motif)</li>
+</ul>
 
 </div>
 </div>
-<a class="anchor" id="a31f66500a42498ac28e1cc26f953115a"></a>
+<a class="anchor" id="a570b77868f17af54a3159cdaf70a97cd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Shell_saveProject </td>
+          <td class="memname">void Shell_modifierMedecin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
@@ -276,35 +425,97 @@ Fonctions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5a9c773bb045887c610949cd34b03268"></a>
+<a class="anchor" id="a035d0ee5d79b0eb27886b93bc1203058"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Shell_modifierOrdonnance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aea9d051aa2040f3625e029af4bb0ae9d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Shell_modifierPatient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a33d20f776133afae9a027466afcd6ade"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Shell_modifierRendezVous </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
+          <td class="paramname"><em>project</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab638db57625449f127107dbed353e1f2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_supprimerMedecin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_supprimerMedecin : Supprime un médecin de la base de données </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel on supprime le médecin </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="a73f0bfd83e3a38349874af4ee6e1b164"></a>
+<a class="anchor" id="a3d9fea51446560f89dbb239ff5e628ea"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Shell_supprimerPatient </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_project.html">Project</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_project___g_p_calendar.html">Project_GPCalendar</a> *&#160;</td>
           <td class="paramname"><em>project</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Shell_supprimerPatient : Supprime un patient de la base de données </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">project</td><td>: le projet dans lequel on supprime le patient </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -314,7 +525,7 @@ Fonctions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_951f43124f8a9985ab7802551d674f01.html">App</a></li><li class="navelem"><a class="el" href="_g_p_calendar_shell_8c.html">GPCalendarShell.c</a></li>
-    <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:34 pour GPCalendar par
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

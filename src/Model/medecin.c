@@ -25,8 +25,6 @@ Medecin * CreerMedecin(char * nom, char * prenom,  char * mail, char * num_tel, 
     m->numero_RPS = (char*) malloc(strlen(num_RPS)+1);
     strcpy(m->numero_RPS, num_RPS);
 
-    //On initialise pas les diplomes et les specialites
-
     m->patients_recus = (ListPatient *) malloc(sizeof(struct ListPatient));
     ListPatient_init(m->patients_recus);
 
@@ -44,72 +42,6 @@ void DeleteMedecin(Medecin * medecin){
     free((void*) medecin->numero_RPS);
     ListPatient_free_withoutDeletingPatient(medecin->patients_recus);
     free((void *) medecin);
-    //Un free pour les spécialités et les diplômes ?
-}
-
-/**
- * AfficheMedecin : Affiche les informations d'un medecin dans la console
- * @param m : le medecin
- */
-void AfficheMedecin(Medecin * m){
-    printf("Le medecin %s %s associé au numéro RPS suivant : %s est contactable au %s ou par mail à l'adresse suivante : %s.\n",
-           m->nom, m->prenom, m->numero_RPS, m->numero_telephone, m->adresse_mail);
-    printf("On affiche pas encore les spécialités, les diplomes et la liste de patients recus pour l'instant.\n");
-}
-
-/********************************************************************************************************************/
-                                            /*Setteurs de Medecin*/
-/*******************************************************************************************************************/
-
-/**
- * SetNomMedecin : Setteur du nom d'un medecin
- * @param medecin : le medecin
- * @param nom : le nouveau nom
- */
-void SetNomMedecin(Medecin * medecin, char * nom){
-    free((void*) medecin->nom);
-    medecin->nom = (char*) malloc(strlen(nom)+1);
-    strcpy(medecin->nom, nom);
-}
-/**
- * SetPrenomMedecin : Setteur du prenom d'un medecin
- * @param medecin : le medecin
- * @param prenom : le nouveau prenom
- */
-void SetPrenomMedecin(Medecin * medecin, char * prenom){
-    free((void*) medecin->prenom);
-    medecin->prenom = (char*) malloc(strlen(prenom)+1);
-    strcpy(medecin->prenom, prenom);
-}
-/**
- * SetAdresseMailMedecin : Setteur de l'adrese mail d'un medecin
- * @param medecin : le medecin
- * @param mail : la nouvelle adresse mail
- */
-void SetAdresseMailMedecin(Medecin * medecin, char * mail){
-    free((void*) medecin->adresse_mail);
-    medecin->adresse_mail = (char*) malloc(strlen(mail)+1);
-    strcpy(medecin->adresse_mail, mail);
-}
-/**
- * SetNumeroTelephoneMedecin : Setteur du numero de telephone professionnel d'un medecin
- * @param medecin : le medecin
- * @param tel : le nouveau numero de telephone
- */
-void SetNumeroTelephoneMedecin(Medecin * medecin, char * tel){
-    free((void*) medecin->numero_telephone);
-    medecin->numero_telephone = (char*) malloc(strlen(tel)+1);
-    strcpy(medecin->numero_telephone, tel);
-}
-/**
- * SetNumeroRPSMedecin : Setteur du numéro RPS d'un medecin
- * @param medecin : le medecin
- * @param num_RPS : le nouveau numéro RPS
- */
-void SetNumeroRPSMedecin(Medecin * medecin, char * num_RPS){
-    free((void*) medecin->numero_RPS);
-    medecin->numero_RPS = (char*) malloc(strlen(num_RPS)+1);
-    strcpy(medecin->numero_RPS, num_RPS);
 }
 
 /********************************************************************************************************************/
@@ -233,7 +165,7 @@ int DeletePatientRecuMedecin(Medecin * m, Patient * patient){
     for (ListPatient_setOnFirst(m->patients_recus); !ListPatient_isOutOfList(
             m->patients_recus); ListPatient_setOnNext(m->patients_recus)) {
         //Si on le trouve on le retire et on quitte la fonction
-        if (ListPatient_getCurrent(m->patients_recus) == patient) {
+        if (strcmp(ListPatient_getCurrent(m->patients_recus)->numero_secu_social, patient->numero_secu_social) == 0) {
             m->patients_recus->current->previous->next = m->patients_recus->current->next;
             m->patients_recus->current->next->previous = m->patients_recus->current->previous;
             freeNodePatient_withoutDeletingPatient(m->patients_recus, m->patients_recus->current);
@@ -317,7 +249,7 @@ void printListMedecin(ListMedecin* l){
     char* infosMedecin;
     for (ListMedecin_setOnFirst(l); !ListMedecin_isOutOfList(l); ListMedecin_setOnNext(l)) {
         printf("\n *  ");
-        infosMedecin = (char*) malloc(200);
+        infosMedecin = (char*) malloc(1000);
         getInfoMedecin(infosMedecin, ListMedecin_getCurrent(l));
         printf("%s",infosMedecin);
         free((void*)infosMedecin);
@@ -437,32 +369,6 @@ int ListMedecin_isEmpty(ListMedecin * l){
     return -1; //La liste est NULL
 }
 /**
- * ListMedecin_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListMedecin_isFirst(ListMedecin * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListMedecin_isLast : Vérifie si current est positionné sur le dernier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le dernier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListMedecin_isLast(ListMedecin * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_end.previous;
-    }
-    return -1; //La liste est NULL
-}
-/**
  * ListMedecin_isOutOfList : Vérifie si current est bien placé sur un élément de la liste
  * (les sentinels ne sont pas considérées comme dans la liste)
  * @param l : la liste
@@ -484,15 +390,6 @@ int ListMedecin_isOutOfList(ListMedecin * l){
 void ListMedecin_setOnFirst(ListMedecin * l){
     if(l != NULL){
         l->current = l->sentinel_begin.next;
-    }
-}
-/**
- * ListMedecin_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListMedecin_setOnLast(ListMedecin * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
     }
 }
 /**

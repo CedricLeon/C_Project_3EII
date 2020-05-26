@@ -1,7 +1,10 @@
 var globals_dup =
 [
     [ "a", "globals.html", null ],
+<<<<<<< HEAD
     [ "b", "globals_b.html", null ],
+=======
+>>>>>>> V3_branch
     [ "c", "globals_c.html", null ],
     [ "d", "globals_d.html", null ],
     [ "e", "globals_e.html", null ],

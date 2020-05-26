@@ -14,6 +14,10 @@ var NAVTREE =
       [ "Variables globale", "globals.html", [
         [ "Tout", "globals.html", "globals_dup" ],
         [ "Fonctions", "globals_func.html", "globals_func" ],
+<<<<<<< HEAD
+=======
+        [ "Variables", "globals_vars.html", null ],
+>>>>>>> V3_branch
         [ "Définitions de type", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
@@ -24,8 +28,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_g_p_calendar_shell_8c.html",
+<<<<<<< HEAD
 "date_8h.html#ade26d803a4a5c87a43e1a7a7c00bb736",
 "patient_8c.html#a6e771e2869a7b73c4a31671c677c5d65"
+=======
+"date_8h.html#afe0e794d1bd2a99702dedc0d86959118",
+"patient_8h.html#aa695434fd4bc74a7190a12da0648af98"
+>>>>>>> V3_branch
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

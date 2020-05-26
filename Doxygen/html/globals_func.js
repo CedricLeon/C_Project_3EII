@@ -1,7 +1,10 @@
 var globals_func =
 [
     [ "a", "globals_func.html", null ],
+<<<<<<< HEAD
     [ "b", "globals_func_b.html", null ],
+=======
+>>>>>>> V3_branch
     [ "c", "globals_func_c.html", null ],
     [ "d", "globals_func_d.html", null ],
     [ "e", "globals_func_e.html", null ],

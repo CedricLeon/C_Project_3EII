@@ -153,18 +153,6 @@ void freeNodeOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
     ListOrdonnance_setOnFirst(l);
     ListOrdonnance_setOnPrevious(l);
 }
-/**
- * freeNodeOrdonnance_withoutDeletingOrdonnance : Permet de delete un nodeOrdonnance mais sans delete l'ordonnance liée au node
- * @param n : le node à delete
- */
-void freeNodeOrdonnance_withoutDeletingOrdonnance(ListOrdonnance *l, NodeOrdonnance * n){
-    n->previous->next = n->next;
-    n->next->previous = n->previous;
-    free((void *) n);
-    ListOrdonnance_setOnFirst(l);
-    ListOrdonnance_setOnPrevious(l);
-}
-
 
 /**
  * ListOrdonnance_init : Initialise correctement une liste de NodeOrdonnance en reliant sentinel_begin et end entre eux
@@ -202,25 +190,6 @@ void ListOrdonnance_free(ListOrdonnance * l){
 }
 
 /**
- * ListOrdonnance_free_withoutDeletingOrdonnance : Libère la mémoire occupée par l'objet ListOrdonnance passé en paramètre mais
- * sans delete les ordonnances de cette liste (uniquement les nodes)
- * @param l : la liste d'ordonnances à free
- */
-void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
-    if (l == NULL){
-        printf("ListOrdonnance_free_withoutDeletingOrdonnance : le jour est NULL !!!\n");
-    }else if ( ListOrdonnance_isEmpty(l)){
-        //printf("ListOrdonnance_free_withoutDeletingOrdonnance : la liste est vide, on ne free donc que la liste!!!\n");
-        free((void *) l);
-    }else {
-        for (ListOrdonnance_setOnFirst(l); !ListOrdonnance_isOutOfList(l); ListOrdonnance_setOnNext(l)) {
-            freeNodeOrdonnance_withoutDeletingOrdonnance(l, l->current);
-        }
-        free((void *) l);
-    }
-}
-
-/**
  * ListOrdonnance_isEmpty : Vérifie si la liste de Ordonnance est vide ou non
  * @param l : la liste
  * @return 1 si la liste est vide
@@ -230,32 +199,6 @@ void ListOrdonnance_free_withoutDeletingOrdonnance(ListOrdonnance * l){
 int ListOrdonnance_isEmpty(ListOrdonnance * l){
     if (l != NULL){
         return  (l->sentinel_begin.next == &(l->sentinel_end)) && (l->sentinel_end.previous == &(l->sentinel_begin));
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListOrdonnance_isFirst : Vérifie si current est positionné sur le premier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le premier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListOrdonnance_isFirst(ListOrdonnance * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_begin.next;
-    }
-    return -1; //La liste est NULL
-}
-/**
- * ListOrdonnance_isLast : Vérifie si current est positionné sur le dernier élément de la liste
- * @param l : la liste
- * @return 1 si current est bien sur le dernier élément
- *         0 si il ne l'est pas
- *         -1 si la liste est NULL
- */
-int ListOrdonnance_isLast(ListOrdonnance * l){
-    if (l != NULL){
-        return  l->current == l->sentinel_end.previous;
     }
     return -1; //La liste est NULL
 }
@@ -281,15 +224,6 @@ int ListOrdonnance_isOutOfList(ListOrdonnance * l){
 void ListOrdonnance_setOnFirst(ListOrdonnance * l){
     if(l != NULL){
         l->current = l->sentinel_begin.next;
-    }
-}
-/**
- * ListOrdonnance_setOnLast : Positionne le pointeur courant sur le dernier élément de la liste
- * @param l : la liste
- */
-void ListOrdonnance_setOnLast(ListOrdonnance * l){
-    if(l != NULL){
-        l->current = l->sentinel_end.previous;
     }
 }
 /**

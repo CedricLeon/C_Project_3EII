@@ -1,10 +1,5 @@
-#include "GPCalendar/View/fonctionsGraphiques.h"
-#include "GPCalendar/View/callbacks.h"
 #include "GPCalendar/View/time.h"
-#include <gtk/gtk.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
+
 
 #define DEF_PAD 50
 #define DEF_PAD_SMALL 5
@@ -17,6 +12,13 @@ typedef struct _CalendarData {
   GtkWidget *last_sig;
   GtkWidget *month;
 } CalendarData;
+
+char* nomFichier;
+
+
+//Project* projet=GPCalendar_loadProject(nomFichier);
+
+/** POUR GERER INT DANS LES PARAM NUM: faire boucle de 0 à 12 pour num secu, 0à 9 pour numTel if(((gtk_entry_get_text(GTK_ENTRY(widget)))[0]>=48) && (gtk_entry_get_text(GTK_ENTRY(widget))[0]<=57))**/
 
 /** Calendrier médecin **/
 
@@ -120,7 +122,7 @@ void create_calendar()
 
 
   g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit),NULL);
-  g_signal_connect (window, "delete-event", G_CALLBACK (gtk_false), NULL);
+  g_signal_connect (window, "delete-event", gtk_false, NULL);
   gtk_window_set_resizable (GTK_WINDOW (window), FALSE);                        //so that the user can not resize this window
 
     /*generates the box to place the window*/
@@ -180,6 +182,18 @@ void create_calendar()
 
     g_signal_connect(G_OBJECT(plusRDV), "clicked", G_CALLBACK(cb_clicSurPlus), NULL);       //opens a new window when the button is pressed
     gtk_box_pack_start (GTK_BOX (vbox2), plusRDV, FALSE, FALSE, 0);
+
+  /*Build button test fentre creer rdv*/
+    GtkWidget * testButton = gtk_button_new_with_label("Test");
+    gtk_box_pack_start(GTK_BOX(vbox3), testButton, FALSE, FALSE, 0);
+    gtk_widget_set_size_request(testButton, 20, 20);
+
+    g_signal_connect(G_OBJECT(testButton),"clicked", G_CALLBACK(fenetreCreerRDV), NULL);       //opens a new window when the button is pressed
+    gtk_box_pack_start (GTK_BOX (vbox2), testButton, FALSE, FALSE, 0);
+
+
+
+
 
   /*Show the day selected signals*/
 
@@ -272,6 +286,5 @@ void create_calendar()
 
 
     }*/
-
 
 

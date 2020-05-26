@@ -58,12 +58,9 @@ void ListAntecedent_free(ListAntecedent * l);
 int ListAntecedent_add(ListAntecedent* l, char* ante);
 
 int ListAntecedent_isEmpty(ListAntecedent * l);
-int ListAntecedent_isFirst(ListAntecedent * l);
-int ListAntecedent_isLast(ListAntecedent * l);
 int ListAntecedent_isOutOfList(ListAntecedent * l);
 
 void ListAntecedent_setOnFirst(ListAntecedent * l);
-void ListAntecedent_setOnLast(ListAntecedent * l);
 void ListAntecedent_setOnNext(ListAntecedent * l);
 void ListAntecedent_setOnPrevious(ListAntecedent * l);
 char * ListAntecedent_getCurrent(ListAntecedent * l);

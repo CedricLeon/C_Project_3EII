@@ -15,6 +15,14 @@
   $(document).ready(initResizable);
   $(window).load(resizeHeight);
 </script>
+<<<<<<< HEAD
+=======
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+>>>>>>> V3_branch
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -34,11 +42,36 @@
 </div>
 <!-- end header part -->
 <!-- Généré par Doxygen 1.8.6 -->
+<<<<<<< HEAD
+=======
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+>>>>>>> V3_branch
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
       <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+<<<<<<< HEAD
+=======
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+>>>>>>> V3_branch
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
@@ -62,6 +95,23 @@
 $(document).ready(function(){initNavTree('date_8h_source.html','');});
 </script>
 <div id="doc-content">
+<<<<<<< HEAD
+=======
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Définitions de type</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+>>>>>>> V3_branch
 <div class="header">
   <div class="headertitle">
 <div class="title">date.h</div>  </div>
@@ -93,27 +143,46 @@ $(document).ready(function(){initNavTree('date_8h_source.html','');});
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="date_8h_html_ab94ed681ac0fc2894d6fbf2d55582819"><div class="ttname"><a href="date_8h.html#ab94ed681ac0fc2894d6fbf2d55582819">FreeDate</a></div><div class="ttdeci">void FreeDate(Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:21</div></div>
+<<<<<<< HEAD
 <div class="ttc" id="date_8h_html_aba818d6260c766df44619339e5f4ba38"><div class="ttname"><a href="date_8h.html#aba818d6260c766df44619339e5f4ba38">getInfosDate</a></div><div class="ttdeci">void getInfosDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:99</div></div>
 <div class="ttc" id="time_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div></div>
 <div class="ttc" id="struct_date_html"><div class="ttname"><a href="struct_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:9</div></div>
 <div class="ttc" id="date_8h_html_a2867fe49f0d396223ff7220368618c94"><div class="ttname"><a href="date_8h.html#a2867fe49f0d396223ff7220368618c94">getMoisDate</a></div><div class="ttdeci">void getMoisDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:78</div></div>
+=======
+<div class="ttc" id="date_8h_html_aba818d6260c766df44619339e5f4ba38"><div class="ttname"><a href="date_8h.html#aba818d6260c766df44619339e5f4ba38">getInfosDate</a></div><div class="ttdeci">void getInfosDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:98</div></div>
+<div class="ttc" id="time_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div></div>
+<div class="ttc" id="struct_date_html"><div class="ttname"><a href="struct_date.html">Date</a></div><div class="ttdef"><b>Definition:</b> date.h:9</div></div>
+<div class="ttc" id="date_8h_html_a2867fe49f0d396223ff7220368618c94"><div class="ttname"><a href="date_8h.html#a2867fe49f0d396223ff7220368618c94">getMoisDate</a></div><div class="ttdeci">void getMoisDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:79</div></div>
+>>>>>>> V3_branch
 <div class="ttc" id="struct_date_html_acfe2ff64f5396827db36f1575c5e99d8"><div class="ttname"><a href="struct_date.html#acfe2ff64f5396827db36f1575c5e99d8">Date::annee</a></div><div class="ttdeci">int annee</div><div class="ttdef"><b>Definition:</b> date.h:10</div></div>
 <div class="ttc" id="date_8h_html_afe0e794d1bd2a99702dedc0d86959118"><div class="ttname"><a href="date_8h.html#afe0e794d1bd2a99702dedc0d86959118">AjoutMoisDate</a></div><div class="ttdeci">Date * AjoutMoisDate(Date *d, int nb_mois)</div><div class="ttdef"><b>Definition:</b> date.c:48</div></div>
 <div class="ttc" id="date_8h_html_a6b9b33d649ba9b4b0c3e906ddc194737"><div class="ttname"><a href="date_8h.html#a6b9b33d649ba9b4b0c3e906ddc194737">CreerDate</a></div><div class="ttdeci">Date * CreerDate(int annee, int mois, int jour)</div><div class="ttdef"><b>Definition:</b> date.c:10</div></div>
 <div class="ttc" id="struct_date_html_af4d47133f30c1a134b6cecf5cedd7db9"><div class="ttname"><a href="struct_date.html#af4d47133f30c1a134b6cecf5cedd7db9">Date::mois</a></div><div class="ttdeci">int mois</div><div class="ttdef"><b>Definition:</b> date.h:11</div></div>
 <div class="ttc" id="date_8h_html_ade26d803a4a5c87a43e1a7a7c00bb736"><div class="ttname"><a href="date_8h.html#ade26d803a4a5c87a43e1a7a7c00bb736">CreerDateCourante</a></div><div class="ttdeci">Date * CreerDateCourante()</div><div class="ttdef"><b>Definition:</b> date.c:28</div></div>
+<<<<<<< HEAD
 <div class="ttc" id="date_8h_html_a464fdd5871b63d8c3655b3b4723232f8"><div class="ttname"><a href="date_8h.html#a464fdd5871b63d8c3655b3b4723232f8">getAnneeDate</a></div><div class="ttdeci">void getAnneeDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:87</div></div>
 <div class="ttc" id="struct_date_html_aec8e61b4e27d935e47eba0485425da38"><div class="ttname"><a href="struct_date.html#aec8e61b4e27d935e47eba0485425da38">Date::jour</a></div><div class="ttdeci">int jour</div><div class="ttdef"><b>Definition:</b> date.h:12</div></div>
 <div class="ttc" id="date_8h_html_ac46426774b92a2898c20937e3da9097f"><div class="ttname"><a href="date_8h.html#ac46426774b92a2898c20937e3da9097f">DateEgales</a></div><div class="ttdeci">int DateEgales(Date *d1, Date *d2)</div><div class="ttdef"><b>Definition:</b> date.c:120</div></div>
 <div class="ttc" id="date_8h_html_a35ba502b88e15225adc77abfdba0bbe9"><div class="ttname"><a href="date_8h.html#a35ba502b88e15225adc77abfdba0bbe9">getJourDate</a></div><div class="ttdeci">void getJourDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:69</div></div>
 <div class="ttc" id="struct_node_annee_html_aa0898ccf3eb95fa2dc84150d887b55c1"><div class="ttname"><a href="struct_node_annee.html#aa0898ccf3eb95fa2dc84150d887b55c1">NodeAnnee::annee</a></div><div class="ttdeci">Annee annee</div><div class="ttdef"><b>Definition:</b> calendrier.h:172</div></div>
+=======
+<div class="ttc" id="date_8h_html_a464fdd5871b63d8c3655b3b4723232f8"><div class="ttname"><a href="date_8h.html#a464fdd5871b63d8c3655b3b4723232f8">getAnneeDate</a></div><div class="ttdeci">void getAnneeDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:88</div></div>
+<div class="ttc" id="struct_date_html_aec8e61b4e27d935e47eba0485425da38"><div class="ttname"><a href="struct_date.html#aec8e61b4e27d935e47eba0485425da38">Date::jour</a></div><div class="ttdeci">int jour</div><div class="ttdef"><b>Definition:</b> date.h:12</div></div>
+<div class="ttc" id="date_8h_html_ac46426774b92a2898c20937e3da9097f"><div class="ttname"><a href="date_8h.html#ac46426774b92a2898c20937e3da9097f">DateEgales</a></div><div class="ttdeci">int DateEgales(Date *d1, Date *d2)</div><div class="ttdef"><b>Definition:</b> date.c:123</div></div>
+<div class="ttc" id="date_8h_html_a35ba502b88e15225adc77abfdba0bbe9"><div class="ttname"><a href="date_8h.html#a35ba502b88e15225adc77abfdba0bbe9">getJourDate</a></div><div class="ttdeci">void getJourDate(char *infos, Date *d)</div><div class="ttdef"><b>Definition:</b> date.c:69</div></div>
+<div class="ttc" id="struct_node_annee_html_aa0898ccf3eb95fa2dc84150d887b55c1"><div class="ttname"><a href="struct_node_annee.html#aa0898ccf3eb95fa2dc84150d887b55c1">NodeAnnee::annee</a></div><div class="ttdeci">Annee annee</div><div class="ttdef"><b>Definition:</b> calendrier.h:160</div></div>
+>>>>>>> V3_branch
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_65295badb1715408ff33c95f7fd989c2.html">GPCalendar</a></li><li class="navelem"><a class="el" href="dir_d9a9e7e769df40dd13c61cc9dc17fdf0.html">Model</a></li><li class="navelem"><a class="el" href="date_8h.html">date.h</a></li>
+<<<<<<< HEAD
     <li class="footer">Généré le Dimanche 10 Mai 2020 17:34:58 pour GPCalendar par
+=======
+    <li class="footer">Généré le Dimanche 24 Mai 2020 21:42:33 pour GPCalendar par
+>>>>>>> V3_branch
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
